@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física P2T1 — MRU, MRUV, Dilatação, Calorimetria | Material de Estudo</title>
+<style>
+:root{
+  --bg-1:#0a1929;
+  --bg-2:#10243a;
+  --bg-3:#0f1d2e;
+  --mov:#4cc9f0;            /* Física A - Movimento */
+  --mov-dark:#2196c4;
+  --mov-glow:rgba(76,201,240,.35);
+  --termo:#f72585;          /* Física B - Termologia */
+  --termo-dark:#b81a64;
+  --termo-glow:rgba(247,37,133,.35);
+  --mru:#4cc9f0;
+  --mruv:#4361ee;
+  --mruv-glow:rgba(67,97,238,.35);
+  --dilat:#fb8500;
+  --dilat-glow:rgba(251,133,0,.35);
+  --calor:#ef476f;
+  --calor-glow:rgba(239,71,111,.35);
+  --gold:#ffd166;
+  --ink:#f8f9ff;
+  --ink-dim:#b9c4d6;
+  --card:#142339;
+  --card-2:#1c2e48;
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--bg-1),var(--bg-3) 50%,var(--bg-2));
+  background-attachment:fixed;
+  min-height:100vh;line-height:1.55;
+}
+.container{max-width:1200px;margin:0 auto;padding:18px 18px 80px}
+
+/* HUB BACK NAV */
+.hub-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-radius:12px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.hub-bar a{
+  color:var(--ink-dim);text-decoration:none;font-size:.86rem;
+  display:inline-flex;align-items:center;gap:6px;font-weight:600;
+  transition:color .2s;
+}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{
+  font-size:.8rem;color:var(--mov);font-weight:700;
+  background:var(--mov-glow);padding:4px 10px;border-radius:6px;
+  letter-spacing:1px;
+}
+
+/* HEADER */
+header.hero{
+  text-align:center;padding:30px 16px 20px;
+  background:radial-gradient(circle at 25% 30%,var(--mov-glow),transparent 50%),
+             radial-gradient(circle at 75% 70%,var(--termo-glow),transparent 50%);
+  border-radius:20px;margin-bottom:14px;position:relative;overflow:hidden;
+}
+header.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><text x='10' y='40' font-family='monospace' font-size='14' fill='rgba(255,209,102,.07)'>v=v₀+at</text><text x='10' y='65' font-family='monospace' font-size='14' fill='rgba(76,201,240,.07)'>Q=mcΔθ</text></svg>");
+  opacity:.5;pointer-events:none;
+}
+header.hero h1{
+  font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:1px;
+  background:linear-gradient(90deg,var(--mov),var(--gold),var(--termo));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:800;
+}
+header.hero p{margin-top:6px;color:var(--ink-dim);font-size:.92rem}
+.subtitle-tag{
+  display:inline-block;margin-top:12px;padding:6px 14px;
+  background:rgba(255,209,102,.15);border:1px solid var(--gold);
+  border-radius:999px;color:var(--gold);font-size:.76rem;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+nav.tabs{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:14px 0;justify-content:center;
+  position:sticky;top:0;z-index:10;
+  background:rgba(10,25,41,.92);backdrop-filter:blur(10px);
+  padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,.06);
+}
+nav.tabs button{
+  background:transparent;color:var(--ink-dim);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 14px;border-radius:10px;
+  cursor:pointer;font-size:.84rem;
+  transition:all .25s;font-weight:600;
+}
+nav.tabs button:hover{transform:translateY(-2px);color:var(--ink)}
+nav.tabs button.active{
+  background:linear-gradient(90deg,var(--mov),var(--termo));
+  color:white;border-color:transparent;
+  box-shadow:0 4px 18px rgba(76,201,240,.4);
+}
+
+section.tab-content{display:none;animation:fadeIn .4s ease}
+section.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h2.section-title{font-size:1.5rem;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+h2.section-title .ico{
+  width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--mov),var(--termo));
+  border-radius:10px;font-size:1.2rem;
+}
+
+/* OVERVIEW MODULE CARDS */
+.subject-section{
+  margin-top:18px;padding:16px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(76,201,240,.05),rgba(76,201,240,.02));
+  border:1px solid rgba(76,201,240,.15);
+}
+.subject-section.termo{
+  background:linear-gradient(135deg,rgba(247,37,133,.05),rgba(247,37,133,.02));
+  border:1px solid rgba(247,37,133,.15);
+}
+.subject-section h3{
+  display:flex;align-items:center;gap:10px;margin-bottom:12px;
+  font-size:1.2rem;color:var(--mov);
+}
+.subject-section.termo h3{color:var(--termo)}
+.subject-section h3 .teacher{
+  font-size:.7rem;background:rgba(255,255,255,.07);
+  padding:3px 10px;border-radius:6px;color:var(--ink-dim);
+  letter-spacing:1px;font-weight:600;
+}
+.modules-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:12px;
+}
+.module-card{
+  padding:16px;border-radius:14px;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+  transition:transform .3s;
+}
+.module-card:hover{transform:translateY(-4px)}
+.module-card.mru{border-top:4px solid var(--mru)}
+.module-card.mruv{border-top:4px solid var(--mruv)}
+.module-card.dilat{border-top:4px solid var(--dilat)}
+.module-card.calor{border-top:4px solid var(--calor)}
+.module-card .badge{
+  display:inline-block;padding:3px 9px;border-radius:6px;
+  font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;
+}
+.module-card.mru .badge{background:var(--mov-glow);color:var(--mru)}
+.module-card.mruv .badge{background:var(--mruv-glow);color:var(--mruv)}
+.module-card.dilat .badge{background:var(--dilat-glow);color:var(--dilat)}
+.module-card.calor .badge{background:var(--calor-glow);color:var(--calor)}
+.module-card h4{font-size:1.05rem;margin-bottom:6px}
+.module-card p{color:var(--ink-dim);font-size:.84rem}
+.module-card ul{margin-top:6px;padding-left:18px;color:var(--ink-dim);font-size:.82rem}
+.module-card li{margin:3px 0}
+.module-card .formula{
+  display:inline-block;font-family:'Cambria Math', 'Georgia', serif;
+  font-style:italic;background:rgba(255,209,102,.1);
+  padding:2px 8px;border-radius:6px;color:var(--gold);
+  font-size:.95rem;margin-top:6px;
+}
+.module-card .emoji{font-size:2rem;float:right;opacity:.85;margin-top:-4px}
+
+.criterio-box{
+  margin-top:16px;padding:16px 20px;
+  background:linear-gradient(90deg,rgba(255,209,102,.08),transparent);
+  border-left:4px solid var(--gold);border-radius:10px;
+}
+.criterio-box h4{color:var(--gold);margin-bottom:6px;font-size:.95rem}
+.criterio-box ul{padding-left:20px;color:var(--ink-dim);font-size:.86rem}
+.criterio-box li{margin:5px 0}
+
+/* DETAIL */
+.detail-section{margin-top:20px}
+.detail-card{
+  background:var(--card);padding:18px 20px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);margin-bottom:12px;box-shadow:var(--shadow);
+}
+.detail-card h4{font-size:1.05rem;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.detail-card h4 .badge-mini{font-size:.66rem;padding:3px 8px;border-radius:6px;font-weight:700}
+.detail-card.mru h4 .badge-mini{background:var(--mov-glow);color:var(--mru)}
+.detail-card.mruv h4 .badge-mini{background:var(--mruv-glow);color:var(--mruv)}
+.detail-card.dilat h4 .badge-mini{background:var(--dilat-glow);color:var(--dilat)}
+.detail-card.calor h4 .badge-mini{background:var(--calor-glow);color:var(--calor)}
+.detail-card p{color:var(--ink-dim);font-size:.9rem;margin-bottom:8px}
+.detail-card ul{padding-left:20px;color:var(--ink-dim);font-size:.88rem}
+.detail-card ul li{margin:4px 0}
+.detail-card ul li b{color:var(--ink)}
+.detail-card.mru{border-left:4px solid var(--mru)}
+.detail-card.mruv{border-left:4px solid var(--mruv)}
+.detail-card.dilat{border-left:4px solid var(--dilat)}
+.detail-card.calor{border-left:4px solid var(--calor)}
+
+/* FORMULAS BOX */
+.formula-box{
+  display:flex;flex-direction:column;align-items:center;
+  background:linear-gradient(135deg,rgba(255,209,102,.1),rgba(255,209,102,.03));
+  border:1px solid rgba(255,209,102,.3);
+  padding:14px 18px;border-radius:12px;margin:10px 0;
+}
+.formula-box .eq{
+  font-family:'Cambria Math', 'Georgia', serif;
+  font-style:italic;font-size:1.4rem;color:var(--gold);
+  font-weight:600;letter-spacing:1px;
+}
+.formula-box .label{
+  font-size:.78rem;color:var(--ink-dim);margin-top:4px;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.formula-list{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:10px;margin-top:10px;
+}
+.formula-card{
+  background:var(--card);padding:12px 14px;border-radius:10px;
+  border:1px solid rgba(255,255,255,.07);
+}
+.formula-card .name{font-size:.82rem;color:var(--ink-dim);margin-bottom:4px}
+.formula-card .eq{
+  font-family:'Cambria Math', 'Georgia', serif;
+  font-style:italic;color:var(--gold);font-size:1.15rem;font-weight:600;
+}
+.formula-card.mru{border-left:3px solid var(--mru)}
+.formula-card.mruv{border-left:3px solid var(--mruv)}
+.formula-card.dilat{border-left:3px solid var(--dilat)}
+.formula-card.calor{border-left:3px solid var(--calor)}
+
+/* MIND MAPS */
+.mindmap-wrapper{
+  background:var(--card);border-radius:18px;padding:18px;margin-top:12px;
+  box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.06);
+}
+.mindmap-wrapper h3{font-size:1.2rem;margin-bottom:12px;text-align:center;letter-spacing:.5px}
+.mindmap-wrapper.mru h3{color:var(--mru)}
+.mindmap-wrapper.mruv h3{color:var(--mruv)}
+.mindmap-wrapper.dilat h3{color:var(--dilat)}
+.mindmap-wrapper.calor h3{color:var(--calor)}
+.mindmap-svg{width:100%;height:auto;display:block}
+
+/* GRAPHS */
+.graph-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:14px;margin-top:14px;
+}
+.graph-card{
+  background:var(--card);padding:14px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);
+}
+.graph-card h4{
+  font-size:1rem;margin-bottom:8px;text-align:center;color:var(--gold);
+}
+.graph-card svg{width:100%;height:auto;display:block;background:rgba(0,0,0,.18);border-radius:8px;padding:6px}
+.graph-card p{font-size:.82rem;color:var(--ink-dim);margin-top:6px;text-align:center}
+.graph-card .equation{
+  font-family:'Cambria Math', 'Georgia', serif;
+  font-style:italic;color:var(--gold);font-size:.95rem;display:block;margin:4px 0;text-align:center;
+}
+
+/* FLASHCARDS */
+.deck-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.deck-controls button{
+  background:var(--card);color:var(--ink);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 13px;border-radius:10px;
+  cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.deck-controls button:hover{background:var(--card-2);transform:translateY(-2px)}
+.deck-controls button.mru{border-color:var(--mru);color:var(--mru)}
+.deck-controls button.mruv{border-color:var(--mruv);color:#7d92ff}
+.deck-controls button.dilat{border-color:var(--dilat);color:var(--dilat)}
+.deck-controls button.calor{border-color:var(--calor);color:var(--calor)}
+.deck-controls button.mru.active{background:var(--mru);color:#0a1929}
+.deck-controls button.mruv.active{background:var(--mruv);color:white}
+.deck-controls button.dilat.active{background:var(--dilat);color:white}
+.deck-controls button.calor.active{background:var(--calor);color:white}
+.deck-controls button.all.active{background:var(--gold);color:#0a1929;border-color:var(--gold)}
+
+.flashcard-stage{perspective:1000px;display:flex;justify-content:center;margin:16px auto}
+.flashcard{
+  width:100%;max-width:580px;height:340px;
+  position:relative;cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.2,.8,.2,1);
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flashcard .face{
+  position:absolute;inset:0;border-radius:20px;
+  display:flex;flex-direction:column;padding:22px;
+  backface-visibility:hidden;box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.08);
+}
+.flashcard .front{
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  align-items:center;justify-content:center;text-align:center;
+}
+.flashcard .front .tag{
+  position:absolute;top:14px;left:14px;
+  font-size:.7rem;letter-spacing:1px;padding:4px 10px;
+  border-radius:8px;font-weight:700;
+}
+.flashcard .front .tag.mru{background:var(--mov-glow);color:var(--mru)}
+.flashcard .front .tag.mruv{background:var(--mruv-glow);color:#7d92ff}
+.flashcard .front .tag.dilat{background:var(--dilat-glow);color:var(--dilat)}
+.flashcard .front .tag.calor{background:var(--calor-glow);color:var(--calor)}
+.flashcard .front .num{position:absolute;top:14px;right:14px;font-size:.74rem;color:var(--ink-dim)}
+.flashcard .front .q{font-size:1.25rem;font-weight:600;max-width:95%;line-height:1.4}
+.flashcard .front .hint{margin-top:14px;color:var(--ink-dim);font-size:.74rem;letter-spacing:1px;text-transform:uppercase}
+.flashcard .back{transform:rotateY(180deg);background:linear-gradient(135deg,#19273e,#1c2e48);justify-content:center;overflow-y:auto}
+.flashcard .back .a{font-size:1rem;color:var(--ink)}
+.flashcard .back .a strong{color:var(--gold)}
+.flashcard .back .a em{font-style:normal;color:var(--mov)}
+.flashcard.mru .front{border-top:3px solid var(--mru)}
+.flashcard.mruv .front{border-top:3px solid var(--mruv)}
+.flashcard.dilat .front{border-top:3px solid var(--dilat)}
+.flashcard.calor .front{border-top:3px solid var(--calor)}
+
+.deck-nav{display:flex;justify-content:center;gap:14px;margin-top:8px;align-items:center}
+.deck-nav button{
+  background:linear-gradient(135deg,var(--mov),var(--termo));
+  color:white;border:none;padding:10px 22px;border-radius:12px;
+  cursor:pointer;font-weight:700;font-size:.95rem;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s;
+}
+.deck-nav button:hover{transform:translateY(-2px)}
+.deck-progress{color:var(--ink-dim);font-size:.85rem;font-weight:600}
+
+/* QUIZ */
+.quiz-wrap{
+  background:var(--card);padding:20px;border-radius:18px;
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);
+  max-width:760px;margin:0 auto;
+}
+.quiz-progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:.85rem;color:var(--ink-dim)}
+.quiz-bar{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin:8px 0 18px}
+.quiz-bar div{height:100%;background:linear-gradient(90deg,var(--mov),var(--termo));transition:width .4s}
+.quiz-q{font-size:1.05rem;font-weight:600;margin-bottom:14px;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-options button{
+  text-align:left;padding:12px 14px;border-radius:10px;
+  background:var(--card-2);color:var(--ink);
+  border:1px solid rgba(255,255,255,.08);
+  cursor:pointer;font-size:.9rem;transition:all .2s;
+}
+.quiz-options button:hover:not(.disabled){background:#243958;transform:translateX(4px)}
+.quiz-options button.correct{background:rgba(46,204,113,.2);border-color:#2ecc71;color:#7afca7}
+.quiz-options button.wrong{background:rgba(231,76,60,.2);border-color:#e74c3c;color:#ffa294}
+.quiz-options button.disabled{cursor:default}
+.quiz-feedback{margin-top:14px;padding:12px;border-radius:10px;font-size:.88rem;display:none}
+.quiz-feedback.show{display:block;animation:fadeIn .3s}
+.quiz-feedback.right-fb{background:rgba(46,204,113,.12);border:1px solid #2ecc71;color:#a3f5c0}
+.quiz-feedback.wrong-fb{background:rgba(231,76,60,.12);border:1px solid #e74c3c;color:#ffbcb1}
+.quiz-actions{margin-top:14px;display:flex;justify-content:flex-end;gap:10px}
+.quiz-actions button{
+  background:linear-gradient(135deg,var(--mov),var(--termo));
+  color:white;border:none;padding:10px 22px;border-radius:10px;
+  cursor:pointer;font-weight:700;font-size:.9rem;box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.quiz-final{text-align:center;padding:20px}
+.quiz-final h3{font-size:1.6rem;margin-bottom:10px}
+.quiz-final .score-num{
+  font-size:3rem;font-weight:800;
+  background:linear-gradient(90deg,var(--gold),var(--mov));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.quiz-final p{color:var(--ink-dim);margin:8px 0 18px}
+.quiz-final button{
+  background:var(--gold);color:#0a1929;border:none;padding:10px 22px;
+  border-radius:10px;cursor:pointer;font-weight:700;font-size:.9rem;
+}
+
+/* MNEMONICS */
+.mnemonic-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:10px}
+.mnemonic-card{
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  padding:16px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);
+}
+.mnemonic-card .key{
+  display:inline-block;font-size:1.3rem;font-weight:800;
+  background:linear-gradient(90deg,var(--gold),var(--mov));
+  -webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px;
+}
+.mnemonic-card.termo .key{background:linear-gradient(90deg,var(--gold),var(--termo));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mnemonic-card h4{margin-top:6px;color:var(--ink);font-size:1rem}
+.mnemonic-card ul{margin-top:6px;padding-left:0;list-style:none}
+.mnemonic-card ul li{padding:5px 0;font-size:.86rem;color:var(--ink-dim);border-bottom:1px dashed rgba(255,255,255,.07)}
+.mnemonic-card ul li:last-child{border:none}
+.mnemonic-card ul li b{color:var(--gold);margin-right:6px}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;margin-top:8px}
+.tbl{width:100%;border-collapse:separate;border-spacing:0 6px;font-size:.86rem}
+.tbl th{text-align:left;padding:10px 12px;color:var(--gold);font-weight:700;font-size:.8rem;letter-spacing:.5px}
+.tbl td{padding:10px 12px;background:var(--card);border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
+.tbl td:first-child{border-radius:10px 0 0 10px;color:var(--gold);font-weight:600}
+.tbl td:last-child{border-radius:0 10px 10px 0}
+.tbl td .pill{
+  display:inline-block;background:rgba(255,255,255,.07);padding:2px 8px;
+  border-radius:6px;font-size:.78rem;
+}
+
+.note{
+  background:rgba(255,209,102,.08);border-left:3px solid var(--gold);
+  padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0;
+}
+.warning{
+  background:rgba(247,37,133,.08);border-left:3px solid var(--termo);
+  padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0;
+}
+
+/* WORKED EXAMPLES */
+.example-card{
+  background:linear-gradient(135deg,rgba(76,201,240,.06),rgba(76,201,240,.02));
+  border:1px solid rgba(76,201,240,.2);
+  padding:14px 18px;border-radius:12px;margin-top:10px;
+}
+.example-card.termo{
+  background:linear-gradient(135deg,rgba(247,37,133,.06),rgba(247,37,133,.02));
+  border:1px solid rgba(247,37,133,.2);
+}
+.example-card h5{color:var(--mov);font-size:.95rem;margin-bottom:8px}
+.example-card.termo h5{color:var(--termo)}
+.example-card .step{
+  margin:6px 0;padding-left:14px;font-size:.86rem;color:var(--ink-dim);
+  border-left:2px solid rgba(255,255,255,.1);padding-top:2px;padding-bottom:2px;
+}
+.example-card .step b{color:var(--ink)}
+.example-card .result{
+  display:inline-block;margin-top:8px;padding:4px 10px;
+  background:var(--gold);color:#0a1929;border-radius:6px;
+  font-weight:700;font-family:'Cambria Math', 'Georgia', serif;
+}
+
+footer{
+  text-align:center;color:var(--ink-dim);font-size:.78rem;
+  margin-top:30px;padding:14px;border-top:1px solid rgba(255,255,255,.06);
+}
+footer .heart{color:var(--termo)}
+
+/* RESP DIAGRAMS */
+.diag-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.diag-card{
+  background:var(--card);padding:10px;border-radius:10px;
+  border:1px solid rgba(255,255,255,.07);text-align:center;
+}
+.diag-card svg{display:block;margin:0 auto;background:rgba(0,0,0,.2);border-radius:6px}
+.diag-card p{font-size:.78rem;margin-top:6px;color:var(--ink-dim)}
+.diag-card .lbl{
+  display:inline-block;font-size:.7rem;padding:2px 6px;border-radius:4px;
+  background:var(--mov-glow);color:var(--mru);margin-top:4px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hub-bar">
+  <a href="index.html">← Hub de matérias</a>
+  <span class="subj">⚛️ FÍSICA</span>
+  <a href="estudo_historia_p2t1.html">História →</a>
+</div>
+
+<header class="hero">
+  <h1>Física — P2T1</h1>
+  <p>Material de estudo interativo de Movimento (MRU, MRUV) e Termologia (Dilatação, Calorimetria)</p>
+  <span class="subtitle-tag">Fórmulas · Gráficos · Flashcards · Quiz</span>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-tab="overview" class="active">Visão Geral</button>
+  <button data-tab="detalhes">Conteúdo</button>
+  <button data-tab="formulas">Fórmulas</button>
+  <button data-tab="graficos">Gráficos</button>
+  <button data-tab="mindmap">Mapas Mentais</button>
+  <button data-tab="flashcards">Flashcards</button>
+  <button data-tab="exemplos">Exemplos</button>
+  <button data-tab="mnemonics">Mnemônicos</button>
+  <button data-tab="quiz">Quiz Final</button>
+</nav>
+
+<!-- VISÃO GERAL -->
+<section class="tab-content active" id="overview">
+  <h2 class="section-title"><span class="ico">📚</span>Visão Geral</h2>
+  <p style="color:var(--ink-dim);max-width:840px">
+    São <b>duas Físicas</b> com professores diferentes, mas que caem na mesma prova bimestral. <b style="color:var(--mov)">Física A (Alan)</b> trata de cinemática (MRU, MRUV); <b style="color:var(--termo)">Física B (Scotti)</b> de termologia (dilatação e calorimetria). Use os filtros para focar em um ou outro tema.
+  </p>
+
+  <div class="subject-section">
+    <h3>🚗 Física A — Movimento (Cinemática) <span class="teacher">Prof. Alan</span></h3>
+    <div class="modules-grid">
+      <div class="module-card mru">
+        <span class="emoji">📏</span>
+        <span class="badge">MÓDULO 5</span>
+        <h4>Movimento Uniforme I</h4>
+        <p>O movimento de velocidade constante e a função horária do espaço.</p>
+        <div class="formula">s = s₀ + v · t</div>
+      </div>
+      <div class="module-card mru">
+        <span class="emoji">🚙</span>
+        <span class="badge">MÓDULO 6</span>
+        <h4>Movimento Uniforme II</h4>
+        <p>Encontros, ultrapassagens e velocidade relativa.</p>
+        <div class="formula">v_rel = v_A − v_B</div>
+      </div>
+      <div class="module-card mru">
+        <span class="emoji">📈</span>
+        <span class="badge">MÓDULO 7</span>
+        <h4>Movimento Uniforme III</h4>
+        <p>Gráficos s×t, v×t e a×t. Área = deslocamento.</p>
+        <div class="formula">|Δs| = área (v×t)</div>
+      </div>
+      <div class="module-card mruv">
+        <span class="emoji">🚀</span>
+        <span class="badge">MÓDULO 8</span>
+        <h4>Movimento Uniformemente Variado I</h4>
+        <p>Aceleração constante, função horária da velocidade e seu gráfico.</p>
+        <div class="formula">v = v₀ + a · t</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subject-section termo">
+    <h3>🔥 Física B — Termologia <span class="teacher">Prof. Scotti</span></h3>
+    <div class="modules-grid">
+      <div class="module-card dilat">
+        <span class="emoji">📐</span>
+        <span class="badge">MÓDULO 3</span>
+        <h4>Dilatação Térmica II</h4>
+        <p>Volumétrica (sólidos, líquidos, gases). Coeficientes α, β, γ. Dilatação anômala da água.</p>
+        <div class="formula">ΔV = V₀ · γ · Δθ</div>
+      </div>
+      <div class="module-card calor">
+        <span class="emoji">🌡️</span>
+        <span class="badge">MÓDULO 4</span>
+        <h4>Calorimetria I</h4>
+        <p>Calor sensível × calor latente, capacidade térmica e calor específico.</p>
+        <div class="formula">Q = m · c · Δθ</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="criterio-box">
+    <h4>📋 Critérios de avaliação (dos roteiros)</h4>
+    <ul>
+      <li><b>Mód. 5 (MRU):</b> definir o MRU e interpretar sua função horária. <b>Q. 01–05.</b></li>
+      <li><b>Mód. 6 (Encontro):</b> situações com encontro/ultrapassagem; funções horárias ou velocidade relativa; corpo extenso. <b>Q. 01–06.</b></li>
+      <li><b>Mód. 7 (Gráficos do MRU):</b> interpretar v×t e s×t. <b>Q. 01–06.</b></li>
+      <li><b>Mód. 8 (MRUV):</b> conceitos do MRUV; função horária da velocidade; gráfico v×t. <b>Q. 01–05, 11, 12, 13.</b></li>
+      <li><b>Mód. 3 (Dilatação):</b> dilatação volumétrica em sólidos, líquidos e gases; correlação entre α, β e γ; dilatação anômala da água. <b>Q. 1, 2, 4, 6, 8.</b></li>
+      <li><b>Mód. 4 (Calorimetria):</b> calor sensível × calor latente; capacidade térmica. <b>Q. 1, 2, 4, 8, 9.</b></li>
+    </ul>
+  </div>
+
+  <div class="note">💡 <b>Dica de estudo:</b> Em Física, a sequência é <b>conceito → fórmula → exemplo</b>. Comece pela aba "Conteúdo" para entender, depois "Fórmulas" pra fixar, depois "Exemplos" pra praticar, e finalize no "Quiz".</div>
+</section>
+
+<!-- CONTEÚDO DETALHADO -->
+<section class="tab-content" id="detalhes">
+  <h2 class="section-title"><span class="ico">📖</span>Conteúdo Detalhado</h2>
+
+  <!-- MÓDULO 5 -->
+  <div class="detail-section">
+    <h3 style="color:var(--mru);margin-bottom:10px">📏 Módulo 5 — Movimento Uniforme I</h3>
+
+    <div class="detail-card mru">
+      <h4>Conceito de Movimento Uniforme (MU) <span class="badge-mini">DEFINIÇÃO</span></h4>
+      <p>Movimento em que a velocidade escalar <b>v</b> do móvel se mantém <b>constante</b> e <b>diferente de zero</b>. A trajetória pode ser qualquer (retilínea, curvilínea ou mista). No <b>MRU</b>, a trajetória é especificamente retilínea.</p>
+      <div class="formula-box">
+        <span class="eq">MU ⇒ v = constante ≠ 0</span>
+      </div>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>Características do MU <span class="badge-mini">PROPRIEDADES</span></h4>
+      <ul>
+        <li>A velocidade escalar média é igual à velocidade instantânea: <b>v_m = v</b>.</li>
+        <li>Em intervalos de tempo iguais (Δt₁ = Δt₂ = … = Δtₙ), os deslocamentos são iguais: <b>Δs₁ = Δs₂ = … = Δsₙ</b>.</li>
+        <li>Se o intervalo de tempo é multiplicado por um fator, o deslocamento também (ex: x s → y m, então 3x s → 3y m).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>Função horária do espaço <span class="badge-mini">FÓRMULA</span></h4>
+      <p>Como v_m = v = Δs/Δt, temos Δs = v · Δt. Como Δs = s − s₀ e Δt = t − t₀ (com t₀ = 0):</p>
+      <div class="formula-box">
+        <span class="eq">s = s₀ + v · t</span>
+        <span class="label">Função horária do espaço no MU</span>
+      </div>
+      <p style="margin-top:8px"><b>Significados:</b></p>
+      <ul>
+        <li><b>s</b> = aonde se chega (posição final)</li>
+        <li><b>s₀</b> = de onde se sai (posição inicial)</li>
+        <li><b>v · t</b> = o quanto se desloca</li>
+      </ul>
+      <div class="warning"><b>⚠️ Atenção:</b> NÃO é possível extrair informação sobre a trajetória a partir da função horária. Ela precisa ser dada no enunciado ou ilustração.</div>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>MU progressivo × retrógrado <span class="badge-mini">SINAIS</span></h4>
+      <ul>
+        <li><b>v &gt; 0 → MU progressivo</b>: o móvel anda no sentido positivo da trajetória.</li>
+        <li><b>v &lt; 0 → MU retrógrado</b>: o móvel anda no sentido contrário.</li>
+        <li>Se s₀ &gt; 0: o móvel inicia à frente da origem; se s₀ &lt; 0: atrás.</li>
+        <li>Móvel passa pela origem (s = 0): basta resolver 0 = s₀ + v · t para t.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MÓDULO 6 -->
+  <div class="detail-section">
+    <h3 style="color:var(--mru);margin-bottom:10px">🚙 Módulo 6 — Movimento Uniforme II</h3>
+
+    <div class="detail-card mru">
+      <h4>Encontro de dois móveis <span class="badge-mini">CONCEITO</span></h4>
+      <p>Dois móveis A e B se <b>encontram</b> quando ocupam o <b>mesmo local</b> ao <b>mesmo tempo</b>. Condição matemática:</p>
+      <div class="formula-box"><span class="eq">s_A = s_B</span></div>
+      <p style="margin-top:8px">Procedimento clássico: escrever as funções horárias de cada móvel, igualar e resolver para t. Substituir t em qualquer das funções para achar a posição do encontro.</p>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>Velocidade escalar relativa <span class="badge-mini">ATALHO</span></h4>
+      <p>Tomando B como referência (como se ele estivesse parado):</p>
+      <div class="formula-box">
+        <span class="eq">v_AB = v_A − v_B</span>
+        <span class="label">Velocidade de A em relação a B</span>
+      </div>
+      <p style="margin-top:8px"><b>Importante:</b> respeite os <b>sinais</b> conforme a orientação da trajetória.</p>
+      <ul>
+        <li>Se vão em <b>sentidos opostos</b>: a velocidade relativa é a <b>soma</b> dos módulos (uma das velocidades é negativa).</li>
+        <li>Se vão no <b>mesmo sentido</b>: é a <b>diferença</b> dos módulos.</li>
+        <li>Tempo de encontro: Δt = Δs_rel / v_rel (Δs_rel = distância inicial entre eles).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>Ultrapassagens (corpo extenso) <span class="badge-mini">FÓRMULA</span></h4>
+      <p>Quando o tamanho dos veículos importa (corpo extenso), o tempo da ultrapassagem é:</p>
+      <div class="formula-box">
+        <span class="eq">Δt = (L_A + L_B) / |v_A − v_B|</span>
+        <span class="label">Tempo de ultrapassagem</span>
+      </div>
+      <p style="margin-top:8px">Ou seja: <b>soma dos comprimentos</b> dividida pela <b>velocidade relativa em módulo</b>.</p>
+      <ul>
+        <li>Em sentidos <b>iguais</b>: a ultrapassagem é mais lenta (v_rel pequena).</li>
+        <li>Em sentidos <b>opostos</b>: a ultrapassagem é mais rápida (v_rel grande).</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MÓDULO 7 -->
+  <div class="detail-section">
+    <h3 style="color:var(--mru);margin-bottom:10px">📈 Módulo 7 — Movimento Uniforme III (Gráficos)</h3>
+
+    <div class="detail-card mru">
+      <h4>Diagrama s × t no MU <span class="badge-mini">GRÁFICO</span></h4>
+      <p>A função horária <b>s = s₀ + v · t</b> é uma função do 1º grau em t. Logo o gráfico s × t é uma <b>reta</b>.</p>
+      <ul>
+        <li><b>v</b> é o <b>coeficiente angular</b> da reta (inclinação): v = Δs/Δt = tg θ.</li>
+        <li><b>s₀</b> é o <b>coeficiente linear</b> (interseção com o eixo s, em t = 0).</li>
+        <li>Se <b>v &gt; 0</b>: reta crescente (MU progressivo).</li>
+        <li>Se <b>v &lt; 0</b>: reta decrescente (MU retrógrado).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>Diagrama v × t no MU <span class="badge-mini">GRÁFICO</span></h4>
+      <p>Como v é constante, o gráfico v × t é uma <b>reta horizontal</b>.</p>
+      <ul>
+        <li>Se v &gt; 0: reta acima do eixo t.</li>
+        <li>Se v &lt; 0: reta abaixo do eixo t.</li>
+      </ul>
+      <div class="note"><b>📌 Propriedade fundamental:</b> a <b>área</b> entre o gráfico v × t e o eixo t (no intervalo [t₁, t₂]) é numericamente igual ao <b>módulo do deslocamento</b>: |Δs| = área.</div>
+    </div>
+
+    <div class="detail-card mru">
+      <h4>Diagrama a × t no MU <span class="badge-mini">GRÁFICO</span></h4>
+      <p>Como a velocidade é constante, a <b>aceleração é nula</b> (a = 0). O gráfico a × t coincide com o próprio eixo t.</p>
+      <div class="formula-box"><span class="eq">a = 0 ⇒ MU</span></div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 8 -->
+  <div class="detail-section">
+    <h3 style="color:var(--mruv);margin-bottom:10px">🚀 Módulo 8 — MRUV I</h3>
+
+    <div class="detail-card mruv">
+      <h4>Conceito de MUV <span class="badge-mini">DEFINIÇÃO</span></h4>
+      <p>Movimento Uniformemente Variado: a <b>aceleração escalar a</b> do móvel se mantém <b>constante</b> e <b>diferente de zero</b>. A velocidade <b>varia</b> uniformemente.</p>
+      <div class="formula-box"><span class="eq">MUV ⇒ a = constante ≠ 0</span></div>
+    </div>
+
+    <div class="detail-card mruv">
+      <h4>Características do MUV <span class="badge-mini">PROPRIEDADES</span></h4>
+      <ul>
+        <li>Aceleração média = aceleração instantânea: <b>a_m = a</b>.</li>
+        <li>Em intervalos de tempo iguais, as <b>variações de velocidade</b> são iguais: Δv₁ = Δv₂ = … = Δvₙ.</li>
+        <li>O <b>deslocamento</b>, por sua vez, NÃO é constante em intervalos iguais (cresce com t²).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card mruv">
+      <h4>Função horária da velocidade <span class="badge-mini">FÓRMULA</span></h4>
+      <p>Como a = Δv/Δt = (v − v₀)/(t − t₀), com t₀ = 0:</p>
+      <div class="formula-box">
+        <span class="eq">v = v₀ + a · t</span>
+        <span class="label">Função horária da velocidade no MUV</span>
+      </div>
+    </div>
+
+    <div class="detail-card mruv">
+      <h4>Acelerado × Retardado <span class="badge-mini">SINAIS</span></h4>
+      <p>O sinal de v e o de a definem se o movimento é acelerado ou retardado. <b>Não confunda</b>:</p>
+      <ul>
+        <li><b>Acelerado</b> = v e a têm o <b>mesmo sinal</b> (a velocidade aumenta em módulo).</li>
+        <li><b>Retardado</b> = v e a têm <b>sinais opostos</b> (a velocidade diminui em módulo).</li>
+        <li><b>Progressivo</b>: v &gt; 0 (anda no sentido positivo).</li>
+        <li><b>Retrógrado</b>: v &lt; 0 (anda no sentido contrário).</li>
+      </ul>
+      <p style="margin-top:8px"><b>Combinações:</b></p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>v</th><th>a</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>+</td><td>+</td><td>Progressivo + acelerado</td></tr>
+            <tr><td>+</td><td>−</td><td>Progressivo + retardado</td></tr>
+            <tr><td>−</td><td>+</td><td>Retrógrado + retardado</td></tr>
+            <tr><td>−</td><td>−</td><td>Retrógrado + acelerado</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="detail-card mruv">
+      <h4>Diagrama v × t no MUV <span class="badge-mini">GRÁFICO</span></h4>
+      <p>v = v₀ + a · t é função do 1º grau em t → gráfico é uma <b>reta inclinada</b>.</p>
+      <ul>
+        <li><b>a</b> = coeficiente angular (a = tg θ).</li>
+        <li><b>v₀</b> = coeficiente linear (interseção em t = 0).</li>
+        <li>Se a &gt; 0: reta crescente.</li>
+        <li>Se a &lt; 0: reta decrescente.</li>
+        <li>O instante em que <b>v = 0</b> (o gráfico cruza o eixo t) é o <b>ponto de inversão de sentido</b>.</li>
+      </ul>
+      <div class="note"><b>📌 Mesma propriedade do MU:</b> a <b>área</b> sob o gráfico v × t é o <b>deslocamento</b>. No MUV, a área é um trapézio ou triângulo.</div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 3 - DILATAÇÃO -->
+  <div class="detail-section">
+    <h3 style="color:var(--dilat);margin-bottom:10px">📐 Módulo 3 — Dilatação Térmica II</h3>
+
+    <div class="detail-card dilat">
+      <h4>Coeficientes de dilatação <span class="badge-mini">RELAÇÃO</span></h4>
+      <p>Para um mesmo material, há três coeficientes que se relacionam entre si:</p>
+      <ul>
+        <li><b>α</b> (linear) — só uma dimensão (comprimento).</li>
+        <li><b>β</b> (superficial) — duas dimensões (área).</li>
+        <li><b>γ</b> (volumétrico) — três dimensões (volume).</li>
+      </ul>
+      <div class="formula-box">
+        <span class="eq">β = 2α &nbsp;&nbsp; γ = 3α</span>
+        <span class="label">α : β : γ = 1 : 2 : 3</span>
+      </div>
+    </div>
+
+    <div class="detail-card dilat">
+      <h4>Dilatação volumétrica <span class="badge-mini">FÓRMULAS</span></h4>
+      <p>Quando um corpo de volume inicial V₀ varia de temperatura em Δθ, ele ganha (ou perde) volume:</p>
+      <div class="formula-box">
+        <span class="eq">ΔV = V₀ · γ · Δθ</span>
+        <span class="label">Variação de volume</span>
+      </div>
+      <div class="formula-box">
+        <span class="eq">V = V₀ · (1 + γ · Δθ)</span>
+        <span class="label">Volume final após dilatação</span>
+      </div>
+      <p style="margin-top:8px">Vale para <b>sólidos, líquidos e gases</b> — desde que se use o γ apropriado de cada material.</p>
+    </div>
+
+    <div class="detail-card dilat">
+      <h4>Coeficientes de dilatação volumétrica (líquidos) <span class="badge-mini">TABELA</span></h4>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Substância</th><th>γ (×10⁻⁴ °C⁻¹)</th></tr></thead>
+          <tbody>
+            <tr><td>Água</td><td>1,3</td></tr>
+            <tr><td>Mercúrio</td><td>1,8</td></tr>
+            <tr><td>Glicerina</td><td>4,9</td></tr>
+            <tr><td>Petróleo</td><td>10</td></tr>
+            <tr><td>Benzeno</td><td>10,6</td></tr>
+            <tr><td>Álcool</td><td>11,2</td></tr>
+            <tr><td>Acetona</td><td>14,9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">📌 Em geral, líquidos têm γ <b>maior</b> que sólidos — por isso ocorre <b>extravasamento</b> quando ambos são aquecidos juntos.</div>
+    </div>
+
+    <div class="detail-card dilat">
+      <h4>Dilatação aparente (líquidos em recipientes) <span class="badge-mini">EXTRAVASA</span></h4>
+      <p>Quando um líquido enche totalmente um recipiente e ambos são aquecidos:</p>
+      <ul>
+        <li>O recipiente também dilata (aumenta a "capacidade").</li>
+        <li>O líquido dilata <b>mais</b>.</li>
+        <li>O volume que <b>extravasa</b> é a dilatação <b>aparente</b>: ΔV_ap.</li>
+      </ul>
+      <div class="formula-box">
+        <span class="eq">ΔV_liq = ΔV_ap + ΔV_rec</span>
+        <span class="label">Dilatação real do líquido</span>
+      </div>
+      <div class="formula-box">
+        <span class="eq">γ_ap = γ_liq − γ_rec</span>
+        <span class="label">Coeficiente de dilatação aparente</span>
+      </div>
+      <p style="margin-top:6px"><b>Atenção:</b> γ_rec do recipiente sólido = 3 × α_rec.</p>
+    </div>
+
+    <div class="detail-card dilat">
+      <h4>Dilatação anômala da água 🥶 <span class="badge-mini">EXCEÇÃO</span></h4>
+      <p>Comportamento <b>oposto</b> ao usual em um pequeno intervalo de temperatura:</p>
+      <ul>
+        <li>Entre <b>0 °C e 4 °C</b>, a água líquida <b>contrai</b> ao ser aquecida.</li>
+        <li>Acima de 4 °C, volta a se comportar normalmente (dilata ao aquecer).</li>
+        <li>Razão molecular: as <b>pontes de hidrogênio</b> se rompem, e as moléculas se aproximam.</li>
+        <li>A <b>4 °C</b> (mais precisamente, 3,98 °C), a água tem <b>volume mínimo</b> e, portanto, <b>densidade máxima</b>.</li>
+      </ul>
+      <div class="warning">🔬 <b>Por que isso importa?</b> Por causa dessa anomalia, o gelo flutua na água e os lagos congelam de cima para baixo, preservando a vida aquática.</div>
+    </div>
+  </div>
+
+  <!-- MÓDULO 4 - CALORIMETRIA -->
+  <div class="detail-section">
+    <h3 style="color:var(--calor);margin-bottom:10px">🌡️ Módulo 4 — Calorimetria I</h3>
+
+    <div class="detail-card calor">
+      <h4>O que é Calorimetria? <span class="badge-mini">DEFINIÇÃO</span></h4>
+      <p>Ramo da Termologia que estuda as <b>transferências e trocas de calor</b> entre sistemas. <b>Calor</b> é energia térmica em trânsito, que flui espontaneamente do sistema de <b>maior temperatura</b> para o de <b>menor</b>.</p>
+    </div>
+
+    <div class="detail-card calor">
+      <h4>Capacidade térmica (C) <span class="badge-mini">CORPO</span></h4>
+      <p>Razão entre o <b>calor</b> Q recebido (ou cedido) e a <b>variação de temperatura</b> Δθ — sem mudança de fase. É grandeza característica de um <b>OBJETO/CORPO</b>:</p>
+      <div class="formula-box">
+        <span class="eq">C = Q / Δθ</span>
+        <span class="label">Capacidade térmica</span>
+      </div>
+      <ul>
+        <li>Unidade SI: <b>J/K</b> (joule por kelvin).</li>
+        <li>Unidade usual: <b>cal/°C</b>.</li>
+        <li>Equivalência: <b>1 cal ≈ 4,1868 J</b>.</li>
+        <li>Maior C → mais calor para aquecer/resfriar (objeto "lento" termicamente).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card calor">
+      <h4>Calor específico (c) <span class="badge-mini">SUBSTÂNCIA</span></h4>
+      <p>Razão entre a capacidade térmica C e a massa m de uma porção. É grandeza característica da <b>SUBSTÂNCIA</b>:</p>
+      <div class="formula-box">
+        <span class="eq">c = C / m</span>
+        <span class="label">Calor específico</span>
+      </div>
+      <ul>
+        <li>Unidade SI: <b>J/(kg·K)</b>.</li>
+        <li>Unidade usual: <b>cal/(g·°C)</b>.</li>
+      </ul>
+      <p style="margin-top:6px"><b>Tabela essencial</b> (cal/g·°C):</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Substância</th><th>c</th></tr></thead>
+          <tbody>
+            <tr><td>Ouro</td><td>0,031</td></tr>
+            <tr><td>Mercúrio</td><td>0,033</td></tr>
+            <tr><td>Prata</td><td>0,056</td></tr>
+            <tr><td>Cobre</td><td>0,093</td></tr>
+            <tr><td>Aço</td><td>0,10</td></tr>
+            <tr><td>Alumínio</td><td>0,22</td></tr>
+            <tr><td>Vapor d'água</td><td>0,48</td></tr>
+            <tr><td>Gelo</td><td>0,55</td></tr>
+            <tr><td>Álcool</td><td>0,59</td></tr>
+            <tr><td><b>Água</b></td><td><b>1,00</b></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">📌 A <b>água</b> tem o maior calor específico da tabela — por isso é tão "difícil" aquecê-la (e por isso é usada como referência da caloria).</div>
+    </div>
+
+    <div class="detail-card calor">
+      <h4>Calor sensível <span class="badge-mini">FÓRMULA-CHAVE</span></h4>
+      <p>É o calor que provoca <b>apenas variação de temperatura</b>, <b>sem mudança de fase</b>. Combinando C = Q/Δθ e c = C/m, obtemos a Equação Fundamental da Calorimetria:</p>
+      <div class="formula-box">
+        <span class="eq">Q = m · c · Δθ</span>
+        <span class="label">Calor sensível — Eq. Fundamental da Calorimetria</span>
+      </div>
+      <p style="margin-top:8px"><b>Sinal de Q:</b></p>
+      <ul>
+        <li><b>Q &gt; 0</b> → calor <b>recebido</b> (sistema esquenta).</li>
+        <li><b>Q &lt; 0</b> → calor <b>cedido</b> (sistema esfria).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card calor">
+      <h4>Calor latente <span class="badge-mini">FASE</span></h4>
+      <p>É o calor que provoca <b>mudança de fase</b> (sólido ↔ líquido ↔ gás), <b>sem variação de temperatura</b>. Calcula-se com:</p>
+      <div class="formula-box">
+        <span class="eq">Q = m · L</span>
+        <span class="label">Calor latente</span>
+      </div>
+      <p style="margin-top:6px"><b>L</b> = calor latente específico da mudança (cal/g ou J/kg).</p>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Mudança</th><th>L (água, cal/g)</th><th>Direção do Q</th></tr></thead>
+          <tbody>
+            <tr><td>Fusão (gelo→água)</td><td>+80</td><td>recebe</td></tr>
+            <tr><td>Solidificação (água→gelo)</td><td>−80</td><td>cede</td></tr>
+            <tr><td>Vaporização (água→vapor)</td><td>+540</td><td>recebe</td></tr>
+            <tr><td>Condensação (vapor→água)</td><td>−540</td><td>cede</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="detail-card calor">
+      <h4>Equivalente em água (E) <span class="badge-mini">DICA</span></h4>
+      <p>É a massa de água que sofreria a <b>mesma variação de temperatura</b> para a <b>mesma quantidade de calor</b>. Como c_água = 1 cal/(g·°C):</p>
+      <div class="formula-box">
+        <span class="eq">E ≡ C_corpo</span>
+        <span class="label">Numericamente igual à capacidade térmica</span>
+      </div>
+      <p style="margin-top:6px">Ex: caneca de alumínio com C = 25 cal/°C → equivalente em água E = 25 g.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FÓRMULAS -->
+<section class="tab-content" id="formulas">
+  <h2 class="section-title"><span class="ico">🧮</span>Formulário</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Todas as fórmulas que você precisa, agrupadas por tema.</p>
+
+  <h3 style="color:var(--mru);margin:14px 0 6px">📏 MRU (Movimento Retilíneo Uniforme)</h3>
+  <div class="formula-list">
+    <div class="formula-card mru"><div class="name">Função horária do espaço</div><div class="eq">s = s₀ + v · t</div></div>
+    <div class="formula-card mru"><div class="name">Velocidade média</div><div class="eq">v = Δs / Δt</div></div>
+    <div class="formula-card mru"><div class="name">Deslocamento</div><div class="eq">Δs = v · Δt</div></div>
+    <div class="formula-card mru"><div class="name">Aceleração no MU</div><div class="eq">a = 0</div></div>
+    <div class="formula-card mru"><div class="name">Velocidade relativa</div><div class="eq">v_AB = v_A − v_B</div></div>
+    <div class="formula-card mru"><div class="name">Tempo de encontro</div><div class="eq">Δt = Δs_rel / v_rel</div></div>
+    <div class="formula-card mru"><div class="name">Tempo de ultrapassagem</div><div class="eq">Δt = (L_A + L_B) / |v_A − v_B|</div></div>
+    <div class="formula-card mru"><div class="name">Deslocamento via gráfico</div><div class="eq">|Δs| = área (v × t)</div></div>
+  </div>
+
+  <h3 style="color:var(--mruv);margin:18px 0 6px">🚀 MRUV (Movimento Retilíneo Uniformemente Variado)</h3>
+  <div class="formula-list">
+    <div class="formula-card mruv"><div class="name">Função horária da velocidade</div><div class="eq">v = v₀ + a · t</div></div>
+    <div class="formula-card mruv"><div class="name">Aceleração</div><div class="eq">a = Δv / Δt</div></div>
+    <div class="formula-card mruv"><div class="name">Variação de velocidade</div><div class="eq">Δv = a · Δt</div></div>
+    <div class="formula-card mruv"><div class="name">Coeficiente angular do v×t</div><div class="eq">a = tg θ</div></div>
+    <div class="formula-card mruv"><div class="name">Deslocamento via gráfico</div><div class="eq">|Δs| = área (v × t)</div></div>
+  </div>
+
+  <h3 style="color:var(--dilat);margin:18px 0 6px">📐 Dilatação Térmica</h3>
+  <div class="formula-list">
+    <div class="formula-card dilat"><div class="name">Dilatação linear</div><div class="eq">ΔL = L₀ · α · Δθ</div></div>
+    <div class="formula-card dilat"><div class="name">Dilatação superficial</div><div class="eq">ΔA = A₀ · β · Δθ</div></div>
+    <div class="formula-card dilat"><div class="name">Dilatação volumétrica</div><div class="eq">ΔV = V₀ · γ · Δθ</div></div>
+    <div class="formula-card dilat"><div class="name">Volume final</div><div class="eq">V = V₀ · (1 + γ · Δθ)</div></div>
+    <div class="formula-card dilat"><div class="name">Relação entre coeficientes</div><div class="eq">β = 2α &nbsp; γ = 3α</div></div>
+    <div class="formula-card dilat"><div class="name">Dilatação aparente</div><div class="eq">γ_ap = γ_liq − γ_rec</div></div>
+    <div class="formula-card dilat"><div class="name">Real do líquido</div><div class="eq">ΔV_liq = ΔV_ap + ΔV_rec</div></div>
+  </div>
+
+  <h3 style="color:var(--calor);margin:18px 0 6px">🌡️ Calorimetria</h3>
+  <div class="formula-list">
+    <div class="formula-card calor"><div class="name">Capacidade térmica</div><div class="eq">C = Q / Δθ</div></div>
+    <div class="formula-card calor"><div class="name">Calor específico</div><div class="eq">c = C / m</div></div>
+    <div class="formula-card calor"><div class="name">Calor sensível</div><div class="eq">Q = m · c · Δθ</div></div>
+    <div class="formula-card calor"><div class="name">Calor latente</div><div class="eq">Q = m · L</div></div>
+    <div class="formula-card calor"><div class="name">Equivalente em água</div><div class="eq">E ≡ C_corpo</div></div>
+    <div class="formula-card calor"><div class="name">Conversão</div><div class="eq">1 cal ≈ 4,1868 J</div></div>
+  </div>
+</section>
+
+<!-- GRÁFICOS -->
+<section class="tab-content" id="graficos">
+  <h2 class="section-title"><span class="ico">📊</span>Gráficos do Movimento</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">A grande "maldade" desse tópico é misturar os 3 gráficos (s, v, a vs t). Tenha sempre claro: <b>qual é o eixo y?</b></p>
+
+  <h3 style="color:var(--mru);margin:14px 0 6px">📏 No MRU (v = constante)</h3>
+  <div class="graph-grid">
+    <div class="graph-card">
+      <h4>s × t — MU progressivo</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="140" x2="210" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">s</text>
+        <text x="208" y="155" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="120" x2="200" y2="40" stroke="#4cc9f0" stroke-width="2.5"/>
+        <circle cx="20" cy="120" r="3" fill="#ffd166"/>
+        <text x="0" y="125" fill="#b9c4d6" font-size="10">s₀</text>
+      </svg>
+      <span class="equation">s = s₀ + v·t  (v &gt; 0)</span>
+      <p>Reta crescente. Inclinação = v.</p>
+    </div>
+    <div class="graph-card">
+      <h4>s × t — MU retrógrado</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="140" x2="210" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">s</text>
+        <text x="208" y="155" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="40" x2="200" y2="120" stroke="#4cc9f0" stroke-width="2.5"/>
+        <circle cx="20" cy="40" r="3" fill="#ffd166"/>
+        <text x="0" y="45" fill="#b9c4d6" font-size="10">s₀</text>
+      </svg>
+      <span class="equation">s = s₀ + v·t  (v &lt; 0)</span>
+      <p>Reta decrescente. Inclinação negativa.</p>
+    </div>
+    <div class="graph-card">
+      <h4>v × t — MU (qualquer)</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="80" x2="210" y2="80" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">v</text>
+        <text x="208" y="95" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="50" x2="200" y2="50" stroke="#4cc9f0" stroke-width="2.5"/>
+        <rect x="60" y="50" width="80" height="30" fill="#4cc9f0" opacity=".25"/>
+        <text x="80" y="70" fill="#ffd166" font-size="10">|Δs| = área</text>
+      </svg>
+      <span class="equation">v = constante</span>
+      <p>Reta horizontal. Área = deslocamento.</p>
+    </div>
+    <div class="graph-card">
+      <h4>a × t — MU</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="80" x2="210" y2="80" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">a</text>
+        <text x="208" y="95" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="80" x2="200" y2="80" stroke="#4cc9f0" stroke-width="3"/>
+        <text x="100" y="100" fill="#b9c4d6" font-size="10">a = 0</text>
+      </svg>
+      <span class="equation">a = 0</span>
+      <p>Sobre o eixo do tempo.</p>
+    </div>
+  </div>
+
+  <h3 style="color:var(--mruv);margin:18px 0 6px">🚀 No MRUV (a = constante)</h3>
+  <div class="graph-grid">
+    <div class="graph-card">
+      <h4>v × t — Acelerado (a &gt; 0)</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="140" x2="210" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">v</text>
+        <text x="208" y="155" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="100" x2="200" y2="30" stroke="#4361ee" stroke-width="2.5"/>
+        <polygon points="20,100 200,30 200,140 20,140" fill="#4361ee" opacity=".18"/>
+        <text x="80" y="120" fill="#ffd166" font-size="10">área = Δs</text>
+        <circle cx="20" cy="100" r="3" fill="#ffd166"/>
+        <text x="0" y="105" fill="#b9c4d6" font-size="10">v₀</text>
+      </svg>
+      <span class="equation">v = v₀ + a·t  (a &gt; 0)</span>
+      <p>Reta crescente. Inclinação = a.</p>
+    </div>
+    <div class="graph-card">
+      <h4>v × t — Retardado e inverte</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="80" x2="210" y2="80" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">v</text>
+        <text x="208" y="95" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="30" x2="200" y2="130" stroke="#4361ee" stroke-width="2.5"/>
+        <circle cx="110" cy="80" r="4" fill="#ef476f"/>
+        <text x="115" y="76" fill="#ef476f" font-size="9">v=0</text>
+        <text x="40" y="50" fill="#b9c4d6" font-size="9">progressivo</text>
+        <text x="135" y="115" fill="#b9c4d6" font-size="9">retrógrado</text>
+      </svg>
+      <span class="equation">v = v₀ + a·t  (v₀&gt;0, a&lt;0)</span>
+      <p>Cruzamento com eixo t = inversão de sentido.</p>
+    </div>
+    <div class="graph-card">
+      <h4>a × t — MRUV</h4>
+      <svg viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="20" y2="140" stroke="#b9c4d6" stroke-width="1.5"/>
+        <line x1="20" y1="80" x2="210" y2="80" stroke="#b9c4d6" stroke-width="1.5"/>
+        <text x="8" y="20" fill="#ffd166" font-size="11" font-style="italic">a</text>
+        <text x="208" y="95" fill="#ffd166" font-size="11" font-style="italic">t</text>
+        <line x1="20" y1="50" x2="200" y2="50" stroke="#4361ee" stroke-width="2.5"/>
+        <rect x="50" y="50" width="100" height="30" fill="#4361ee" opacity=".25"/>
+        <text x="60" y="68" fill="#ffd166" font-size="10">|Δv| = área</text>
+      </svg>
+      <span class="equation">a = constante</span>
+      <p>Reta horizontal. Área = variação de velocidade.</p>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:14px"><b>🎯 Truque universal:</b> em <b>qualquer</b> gráfico, a área entre a curva e o eixo horizontal representa a integral da grandeza vertical em relação ao tempo: área de v×t = Δs · área de a×t = Δv.</div>
+</section>
+
+<!-- MAPAS MENTAIS -->
+<section class="tab-content" id="mindmap">
+  <h2 class="section-title"><span class="ico">🧠</span>Mapas Mentais</h2>
+
+  <div class="mindmap-wrapper mru">
+    <h3>📏 MRU — Movimento Uniforme</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gmru" x1="0" x2="1"><stop offset="0" stop-color="#4cc9f0"/><stop offset="1" stop-color="#2196c4"/></linearGradient>
+        <filter id="glowMR" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(76,201,240,.4)" stroke-width="2" fill="none">
+        <path d="M450 240 C 300 170, 220 160, 130 110"/>
+        <path d="M450 240 C 300 320, 220 360, 130 400"/>
+        <path d="M450 240 C 600 160, 700 140, 780 90"/>
+        <path d="M450 240 C 620 240, 720 240, 800 240"/>
+        <path d="M450 240 C 600 340, 700 380, 780 420"/>
+      </g>
+      <circle cx="450" cy="240" r="60" fill="url(#gmru)" filter="url(#glowMR)"/>
+      <text x="450" y="245" text-anchor="middle" fill="white" font-size="20" font-weight="800">MRU</text>
+      <g font-family="Segoe UI" font-size="11" fill="#f8f9ff" font-weight="600">
+        <rect x="20" y="80" width="200" height="60" rx="12" fill="#142339" stroke="#4cc9f0"/>
+        <text x="120" y="105" text-anchor="middle" font-weight="800" fill="#4cc9f0" font-size="13">📐 DEFINIÇÃO</text>
+        <text x="120" y="123" text-anchor="middle" font-size="11" fill="#b9c4d6">v = constante ≠ 0</text>
+        <text x="120" y="136" text-anchor="middle" font-size="10" fill="#ffd166">a = 0</text>
+        <rect x="20" y="370" width="220" height="80" rx="12" fill="#142339" stroke="#4cc9f0"/>
+        <text x="130" y="395" text-anchor="middle" font-weight="800" fill="#4cc9f0" font-size="13">🚙 ENCONTRO</text>
+        <text x="130" y="413" text-anchor="middle" font-size="11" fill="#b9c4d6">s_A = s_B</text>
+        <text x="130" y="427" text-anchor="middle" font-size="11" fill="#b9c4d6">v_AB = v_A − v_B</text>
+        <text x="130" y="441" text-anchor="middle" font-size="10" fill="#ffd166">Δt = Δs_rel / v_rel</text>
+        <rect x="680" y="60" width="200" height="80" rx="12" fill="#142339" stroke="#4cc9f0"/>
+        <text x="780" y="85" text-anchor="middle" font-weight="800" fill="#4cc9f0" font-size="13">📈 GRÁFICOS</text>
+        <text x="780" y="103" text-anchor="middle" font-size="11" fill="#b9c4d6">s × t: reta inclinada</text>
+        <text x="780" y="117" text-anchor="middle" font-size="11" fill="#b9c4d6">v × t: reta horizontal</text>
+        <text x="780" y="131" text-anchor="middle" font-size="10" fill="#ffd166">área = Δs</text>
+        <rect x="700" y="210" width="200" height="80" rx="12" fill="#142339" stroke="#ffd166"/>
+        <text x="800" y="235" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="14">📜 FÓRMULA</text>
+        <text x="800" y="258" text-anchor="middle" font-size="13" fill="#ffd166" font-style="italic">s = s₀ + v · t</text>
+        <text x="800" y="276" text-anchor="middle" font-size="10" fill="#b9c4d6">função do 1º grau</text>
+        <rect x="680" y="380" width="220" height="80" rx="12" fill="#142339" stroke="#4cc9f0"/>
+        <text x="790" y="405" text-anchor="middle" font-weight="800" fill="#4cc9f0" font-size="13">🚌 ULTRAPASSAGEM</text>
+        <text x="790" y="423" text-anchor="middle" font-size="11" fill="#b9c4d6">Δt = (L_A + L_B)</text>
+        <text x="790" y="437" text-anchor="middle" font-size="11" fill="#b9c4d6">/ |v_A − v_B|</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mindmap-wrapper mruv" style="margin-top:18px">
+    <h3>🚀 MRUV — Movimento Uniformemente Variado</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gmuv" x1="0" x2="1"><stop offset="0" stop-color="#4361ee"/><stop offset="1" stop-color="#2a3aaf"/></linearGradient>
+        <filter id="glowMV" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(67,97,238,.4)" stroke-width="2" fill="none">
+        <path d="M450 240 C 300 170, 220 160, 130 110"/>
+        <path d="M450 240 C 300 320, 220 360, 130 400"/>
+        <path d="M450 240 C 600 160, 700 140, 780 90"/>
+        <path d="M450 240 C 620 240, 720 240, 800 240"/>
+        <path d="M450 240 C 600 340, 700 380, 780 420"/>
+      </g>
+      <circle cx="450" cy="240" r="60" fill="url(#gmuv)" filter="url(#glowMV)"/>
+      <text x="450" y="245" text-anchor="middle" fill="white" font-size="18" font-weight="800">MRUV</text>
+      <g font-family="Segoe UI" font-size="11" fill="#f8f9ff" font-weight="600">
+        <rect x="20" y="80" width="200" height="60" rx="12" fill="#142339" stroke="#4361ee"/>
+        <text x="120" y="105" text-anchor="middle" font-weight="800" fill="#7d92ff" font-size="13">📐 DEFINIÇÃO</text>
+        <text x="120" y="123" text-anchor="middle" font-size="11" fill="#b9c4d6">a = constante ≠ 0</text>
+        <text x="120" y="136" text-anchor="middle" font-size="10" fill="#ffd166">v varia linearmente</text>
+        <rect x="20" y="370" width="240" height="80" rx="12" fill="#142339" stroke="#4361ee"/>
+        <text x="140" y="395" text-anchor="middle" font-weight="800" fill="#7d92ff" font-size="13">⚖️ SINAIS</text>
+        <text x="140" y="413" text-anchor="middle" font-size="11" fill="#b9c4d6">v · a &gt; 0 → acelerado</text>
+        <text x="140" y="427" text-anchor="middle" font-size="11" fill="#b9c4d6">v · a &lt; 0 → retardado</text>
+        <text x="140" y="441" text-anchor="middle" font-size="10" fill="#ffd166">v=0 → inverte sentido</text>
+        <rect x="680" y="60" width="200" height="80" rx="12" fill="#142339" stroke="#4361ee"/>
+        <text x="780" y="85" text-anchor="middle" font-weight="800" fill="#7d92ff" font-size="13">📈 GRÁFICO v × t</text>
+        <text x="780" y="103" text-anchor="middle" font-size="11" fill="#b9c4d6">Reta inclinada</text>
+        <text x="780" y="117" text-anchor="middle" font-size="11" fill="#b9c4d6">a = tg θ (inclinação)</text>
+        <text x="780" y="131" text-anchor="middle" font-size="10" fill="#ffd166">área = Δs</text>
+        <rect x="700" y="210" width="200" height="80" rx="12" fill="#142339" stroke="#ffd166"/>
+        <text x="800" y="235" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="14">📜 FÓRMULA</text>
+        <text x="800" y="258" text-anchor="middle" font-size="13" fill="#ffd166" font-style="italic">v = v₀ + a · t</text>
+        <text x="800" y="276" text-anchor="middle" font-size="10" fill="#b9c4d6">vel. = f(t)</text>
+        <rect x="680" y="380" width="220" height="80" rx="12" fill="#142339" stroke="#4361ee"/>
+        <text x="790" y="405" text-anchor="middle" font-weight="800" fill="#7d92ff" font-size="13">🔄 PROPRIEDADE</text>
+        <text x="790" y="423" text-anchor="middle" font-size="11" fill="#b9c4d6">Δv₁ = Δv₂ = ... = Δvₙ</text>
+        <text x="790" y="437" text-anchor="middle" font-size="11" fill="#b9c4d6">(em Δt iguais)</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mindmap-wrapper dilat" style="margin-top:18px">
+    <h3>📐 DILATAÇÃO TÉRMICA</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gdil" x1="0" x2="1"><stop offset="0" stop-color="#fb8500"/><stop offset="1" stop-color="#bf6500"/></linearGradient>
+        <filter id="glowD" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(251,133,0,.4)" stroke-width="2" fill="none">
+        <path d="M450 240 C 300 170, 220 160, 130 110"/>
+        <path d="M450 240 C 300 320, 220 360, 130 400"/>
+        <path d="M450 240 C 600 160, 700 140, 780 90"/>
+        <path d="M450 240 C 620 240, 720 240, 800 240"/>
+        <path d="M450 240 C 600 340, 700 380, 780 420"/>
+      </g>
+      <circle cx="450" cy="240" r="60" fill="url(#gdil)" filter="url(#glowD)"/>
+      <text x="450" y="235" text-anchor="middle" fill="white" font-size="14" font-weight="800">DILATAÇÃO</text>
+      <text x="450" y="252" text-anchor="middle" fill="white" font-size="13" font-weight="800">TÉRMICA</text>
+      <g font-family="Segoe UI" font-size="11" fill="#f8f9ff" font-weight="600">
+        <rect x="20" y="80" width="220" height="80" rx="12" fill="#142339" stroke="#fb8500"/>
+        <text x="130" y="105" text-anchor="middle" font-weight="800" fill="#fb8500" font-size="13">📏 LINEAR (α)</text>
+        <text x="130" y="123" text-anchor="middle" font-size="11" fill="#b9c4d6">ΔL = L₀ · α · Δθ</text>
+        <text x="130" y="138" text-anchor="middle" font-size="10" fill="#ffd166">1 dimensão</text>
+        <rect x="20" y="370" width="220" height="80" rx="12" fill="#142339" stroke="#fb8500"/>
+        <text x="130" y="395" text-anchor="middle" font-weight="800" fill="#fb8500" font-size="13">🥶 ANÔMALA</text>
+        <text x="130" y="413" text-anchor="middle" font-size="11" fill="#b9c4d6">Água: 0–4 °C</text>
+        <text x="130" y="427" text-anchor="middle" font-size="11" fill="#b9c4d6">Volume diminui!</text>
+        <text x="130" y="441" text-anchor="middle" font-size="10" fill="#ffd166">Densidade máx. a 4°C</text>
+        <rect x="680" y="60" width="200" height="80" rx="12" fill="#142339" stroke="#fb8500"/>
+        <text x="780" y="85" text-anchor="middle" font-weight="800" fill="#fb8500" font-size="13">⬛ SUPERFICIAL (β)</text>
+        <text x="780" y="103" text-anchor="middle" font-size="11" fill="#b9c4d6">ΔA = A₀ · β · Δθ</text>
+        <text x="780" y="117" text-anchor="middle" font-size="11" fill="#b9c4d6">β = 2α</text>
+        <text x="780" y="131" text-anchor="middle" font-size="10" fill="#ffd166">2 dimensões</text>
+        <rect x="700" y="210" width="200" height="80" rx="12" fill="#142339" stroke="#ffd166"/>
+        <text x="800" y="235" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">📦 VOLUMÉTRICA (γ)</text>
+        <text x="800" y="253" text-anchor="middle" font-size="12" fill="#ffd166" font-style="italic">ΔV = V₀ · γ · Δθ</text>
+        <text x="800" y="271" text-anchor="middle" font-size="11" fill="#b9c4d6">γ = 3α  3 dim.</text>
+        <rect x="680" y="380" width="220" height="80" rx="12" fill="#142339" stroke="#fb8500"/>
+        <text x="790" y="405" text-anchor="middle" font-weight="800" fill="#fb8500" font-size="13">💧 LÍQUIDOS</text>
+        <text x="790" y="423" text-anchor="middle" font-size="11" fill="#b9c4d6">γ_ap = γ_liq − γ_rec</text>
+        <text x="790" y="437" text-anchor="middle" font-size="11" fill="#b9c4d6">Extravasa!</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mindmap-wrapper calor" style="margin-top:18px">
+    <h3>🌡️ CALORIMETRIA</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gcal" x1="0" x2="1"><stop offset="0" stop-color="#ef476f"/><stop offset="1" stop-color="#a83352"/></linearGradient>
+        <filter id="glowC" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(239,71,111,.4)" stroke-width="2" fill="none">
+        <path d="M450 240 C 300 170, 220 160, 130 110"/>
+        <path d="M450 240 C 300 320, 220 360, 130 400"/>
+        <path d="M450 240 C 600 160, 700 140, 780 90"/>
+        <path d="M450 240 C 620 240, 720 240, 800 240"/>
+        <path d="M450 240 C 600 340, 700 380, 780 420"/>
+      </g>
+      <circle cx="450" cy="240" r="60" fill="url(#gcal)" filter="url(#glowC)"/>
+      <text x="450" y="235" text-anchor="middle" fill="white" font-size="13" font-weight="800">CALORI-</text>
+      <text x="450" y="252" text-anchor="middle" fill="white" font-size="13" font-weight="800">METRIA</text>
+      <g font-family="Segoe UI" font-size="11" fill="#f8f9ff" font-weight="600">
+        <rect x="20" y="80" width="220" height="80" rx="12" fill="#142339" stroke="#ef476f"/>
+        <text x="130" y="105" text-anchor="middle" font-weight="800" fill="#ef476f" font-size="13">🔥 CALOR SENSÍVEL</text>
+        <text x="130" y="123" text-anchor="middle" font-size="11" fill="#b9c4d6">Muda T, NÃO a fase</text>
+        <text x="130" y="138" text-anchor="middle" font-size="11" fill="#ffd166" font-style="italic">Q = m·c·Δθ</text>
+        <rect x="20" y="370" width="220" height="80" rx="12" fill="#142339" stroke="#ef476f"/>
+        <text x="130" y="395" text-anchor="middle" font-weight="800" fill="#ef476f" font-size="13">🧊 CALOR LATENTE</text>
+        <text x="130" y="413" text-anchor="middle" font-size="11" fill="#b9c4d6">Muda fase, NÃO T</text>
+        <text x="130" y="427" text-anchor="middle" font-size="11" fill="#ffd166" font-style="italic">Q = m·L</text>
+        <text x="130" y="441" text-anchor="middle" font-size="10" fill="#b9c4d6">L = calor específico latente</text>
+        <rect x="680" y="60" width="200" height="80" rx="12" fill="#142339" stroke="#ef476f"/>
+        <text x="780" y="85" text-anchor="middle" font-weight="800" fill="#ef476f" font-size="13">⚖️ CAPACIDADE TÉRMICA (C)</text>
+        <text x="780" y="103" text-anchor="middle" font-size="11" fill="#b9c4d6">Do CORPO/objeto</text>
+        <text x="780" y="117" text-anchor="middle" font-size="11" fill="#ffd166" font-style="italic">C = Q/Δθ</text>
+        <text x="780" y="131" text-anchor="middle" font-size="10" fill="#b9c4d6">cal/°C ou J/K</text>
+        <rect x="700" y="210" width="200" height="80" rx="12" fill="#142339" stroke="#ffd166"/>
+        <text x="800" y="235" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">🧪 CALOR ESPECÍFICO (c)</text>
+        <text x="800" y="253" text-anchor="middle" font-size="11" fill="#b9c4d6">Da SUBSTÂNCIA</text>
+        <text x="800" y="268" text-anchor="middle" font-size="11" fill="#ffd166" font-style="italic">c = C/m</text>
+        <text x="800" y="283" text-anchor="middle" font-size="10" fill="#b9c4d6">cal/(g·°C)</text>
+        <rect x="680" y="380" width="220" height="80" rx="12" fill="#142339" stroke="#ef476f"/>
+        <text x="790" y="405" text-anchor="middle" font-weight="800" fill="#ef476f" font-size="13">💧 ÁGUA</text>
+        <text x="790" y="423" text-anchor="middle" font-size="11" fill="#b9c4d6">c = 1 cal/(g·°C)</text>
+        <text x="790" y="437" text-anchor="middle" font-size="11" fill="#b9c4d6">Maior c da tabela</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="tab-content" id="flashcards">
+  <h2 class="section-title"><span class="ico">🃏</span>Flashcards Interativos</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Clique no card para virar. Filtre por tema.</p>
+
+  <div class="deck-controls">
+    <button class="all active" data-filter="all">Todos</button>
+    <button class="mru" data-filter="mru">📏 MRU</button>
+    <button class="mruv" data-filter="mruv">🚀 MRUV</button>
+    <button class="dilat" data-filter="dilat">📐 Dilatação</button>
+    <button class="calor" data-filter="calor">🌡️ Calorimetria</button>
+    <button data-action="shuffle">🔀 Embaralhar</button>
+  </div>
+
+  <div class="flashcard-stage">
+    <div class="flashcard" id="flashcard">
+      <div class="face front">
+        <span class="tag" id="cardTag">MRU</span>
+        <span class="num" id="cardNum">1 / 30</span>
+        <div class="q" id="cardQ">Pergunta</div>
+        <div class="hint">Clique para virar</div>
+      </div>
+      <div class="face back">
+        <div class="a" id="cardA">Resposta</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deck-nav">
+    <button id="btnPrev">← Anterior</button>
+    <span class="deck-progress" id="cardCount">Card 1 / 30</span>
+    <button id="btnNext">Próximo →</button>
+  </div>
+</section>
+
+<!-- EXEMPLOS -->
+<section class="tab-content" id="exemplos">
+  <h2 class="section-title"><span class="ico">✏️</span>Exemplos Resolvidos</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Padrões clássicos de exercício resolvidos passo a passo.</p>
+
+  <h3 style="color:var(--mru);margin:14px 0 6px">📏 MRU</h3>
+
+  <div class="example-card">
+    <h5>Exemplo 1 — Função horária</h5>
+    <p style="font-size:.9rem;color:var(--ink-dim)">Um móvel sai de s₀ = 75 m, em trajetória curvilínea, com velocidade constante de 54 km/h, em sentido retrógrado. Qual a função horária?</p>
+    <div class="step"><b>1. Converter unidades:</b> 54 km/h ÷ 3,6 = 15 m/s</div>
+    <div class="step"><b>2. Aplicar sinal:</b> retrógrado → v = −15 m/s</div>
+    <div class="step"><b>3. Substituir em s = s₀ + v·t:</b></div>
+    <span class="result">s = 75 − 15t  (SI)</span>
+    <div class="step" style="margin-top:6px"><b>4. Bônus — passa pela origem (s=0):</b> 0 = 75 − 15t → <b>t = 5 s</b></div>
+  </div>
+
+  <div class="example-card">
+    <h5>Exemplo 2 — Encontro</h5>
+    <p style="font-size:.9rem;color:var(--ink-dim)">A parte de s₀ = 30 cm, v = 4 cm/s. B parte simultaneamente de s₀ = 110 cm, v = 6 cm/s, em sentido oposto. Quando e onde se encontram?</p>
+    <div class="step"><b>1. Funções horárias:</b> s_A = 30 + 4t · s_B = 110 − 6t</div>
+    <div class="step"><b>2. Igualar:</b> 30 + 4t = 110 − 6t → 10t = 80 → <b>t = 8 s</b></div>
+    <div class="step"><b>3. Substituir:</b> s_A = 30 + 4·8 = 62 cm</div>
+    <span class="result">Encontro: s = 62 cm em t = 8 s</span>
+    <div class="step" style="margin-top:6px"><b>Atalho — velocidade relativa:</b> v_AB = 4 − (−6) = 10 cm/s · Δt = 80/10 = 8 s ✓</div>
+  </div>
+
+  <h3 style="color:var(--mruv);margin:18px 0 6px">🚀 MRUV</h3>
+
+  <div class="example-card">
+    <h5>Exemplo 3 — Inversão de sentido</h5>
+    <p style="font-size:.9rem;color:var(--ink-dim)">Móvel com função v = 12 − 4t (SI). Em qual instante inverte o sentido? Como classificar o movimento?</p>
+    <div class="step"><b>1. Identificar:</b> v₀ = 12 m/s, a = −4 m/s²</div>
+    <div class="step"><b>2. Sinais:</b> v &gt; 0 e a &lt; 0 (sinais opostos) → MUV <b>retardado progressivo</b></div>
+    <div class="step"><b>3. Inversão de sentido (v=0):</b> 0 = 12 − 4t → <b>t = 3 s</b></div>
+    <div class="step"><b>4. Após t = 3 s:</b> v &lt; 0 e a &lt; 0 (mesmo sinal) → MUV <b>acelerado retrógrado</b></div>
+    <span class="result">Inverte em t = 3 s</span>
+  </div>
+
+  <h3 style="color:var(--dilat);margin:18px 0 6px">📐 Dilatação</h3>
+
+  <div class="example-card termo">
+    <h5>Exemplo 4 — Dilatação aparente do mercúrio</h5>
+    <p style="font-size:.9rem;color:var(--ink-dim)">Recipiente de vidro cheio com 100 mL de mercúrio a 15 °C é aquecido até 65 °C. Qual o volume extravasado? Dados: α_vidro = 9·10⁻⁶ °C⁻¹ · γ_mercúrio = 1,8·10⁻⁴ °C⁻¹</p>
+    <div class="step"><b>1. γ_vidro:</b> γ = 3α = 3·9·10⁻⁶ = 2,7·10⁻⁵ °C⁻¹</div>
+    <div class="step"><b>2. γ_aparente:</b> γ_ap = γ_merc − γ_vidro = 1,8·10⁻⁴ − 2,7·10⁻⁵ = 1,53·10⁻⁴ °C⁻¹</div>
+    <div class="step"><b>3. Δθ:</b> 65 − 15 = 50 °C</div>
+    <div class="step"><b>4. Volume extravasado:</b> ΔV_ap = V₀·γ_ap·Δθ = 100·1,53·10⁻⁴·50</div>
+    <span class="result">ΔV_ap ≈ 0,765 mL</span>
+  </div>
+
+  <h3 style="color:var(--calor);margin:18px 0 6px">🌡️ Calorimetria</h3>
+
+  <div class="example-card termo">
+    <h5>Exemplo 5 — Calor sensível</h5>
+    <p style="font-size:.9rem;color:var(--ink-dim)">Quanto calor é necessário para aquecer 2 L de água de 12 °C até 32 °C? (c_água = 1 cal/g·°C)</p>
+    <div class="step"><b>1. Massa:</b> 2 L de água ≈ 2.000 g</div>
+    <div class="step"><b>2. Δθ:</b> 32 − 12 = 20 °C</div>
+    <div class="step"><b>3. Aplicar Q = m·c·Δθ:</b> Q = 2.000 · 1 · 20</div>
+    <span class="result">Q = 40.000 cal = 40 kcal</span>
+  </div>
+
+  <div class="example-card termo">
+    <h5>Exemplo 6 — Equivalente em água</h5>
+    <p style="font-size:.9rem;color:var(--ink-dim)">Caneca de alumínio com C = 25 cal/°C. Qual seu equivalente em água?</p>
+    <div class="step"><b>1. Como c_água = 1 cal/(g·°C):</b> E ≡ C_corpo</div>
+    <span class="result">E = 25 g</span>
+    <div class="step" style="margin-top:6px"><b>Significado:</b> 25 g de água sofreria a mesma variação de temperatura que a caneca, recebendo a mesma quantidade de calor.</div>
+  </div>
+</section>
+
+<!-- MNEMONICS -->
+<section class="tab-content" id="mnemonics">
+  <h2 class="section-title"><span class="ico">🧩</span>Mnemônicos & Truques</h2>
+
+  <div class="mnemonic-grid">
+    <div class="mnemonic-card">
+      <span class="key">"SoVT"</span>
+      <h4>Função horária do MRU</h4>
+      <ul>
+        <li><b>S</b> = aonde se chega</li>
+        <li><b>S₀</b> = de onde se sai</li>
+        <li><b>V·T</b> = o quanto se desloca</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>"<b>So</b> mais <b>VT</b>" — pra lembrar s = s₀ + v·t</i></p>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">PROG × RETRO</span>
+      <h4>Sinais da velocidade</h4>
+      <ul>
+        <li><b>v &gt; 0</b> = PROGressivo (PRO = a favor)</li>
+        <li><b>v &lt; 0</b> = RETROgrado (REtorna)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">v·a → AceleR</span>
+      <h4>Acelerado × retardado no MRUV</h4>
+      <ul>
+        <li><b>v · a &gt; 0</b> → mesmos sinais → <b>Acelerado</b> (a velocidade ganha em módulo)</li>
+        <li><b>v · a &lt; 0</b> → sinais opostos → <b>Retardado</b> (perde módulo)</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>Ignore se a velocidade é positiva ou negativa — olhe os SINAIS.</i></p>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">ÁREA = Δs</span>
+      <h4>Truque universal dos gráficos</h4>
+      <ul>
+        <li>Em <b>QUALQUER</b> gráfico v × t, a área entre a curva e o eixo t = deslocamento (Δs).</li>
+        <li>No MRU: área = retângulo (Δs = v·Δt).</li>
+        <li>No MRUV: área = trapézio ou triângulo.</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">1 : 2 : 3</span>
+      <h4>Coeficientes de dilatação</h4>
+      <ul>
+        <li><b>α</b> (linear) — 1 dimensão</li>
+        <li><b>β</b> (superficial) — 2 · α</li>
+        <li><b>γ</b> (volumétrico) — 3 · α</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>Cada dimensão = um α a mais. Lembra: 1, 2, 3 = α, β, γ.</i></p>
+    </div>
+
+    <div class="mnemonic-card termo">
+      <span class="key">VγΔθ</span>
+      <h4>Dilatação volumétrica</h4>
+      <ul>
+        <li><b>ΔV = V₀ · γ · Δθ</b></li>
+        <li>"Volume vezes Gama vezes Delta theta"</li>
+        <li>Vale para sólidos, líquidos e gases — só muda o γ.</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card termo">
+      <span class="key">4°C MAX</span>
+      <h4>Anomalia da água</h4>
+      <ul>
+        <li>De <b>0 a 4 °C</b>: água CONTRAI ao aquecer (estranho!)</li>
+        <li>A <b>4 °C</b> tem o <b>menor volume</b> e <b>maior densidade</b>.</li>
+        <li>Acima de 4 °C, comportamento normal (dilata).</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>Por isso o gelo flutua e os lagos congelam de cima pra baixo.</i></p>
+    </div>
+
+    <div class="mnemonic-card termo">
+      <span class="key">m·c·Δθ</span>
+      <h4>Eq. Fundamental da Calorimetria</h4>
+      <ul>
+        <li><b>Q = m · c · Δθ</b> — só pra calor SENSÍVEL (sem mudança de fase).</li>
+        <li>Na mudança de fase: <b>Q = m · L</b> (calor latente).</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>"Massa · calor específico · variação de θ" — repita até decorar.</i></p>
+    </div>
+
+    <div class="mnemonic-card termo">
+      <span class="key">C × c</span>
+      <h4>Não confunda capital × minúsculo!</h4>
+      <ul>
+        <li><b>C</b> (maiúsculo) = capacidade térmica do <b>CORPO/OBJETO</b></li>
+        <li><b>c</b> (minúsculo) = calor específico da <b>SUBSTÂNCIA</b></li>
+        <li>Relação: C = m · c</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card termo">
+      <span class="key">SENS × LAT</span>
+      <h4>Calor sensível × latente</h4>
+      <ul>
+        <li><b>Sensível</b> = sente a temperatura mudar (não muda fase)</li>
+        <li><b>Latente</b> = "escondido" — muda a fase mas a T NÃO muda</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">v_rel</span>
+      <h4>Velocidade relativa — sinais</h4>
+      <ul>
+        <li><b>Mesmo sentido:</b> v_rel = |v_A − v_B| (subtrai)</li>
+        <li><b>Sentidos opostos:</b> v_rel = v_A + v_B (soma — porque uma é negativa, e v_A − (−v_B) = v_A + v_B)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">L_A + L_B</span>
+      <h4>Ultrapassagem de corpo extenso</h4>
+      <ul>
+        <li>Δt = (<b>L_A</b> + <b>L_B</b>) / |v_A − v_B|</li>
+        <li>Soma os comprimentos — porque um precisa percorrer o tamanho dele MAIS o do outro pra ultrapassar.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="tab-content" id="quiz">
+  <h2 class="section-title"><span class="ico">🎯</span>Quiz Final</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">15 perguntas dos 6 módulos com correção imediata. Boa prova!</p>
+
+  <div class="quiz-wrap" id="quizWrap">
+    <div class="quiz-progress">
+      <span id="qProgress">Pergunta 1 / 15</span>
+      <span id="qScore">Acertos: 0</span>
+    </div>
+    <div class="quiz-bar"><div id="qBar" style="width:6%"></div></div>
+    <div class="quiz-q" id="qText">...</div>
+    <div class="quiz-options" id="qOptions"></div>
+    <div class="quiz-feedback" id="qFeedback"></div>
+    <div class="quiz-actions">
+      <button id="qNext" style="display:none">Próxima →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Material de estudo · Física A & B · Feito com <span class="heart">♥</span> para a P2T1
+</footer>
+
+</div>
+
+<script>
+const tabs = document.querySelectorAll('#mainTabs button');
+const sections = document.querySelectorAll('.tab-content');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  sections.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* FLASHCARDS */
+const cardData = [
+  // MRU
+  {tema:'mru', q:'O que define o Movimento Uniforme (MU)?', a:'Velocidade escalar <b>constante</b> e <b>diferente de zero</b>. A trajetória pode ser qualquer; no <b>MRU</b>, especificamente, a trajetória é retilínea. Como consequência, a aceleração é <b>nula</b>.'},
+  {tema:'mru', q:'Qual a função horária do espaço no MU?', a:'<b>s = s₀ + v · t</b>, onde <em>s</em> é a posição final, <em>s₀</em> é a posição inicial e <em>v · t</em> é o quanto o móvel se desloca.'},
+  {tema:'mru', q:'Como diferenciar MU progressivo de retrógrado?', a:'<b>Progressivo</b>: v &gt; 0 (anda no sentido positivo da trajetória). <b>Retrógrado</b>: v &lt; 0 (anda no sentido contrário).'},
+  {tema:'mru', q:'Como saber quando um móvel passa pela origem?', a:'Resolva <b>s = 0</b> na função horária. Ex.: s = 75 − 15t · 0 = 75 − 15t · t = 5 s.'},
+  {tema:'mru', q:'No gráfico s × t do MU, o que significa a inclinação da reta?', a:'A <b>inclinação (coeficiente angular)</b> é igual à <b>velocidade v</b>. A interseção com o eixo s (em t=0) é o <b>s₀</b>.'},
+  {tema:'mru', q:'No gráfico v × t do MU, qual a forma do gráfico?', a:'Uma <b>reta horizontal</b> (porque v é constante). Acima do eixo t se v &gt; 0; abaixo se v &lt; 0.'},
+  {tema:'mru', q:'Como calcular o deslocamento a partir do gráfico v × t?', a:'A <b>área</b> entre o gráfico e o eixo t (no intervalo desejado) é numericamente igual ao <b>módulo do deslocamento</b>: |Δs| = área.'},
+  {tema:'mru', q:'Qual a condição matemática para o encontro de dois móveis?', a:'<b>s_A = s_B</b>. Iguale as funções horárias e resolva para t.'},
+  {tema:'mru', q:'Como calcular a velocidade relativa de A em relação a B?', a:'<b>v_AB = v_A − v_B</b>. Respeite os sinais. Em sentidos opostos, uma das velocidades é negativa, então a relativa é grande (efetivamente uma soma de módulos).'},
+  {tema:'mru', q:'Qual o tempo de ultrapassagem entre dois veículos extensos?', a:'<b>Δt = (L_A + L_B) / |v_A − v_B|</b>. Soma dos comprimentos dividida pela velocidade relativa em módulo.'},
+  {tema:'mru', q:'No MU, qual o gráfico de a × t?', a:'O gráfico <b>coincide com o próprio eixo do tempo</b>, pois <b>a = 0</b> (a velocidade é constante).'},
+
+  // MRUV
+  {tema:'mruv', q:'O que define o MRUV?', a:'Movimento Retilíneo Uniformemente Variado: a <b>aceleração escalar</b> é <b>constante</b> e <b>diferente de zero</b>. A velocidade varia linearmente com o tempo.'},
+  {tema:'mruv', q:'Qual a função horária da velocidade no MRUV?', a:'<b>v = v₀ + a · t</b>. É uma função do 1º grau em t — daí o gráfico v × t é uma reta inclinada.'},
+  {tema:'mruv', q:'Como diferenciar movimento acelerado de retardado?', a:'<b>Acelerado</b>: v e a têm o <b>MESMO sinal</b> (a velocidade aumenta em módulo). <b>Retardado</b>: v e a têm <b>sinais OPOSTOS</b> (a velocidade diminui em módulo).'},
+  {tema:'mruv', q:'O que acontece quando v = 0 num MRUV?', a:'É o <b>ponto de inversão de sentido</b> do movimento. Antes de v=0, o móvel andava num sentido; depois, anda no sentido oposto.'},
+  {tema:'mruv', q:'No gráfico v × t do MRUV, o que indica a inclinação da reta?', a:'A <b>inclinação (coeficiente angular)</b> é igual à <b>aceleração a</b>: a = tg θ = Δv/Δt. A interseção com o eixo v (em t=0) é o <b>v₀</b>.'},
+  {tema:'mruv', q:'Como calcular o deslocamento a partir do gráfico v × t no MRUV?', a:'Pela <b>área</b> entre a reta e o eixo t — geralmente um <b>trapézio</b> (ou triângulo, se v₀ = 0). Mesmo princípio do MRU.'},
+  {tema:'mruv', q:'Numa função v = 12 − 4t, em que instante ocorre a inversão de sentido?', a:'Quando v = 0: 12 − 4t = 0 ⇒ <b>t = 3 s</b>. Antes desse instante, é progressivo retardado; depois, retrógrado acelerado.'},
+  {tema:'mruv', q:'No MRUV, em intervalos de tempo iguais, o que se mantém constante?', a:'A <b>variação de velocidade</b> Δv é constante (Δv₁ = Δv₂ = ... = Δvₙ). O <b>deslocamento</b>, ao contrário do MU, NÃO se mantém constante.'},
+
+  // DILATAÇÃO
+  {tema:'dilat', q:'Qual a relação entre os coeficientes de dilatação α, β e γ?', a:'<b>β = 2α</b> e <b>γ = 3α</b>, ou seja, <b>α : β : γ = 1 : 2 : 3</b>. Cada dimensão extra adiciona um α.'},
+  {tema:'dilat', q:'Qual a fórmula da dilatação volumétrica?', a:'<b>ΔV = V₀ · γ · Δθ</b>, onde V₀ é o volume inicial, γ é o coeficiente volumétrico, Δθ a variação de temperatura.'},
+  {tema:'dilat', q:'Como calcular o volume final após uma dilatação?', a:'<b>V = V₀ · (1 + γ · Δθ)</b>, equivalente a V = V₀ + ΔV.'},
+  {tema:'dilat', q:'Por que líquidos extravasam de recipientes ao serem aquecidos?', a:'Porque os líquidos têm, em geral, <b>coeficientes de dilatação MAIORES</b> que os sólidos do recipiente. Como o líquido dilata mais, parte dele "escapa".'},
+  {tema:'dilat', q:'O que é a dilatação aparente de um líquido?', a:'É o <b>volume extravasado</b> do recipiente. Diferente da dilatação real do líquido (que inclui a dilatação do recipiente). γ_ap = γ_liq − γ_rec.'},
+  {tema:'dilat', q:'Em que intervalo a água apresenta comportamento anômalo?', a:'Entre <b>0 °C e 4 °C</b>: ao ser aquecida, ela <b>CONTRAI</b> em vez de dilatar. A 4 °C tem volume mínimo e densidade máxima.'},
+  {tema:'dilat', q:'Por que o gelo flutua na água?', a:'Por causa da <b>dilatação anômala</b>. A 4 °C a água tem <b>densidade máxima</b>. Ao congelar (0 °C), ela <b>aumenta</b> de volume e diminui de densidade — por isso o gelo flutua.'},
+  {tema:'dilat', q:'Por que os lagos congelam de cima para baixo?', a:'Porque a água a 4 °C (mais densa) afunda. A água mais fria (menos densa) sobe e congela na superfície, formando uma camada de gelo que isola a água líquida embaixo — preservando a vida aquática.'},
+
+  // CALORIMETRIA
+  {tema:'calor', q:'O que é capacidade térmica (C)?', a:'Razão entre o <b>calor</b> Q recebido (ou cedido) e a <b>variação de temperatura</b> Δθ — sem mudança de fase. <b>C = Q/Δθ</b>. É grandeza característica do <b>CORPO/OBJETO</b>.'},
+  {tema:'calor', q:'O que é calor específico (c)?', a:'Razão entre a capacidade térmica C e a massa m: <b>c = C/m</b>. É grandeza característica da <b>SUBSTÂNCIA</b>. Unidade usual: cal/(g·°C).'},
+  {tema:'calor', q:'Diferença entre calor sensível e calor latente.', a:'<b>Sensível</b>: muda a <b>temperatura</b>, sem mudança de fase. Q = m·c·Δθ. <b>Latente</b>: muda a <b>fase</b>, sem mudança de temperatura. Q = m·L.'},
+  {tema:'calor', q:'Qual a Equação Fundamental da Calorimetria?', a:'<b>Q = m · c · Δθ</b> (calor sensível). Q &gt; 0 = recebido pelo sistema · Q &lt; 0 = cedido.'},
+  {tema:'calor', q:'Quanto vale 1 caloria em joules?', a:'<b>1 cal ≈ 4,1868 J</b>. A caloria é a quantidade de calor necessária para aquecer 1 g de água de 14,5 °C a 15,5 °C.'},
+  {tema:'calor', q:'Por que a água demora mais para esquentar que outros materiais?', a:'Porque tem o <b>maior calor específico</b> da tabela usual: c_água = 1,00 cal/(g·°C). Para a mesma massa, ela precisa de mais calor para aumentar 1 °C.'},
+  {tema:'calor', q:'O que é o equivalente em água (E)?', a:'A <b>massa de água</b> que sofreria a mesma variação de temperatura para a mesma quantidade de calor. Como c_água = 1, vale numericamente: <b>E ≡ C_corpo</b>.'},
+  {tema:'calor', q:'Quanto calor é necessário para aquecer 2.000 g de água em 20 °C?', a:'Q = m·c·Δθ = 2.000 · 1 · 20 = <b>40.000 cal = 40 kcal</b>.'},
+  {tema:'calor', q:'O que significa "C = 100 cal/°C"?', a:'O objeto precisa receber <b>100 cal</b> para aumentar sua temperatura em <b>1 °C</b> (ou ceder 100 cal para diminuir 1 °C).'},
+];
+
+let currentIndex = 0;
+let filteredDeck = [...cardData];
+
+function renderCard(){
+  const c = filteredDeck[currentIndex];
+  if(!c){return;}
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped','mru','mruv','dilat','calor');
+  card.classList.add(c.tema);
+  document.getElementById('cardTag').className = 'tag '+c.tema;
+  const tagText = {mru:'📏 MRU',mruv:'🚀 MRUV',dilat:'📐 DILATAÇÃO',calor:'🌡️ CALORIMETRIA'};
+  document.getElementById('cardTag').textContent = tagText[c.tema];
+  document.getElementById('cardNum').textContent = (currentIndex+1)+' / '+filteredDeck.length;
+  document.getElementById('cardQ').textContent = c.q;
+  document.getElementById('cardA').innerHTML = c.a;
+  document.getElementById('cardCount').textContent = 'Card '+(currentIndex+1)+' / '+filteredDeck.length;
+}
+document.getElementById('flashcard').addEventListener('click',function(){this.classList.toggle('flipped')});
+document.getElementById('btnNext').addEventListener('click',()=>{currentIndex=(currentIndex+1)%filteredDeck.length;renderCard()});
+document.getElementById('btnPrev').addEventListener('click',()=>{currentIndex=(currentIndex-1+filteredDeck.length)%filteredDeck.length;renderCard()});
+document.querySelectorAll('.deck-controls button[data-filter]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.deck-controls button[data-filter]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const f = b.dataset.filter;
+    filteredDeck = f==='all' ? [...cardData] : cardData.filter(c=>c.tema===f);
+    currentIndex = 0;
+    renderCard();
+  });
+});
+document.querySelector('[data-action="shuffle"]').addEventListener('click',()=>{
+  filteredDeck = filteredDeck.sort(()=>Math.random()-0.5);
+  currentIndex = 0;
+  renderCard();
+});
+renderCard();
+
+/* QUIZ */
+const quizQuestions = [
+  {q:'No MRU, qual a relação entre velocidade média e instantânea?',
+   o:['Variam ao longo do tempo','São iguais (v_m = v)','Diferem por um fator 2','Não há relação'],correct:1,
+   ex:'No MRU, como v é constante, a velocidade média se iguala à instantânea: <b>v_m = v</b>.'},
+  {q:'A função horária s = -60 + 12t (cm, s) representa qual movimento?',
+   o:['MU retrógrado','MU progressivo (v=12 cm/s, parte de -60 cm)','MUV acelerado','MU em curva'],correct:1,
+   ex:'<b>v = +12 cm/s &gt; 0 → progressivo</b>. s₀ = −60 cm (parte atrás da origem). Passa pela origem em t = 5 s.'},
+  {q:'A é um móvel com v = 4 cm/s e B com v = -6 cm/s. A velocidade relativa de A em relação a B é:',
+   o:['-2 cm/s','2 cm/s','-10 cm/s','10 cm/s'],correct:3,
+   ex:'<b>v_AB = v_A − v_B = 4 − (−6) = 10 cm/s</b>. Em sentidos opostos, a velocidade relativa é grande.'},
+  {q:'Um ônibus de 10 m a 25 m/s ultrapassa um caminhão de 16 m a 15 m/s, no mesmo sentido. Tempo da ultrapassagem:',
+   o:['1,5 s','2,6 s','5 s','15 s'],correct:1,
+   ex:'Δt = (10+16)/|25−15| = 26/10 = <b>2,6 s</b>.'},
+  {q:'No gráfico v × t, a área entre o gráfico e o eixo do tempo representa:',
+   o:['A aceleração','A velocidade média','O deslocamento (em módulo)','O tempo total'],correct:2,
+   ex:'<b>|Δs| = área no gráfico v × t</b>. Vale tanto no MU quanto no MRUV.'},
+  {q:'No MRUV, a função horária da velocidade é:',
+   o:['v = v₀ · t','v = v₀ + a · t','v = (v₀+v)/2','v² = v₀² + 2aΔs'],correct:1,
+   ex:'<b>v = v₀ + a · t</b> — função do 1º grau em t. v₀ é o coeficiente linear, a é o coeficiente angular.'},
+  {q:'Em v = 12 - 4t (SI), o movimento inverte de sentido em qual instante?',
+   o:['t = 2 s','t = 3 s','t = 4 s','t = 12 s'],correct:1,
+   ex:'A inversão acontece quando <b>v = 0</b>: 12 − 4t = 0 ⇒ t = <b>3 s</b>.'},
+  {q:'Um movimento com v &gt; 0 e a &lt; 0 é classificado como:',
+   o:['Progressivo e acelerado','Progressivo e retardado','Retrógrado e acelerado','Retrógrado e retardado'],correct:1,
+   ex:'v &gt; 0 → <b>progressivo</b>. Sinais opostos de v e a → <b>retardado</b> (a velocidade diminui em módulo).'},
+  {q:'A relação correta entre os coeficientes de dilatação é:',
+   o:['β = 3α e γ = 2α','β = α/2 e γ = α/3','β = 2α e γ = 3α','β = γ = α'],correct:2,
+   ex:'A cada dimensão extra adiciona-se um α: <b>α (linear), β = 2α (superficial), γ = 3α (volumétrico)</b>.'},
+  {q:'A dilatação volumétrica é dada por:',
+   o:['ΔV = V₀ · α · Δθ','ΔV = V₀ · γ · Δθ','ΔV = V₀ · β · Δθ','ΔV = γ / Δθ'],correct:1,
+   ex:'<b>ΔV = V₀ · γ · Δθ</b>, onde γ é o coeficiente de dilatação <b>volumétrico</b>.'},
+  {q:'Por que líquidos extravasam ao serem aquecidos em recipientes cheios?',
+   o:['Líquidos são menos densos que sólidos','Líquidos têm coeficiente de dilatação MAIOR que os sólidos','O recipiente contrai','Por causa da pressão atmosférica'],correct:1,
+   ex:'Líquidos têm γ <b>muito maior</b> que sólidos. Quando ambos aquecem, o líquido dilata mais que o recipiente — e a diferença extravasa.'},
+  {q:'A água tem comportamento anômalo entre 0 e 4 °C porque:',
+   o:['Ao ser aquecida, ela CONTRAI (volume diminui)','Ela ferve antes da hora','O calor específico fica zero','O γ se torna negativo só nesse intervalo'],correct:0,
+   ex:'No intervalo 0–4 °C, a água <b>contrai</b> ao aquecer. A 4 °C tem volume mínimo e densidade máxima — por isso o gelo flutua.'},
+  {q:'Calor sensível e calor latente diferem porque:',
+   o:['Sensível muda fase, latente muda temperatura','Sensível muda temperatura (sem mudar fase); latente muda fase (sem mudar T)','Apenas o latente vale para água','São sinônimos'],correct:1,
+   ex:'<b>Sensível</b>: Q = m·c·Δθ → muda só a temperatura. <b>Latente</b>: Q = m·L → muda só a fase.'},
+  {q:'Quanto calor é necessário para aquecer 500 g de água de 20 a 60 °C? (c=1 cal/g·°C)',
+   o:['10.000 cal','20.000 cal','40.000 cal','5.000 cal'],correct:1,
+   ex:'Q = m·c·Δθ = 500 · 1 · (60−20) = 500 · 1 · 40 = <b>20.000 cal = 20 kcal</b>.'},
+  {q:'Capacidade térmica (C) é uma grandeza característica:',
+   o:['Da substância (independe do tamanho do corpo)','Do corpo/objeto (depende da massa e do material)','Apenas dos gases','Da temperatura ambiente'],correct:1,
+   ex:'<b>C = m · c</b> — depende da massa do objeto. Já o calor específico <b>c</b> depende apenas da substância.'},
+];
+
+let qIdx = 0, qScore = 0, qAnswered = false;
+function renderQ(){
+  const q = quizQuestions[qIdx];
+  if(!q) return finishQuiz();
+  qAnswered = false;
+  document.getElementById('qProgress').textContent = `Pergunta ${qIdx+1} / ${quizQuestions.length}`;
+  document.getElementById('qScore').textContent = `Acertos: ${qScore}`;
+  document.getElementById('qBar').style.width = ((qIdx)/quizQuestions.length*100)+'%';
+  document.getElementById('qText').textContent = q.q;
+  const opts = document.getElementById('qOptions');
+  opts.innerHTML = '';
+  q.o.forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.textContent = String.fromCharCode(65+i)+'. '+opt;
+    b.addEventListener('click',()=>answer(i,b));
+    opts.appendChild(b);
+  });
+  document.getElementById('qFeedback').className = 'quiz-feedback';
+  document.getElementById('qFeedback').innerHTML = '';
+  document.getElementById('qNext').style.display = 'none';
+}
+function answer(i,btn){
+  if(qAnswered) return;
+  qAnswered = true;
+  const q = quizQuestions[qIdx];
+  const opts = document.getElementById('qOptions').querySelectorAll('button');
+  opts.forEach(b=>b.classList.add('disabled'));
+  if(i===q.correct){
+    btn.classList.add('correct');
+    qScore++;
+    document.getElementById('qFeedback').className = 'quiz-feedback show right-fb';
+    document.getElementById('qFeedback').innerHTML = '✅ <b>Correto!</b> '+q.ex;
+  }else{
+    btn.classList.add('wrong');
+    opts[q.correct].classList.add('correct');
+    document.getElementById('qFeedback').className = 'quiz-feedback show wrong-fb';
+    document.getElementById('qFeedback').innerHTML = '❌ <b>Não foi essa.</b> '+q.ex;
+  }
+  document.getElementById('qScore').textContent = `Acertos: ${qScore}`;
+  document.getElementById('qNext').style.display = 'inline-block';
+}
+document.getElementById('qNext').addEventListener('click',()=>{
+  qIdx++;
+  if(qIdx>=quizQuestions.length) finishQuiz();
+  else renderQ();
+});
+function finishQuiz(){
+  const pct = Math.round(qScore/quizQuestions.length*100);
+  let msg = '';
+  if(pct>=90) msg = '🏆 Mandou bem demais! Pronto pra prova.';
+  else if(pct>=70) msg = '✨ Muito bom! Reveja os pontos errados.';
+  else if(pct>=50) msg = '📘 No caminho — pratique mais exemplos resolvidos.';
+  else msg = '💪 Vamos de novo: estude o formulário e os exemplos.';
+  document.getElementById('qBar').style.width = '100%';
+  document.getElementById('quizWrap').innerHTML = `
+    <div class="quiz-final">
+      <div class="score-num">${qScore}/${quizQuestions.length}</div>
+      <h3>${pct}% de acerto</h3>
+      <p>${msg}</p>
+      <button onclick="location.reload()">🔁 Refazer o quiz</button>
+    </div>`;
+}
+renderQ();
+</script>
+</body>
+</html>

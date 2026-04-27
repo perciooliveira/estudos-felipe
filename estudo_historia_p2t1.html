@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>História P2T1 — Persas, Fenícios, Grécia | Material de Estudo</title>
+<style>
+:root{
+  --bg-1:#0f0c29;
+  --bg-2:#24243e;
+  --bg-3:#302b63;
+  --persa:#e94560;
+  --persa-dark:#b8253f;
+  --persa-glow:rgba(233,69,96,.35);
+  --fenicio:#0fa3b1;
+  --fenicio-dark:#0a7e8a;
+  --fenicio-glow:rgba(15,163,177,.35);
+  --grecia:#9b6dff;
+  --grecia-dark:#6e4dc4;
+  --grecia-glow:rgba(155,109,255,.35);
+  --atenas:#3b82f6;
+  --atenas-glow:rgba(59,130,246,.35);
+  --esparta:#c0392b;
+  --esparta-glow:rgba(192,57,43,.35);
+  --gold:#ffd166;
+  --ink:#f8f7ff;
+  --ink-dim:#c9c7d8;
+  --card:#1a1832;
+  --card-2:#221f3d;
+  --shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--bg-1),var(--bg-3) 50%,var(--bg-2));
+  background-attachment:fixed;
+  min-height:100vh;
+  line-height:1.55;
+}
+.container{max-width:1200px;margin:0 auto;padding:18px 18px 80px}
+
+/* HUB BACK NAV */
+.hub-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-radius:12px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.hub-bar a{
+  color:var(--ink-dim);text-decoration:none;font-size:.86rem;
+  display:inline-flex;align-items:center;gap:6px;font-weight:600;
+  transition:color .2s;
+}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{
+  font-size:.8rem;color:var(--persa);font-weight:700;
+  background:var(--persa-glow);padding:4px 10px;border-radius:6px;
+  letter-spacing:1px;
+}
+
+header.hero{
+  text-align:center;
+  padding:36px 16px 22px;
+  background:radial-gradient(circle at 15% 20%,var(--persa-glow),transparent 45%),
+             radial-gradient(circle at 50% 80%,var(--fenicio-glow),transparent 45%),
+             radial-gradient(circle at 85% 30%,var(--grecia-glow),transparent 45%);
+  border-radius:20px;
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+}
+header.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><path d='M30 5 L35 25 L55 30 L35 35 L30 55 L25 35 L5 30 L25 25 Z' fill='rgba(255,209,102,.06)'/></svg>");
+  opacity:.45;pointer-events:none;
+}
+header.hero h1{
+  font-size:clamp(1.6rem,4vw,2.6rem);
+  letter-spacing:1px;
+  background:linear-gradient(90deg,var(--gold),var(--persa),var(--fenicio),var(--grecia));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:800;
+}
+header.hero p{margin-top:8px;color:var(--ink-dim);font-size:.95rem}
+.subtitle-tag{
+  display:inline-block;margin-top:14px;padding:6px 14px;
+  background:rgba(255,209,102,.15);border:1px solid var(--gold);
+  border-radius:999px;color:var(--gold);font-size:.78rem;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+nav.tabs{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:18px 0;justify-content:center;
+  position:sticky;top:0;z-index:10;
+  background:rgba(15,12,41,.88);
+  backdrop-filter:blur(10px);
+  padding:10px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+}
+nav.tabs button{
+  background:transparent;color:var(--ink-dim);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 14px;border-radius:10px;
+  cursor:pointer;font-size:.84rem;
+  transition:all .25s;font-weight:600;
+}
+nav.tabs button:hover{transform:translateY(-2px);color:var(--ink)}
+nav.tabs button.active{
+  background:linear-gradient(90deg,var(--persa),var(--grecia),var(--fenicio));
+  color:white;border-color:transparent;
+  box-shadow:0 4px 18px rgba(155,109,255,.4);
+}
+
+section.tab-content{display:none;animation:fadeIn .4s ease}
+section.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h2.section-title{font-size:1.5rem;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+h2.section-title .ico{
+  width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--persa),var(--grecia),var(--fenicio));
+  border-radius:10px;font-size:1.2rem;
+}
+
+/* OVERVIEW */
+.modules-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+  gap:14px;margin-top:14px;
+}
+.module-card{
+  padding:20px;border-radius:18px;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+  transition:transform .3s;
+}
+.module-card:hover{transform:translateY(-4px)}
+.module-card.persa{border-top:4px solid var(--persa)}
+.module-card.fenicio{border-top:4px solid var(--fenicio)}
+.module-card.grecia{border-top:4px solid var(--grecia)}
+.module-card.grecia2{border-top:4px solid var(--atenas)}
+.module-card .badge{
+  display:inline-block;padding:4px 10px;border-radius:6px;
+  font-size:.72rem;font-weight:700;letter-spacing:1px;margin-bottom:10px;
+}
+.module-card.persa .badge{background:var(--persa-glow);color:var(--persa)}
+.module-card.fenicio .badge{background:var(--fenicio-glow);color:var(--fenicio)}
+.module-card.grecia .badge{background:var(--grecia-glow);color:var(--grecia)}
+.module-card.grecia2 .badge{background:var(--atenas-glow);color:var(--atenas)}
+.module-card h3{font-size:1.25rem;margin-bottom:8px}
+.module-card p{color:var(--ink-dim);font-size:.88rem}
+.module-card ul{margin-top:8px;padding-left:18px;color:var(--ink-dim);font-size:.85rem}
+.module-card li{margin:3px 0}
+.module-card .emoji{font-size:2.2rem;float:right;opacity:.85;margin-top:-4px}
+
+.criterio-box{
+  margin-top:20px;padding:18px 22px;
+  background:linear-gradient(90deg,rgba(255,209,102,.1),transparent);
+  border-left:4px solid var(--gold);border-radius:10px;
+}
+.criterio-box h4{color:var(--gold);margin-bottom:8px;font-size:1rem}
+.criterio-box ul{padding-left:20px;color:var(--ink-dim);font-size:.88rem}
+.criterio-box li{margin:5px 0}
+
+/* MIND MAPS */
+.mindmap-wrapper{
+  background:var(--card);border-radius:18px;padding:18px;margin-top:12px;
+  box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.06);
+}
+.mindmap-wrapper h3{font-size:1.2rem;margin-bottom:12px;text-align:center;letter-spacing:.5px}
+.mindmap-wrapper.persa h3{color:var(--persa)}
+.mindmap-wrapper.fenicio h3{color:var(--fenicio)}
+.mindmap-wrapper.grecia h3{color:var(--grecia)}
+.mindmap-wrapper.atenas h3{color:var(--atenas)}
+.mindmap-wrapper.esparta h3{color:var(--esparta)}
+.mindmap-svg{width:100%;height:auto;display:block}
+
+/* FLASHCARDS */
+.deck-controls{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:14px;
+}
+.deck-controls button{
+  background:var(--card);color:var(--ink);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 13px;border-radius:10px;
+  cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.deck-controls button:hover{background:var(--card-2);transform:translateY(-2px)}
+.deck-controls button.persa{border-color:var(--persa);color:var(--persa)}
+.deck-controls button.fenicio{border-color:var(--fenicio);color:var(--fenicio)}
+.deck-controls button.grecia{border-color:var(--grecia);color:var(--grecia)}
+.deck-controls button.atenas{border-color:var(--atenas);color:var(--atenas)}
+.deck-controls button.esparta{border-color:var(--esparta);color:#ff6b5b}
+.deck-controls button.persa.active{background:var(--persa);color:white}
+.deck-controls button.fenicio.active{background:var(--fenicio);color:white}
+.deck-controls button.grecia.active{background:var(--grecia);color:white}
+.deck-controls button.atenas.active{background:var(--atenas);color:white}
+.deck-controls button.esparta.active{background:var(--esparta);color:white}
+.deck-controls button.all.active{background:var(--gold);color:#000;border-color:var(--gold)}
+
+.flashcard-stage{perspective:1000px;display:flex;justify-content:center;margin:18px auto}
+.flashcard{
+  width:100%;max-width:580px;height:340px;
+  position:relative;cursor:pointer;
+  transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.2,.8,.2,1);
+}
+.flashcard.flipped{transform:rotateY(180deg)}
+.flashcard .face{
+  position:absolute;inset:0;border-radius:20px;
+  display:flex;flex-direction:column;padding:22px;
+  backface-visibility:hidden;box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.08);
+}
+.flashcard .front{
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  align-items:center;justify-content:center;text-align:center;
+}
+.flashcard .front .tag{
+  position:absolute;top:14px;left:14px;
+  font-size:.7rem;letter-spacing:1px;padding:4px 10px;
+  border-radius:8px;font-weight:700;
+}
+.flashcard .front .tag.persa{background:var(--persa-glow);color:var(--persa)}
+.flashcard .front .tag.fenicio{background:var(--fenicio-glow);color:var(--fenicio)}
+.flashcard .front .tag.grecia{background:var(--grecia-glow);color:var(--grecia)}
+.flashcard .front .tag.atenas{background:var(--atenas-glow);color:var(--atenas)}
+.flashcard .front .tag.esparta{background:var(--esparta-glow);color:#ff6b5b}
+.flashcard .front .num{position:absolute;top:14px;right:14px;font-size:.74rem;color:var(--ink-dim)}
+.flashcard .front .q{font-size:1.3rem;font-weight:600;max-width:95%;line-height:1.4}
+.flashcard .front .hint{margin-top:14px;color:var(--ink-dim);font-size:.74rem;letter-spacing:1px;text-transform:uppercase}
+.flashcard .back{transform:rotateY(180deg);background:linear-gradient(135deg,#1f1d3a,#2a2750);justify-content:center;overflow-y:auto}
+.flashcard .back .a{font-size:1rem;color:var(--ink)}
+.flashcard .back .a strong{color:var(--gold)}
+.flashcard.persa .front{border-top:3px solid var(--persa)}
+.flashcard.fenicio .front{border-top:3px solid var(--fenicio)}
+.flashcard.grecia .front{border-top:3px solid var(--grecia)}
+.flashcard.atenas .front{border-top:3px solid var(--atenas)}
+.flashcard.esparta .front{border-top:3px solid var(--esparta)}
+
+.deck-nav{display:flex;justify-content:center;gap:14px;margin-top:8px;align-items:center}
+.deck-nav button{
+  background:linear-gradient(135deg,var(--persa),var(--grecia),var(--fenicio));
+  color:white;border:none;padding:10px 22px;border-radius:12px;
+  cursor:pointer;font-weight:700;font-size:.95rem;
+  box-shadow:0 4px 14px rgba(0,0,0,.3);transition:transform .2s;
+}
+.deck-nav button:hover{transform:translateY(-2px)}
+.deck-progress{color:var(--ink-dim);font-size:.85rem;font-weight:600}
+
+/* COMPARE TABLE */
+.compare-table{width:100%;border-collapse:separate;border-spacing:0 6px;margin-top:10px}
+.compare-table th{padding:12px;text-align:left;font-size:.92rem;font-weight:700}
+.compare-table th.persa{background:linear-gradient(90deg,var(--persa-glow),transparent);color:var(--persa);border-radius:10px}
+.compare-table th.fenicio{background:linear-gradient(90deg,var(--fenicio-glow),transparent);color:var(--fenicio);border-radius:10px}
+.compare-table th.atenas{background:linear-gradient(90deg,var(--atenas-glow),transparent);color:var(--atenas);border-radius:10px}
+.compare-table th.esparta{background:linear-gradient(90deg,var(--esparta-glow),transparent);color:#ff6b5b;border-radius:10px}
+.compare-table th.cat{color:var(--gold)}
+.compare-table td{
+  padding:12px 14px;background:var(--card);font-size:.86rem;
+  border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);
+}
+.compare-table td:first-child{
+  border-radius:10px 0 0 10px;background:rgba(255,209,102,.08);
+  color:var(--gold);font-weight:700;
+}
+.compare-table td:last-child{border-radius:0 10px 10px 0}
+.compare-table td .pill{
+  display:inline-block;background:rgba(255,255,255,.07);
+  padding:2px 8px;border-radius:6px;font-size:.78rem;margin:2px;
+}
+
+/* TIMELINE */
+.timeline{position:relative;padding:20px 0 10px;margin-top:10px}
+.timeline::before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;
+  width:3px;background:linear-gradient(180deg,var(--persa),var(--fenicio),var(--grecia),var(--atenas));
+  transform:translateX(-50%);
+}
+.timeline-item{position:relative;width:50%;padding:14px 22px;margin-bottom:8px}
+.timeline-item.left{left:0;text-align:right}
+.timeline-item.right{left:50%}
+.timeline-item .dot{
+  position:absolute;top:22px;width:18px;height:18px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 0 4px rgba(255,209,102,.25);
+}
+.timeline-item.left .dot{right:-9px}
+.timeline-item.right .dot{left:-9px}
+.timeline-item.persa .dot{background:var(--persa);box-shadow:0 0 0 4px var(--persa-glow)}
+.timeline-item.fenicio .dot{background:var(--fenicio);box-shadow:0 0 0 4px var(--fenicio-glow)}
+.timeline-item.grecia .dot{background:var(--grecia);box-shadow:0 0 0 4px var(--grecia-glow)}
+.timeline-item.atenas .dot{background:var(--atenas);box-shadow:0 0 0 4px var(--atenas-glow)}
+.timeline-item.esparta .dot{background:var(--esparta);box-shadow:0 0 0 4px var(--esparta-glow)}
+.timeline-item .card-tl{
+  background:var(--card);padding:12px 16px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.06);
+  display:inline-block;text-align:left;max-width:100%;
+}
+.timeline-item .date{font-size:.76rem;letter-spacing:1px;font-weight:700;color:var(--gold);text-transform:uppercase}
+.timeline-item.persa .date{color:var(--persa)}
+.timeline-item.fenicio .date{color:var(--fenicio)}
+.timeline-item.grecia .date{color:var(--grecia)}
+.timeline-item.atenas .date{color:var(--atenas)}
+.timeline-item.esparta .date{color:#ff6b5b}
+.timeline-item h4{margin-top:4px;font-size:.98rem}
+.timeline-item p{margin-top:4px;font-size:.8rem;color:var(--ink-dim)}
+@media(max-width:680px){
+  .timeline::before{left:14px}
+  .timeline-item{width:100%;left:0!important;text-align:left!important;padding-left:38px}
+  .timeline-item .dot{left:5px!important;right:auto!important}
+}
+
+/* MNEMONICS */
+.mnemonic-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:10px}
+.mnemonic-card{
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  padding:18px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);
+}
+.mnemonic-card .key{
+  display:inline-block;font-size:1.3rem;font-weight:800;
+  background:linear-gradient(90deg,var(--gold),var(--persa));
+  -webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:1px;
+}
+.mnemonic-card.fenicio .key{background:linear-gradient(90deg,var(--gold),var(--fenicio));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mnemonic-card.grecia .key{background:linear-gradient(90deg,var(--gold),var(--grecia));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mnemonic-card.atenas .key{background:linear-gradient(90deg,var(--gold),var(--atenas));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mnemonic-card.esparta .key{background:linear-gradient(90deg,var(--gold),var(--esparta));-webkit-background-clip:text;background-clip:text;color:transparent}
+.mnemonic-card h4{margin-top:6px;color:var(--ink);font-size:1rem}
+.mnemonic-card ul{margin-top:8px;padding-left:0;list-style:none}
+.mnemonic-card ul li{padding:6px 0;font-size:.86rem;color:var(--ink-dim);border-bottom:1px dashed rgba(255,255,255,.07)}
+.mnemonic-card ul li:last-child{border:none}
+.mnemonic-card ul li b{color:var(--gold);margin-right:6px}
+
+/* QUIZ */
+.quiz-wrap{
+  background:var(--card);padding:20px;border-radius:18px;
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);
+  max-width:760px;margin:0 auto;
+}
+.quiz-progress{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:.85rem;color:var(--ink-dim)}
+.quiz-bar{height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin:8px 0 18px}
+.quiz-bar div{height:100%;background:linear-gradient(90deg,var(--persa),var(--grecia),var(--fenicio));transition:width .4s}
+.quiz-q{font-size:1.05rem;font-weight:600;margin-bottom:14px;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:8px}
+.quiz-options button{
+  text-align:left;padding:12px 14px;border-radius:10px;
+  background:var(--card-2);color:var(--ink);
+  border:1px solid rgba(255,255,255,.08);
+  cursor:pointer;font-size:.9rem;transition:all .2s;
+}
+.quiz-options button:hover:not(.disabled){background:#2c294f;transform:translateX(4px)}
+.quiz-options button.correct{background:rgba(46,204,113,.2);border-color:#2ecc71;color:#7afca7}
+.quiz-options button.wrong{background:rgba(231,76,60,.2);border-color:#e74c3c;color:#ffa294}
+.quiz-options button.disabled{cursor:default}
+.quiz-feedback{margin-top:14px;padding:12px;border-radius:10px;font-size:.88rem;display:none}
+.quiz-feedback.show{display:block;animation:fadeIn .3s}
+.quiz-feedback.right-fb{background:rgba(46,204,113,.12);border:1px solid #2ecc71;color:#a3f5c0}
+.quiz-feedback.wrong-fb{background:rgba(231,76,60,.12);border:1px solid #e74c3c;color:#ffbcb1}
+.quiz-actions{margin-top:14px;display:flex;justify-content:flex-end;gap:10px}
+.quiz-actions button{
+  background:linear-gradient(135deg,var(--persa),var(--fenicio));
+  color:white;border:none;padding:10px 22px;border-radius:10px;
+  cursor:pointer;font-weight:700;font-size:.9rem;box-shadow:0 4px 14px rgba(0,0,0,.3);
+}
+.quiz-final{text-align:center;padding:20px}
+.quiz-final h3{font-size:1.6rem;margin-bottom:10px}
+.quiz-final .score-num{
+  font-size:3rem;font-weight:800;
+  background:linear-gradient(90deg,var(--gold),var(--persa));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.quiz-final p{color:var(--ink-dim);margin:8px 0 18px}
+.quiz-final button{
+  background:var(--gold);color:#1a1832;border:none;padding:10px 22px;
+  border-radius:10px;cursor:pointer;font-weight:700;font-size:.9rem;
+}
+
+/* LEGADO */
+.legacy-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:14px}
+.legacy-card{
+  position:relative;padding:18px;border-radius:14px;
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);overflow:hidden;
+}
+.legacy-card::before{
+  content:attr(data-icon);position:absolute;top:-8px;right:-4px;
+  font-size:5rem;opacity:.1;
+}
+.legacy-card h4{font-size:1rem;margin-bottom:8px;color:var(--gold)}
+.legacy-card p{color:var(--ink-dim);font-size:.85rem}
+
+/* DETAIL CARDS */
+.detail-section{margin-top:22px}
+.detail-card{
+  background:var(--card);padding:18px 20px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);margin-bottom:12px;box-shadow:var(--shadow);
+}
+.detail-card h4{font-size:1.02rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.detail-card h4 .badge-mini{font-size:.7rem;padding:3px 8px;border-radius:6px;font-weight:700}
+.detail-card.persa h4 .badge-mini{background:var(--persa-glow);color:var(--persa)}
+.detail-card.fenicio h4 .badge-mini{background:var(--fenicio-glow);color:var(--fenicio)}
+.detail-card.grecia h4 .badge-mini{background:var(--grecia-glow);color:var(--grecia)}
+.detail-card.atenas h4 .badge-mini{background:var(--atenas-glow);color:var(--atenas)}
+.detail-card.esparta h4 .badge-mini{background:var(--esparta-glow);color:#ff6b5b}
+.detail-card p{color:var(--ink-dim);font-size:.9rem;margin-bottom:8px}
+.detail-card ul{padding-left:20px;color:var(--ink-dim);font-size:.88rem}
+.detail-card ul li{margin:4px 0}
+.detail-card ul li b{color:var(--ink)}
+.detail-card.persa{border-left:4px solid var(--persa)}
+.detail-card.fenicio{border-left:4px solid var(--fenicio)}
+.detail-card.grecia{border-left:4px solid var(--grecia)}
+.detail-card.atenas{border-left:4px solid var(--atenas)}
+.detail-card.esparta{border-left:4px solid var(--esparta)}
+
+/* FOOTER */
+footer{
+  text-align:center;color:var(--ink-dim);font-size:.78rem;
+  margin-top:30px;padding:14px;border-top:1px solid rgba(255,255,255,.06);
+}
+footer .heart{color:var(--persa)}
+
+.note{
+  background:rgba(255,209,102,.08);border-left:3px solid var(--gold);
+  padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0;
+}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  padding:4px 10px;border-radius:999px;font-size:.78rem;color:var(--ink-dim);
+}
+.chip.persa{background:var(--persa-glow);color:var(--persa);border-color:var(--persa)}
+.chip.fenicio{background:var(--fenicio-glow);color:var(--fenicio);border-color:var(--fenicio)}
+.chip.grecia{background:var(--grecia-glow);color:var(--grecia);border-color:var(--grecia)}
+.chip.atenas{background:var(--atenas-glow);color:var(--atenas);border-color:var(--atenas)}
+.chip.esparta{background:var(--esparta-glow);color:#ff6b5b;border-color:var(--esparta)}
+
+/* PERIODS GRID (Greek 5 phases) */
+.periods-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:14px}
+.period-card{
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.07);
+  box-shadow:var(--shadow);position:relative;
+}
+.period-card .num{
+  position:absolute;top:-10px;left:14px;
+  background:var(--grecia);color:white;
+  width:26px;height:26px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.86rem;
+}
+.period-card h5{color:var(--grecia);font-size:1rem;margin-top:6px;margin-bottom:4px}
+.period-card .sec{color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:.5px}
+.period-card ul{padding-left:14px;color:var(--ink-dim);font-size:.8rem;margin-top:6px}
+.period-card li{margin:3px 0}
+
+/* COLUMNS (Doric/Ionic/Corinthian) */
+.cols-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.col-card{
+  background:var(--card);padding:18px 12px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.07);text-align:center;
+}
+.col-card svg{display:block;margin:0 auto 6px}
+.col-card h5{color:var(--gold);font-size:1rem}
+.col-card p{font-size:.8rem;color:var(--ink-dim);margin-top:4px}
+@media(max-width:600px){.cols-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hub-bar">
+  <a href="index.html">← Hub de matérias</a>
+  <span class="subj">📚 HISTÓRIA</span>
+  <a href="fisica.html">Física →</a>
+</div>
+
+<header class="hero">
+  <h1>História — P2T1</h1>
+  <p>Material de estudo interativo dos Módulos 6, 7, 8 e 9: Persas, Fenícios e Grécia</p>
+  <span class="subtitle-tag">Cards · Mapas Mentais · Quiz · Mnemônicos</span>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-tab="overview" class="active">Visão Geral</button>
+  <button data-tab="detalhes">Conteúdo</button>
+  <button data-tab="periodos">Períodos da Grécia</button>
+  <button data-tab="mindmap">Mapas Mentais</button>
+  <button data-tab="flashcards">Flashcards</button>
+  <button data-tab="compare">Comparações</button>
+  <button data-tab="timeline">Linha do Tempo</button>
+  <button data-tab="cultura">Cultura Grega</button>
+  <button data-tab="mnemonics">Mnemônicos</button>
+  <button data-tab="legado">Legado</button>
+  <button data-tab="quiz">Quiz Final</button>
+</nav>
+
+<!-- VISÃO GERAL -->
+<section class="tab-content active" id="overview">
+  <h2 class="section-title"><span class="ico">📚</span>Visão Geral dos Módulos</h2>
+  <p style="color:var(--ink-dim);max-width:840px">
+    A prova abrange quatro módulos: o <b style="color:var(--persa)">Império Persa</b>, os <b style="color:var(--fenicio)">Fenícios</b>, e os dois módulos sobre a <b style="color:var(--grecia)">Grécia</b> (sociedade e política/cultura). Cada povo tem uma identidade muito clara — estudar pelos contrastes ajuda a memorizar.
+  </p>
+
+  <div class="modules-grid">
+    <div class="module-card persa">
+      <span class="emoji">👑</span>
+      <span class="badge">MÓDULO 6</span>
+      <h3>Império Persa</h3>
+      <p>Grande império organizado, da Mesopotâmia à Índia (atual Irã).</p>
+      <ul>
+        <li><b>Política:</b> imperador, satrápias, fiscais</li>
+        <li><b>Economia:</b> agricultura forte</li>
+        <li><b>Religião:</b> Zoroastrismo (dualismo)</li>
+        <li><b>Imperadores:</b> Ciro · Cambises · Dario I · Xerxes</li>
+      </ul>
+    </div>
+    <div class="module-card fenicio">
+      <span class="emoji">⛵</span>
+      <span class="badge">MÓDULO 7</span>
+      <h3>Cidades-Estado Fenícias</h3>
+      <p>Os grandes navegadores e comerciantes do Mediterrâneo (atual Líbano).</p>
+      <ul>
+        <li><b>Política:</b> cidades-estado — reis ou Sufetas</li>
+        <li><b>Economia:</b> talassocracia (poder do mar)</li>
+        <li><b>Religião:</b> Baal (Sol) e Astarteia (Lua)</li>
+        <li><b>Maior legado:</b> alfabeto fonético</li>
+      </ul>
+    </div>
+    <div class="module-card grecia">
+      <span class="emoji">🏛️</span>
+      <span class="badge">MÓDULO 8</span>
+      <h3>Grécia I — Períodos & Sociedade</h3>
+      <p>Antiguidade Clássica: cretenses, micênicos, os 5 períodos da Grécia.</p>
+      <ul>
+        <li><b>Períodos:</b> Pré-Homérico, Homérico, Arcaico, Clássico, Helenístico</li>
+        <li><b>Pólis:</b> Acrópole + Ágora + Asty</li>
+        <li><b>Atenas:</b> 6 classes (Eupátridas → Escravos)</li>
+        <li><b>Esparta:</b> 3 classes (Esparciatas, Períecos, Hilotas)</li>
+      </ul>
+    </div>
+    <div class="module-card grecia2">
+      <span class="emoji">⚖️</span>
+      <span class="badge">MÓDULO 9</span>
+      <h3>Grécia II — Política & Cultura</h3>
+      <p>Democracia ateniense, oligarquia espartana, Guerras Médicas, Peloponeso, cultura.</p>
+      <ul>
+        <li><b>Atenas:</b> Eclésia, Bulé, Areópago, Estrategos</li>
+        <li><b>Esparta:</b> Diarquia, Gerúsia, Eforato, Apela</li>
+        <li><b>Conflitos:</b> Guerras Médicas + Guerra do Peloponeso</li>
+        <li><b>Cultura:</b> filosofia, Jogos, teatro, colunas</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="criterio-box">
+    <h4>📋 Critérios de avaliação (do roteiro)</h4>
+    <ul>
+      <li><b>Mód. 6 (Persas):</b> características políticas, econômicas e sociais. <b>Q. 02, 03, 05.</b></li>
+      <li><b>Mód. 7 (Fenícios):</b> características das cidades-estado. <b>Q. 03, 05, 06, 07.</b></li>
+      <li><b>Mód. 8 (Grécia I):</b> períodos, relações sociais, diferenças Atenas × Esparta. <b>Q. 04, 09, 10, 11, 14.</b></li>
+      <li><b>Mód. 9 (Grécia II):</b> cidadania e democracia, conflitos gregos, cultura (Jogos e arte), continuidade entre Mód. 8 e 9. <b>Q. 07, 08, 09, 13, 15.</b></li>
+    </ul>
+  </div>
+
+  <div class="note">💡 <b>Dica de estudo:</b> Para módulos 8 e 9 use bastante a aba <b>"Comparações"</b> (Atenas × Esparta) e os <b>"Períodos da Grécia"</b> — cair perguntas misturando esses dois é quase certeza.</div>
+</section>
+
+<!-- CONTEÚDO DETALHADO -->
+<section class="tab-content" id="detalhes">
+  <h2 class="section-title"><span class="ico">📖</span>Conteúdo Detalhado</h2>
+
+  <!-- MÓDULO 6 - PERSAS -->
+  <div class="detail-section">
+    <h3 style="color:var(--persa);margin-bottom:10px">👑 Módulo 6 — Império Persa</h3>
+
+    <div class="detail-card persa">
+      <h4>🌍 Geografia e Origens <span class="badge-mini">CONTEXTO</span></h4>
+      <p>Da <b>Mesopotâmia ao rio Indo</b> (Índia). Hoje corresponde ao <b>Irã</b>: planalto com desertos e áreas férteis.</p>
+      <ul>
+        <li>Povos: elamitas, cassitas, <b>medos</b> e <b>persas</b> (originários da Europa).</li>
+        <li>Século VIII a.C.: <b>Déjoces</b> uniu os medos, aliados aos babilônios contra os assírios.</li>
+        <li>O apogeu da região veio com os persas dominando os medos.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card persa">
+      <h4>👑 Os 4 Imperadores <span class="badge-mini">POLÍTICA</span></h4>
+      <ul>
+        <li><b>CIRO, o Grande</b> — Primeiro imperador. Unificou medos e persas (Império Medo-Persa). Conquistador <b>justo</b>: respeitava a cultura dos povos dominados, exigindo apenas obediência e tributos. Libertou os judeus do <b>Cativeiro da Babilônia</b>. Capital: <b>Pasárgada</b>.</li>
+        <li><b>CAMBISES</b> — Filho de Ciro. Conquistou o <b>Egito</b>. Cruel e desequilibrado; suicidou-se sem herdeiros.</li>
+        <li><b>DARIO I, o Grande</b> — O <b>maior</b> imperador. Organizou todo o império.</li>
+        <li><b>XERXES</b> — Filho de Dario. Continuou expansão, mas perdeu para os gregos nas <b>Guerras Médicas</b>. Mais tarde, Alexandre conquistou tudo.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card persa">
+      <h4>🏛️ Organização de Dario I <span class="badge-mini">DESTAQUE</span></h4>
+      <ul>
+        <li><b>Estradas</b> largas e limpas (Estrada Real).</li>
+        <li><b>Correios (Angarion):</b> primeiro correio eficiente do mundo, com revezamento de mensageiros.</li>
+        <li><b>Dárico:</b> primeira moeda oficial.</li>
+        <li><b>Pesos e medidas</b> unificados.</li>
+        <li>Divisão em <b>SATRÁPIAS</b> + <b>SÁTRAPAS</b>.</li>
+        <li>Fiscais "olhos e ouvidos do rei".</li>
+      </ul>
+    </div>
+
+    <div class="detail-card persa">
+      <h4>💰 Economia e Sociedade <span class="badge-mini">SOCIAL</span></h4>
+      <ul>
+        <li><b>Agricultura</b>: principal atividade.</li>
+        <li><b>Comércio</b>: pouco desenvolvido (dominado por fenícios e hebreus).</li>
+        <li>Classe dominante: altos funcionários ligados ao rei.</li>
+        <li>Trabalho rural: camponeses livres + escravos.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card persa">
+      <h4>🔥 Zoroastrismo (Dualismo) <span class="badge-mini">RELIGIÃO</span></h4>
+      <p>Fundado pelo sábio <b>Zoroaster (Zaratustra)</b>. <b>DUALISTA</b>:</p>
+      <ul>
+        <li>🌟 <b>AHURA MAZDA</b> — deus do <b>Bem</b>.</li>
+        <li>🌑 <b>ARIMÃ</b> — deus do <b>Mal</b>.</li>
+        <li>Livro sagrado: <b>AVESTA</b>. Manter aceso o fogo doméstico sagrado.</li>
+        <li>No fim dos tempos: Mazda vence, mortos ressuscitam.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MÓDULO 7 - FENÍCIOS -->
+  <div class="detail-section">
+    <h3 style="color:var(--fenicio);margin-bottom:10px">⛵ Módulo 7 — Fenícios</h3>
+
+    <div class="detail-card fenicio">
+      <h4>🌍 Geografia <span class="badge-mini">CONTEXTO</span></h4>
+      <ul>
+        <li>Estreita faixa litorânea no Oriente Médio (atual <b>Líbano</b>).</li>
+        <li>Solo pobre → pesca + extração do <b>cedro</b>.</li>
+        <li>Bandeira do Líbano = cores fenícias + Cedro do Líbano.</li>
+        <li>Ocupação por volta de 3000 a.C.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card fenicio">
+      <h4>🏛️ Política <span class="badge-mini">POLÍTICA</span></h4>
+      <ul>
+        <li><b>Cidades-estado independentes</b> (não império unificado).</li>
+        <li>Cada cidade: <b>rei</b> ou conselho de anciãos (<b>Sufetas</b>).</li>
+        <li>Elite: navegadores, mercadores, <b>armadores</b> (donos de navios).</li>
+        <li><b>TALASSOCRACIA</b> — poder do mar.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card fenicio">
+      <h4>⛵ Comércio <span class="badge-mini">ECONOMIA</span></h4>
+      <ul>
+        <li>Maiores navegadores da Antiguidade.</li>
+        <li>Mediterrâneo + Gibraltar + Britânia + África + Índico + Vermelho.</li>
+        <li>Produtos: <b>azeite, joias, vidros, tecidos, madeira, embarcações</b>.</li>
+        <li>2 tipos de barco: cargo (largo) e guerra (estreito, com ponta).</li>
+        <li>Velas vermelhas (do molusco "phoenix" → origem do nome).</li>
+        <li>Construíram <b>faróis</b> nos portos.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card fenicio">
+      <h4>🏙️ Cidades e Colônias <span class="badge-mini">GEO</span></h4>
+      <p><b>Principais cidades:</b></p>
+      <div class="chips">
+        <span class="chip fenicio">Biblos</span>
+        <span class="chip fenicio">Sidon</span>
+        <span class="chip fenicio">Tiro</span>
+        <span class="chip fenicio">Ugarit</span>
+      </div>
+      <p style="margin-top:10px"><b>Colônias:</b></p>
+      <div class="chips">
+        <span class="chip">Cádiz</span>
+        <span class="chip">Málaga</span>
+        <span class="chip">Palermo</span>
+        <span class="chip" style="background:var(--gold);color:#000">Cartago ⭐</span>
+      </div>
+    </div>
+
+    <div class="detail-card fenicio">
+      <h4>🌞 Religião + 📜 Legado <span class="badge-mini">CULT.</span></h4>
+      <ul>
+        <li>Politeístas: ☀️ <b>Baal</b> (Sol) e 🌙 <b>Astarteia</b> (Lua).</li>
+        <li>Sacerdotes — classe privilegiada.</li>
+        <li><b>Maior legado: ALFABETO FONÉTICO</b> — símbolos representam <b>sons</b>, não ideias. Base do nosso alfabeto via gregos e romanos.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MÓDULO 8 - GRÉCIA I -->
+  <div class="detail-section">
+    <h3 style="color:var(--grecia);margin-bottom:10px">🏛️ Módulo 8 — Grécia I (Períodos & Sociedade)</h3>
+
+    <div class="detail-card grecia">
+      <h4>🏺 Antiguidade Ocidental + Cretenses <span class="badge-mini">ORIGEM</span></h4>
+      <p>O mundo ocidental tem base <b>eurocêntrica</b>. A <b>Antiguidade Clássica</b> (= Antiguidade Ocidental) estuda <b>Grécia + Roma</b>, povos das penínsulas vizinhas no Mediterrâneo.</p>
+      <ul>
+        <li>Na base da Grécia: os <b>cretenses</b> (civilização <b>minoica</b>) — ilha de Creta.</li>
+        <li>Solo fértil + atividade marítima → comércio no Mediterrâneo.</li>
+        <li>Capital: <b>Cnossos</b> (palácio = origem da lenda do Labirinto e do Minotauro).</li>
+        <li>Estabeleceram uma <b>talassocracia</b> (império marítimo).</li>
+        <li>Escritas: <b>Linear A</b> (não decifrada) e <b>Linear B</b> (decifrada nos anos 1950).</li>
+        <li>1450 a.C.: decadência (terremotos e incêndios) → caem para os aqueus. Em 1100 a.C., os dórios massacram os últimos.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card grecia">
+      <h4>⚔️ Os Micênicos <span class="badge-mini">ORIGEM</span></h4>
+      <ul>
+        <li>~2000 a.C.: indo-europeus na península balcânica.</li>
+        <li><b>Aqueus</b> + <b>eólios</b> + <b>jônios</b> → cultura micênica.</li>
+        <li>Cidadelas: <b>Tirinto, Micenas, Argos</b>.</li>
+        <li>Suas muralhas eram tão grandes que se acreditava terem sido construídas pelos <b>Ciclopes</b>.</li>
+        <li>Conflito com cretenses → influência sobre eles.</li>
+        <li>Fim com a chegada dos <b>dórios</b> (que tinham armas de FERRO — mais resistentes que o bronze micênico).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card grecia">
+      <h4>🏛️ Os 5 Períodos da Grécia <span class="badge-mini">FUNDAMENTAL</span></h4>
+      <p>Esse é um dos pontos <b>mais importantes</b> de toda a matéria. Cada período tem uma marca que precisa estar fixada:</p>
+      <ul>
+        <li><b>1. Pré-Homérico</b> (séc. XX–XII a.C.): chegada dos aqueus, eólios, jônios. Cidades fortificadas. Chegada dos dórios = fim. <b>Primeira diáspora</b>.</li>
+        <li><b>2. Homérico</b> (séc. XII–VIII a.C.): <b>Ilíada e Odisseia</b>. Vida rural — <b>comunidades gentílicas (Genos)</b>. Surgem os Eupátridas. Crise → <b>segunda diáspora</b>.</li>
+        <li><b>3. Arcaico</b> (séc. VIII–VI a.C.): surgem as <b>cidades-estado (Pólis)</b>. Atenas e Esparta. Mais de 160 pólis.</li>
+        <li><b>4. Clássico</b> (séc. VI–IV a.C.): <b>Guerras Médicas</b>, apogeu de Atenas (Péricles), <b>Guerra do Peloponeso</b>, enfraquecimento.</li>
+        <li><b>5. Helenístico</b> (séc. IV–I a.C.): domínio macedônico (Filipe II → Alexandre). Cultura helenística (fusão greco-oriental).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card grecia">
+      <h4>🏘️ Período Homérico (Genos & Pater Famílias) <span class="badge-mini">SOCIAL</span></h4>
+      <ul>
+        <li>Volta à <b>vida rural</b> após o colapso micênico.</li>
+        <li><b>GENOS</b>: comunidades agrárias com <b>laço familiar</b>. Posse da terra <b>comunitária</b>.</li>
+        <li><b>PATER FAMÍLIAS</b>: chefe do Geno.</li>
+        <li>Crescimento populacional + dificuldades agrícolas → divisão da terra → <b>propriedade privada</b>.</li>
+        <li>Surgem os "bem-nascidos" — os <b>Eupátridas</b>.</li>
+        <li>Genos → <b>Frátrias</b> (duas ou mais Genos) → <b>Tribos</b> → <b>Cidades-Estado (Pólis)</b>.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card grecia">
+      <h4>🏙️ A Pólis (Cidade-Estado) <span class="badge-mini">URBANO</span></h4>
+      <p>A grande marca da sociedade grega. Mais de 160 cidades-estado autônomas. Cada Pólis tinha 3 partes urbanas:</p>
+      <ul>
+        <li><b>ACRÓPOLE</b>: cidade alta, com o templo do deus protetor.</li>
+        <li><b>ÁGORA</b>: praça central, onde o Demos (povo) debatia.</li>
+        <li><b>ASTY</b>: o mercado, comércio.</li>
+      </ul>
+      <p style="margin-top:6px">Em Atenas, 4 tribos formavam o <b>Demos</b> (povo).</p>
+    </div>
+
+    <div class="detail-card esparta">
+      <h4>🛡️ Esparta — A Sociedade <span class="badge-mini">ESPARTA</span></h4>
+      <p>Fundada pelos <b>dórios</b>. Marcada por <b>militarismo</b> e <b>xenofobia</b>. Sociedade em 3 classes:</p>
+      <ul>
+        <li><b>ESPARCIATAS (espartiatas)</b> — cidadãos dórios, donos da terra, com direitos políticos. Treinamento militar:
+          <ul>
+            <li>aos <b>7 anos</b>: entregues ao exército;</li>
+            <li>aos <b>17 anos</b>: passam pela <b>Kríptia</b> (jogo de caça/sobrevivência);</li>
+            <li>aos <b>21 anos</b>: tornam-se <b>hoplitas</b>;</li>
+            <li>aos <b>30 anos</b>: recebem cidadania plena.</li>
+          </ul>
+        </li>
+        <li><b>PERÍECOS</b> — livres, periferia, comércio e ofícios. Sem direitos políticos plenos. Podiam servir o exército na guerra.</li>
+        <li><b>HILOTAS</b> — escravos do <b>Estado</b> (não privados!). Trabalhavam a terra dos esparciatas. Podiam ser "caça" durante a Kríptia.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card atenas">
+      <h4>🏛️ Atenas — A Sociedade <span class="badge-mini">ATENAS</span></h4>
+      <p>Berço da filosofia. Distribuição mais complexa que Esparta. A posse da terra também era critério social. 4 classes <b>com cidadania</b> + 2 <b>sem</b>:</p>
+      <ul>
+        <li><b>EUPÁTRIDAS</b> — aristocracia, "bem-nascidos", grandes proprietários.</li>
+        <li><b>GEORGÓIS</b> (Geomeros) — pequenos proprietários (podiam virar escravos por dívida antes de Sólon).</li>
+        <li><b>DEMIURGOS</b> — artesãos e comerciantes.</li>
+        <li><b>THETAS</b> — mais pobres, sem terra.</li>
+        <li><b>METECOS</b> — estrangeiros, ajudavam o comércio mas <b>sem cidadania</b>.</li>
+        <li><b>ESCRAVOS</b> — propriedade <b>privada</b> (≠ Esparta!). Modo de produção escravista — chegou a haver mais escravos que livres.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MÓDULO 9 - GRÉCIA II -->
+  <div class="detail-section">
+    <h3 style="color:var(--atenas);margin-bottom:10px">⚖️ Módulo 9 — Grécia II (Política & Cultura)</h3>
+
+    <div class="detail-card esparta">
+      <h4>🛡️ Política em Esparta — Oligarquia <span class="badge-mini">POLÍTICA</span></h4>
+      <p>Cidade-Estado <b>oligárquica</b> baseada na aristocracia proprietária de terras. Apenas os esparciatas decidiam. Estrutura política:</p>
+      <ul>
+        <li><b>DIARQUIA</b> — <b>2 reis</b> simultâneos (líderes religioso e militar). Poder limitado, não-hereditário. Em guerra, um ia ao campo de batalha e o outro ficava em casa.</li>
+        <li><b>GERÚSIA</b> — Conselho dos Anciãos: <b>28 nobres</b> com mais de 60 anos (gerontes). Propunha leis e atuava como juízes.</li>
+        <li><b>EFORATO</b> — <b>5 magistrados</b> eleitos anualmente (éforos). Fiscalizavam reis e a vida econômica/social.</li>
+        <li><b>APELA</b> — assembleia popular dos esparciatas com mais de 30 anos. Votava paz/guerra, leis e elegia gerontes e éforos.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card atenas">
+      <h4>🏛️ Atenas — Caminho até a Democracia <span class="badge-mini">EVOLUÇÃO</span></h4>
+      <ol style="padding-left:20px;color:var(--ink-dim);font-size:.88rem">
+        <li><b>Monarquia</b>: rei (<b>Basileu</b>). Limitava a participação dos eupátridas.</li>
+        <li><b>Areópago</b>: conselho das famílias nobres substitui o rei.</li>
+        <li><b>Arcontado</b>: 10 arcontes governam.</li>
+        <li><b>Drácon</b> (1º legislador): primeiras <b>leis escritas</b>; severíssimas → "leis draconianas". Pena de morte frequente.</li>
+        <li><b>Sólon</b>: dividiu a sociedade por <b>renda</b>; acabou com a <b>escravidão por dívidas</b>; limitou a posse de terra.</li>
+        <li><b>Tiranias</b>: Pisístrato (528 a.C.) → Hiparco (assassinado em 514) → Hípias (deposto pelos espartanos) → Iságoras.</li>
+        <li><b>CLÍSTENES</b> = <b>pai da democracia</b>. Criou a <b>Bulé</b> e o <b>OSTRACISMO</b> (exílio de 10 anos por voto em pedaços de cerâmica chamados <b>ostracos</b>).</li>
+        <li><b>Péricles</b>: Era de Ouro (468–429 a.C.).</li>
+      </ol>
+    </div>
+
+    <div class="detail-card atenas">
+      <h4>⚖️ A Democracia Ateniense <span class="badge-mini">CIDADANIA</span></h4>
+      <p>Pilares: <b>cidadania</b> + <b>participação direta</b> (sem intermediários).</p>
+      <ul>
+        <li>Apenas <b>~10%</b> da população tinha cidadania.</li>
+        <li>Cidadãos: homens com 21 anos completos (algumas fontes 18), <b>descendentes de jônios</b>.</li>
+        <li><b>Excluídos</b>: mulheres, escravos, estrangeiros (metecos).</li>
+        <li>Por isso é chamada de <b>"Democracia Escravista"</b>.</li>
+        <li>Quem não se interessava por política era chamado de <b>"idiota"</b> (origem do termo!).</li>
+        <li>Maior punição a um cidadão: perder o título → <b>ostracismo</b>.</li>
+      </ul>
+      <p style="margin-top:8px"><b>4 órgãos da política ateniense:</b></p>
+      <ul>
+        <li><b>ECLÉSIA</b> — assembleia popular (mín. <b>6.000 cidadãos</b>). Votava leis, política externa, magistrados, cidadania.</li>
+        <li><b>BULÉ</b> — Conselho dos <b>500</b> (50 sorteados de cada uma das 10 tribos). Administração e fiscalização.</li>
+        <li><b>AREÓPAGO</b> — antigos arcontes; cargo agora vitalício e religioso.</li>
+        <li><b>ESTRATEGOS</b> — 10 generais eleitos anualmente; comandavam o exército.</li>
+      </ul>
+      <p style="margin-top:8px"><b>Sofistas</b>: oradores criticados por <b>Sócrates e Platão</b> por defender ideias por interesse pessoal, não pelo bem do demos.</p>
+    </div>
+
+    <div class="detail-card atenas">
+      <h4>💰 Economia ateniense <span class="badge-mini">ECONOMIA</span></h4>
+      <ul>
+        <li>Modo de produção <b>escravista</b>.</li>
+        <li>Solo limitado → comércio era essencial.</li>
+        <li>Exportava: <b>azeite, figos, cerâmicas, prata</b>.</li>
+        <li>Importava: tapetes, tecidos, perfumes.</li>
+        <li>Moeda: <b>DRACMA</b> — rosto da deusa <b>Atena</b> + <b>coruja</b> (símbolo da sabedoria).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card grecia">
+      <h4>⚔️ Guerras Médicas (Pérsicas) <span class="badge-mini">CONFLITO</span></h4>
+      <p>"Médicas" porque os gregos chamavam os persas de <b>medos</b>. Choque do expansionismo persa (séc. V a.C.) com os interesses gregos na Ásia Menor.</p>
+      <ul>
+        <li><b>1ª Guerra Médica (490 a.C.)</b>: Persas invadem em <b>Maratona</b>. General <b>Milcíades</b> e 10.000 hoplitas atenienses vencem. Lenda do hoplita <b>Fidípedes</b> que correu 42 km até Atenas para anunciar a vitória — origem da <b>maratona</b> moderna.</li>
+        <li><b>2ª Guerra Médica (480 a.C.)</b>: <b>Xerxes</b> retorna. Cidades gregas se unem na <b>SIMAQUIA</b>.
+          <ul>
+            <li><b>Termópilas</b>: Leônidas e os <b>300 espartanos</b> resistem heroicamente, mas a passagem é tomada.</li>
+            <li><b>Salamina</b>: <b>Temístocles</b> lidera vitória naval ateniense.</li>
+          </ul>
+        </li>
+        <li>Liga/Confederação de Delos liderada por Atenas. Paz selada pela <b>Paz de Kalias / Tratado de Susa</b> (448 a.C.).</li>
+      </ul>
+    </div>
+
+    <div class="detail-card atenas">
+      <h4>🌟 A Era de Ouro de Atenas — Péricles <span class="badge-mini">APOGEU</span></h4>
+      <ul>
+        <li>Entre <b>468 e 429 a.C.</b>, Péricles consolidou o regime democrático.</li>
+        <li>Atenas tornou-se um verdadeiro império comercial e marítimo.</li>
+        <li>Reconstruiu e embelezou a cidade com recursos da Confederação.</li>
+        <li>Modelo democrático passou a influenciar várias outras pólis.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card esparta">
+      <h4>⚔️ Guerra do Peloponeso <span class="badge-mini">CONFLITO</span></h4>
+      <p>O sucesso de Atenas incomodou cidades de regime oligárquico. <b>Esparta, Mégara, Corinto e Tebas</b> formaram a <b>Liga do Peloponeso</b>. Foi guerra civil entre as duas confederações.</p>
+      <ul>
+        <li>Durou cerca de <b>27 anos</b>.</li>
+        <li>Esparta venceu na batalha de <b>Égos-Potamos</b>.</li>
+        <li>Hegemonia espartana → depois <b>Tebas</b> (com apoio de Atenas).</li>
+        <li>Resultado real: <b>enfraquecimento geral</b> da Grécia.</li>
+        <li>Abriu caminho para a invasão macedônica.</li>
+      </ul>
+    </div>
+
+    <div class="detail-card grecia">
+      <h4>🌍 Período Helenístico — Alexandre, o Grande <span class="badge-mini">FIM</span></h4>
+      <ul>
+        <li>O Reino da <b>Macedônia</b> sofria forte influência grega.</li>
+        <li><b>Filipe II</b> invadiu a Grécia, vitorioso na batalha de <b>Queroneia</b> (338 a.C.).</li>
+        <li>336 a.C.: Filipe assassinado. Seu filho <b>Alexandre</b>, com apenas 20 anos, assume.</li>
+        <li>Educação grega; mentor: <b>Aristóteles</b>.</li>
+        <li>Conquistou Ásia Menor, Mesopotâmia, Egito e chegou até a Índia.</li>
+        <li>Da fusão das culturas grega + macedônia + oriental → <b>cultura helenística</b>.</li>
+        <li>Morre em 323 a.C., na Babilônia, sem herdeiros. Generais dividiram o império.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PERÍODOS DA GRÉCIA -->
+<section class="tab-content" id="periodos">
+  <h2 class="section-title"><span class="ico">⏳</span>Os 5 Períodos da Grécia</h2>
+  <p style="color:var(--ink-dim);margin-bottom:12px">Memorize os <b>5 períodos</b> em ordem — eles são a espinha dorsal de toda a matéria de Grécia.</p>
+
+  <div class="periods-grid">
+    <div class="period-card">
+      <span class="num">1</span>
+      <span class="sec">SÉC. XX – XII a.C.</span>
+      <h5>Pré-Homérico</h5>
+      <ul>
+        <li>Aqueus, eólios, jônios</li>
+        <li>Cidades fortificadas (Ciclopes)</li>
+        <li>Micênicos × cretenses</li>
+        <li>Chegada dos dórios (ferro)</li>
+        <li>1ª diáspora</li>
+      </ul>
+    </div>
+    <div class="period-card">
+      <span class="num">2</span>
+      <span class="sec">SÉC. XII – VIII a.C.</span>
+      <h5>Homérico</h5>
+      <ul>
+        <li>Ilíada e Odisseia</li>
+        <li>Vida rural</li>
+        <li>Genos · Pater Famílias</li>
+        <li>Surgem eupátridas</li>
+        <li>2ª diáspora</li>
+      </ul>
+    </div>
+    <div class="period-card">
+      <span class="num">3</span>
+      <span class="sec">SÉC. VIII – VI a.C.</span>
+      <h5>Arcaico</h5>
+      <ul>
+        <li>Surgem as Pólis</li>
+        <li>Atenas e Esparta</li>
+        <li>+160 cidades-estado</li>
+        <li>Acrópole · Ágora · Asty</li>
+        <li>Colônias gregas</li>
+      </ul>
+    </div>
+    <div class="period-card">
+      <span class="num">4</span>
+      <span class="sec">SÉC. VI – IV a.C.</span>
+      <h5>Clássico</h5>
+      <ul>
+        <li>Guerras Médicas</li>
+        <li>Apogeu de Atenas (Péricles)</li>
+        <li>Guerra do Peloponeso</li>
+        <li>Enfraquecimento</li>
+        <li>Filosofia floresce</li>
+      </ul>
+    </div>
+    <div class="period-card">
+      <span class="num">5</span>
+      <span class="sec">SÉC. IV – I a.C.</span>
+      <h5>Helenístico</h5>
+      <ul>
+        <li>Domínio macedônico</li>
+        <li>Filipe II → Alexandre</li>
+        <li>Conquista do Oriente</li>
+        <li>Cultura helenística</li>
+        <li>Generais dividem império</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:18px">📌 <b>Mnemônico:</b> "<b>P</b>edro <b>H</b>oje <b>A</b>tirou <b>C</b>inco <b>H</b>elicópteros" → <b>P</b>ré-homérico, <b>H</b>omérico, <b>A</b>rcaico, <b>C</b>lássico, <b>H</b>elenístico.</div>
+</section>
+
+<!-- MAPA MENTAL -->
+<section class="tab-content" id="mindmap">
+  <h2 class="section-title"><span class="ico">🧠</span>Mapas Mentais</h2>
+
+  <div class="mindmap-wrapper persa">
+    <h3>👑 IMPÉRIO PERSA</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gpersa" x1="0" x2="1"><stop offset="0" stop-color="#e94560"/><stop offset="1" stop-color="#b8253f"/></linearGradient>
+        <filter id="glowP" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(233,69,96,.4)" stroke-width="2" fill="none">
+        <path d="M450 270 C 300 200, 220 180, 130 130"/>
+        <path d="M450 270 C 300 360, 220 400, 130 430"/>
+        <path d="M450 270 C 600 180, 700 160, 780 110"/>
+        <path d="M450 270 C 620 270, 720 270, 800 270"/>
+        <path d="M450 270 C 600 380, 700 420, 780 460"/>
+        <path d="M450 270 C 380 380, 320 440, 250 490"/>
+      </g>
+      <circle cx="450" cy="270" r="65" fill="url(#gpersa)" filter="url(#glowP)"/>
+      <text x="450" y="265" text-anchor="middle" fill="white" font-size="16" font-weight="800">IMPÉRIO</text>
+      <text x="450" y="285" text-anchor="middle" fill="white" font-size="16" font-weight="800">PERSA</text>
+      <g font-family="Segoe UI" font-size="12" fill="#f8f7ff" font-weight="600">
+        <rect x="20" y="100" width="200" height="60" rx="12" fill="#1a1832" stroke="#e94560"/>
+        <text x="120" y="125" text-anchor="middle" font-weight="800" fill="#e94560" font-size="13">🌍 GEOGRAFIA</text>
+        <text x="120" y="143" text-anchor="middle" font-size="11" fill="#c9c7d8">Mesopotâmia → Indo</text>
+        <text x="120" y="156" text-anchor="middle" font-size="11" fill="#c9c7d8">Hoje: Irã</text>
+
+        <rect x="20" y="400" width="200" height="60" rx="12" fill="#1a1832" stroke="#e94560"/>
+        <text x="120" y="425" text-anchor="middle" font-weight="800" fill="#e94560" font-size="13">👥 POVOS</text>
+        <text x="120" y="443" text-anchor="middle" font-size="11" fill="#c9c7d8">Medos + Persas</text>
+        <text x="120" y="456" text-anchor="middle" font-size="11" fill="#c9c7d8">Elamitas, Cassitas</text>
+
+        <rect x="680" y="80" width="200" height="80" rx="12" fill="#1a1832" stroke="#e94560"/>
+        <text x="780" y="105" text-anchor="middle" font-weight="800" fill="#e94560" font-size="13">👑 IMPERADORES</text>
+        <text x="780" y="123" text-anchor="middle" font-size="11" fill="#c9c7d8">Ciro · Cambises</text>
+        <text x="780" y="138" text-anchor="middle" font-size="11" fill="#c9c7d8">Dario I · Xerxes</text>
+        <text x="780" y="152" text-anchor="middle" font-size="10" fill="#ffd166">Dario = o maior</text>
+
+        <rect x="700" y="240" width="200" height="80" rx="12" fill="#1a1832" stroke="#e94560"/>
+        <text x="800" y="265" text-anchor="middle" font-weight="800" fill="#e94560" font-size="13">🏛️ POLÍTICA</text>
+        <text x="800" y="283" text-anchor="middle" font-size="11" fill="#c9c7d8">Satrápias · Sátrapas</text>
+        <text x="800" y="297" text-anchor="middle" font-size="11" fill="#c9c7d8">"Olhos e Ouvidos"</text>
+        <text x="800" y="311" text-anchor="middle" font-size="10" fill="#ffd166">Estradas + Correio</text>
+
+        <rect x="680" y="420" width="200" height="60" rx="12" fill="#1a1832" stroke="#e94560"/>
+        <text x="780" y="445" text-anchor="middle" font-weight="800" fill="#e94560" font-size="13">💰 ECONOMIA</text>
+        <text x="780" y="463" text-anchor="middle" font-size="11" fill="#c9c7d8">Agricultura forte</text>
+        <text x="780" y="476" text-anchor="middle" font-size="11" fill="#c9c7d8">Comércio fraco</text>
+
+        <rect x="150" y="450" width="220" height="80" rx="12" fill="#1a1832" stroke="#ffd166"/>
+        <text x="260" y="475" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">🔥 ZOROASTRISMO</text>
+        <text x="260" y="493" text-anchor="middle" font-size="11" fill="#c9c7d8">Zaratustra · Avesta</text>
+        <text x="260" y="507" text-anchor="middle" font-size="11" fill="#c9c7d8">Mazda × Arimã</text>
+        <text x="260" y="521" text-anchor="middle" font-size="10" fill="#ffd166">DUALISMO</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mindmap-wrapper fenicio" style="margin-top:18px">
+    <h3>⛵ FENÍCIOS</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gfenicio" x1="0" x2="1"><stop offset="0" stop-color="#0fa3b1"/><stop offset="1" stop-color="#0a7e8a"/></linearGradient>
+        <filter id="glowF" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(15,163,177,.4)" stroke-width="2" fill="none">
+        <path d="M450 270 C 300 200, 220 180, 130 130"/>
+        <path d="M450 270 C 300 360, 220 400, 130 430"/>
+        <path d="M450 270 C 600 180, 700 160, 780 110"/>
+        <path d="M450 270 C 620 270, 720 270, 800 270"/>
+        <path d="M450 270 C 600 380, 700 420, 780 460"/>
+        <path d="M450 270 C 380 380, 320 440, 250 490"/>
+      </g>
+      <circle cx="450" cy="270" r="65" fill="url(#gfenicio)" filter="url(#glowF)"/>
+      <text x="450" y="275" text-anchor="middle" fill="white" font-size="16" font-weight="800">FENÍCIOS</text>
+      <g font-family="Segoe UI" font-size="12" fill="#f8f7ff" font-weight="600">
+        <rect x="20" y="100" width="200" height="60" rx="12" fill="#1a1832" stroke="#0fa3b1"/>
+        <text x="120" y="125" text-anchor="middle" font-weight="800" fill="#0fa3b1" font-size="13">🌍 GEOGRAFIA</text>
+        <text x="120" y="143" text-anchor="middle" font-size="11" fill="#c9c7d8">Faixa litorânea</text>
+        <text x="120" y="156" text-anchor="middle" font-size="11" fill="#c9c7d8">Hoje: Líbano</text>
+        <rect x="20" y="400" width="220" height="80" rx="12" fill="#1a1832" stroke="#0fa3b1"/>
+        <text x="130" y="425" text-anchor="middle" font-weight="800" fill="#0fa3b1" font-size="13">🏙️ CIDADES</text>
+        <text x="130" y="443" text-anchor="middle" font-size="11" fill="#c9c7d8">Biblos · Sidon · Tiro</text>
+        <text x="130" y="456" text-anchor="middle" font-size="11" fill="#c9c7d8">Ugarit</text>
+        <text x="130" y="470" text-anchor="middle" font-size="10" fill="#ffd166">Colônia: CARTAGO ⭐</text>
+        <rect x="680" y="80" width="200" height="80" rx="12" fill="#1a1832" stroke="#0fa3b1"/>
+        <text x="780" y="105" text-anchor="middle" font-weight="800" fill="#0fa3b1" font-size="13">🏛️ POLÍTICA</text>
+        <text x="780" y="123" text-anchor="middle" font-size="11" fill="#c9c7d8">Cidades-estado</text>
+        <text x="780" y="138" text-anchor="middle" font-size="11" fill="#c9c7d8">Rei OU Sufetas</text>
+        <text x="780" y="153" text-anchor="middle" font-size="10" fill="#ffd166">TALASSOCRACIA</text>
+        <rect x="700" y="240" width="200" height="80" rx="12" fill="#1a1832" stroke="#0fa3b1"/>
+        <text x="800" y="265" text-anchor="middle" font-weight="800" fill="#0fa3b1" font-size="13">⛵ NAVEGAÇÃO</text>
+        <text x="800" y="283" text-anchor="middle" font-size="11" fill="#c9c7d8">Maiores navegadores</text>
+        <text x="800" y="297" text-anchor="middle" font-size="11" fill="#c9c7d8">Faróis · 2 tipos navio</text>
+        <text x="800" y="311" text-anchor="middle" font-size="10" fill="#ffd166">Mediterrâneo + além</text>
+        <rect x="680" y="420" width="200" height="60" rx="12" fill="#1a1832" stroke="#0fa3b1"/>
+        <text x="780" y="445" text-anchor="middle" font-weight="800" fill="#0fa3b1" font-size="13">💰 COMÉRCIO</text>
+        <text x="780" y="463" text-anchor="middle" font-size="11" fill="#c9c7d8">Azeite, joias, vidro</text>
+        <text x="780" y="476" text-anchor="middle" font-size="11" fill="#c9c7d8">Tecidos, madeira</text>
+        <rect x="280" y="450" width="240" height="80" rx="12" fill="#1a1832" stroke="#ffd166"/>
+        <text x="400" y="475" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">📜 LEGADO</text>
+        <text x="400" y="493" text-anchor="middle" font-size="11" fill="#c9c7d8">ALFABETO FONÉTICO</text>
+        <text x="400" y="507" text-anchor="middle" font-size="11" fill="#c9c7d8">Som ≠ ideia</text>
+        <text x="400" y="521" text-anchor="middle" font-size="10" fill="#ffd166">Base do nosso alfabeto</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mindmap-wrapper atenas" style="margin-top:18px">
+    <h3>🏛️ ATENAS — Democracia</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gat" x1="0" x2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#1e3a8a"/></linearGradient>
+        <filter id="glowA" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(59,130,246,.4)" stroke-width="2" fill="none">
+        <path d="M450 270 C 300 200, 220 180, 130 130"/>
+        <path d="M450 270 C 300 360, 220 400, 130 430"/>
+        <path d="M450 270 C 600 180, 700 160, 780 110"/>
+        <path d="M450 270 C 620 270, 720 270, 800 270"/>
+        <path d="M450 270 C 600 380, 700 420, 780 460"/>
+        <path d="M450 270 C 380 380, 320 440, 250 490"/>
+      </g>
+      <circle cx="450" cy="270" r="65" fill="url(#gat)" filter="url(#glowA)"/>
+      <text x="450" y="265" text-anchor="middle" fill="white" font-size="16" font-weight="800">ATENAS</text>
+      <text x="450" y="285" text-anchor="middle" fill="white" font-size="14" font-weight="800">Δημοκρατία</text>
+      <g font-family="Segoe UI" font-size="12" fill="#f8f7ff" font-weight="600">
+        <rect x="20" y="100" width="220" height="80" rx="12" fill="#1a1832" stroke="#3b82f6"/>
+        <text x="130" y="125" text-anchor="middle" font-weight="800" fill="#3b82f6" font-size="13">⚖️ ECLÉSIA</text>
+        <text x="130" y="143" text-anchor="middle" font-size="11" fill="#c9c7d8">Assembleia popular</text>
+        <text x="130" y="156" text-anchor="middle" font-size="11" fill="#c9c7d8">Mín. 6.000 cidadãos</text>
+        <text x="130" y="170" text-anchor="middle" font-size="10" fill="#ffd166">Vota leis e magistrados</text>
+        <rect x="20" y="400" width="220" height="80" rx="12" fill="#1a1832" stroke="#3b82f6"/>
+        <text x="130" y="425" text-anchor="middle" font-weight="800" fill="#3b82f6" font-size="13">🧓 AREÓPAGO</text>
+        <text x="130" y="443" text-anchor="middle" font-size="11" fill="#c9c7d8">Ex-arcontes, vitalícios</text>
+        <text x="130" y="456" text-anchor="middle" font-size="11" fill="#c9c7d8">Função religiosa</text>
+        <rect x="680" y="80" width="200" height="80" rx="12" fill="#1a1832" stroke="#3b82f6"/>
+        <text x="780" y="105" text-anchor="middle" font-weight="800" fill="#3b82f6" font-size="13">📜 BULÉ</text>
+        <text x="780" y="123" text-anchor="middle" font-size="11" fill="#c9c7d8">Conselho dos 500</text>
+        <text x="780" y="138" text-anchor="middle" font-size="11" fill="#c9c7d8">50 × 10 tribos</text>
+        <text x="780" y="152" text-anchor="middle" font-size="10" fill="#ffd166">Administração</text>
+        <rect x="700" y="240" width="200" height="80" rx="12" fill="#1a1832" stroke="#3b82f6"/>
+        <text x="800" y="265" text-anchor="middle" font-weight="800" fill="#3b82f6" font-size="13">⚔️ ESTRATEGOS</text>
+        <text x="800" y="283" text-anchor="middle" font-size="11" fill="#c9c7d8">10 generais eleitos</text>
+        <text x="800" y="297" text-anchor="middle" font-size="11" fill="#c9c7d8">Comando militar</text>
+        <text x="800" y="311" text-anchor="middle" font-size="10" fill="#ffd166">Anuais, podiam reeleger</text>
+        <rect x="680" y="420" width="200" height="60" rx="12" fill="#1a1832" stroke="#ffd166"/>
+        <text x="780" y="445" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">💰 DRACMA</text>
+        <text x="780" y="463" text-anchor="middle" font-size="11" fill="#c9c7d8">Atena + Coruja</text>
+        <text x="780" y="476" text-anchor="middle" font-size="11" fill="#c9c7d8">Sabedoria</text>
+        <rect x="280" y="450" width="240" height="80" rx="12" fill="#1a1832" stroke="#ffd166"/>
+        <text x="400" y="475" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">🗳️ OSTRACISMO</text>
+        <text x="400" y="493" text-anchor="middle" font-size="11" fill="#c9c7d8">Exílio de 10 anos</text>
+        <text x="400" y="507" text-anchor="middle" font-size="11" fill="#c9c7d8">Voto em ostraco</text>
+        <text x="400" y="521" text-anchor="middle" font-size="10" fill="#ffd166">Criado por Clístenes</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="mindmap-wrapper esparta" style="margin-top:18px">
+    <h3>🛡️ ESPARTA — Oligarquia Militar</h3>
+    <svg class="mindmap-svg" viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="ges" x1="0" x2="1"><stop offset="0" stop-color="#c0392b"/><stop offset="1" stop-color="#7b241c"/></linearGradient>
+        <filter id="glowS" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <g stroke="rgba(192,57,43,.4)" stroke-width="2" fill="none">
+        <path d="M450 270 C 300 200, 220 180, 130 130"/>
+        <path d="M450 270 C 300 360, 220 400, 130 430"/>
+        <path d="M450 270 C 600 180, 700 160, 780 110"/>
+        <path d="M450 270 C 620 270, 720 270, 800 270"/>
+        <path d="M450 270 C 600 380, 700 420, 780 460"/>
+        <path d="M450 270 C 380 380, 320 440, 250 490"/>
+      </g>
+      <circle cx="450" cy="270" r="65" fill="url(#ges)" filter="url(#glowS)"/>
+      <text x="450" y="275" text-anchor="middle" fill="white" font-size="16" font-weight="800">ESPARTA</text>
+      <g font-family="Segoe UI" font-size="12" fill="#f8f7ff" font-weight="600">
+        <rect x="20" y="100" width="220" height="80" rx="12" fill="#1a1832" stroke="#c0392b"/>
+        <text x="130" y="125" text-anchor="middle" font-weight="800" fill="#ff6b5b" font-size="13">👑 DIARQUIA</text>
+        <text x="130" y="143" text-anchor="middle" font-size="11" fill="#c9c7d8">2 reis simultâneos</text>
+        <text x="130" y="156" text-anchor="middle" font-size="11" fill="#c9c7d8">Religioso + Militar</text>
+        <text x="130" y="170" text-anchor="middle" font-size="10" fill="#ffd166">Não hereditário</text>
+        <rect x="20" y="400" width="220" height="80" rx="12" fill="#1a1832" stroke="#c0392b"/>
+        <text x="130" y="425" text-anchor="middle" font-weight="800" fill="#ff6b5b" font-size="13">🏛️ APELA</text>
+        <text x="130" y="443" text-anchor="middle" font-size="11" fill="#c9c7d8">Assembleia popular</text>
+        <text x="130" y="456" text-anchor="middle" font-size="11" fill="#c9c7d8">Esparciatas &gt;30 anos</text>
+        <text x="130" y="470" text-anchor="middle" font-size="10" fill="#ffd166">Vota paz/guerra</text>
+        <rect x="680" y="80" width="200" height="80" rx="12" fill="#1a1832" stroke="#c0392b"/>
+        <text x="780" y="105" text-anchor="middle" font-weight="800" fill="#ff6b5b" font-size="13">🧓 GERÚSIA</text>
+        <text x="780" y="123" text-anchor="middle" font-size="11" fill="#c9c7d8">28 gerontes &gt;60 anos</text>
+        <text x="780" y="138" text-anchor="middle" font-size="11" fill="#c9c7d8">Propõem leis</text>
+        <text x="780" y="152" text-anchor="middle" font-size="10" fill="#ffd166">Atuam como juízes</text>
+        <rect x="700" y="240" width="200" height="80" rx="12" fill="#1a1832" stroke="#c0392b"/>
+        <text x="800" y="265" text-anchor="middle" font-weight="800" fill="#ff6b5b" font-size="13">👁️ EFORATO</text>
+        <text x="800" y="283" text-anchor="middle" font-size="11" fill="#c9c7d8">5 magistrados</text>
+        <text x="800" y="297" text-anchor="middle" font-size="11" fill="#c9c7d8">Eleitos anualmente</text>
+        <text x="800" y="311" text-anchor="middle" font-size="10" fill="#ffd166">Fiscalizam reis</text>
+        <rect x="680" y="420" width="200" height="60" rx="12" fill="#1a1832" stroke="#c0392b"/>
+        <text x="780" y="445" text-anchor="middle" font-weight="800" fill="#ff6b5b" font-size="13">⚔️ MILITARISMO</text>
+        <text x="780" y="463" text-anchor="middle" font-size="11" fill="#c9c7d8">Treino dos 7 anos</text>
+        <text x="780" y="476" text-anchor="middle" font-size="11" fill="#c9c7d8">Hoplitas aos 21</text>
+        <rect x="280" y="450" width="240" height="80" rx="12" fill="#1a1832" stroke="#ffd166"/>
+        <text x="400" y="475" text-anchor="middle" font-weight="800" fill="#ffd166" font-size="13">👥 SOCIEDADE</text>
+        <text x="400" y="493" text-anchor="middle" font-size="11" fill="#c9c7d8">Esparciatas (cidadãos)</text>
+        <text x="400" y="507" text-anchor="middle" font-size="11" fill="#c9c7d8">Períecos · Hilotas</text>
+        <text x="400" y="521" text-anchor="middle" font-size="10" fill="#ffd166">Hilotas = escravos do Estado</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="tab-content" id="flashcards">
+  <h2 class="section-title"><span class="ico">🃏</span>Flashcards Interativos</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Clique no card para virar. Use os filtros para focar em um tema.</p>
+
+  <div class="deck-controls">
+    <button class="all active" data-filter="all">Todos</button>
+    <button class="persa" data-filter="persa">👑 Persas</button>
+    <button class="fenicio" data-filter="fenicio">⛵ Fenícios</button>
+    <button class="grecia" data-filter="grecia">🏛️ Grécia (geral)</button>
+    <button class="atenas" data-filter="atenas">⚖️ Atenas</button>
+    <button class="esparta" data-filter="esparta">🛡️ Esparta</button>
+    <button data-action="shuffle">🔀 Embaralhar</button>
+  </div>
+
+  <div class="flashcard-stage">
+    <div class="flashcard" id="flashcard">
+      <div class="face front">
+        <span class="tag" id="cardTag">PERSAS</span>
+        <span class="num" id="cardNum">1 / 50</span>
+        <div class="q" id="cardQ">Pergunta</div>
+        <div class="hint">Clique para virar</div>
+      </div>
+      <div class="face back">
+        <div class="a" id="cardA">Resposta</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="deck-nav">
+    <button id="btnPrev">← Anterior</button>
+    <span class="deck-progress" id="cardCount">Card 1 / 50</span>
+    <button id="btnNext">Próximo →</button>
+  </div>
+</section>
+
+<!-- COMPARAÇÕES -->
+<section class="tab-content" id="compare">
+  <h2 class="section-title"><span class="ico">⚖️</span>Comparações</h2>
+
+  <h3 style="color:var(--gold);margin:14px 0 6px">Persas × Fenícios</h3>
+  <table class="compare-table">
+    <thead>
+      <tr><th class="cat" style="width:18%">Critério</th><th class="persa">👑 Persas</th><th class="fenicio">⛵ Fenícios</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Localização</td><td>Mesopotâmia → Índia (Irã)</td><td>Faixa litorânea (Líbano)</td></tr>
+      <tr><td>Política</td><td>Império centralizado</td><td>Cidades-estado independentes</td></tr>
+      <tr><td>Economia</td><td>Agricultura forte</td><td>Comércio marítimo (talassocracia)</td></tr>
+      <tr><td>Religião</td><td>Zoroastrismo (dualismo)</td><td>Politeísmo (Baal e Astarteia)</td></tr>
+      <tr><td>Maior legado</td><td>Satrápias + correio + dárico</td><td>Alfabeto fonético</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--gold);margin:24px 0 6px">Atenas × Esparta — A grande comparação</h3>
+  <table class="compare-table">
+    <thead>
+      <tr><th class="cat" style="width:18%">Critério</th><th class="atenas">⚖️ Atenas</th><th class="esparta">🛡️ Esparta</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Origem</td><td>Fusão de tribos da Ática (jônios)</td><td>Fundada pelos <b>dórios</b></td></tr>
+      <tr><td>Regime</td><td><b>Democracia</b> (criada por Clístenes)</td><td><b>Oligarquia militarista</b></td></tr>
+      <tr><td>Atitude com estrangeiros</td><td>Acolhia metecos para o comércio</td><td><b>Xenofobia</b> (aversão)</td></tr>
+      <tr><td>Cultura</td><td>Berço da filosofia, arte e teatro</td><td>Foco quase exclusivo no militar</td></tr>
+      <tr><td>Educação</td><td>Cidadãos podiam estudar artes e filosofia</td><td>Treinamento militar dos 7 aos 30 anos</td></tr>
+      <tr><td>Classes</td><td>Eupátridas · Georgóis · Demiurgos · Thetas · Metecos · Escravos</td><td>Esparciatas · Períecos · Hilotas</td></tr>
+      <tr><td>Escravos</td><td><b>Privados</b> (de cidadãos)</td><td><b>Do Estado</b> (Hilotas)</td></tr>
+      <tr><td>Cidadãos</td><td>Homens &gt;21 anos descendentes de jônios (~10% pop.)</td><td>Apenas esparciatas (&gt;30 anos)</td></tr>
+      <tr><td>Reis / Líderes</td><td>10 estrategos eleitos anualmente</td><td><b>Diarquia</b>: 2 reis simultâneos</td></tr>
+      <tr><td>Conselho de anciãos</td><td>Areópago (vitalício, religioso)</td><td>Gerúsia (28 anciãos &gt;60 anos)</td></tr>
+      <tr><td>Assembleia popular</td><td>Eclésia (mín. 6.000 cidadãos)</td><td>Apela (cidadãos &gt;30 anos)</td></tr>
+      <tr><td>Fiscais</td><td>Bulé (Conselho dos 500)</td><td>Eforato (5 éforos eleitos)</td></tr>
+      <tr><td>Economia</td><td>Comercial (azeite, vidro, prata)</td><td>Agrícola (terras dos esparciatas)</td></tr>
+      <tr><td>Moeda</td><td><b>Dracma</b> (Atena + coruja)</td><td>Não enfatizou moeda própria</td></tr>
+      <tr><td>Posição na G. Médica</td><td>Liderou em Maratona e Salamina</td><td>Liderou em Termópilas (300)</td></tr>
+      <tr><td>Posição na G. Peloponeso</td><td>Liderou a Liga de Delos</td><td>Liderou a Liga do Peloponeso (vencedora)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note" style="margin-top:14px">📌 <b>Truque:</b> ATENAS = "<b>A</b>rte, <b>T</b>eatro, <b>E</b>scola" (cultura) · ESPARTA = "<b>E</b>scudo, <b>S</b>angue, <b>PA</b>radas militares" (guerra).</div>
+</section>
+
+<!-- TIMELINE -->
+<section class="tab-content" id="timeline">
+  <h2 class="section-title"><span class="ico">🕰️</span>Linha do Tempo</h2>
+  <div class="timeline">
+    <div class="timeline-item left fenicio"><div class="dot"></div><div class="card-tl"><div class="date">~ 3000 a.C.</div><h4>Surgem os Fenícios</h4><p>Ocupação da faixa litorânea no Oriente Médio.</p></div></div>
+    <div class="timeline-item right grecia"><div class="dot"></div><div class="card-tl"><div class="date">~ 2000 a.C.</div><h4>Indo-europeus na Grécia</h4><p>Aqueus, eólios, jônios chegam à península balcânica.</p></div></div>
+    <div class="timeline-item left grecia"><div class="dot"></div><div class="card-tl"><div class="date">1450 a.C.</div><h4>Decadência cretense</h4><p>Terremotos e incêndios enfraquecem Creta. Em 1100 a.C., dórios destroem o que restava.</p></div></div>
+    <div class="timeline-item right grecia"><div class="dot"></div><div class="card-tl"><div class="date">Séc. XII–VIII a.C.</div><h4>Período Homérico</h4><p>Ilíada e Odisseia. Comunidades gentílicas (Genos), Pater Famílias.</p></div></div>
+    <div class="timeline-item left persa"><div class="dot"></div><div class="card-tl"><div class="date">Séc. VIII a.C.</div><h4>Déjoces unifica os medos</h4><p>Aliança com babilônios contra os assírios.</p></div></div>
+    <div class="timeline-item right grecia"><div class="dot"></div><div class="card-tl"><div class="date">Séc. VIII–VI a.C.</div><h4>Período Arcaico</h4><p>Surgem as cidades-estado (Pólis). Atenas e Esparta consolidam-se.</p></div></div>
+    <div class="timeline-item left atenas"><div class="dot"></div><div class="card-tl"><div class="date">~ 620 a.C.</div><h4>Drácon</h4><p>Primeiras leis escritas em Atenas. Severíssimas — origem de "draconianas".</p></div></div>
+    <div class="timeline-item right atenas"><div class="dot"></div><div class="card-tl"><div class="date">~ 594 a.C.</div><h4>Reformas de Sólon</h4><p>Fim da escravidão por dívidas, divisão social por renda.</p></div></div>
+    <div class="timeline-item left persa"><div class="dot"></div><div class="card-tl"><div class="date">550 - 529 a.C.</div><h4>Ciro, o Grande</h4><p>Funda o Império Persa. Liberta os judeus do Cativeiro da Babilônia.</p></div></div>
+    <div class="timeline-item right atenas"><div class="dot"></div><div class="card-tl"><div class="date">~ 528–510 a.C.</div><h4>Tiranias</h4><p>Pisístrato, Hiparco, Hípias governam Atenas.</p></div></div>
+    <div class="timeline-item left persa"><div class="dot"></div><div class="card-tl"><div class="date">529 - 522 a.C.</div><h4>Cambises conquista o Egito</h4><p>Suicídio sem herdeiros gera crise.</p></div></div>
+    <div class="timeline-item right persa"><div class="dot"></div><div class="card-tl"><div class="date">522 - 488 a.C.</div><h4>Dario I</h4><p>Apogeu persa. Satrápias, Estrada Real, Angarion, dárico.</p></div></div>
+    <div class="timeline-item left atenas"><div class="dot"></div><div class="card-tl"><div class="date">~ 508 a.C.</div><h4>Clístenes — pai da democracia</h4><p>Cria a Bulé e o ostracismo. Divide a Ática em 100 distritos.</p></div></div>
+    <div class="timeline-item right grecia"><div class="dot"></div><div class="card-tl"><div class="date">490 a.C.</div><h4>1ª Guerra Médica — Maratona</h4><p>Atenas vence (Milcíades). Lenda de Fidípedes.</p></div></div>
+    <div class="timeline-item left grecia"><div class="dot"></div><div class="card-tl"><div class="date">480 a.C.</div><h4>2ª Guerra Médica</h4><p>Termópilas (300 espartanos), Salamina (Temístocles).</p></div></div>
+    <div class="timeline-item right atenas"><div class="dot"></div><div class="card-tl"><div class="date">468 - 429 a.C.</div><h4>Era de Ouro de Péricles</h4><p>Apogeu da democracia ateniense.</p></div></div>
+    <div class="timeline-item left esparta"><div class="dot"></div><div class="card-tl"><div class="date">~ 431 - 404 a.C.</div><h4>Guerra do Peloponeso</h4><p>Esparta derrota Atenas em Égos-Potamos.</p></div></div>
+    <div class="timeline-item right grecia"><div class="dot"></div><div class="card-tl"><div class="date">338 a.C.</div><h4>Filipe II vence Queroneia</h4><p>Macedônia domina a Grécia.</p></div></div>
+    <div class="timeline-item left grecia"><div class="dot"></div><div class="card-tl"><div class="date">336 - 323 a.C.</div><h4>Alexandre, o Grande</h4><p>Conquista Pérsia, Egito e Índia. Cultura helenística.</p></div></div>
+  </div>
+</section>
+
+<!-- CULTURA GREGA -->
+<section class="tab-content" id="cultura">
+  <h2 class="section-title"><span class="ico">🎭</span>Cultura Grega</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">A cultura é um dos pilares do Mód. 9. Cai sempre questão sobre Jogos Olímpicos, filosofia ou arte.</p>
+
+  <div class="modules-grid">
+    <div class="module-card grecia">
+      <span class="emoji">🏆</span>
+      <h3>Jogos Olímpicos</h3>
+      <p>Realizados na cidade de <b>Olímpia</b> em homenagem a <b>Zeus</b>, a cada 4 anos a partir de <b>776 a.C.</b></p>
+      <ul>
+        <li><b>Jogos Píticos</b> — Delfos (em homenagem a Apolo)</li>
+        <li><b>Jogos Ístmicos</b> — Corinto (em homenagem a Poseidon)</li>
+        <li><b>Jogos Nemeus</b> — Neméia</li>
+      </ul>
+    </div>
+    <div class="module-card grecia">
+      <span class="emoji">🤔</span>
+      <h3>Filosofia</h3>
+      <p>Berço do pensamento ocidental. Tentativa de ampliar a compreensão do mundo pelo <b>racionalismo</b>, superando a mitologia.</p>
+      <ul>
+        <li><b>Sócrates</b> — método dialético; mestre de Platão</li>
+        <li><b>Platão</b> — discípulo de Sócrates; mundo das ideias</li>
+        <li><b>Aristóteles</b> — discípulo de Platão; tutor de Alexandre</li>
+      </ul>
+    </div>
+    <div class="module-card grecia">
+      <span class="emoji">📖</span>
+      <h3>Literatura</h3>
+      <p>Grandes poemas épicos e textos fundadores do imaginário ocidental.</p>
+      <ul>
+        <li><b>Ilíada</b> e <b>Odisseia</b> — Homero</li>
+        <li><b>Teogonia</b> e <b>O Trabalho e os Dias</b> — Hesíodo</li>
+        <li><b>Teatro</b> — grandes tragédias e comédias que satirizavam o cotidiano</li>
+      </ul>
+    </div>
+    <div class="module-card grecia">
+      <span class="emoji">🎨</span>
+      <h3>Artes (período clássico)</h3>
+      <ul>
+        <li><b>Pintura</b> — retratos do cotidiano</li>
+        <li><b>Esculturas</b> — em <b>bronze</b> e <b>mármore</b></li>
+        <li><b>Arquitetura</b> — colunas em mármore (ver abaixo)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="color:var(--gold);margin:18px 0 6px">🏛️ As 3 ordens das Colunas Gregas</h3>
+  <div class="cols-grid">
+    <div class="col-card">
+      <svg width="80" height="200" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="0" width="60" height="14" fill="#9b6dff" opacity=".8"/>
+        <rect x="14" y="14" width="52" height="6" fill="#fff" opacity=".5"/>
+        <rect x="20" y="20" width="40" height="160" fill="url(#dorica)"/>
+        <defs><linearGradient id="dorica" x1="0" x2="1"><stop offset="0" stop-color="#e0e0e0"/><stop offset="1" stop-color="#9d9d9d"/></linearGradient></defs>
+        <rect x="14" y="180" width="52" height="20" fill="#9b6dff" opacity=".8"/>
+      </svg>
+      <h5>Dórica</h5>
+      <p>Simples, robusta, sem base. Capitel reto. A mais antiga e austera.</p>
+    </div>
+    <div class="col-card">
+      <svg width="80" height="200" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 14 Q15 0 25 14 M55 14 Q65 0 75 14" stroke="#9b6dff" stroke-width="3" fill="none"/>
+        <rect x="10" y="14" width="60" height="8" fill="#9b6dff" opacity=".8"/>
+        <rect x="20" y="22" width="40" height="158" fill="url(#jonica)"/>
+        <defs><linearGradient id="jonica" x1="0" x2="1"><stop offset="0" stop-color="#e0e0e0"/><stop offset="1" stop-color="#9d9d9d"/></linearGradient></defs>
+        <rect x="14" y="180" width="52" height="14" fill="#9b6dff" opacity=".8"/>
+        <rect x="10" y="194" width="60" height="6" fill="#9b6dff"/>
+      </svg>
+      <h5>Jônica</h5>
+      <p>Capitel com <b>volutas</b> (espirais nos cantos). Mais elegante. Tem base.</p>
+    </div>
+    <div class="col-card">
+      <svg width="80" height="200" viewBox="0 0 80 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 16 Q20 5 30 14 M40 18 Q50 0 60 16 M50 22 Q70 8 75 22" stroke="#9b6dff" stroke-width="2" fill="none"/>
+        <rect x="10" y="22" width="60" height="6" fill="#9b6dff" opacity=".8"/>
+        <rect x="20" y="28" width="40" height="152" fill="url(#corintia)"/>
+        <defs><linearGradient id="corintia" x1="0" x2="1"><stop offset="0" stop-color="#e0e0e0"/><stop offset="1" stop-color="#9d9d9d"/></linearGradient></defs>
+        <rect x="14" y="180" width="52" height="14" fill="#9b6dff" opacity=".8"/>
+        <rect x="10" y="194" width="60" height="6" fill="#9b6dff"/>
+      </svg>
+      <h5>Coríntia</h5>
+      <p>Capitel ricamente <b>decorado com folhas de acanto</b>. A mais ornamentada.</p>
+    </div>
+  </div>
+  <div class="note" style="margin-top:14px">🎯 <b>Truque visual:</b> <b>Dórica</b> = Direta · <b>Jônica</b> = Joia (volutas) · <b>Coríntia</b> = Cabelo (folhas).</div>
+</section>
+
+<!-- MNEMONICS -->
+<section class="tab-content" id="mnemonics">
+  <h2 class="section-title"><span class="ico">🧩</span>Mnemônicos & Truques</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Cole estas siglas e frases na cabeça — valem listas inteiras na hora da prova.</p>
+
+  <div class="mnemonic-grid">
+
+    <div class="mnemonic-card">
+      <span class="key">CCDX</span>
+      <h4>Os 4 imperadores persas</h4>
+      <ul>
+        <li><b>C</b> Ciro, o Grande</li>
+        <li><b>C</b> Cambises (Egito)</li>
+        <li><b>D</b> Dario I (organizou tudo)</li>
+        <li><b>X</b> Xerxes (Guerras Médicas)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">SECRETO</span>
+      <h4>O que Dario I criou</h4>
+      <ul>
+        <li><b>S</b> Satrápias</li>
+        <li><b>E</b> Estradas</li>
+        <li><b>C</b> Correio (Angarion)</li>
+        <li><b>R</b> Régua única (pesos)</li>
+        <li><b>E</b> Espionagem ("olhos")</li>
+        <li><b>T</b> Tributos</li>
+        <li><b>O</b> Ouro = Dárico</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">MAZDA × ARIMÃ</span>
+      <h4>Zoroastrismo</h4>
+      <ul>
+        <li><b>M</b> Mazda = Bem</li>
+        <li><b>A</b> Arimã = Anti-Mazda</li>
+        <li><b>A</b> Avesta = livro</li>
+        <li><b>Z</b> Zaratustra = profeta</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card fenicio">
+      <span class="key">BSTU</span>
+      <h4>4 cidades fenícias</h4>
+      <ul>
+        <li><b>B</b> Biblos</li>
+        <li><b>S</b> Sidon</li>
+        <li><b>T</b> Tiro</li>
+        <li><b>U</b> Ugarit</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card fenicio">
+      <span class="key">CMP-Cartago</span>
+      <h4>Colônias fenícias</h4>
+      <ul>
+        <li><b>C</b> Cádiz · <b>M</b> Málaga · <b>P</b> Palermo</li>
+        <li>⭐ <b>Cartago</b> — a mais famosa</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card grecia">
+      <span class="key">PHACH</span>
+      <h4>Os 5 períodos da Grécia</h4>
+      <ul>
+        <li><b>P</b> Pré-Homérico</li>
+        <li><b>H</b> Homérico</li>
+        <li><b>A</b> Arcaico</li>
+        <li><b>C</b> Clássico</li>
+        <li><b>H</b> Helenístico</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>"Pedro Hoje Atirou Cinco Helicópteros"</i></p>
+    </div>
+
+    <div class="mnemonic-card grecia">
+      <span class="key">A-Á-A</span>
+      <h4>Partes da Pólis</h4>
+      <ul>
+        <li><b>A</b> Acrópole (cidade alta — templo)</li>
+        <li><b>Á</b> Ágora (praça — debate)</li>
+        <li><b>A</b> Asty (mercado — comércio)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card esparta">
+      <span class="key">EPH</span>
+      <h4>Sociedade espartana</h4>
+      <ul>
+        <li><b>E</b> Esparciatas (cidadãos)</li>
+        <li><b>P</b> Períecos (livres)</li>
+        <li><b>H</b> Hilotas (escravos do Estado)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card esparta">
+      <span class="key">DGEA</span>
+      <h4>Política espartana</h4>
+      <ul>
+        <li><b>D</b> Diarquia (2 reis)</li>
+        <li><b>G</b> Gerúsia (28 anciãos)</li>
+        <li><b>E</b> Eforato (5 fiscais)</li>
+        <li><b>A</b> Apela (assembleia)</li>
+      </ul>
+      <p style="color:var(--ink-dim);font-size:.78rem;margin-top:6px"><i>"Dois Gerontes Eleitos para a Apela"</i></p>
+    </div>
+
+    <div class="mnemonic-card esparta">
+      <span class="key">7-17-21-30</span>
+      <h4>Idades do treino espartano</h4>
+      <ul>
+        <li><b>7</b> entrega ao exército</li>
+        <li><b>17</b> Kríptia (caça)</li>
+        <li><b>21</b> hoplita</li>
+        <li><b>30</b> cidadania completa</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card atenas">
+      <span class="key">EGDT-ME</span>
+      <h4>Sociedade ateniense</h4>
+      <ul>
+        <li><b>E</b> Eupátridas (aristocracia)</li>
+        <li><b>G</b> Georgóis (pequenos prop.)</li>
+        <li><b>D</b> Demiurgos (artesãos)</li>
+        <li><b>T</b> Thetas (pobres)</li>
+        <li><b>M</b> Metecos (estrangeiros)</li>
+        <li><b>E</b> Escravos</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card atenas">
+      <span class="key">EBAE</span>
+      <h4>Política ateniense</h4>
+      <ul>
+        <li><b>E</b> Eclésia (assembleia)</li>
+        <li><b>B</b> Bulé (Conselho dos 500)</li>
+        <li><b>A</b> Areópago (vitalícios)</li>
+        <li><b>E</b> Estrategos (10 generais)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card atenas">
+      <span class="key">D-S-T-C</span>
+      <h4>Caminho até a democracia</h4>
+      <ul>
+        <li><b>D</b> Drácon (leis severas)</li>
+        <li><b>S</b> Sólon (reforma social)</li>
+        <li><b>T</b> Tiranias (Pisístrato...)</li>
+        <li><b>C</b> Clístenes (democracia!)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card grecia">
+      <span class="key">2 GUERRAS</span>
+      <h4>Conflitos gregos</h4>
+      <ul>
+        <li><b>1ª Médica</b>: Maratona (490)</li>
+        <li><b>2ª Médica</b>: Termópilas + Salamina (480)</li>
+        <li><b>Peloponeso</b>: Liga de Delos × Liga do Peloponeso (Esparta vence em Égos-Potamos)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card">
+      <span class="key">TER × MAR × CULT</span>
+      <h4>Os 4 povos em uma frase</h4>
+      <ul>
+        <li><b>Persas</b> = TER (terra, império)</li>
+        <li><b>Fenícios</b> = MAR (talassocracia)</li>
+        <li><b>Atenas</b> = CULT (cultura, democracia)</li>
+        <li><b>Esparta</b> = MIL (militar, guerra)</li>
+      </ul>
+    </div>
+
+    <div class="mnemonic-card grecia">
+      <span class="key">SPA</span>
+      <h4>Filósofos clássicos</h4>
+      <ul>
+        <li><b>S</b> Sócrates (mestre)</li>
+        <li><b>P</b> Platão (discípulo de Sócrates)</li>
+        <li><b>A</b> Aristóteles (discípulo de Platão, mentor de Alexandre)</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- LEGADO -->
+<section class="tab-content" id="legado">
+  <h2 class="section-title"><span class="ico">🌟</span>O que cada povo nos deixou</h2>
+
+  <h3 style="color:var(--persa);margin:14px 0 6px">👑 Heranças Persas</h3>
+  <div class="legacy-grid">
+    <div class="legacy-card" data-icon="🏛️"><h4>Modelo administrativo</h4><p>Satrápias, fiscais e governo descentralizado vigiado pelo poder central.</p></div>
+    <div class="legacy-card" data-icon="📮"><h4>Sistema postal</h4><p>O <b>Angarion</b> — primeiro correio eficiente do mundo.</p></div>
+    <div class="legacy-card" data-icon="💰"><h4>Moeda padronizada</h4><p>O <b>Dárico</b> e a unificação de pesos e medidas.</p></div>
+    <div class="legacy-card" data-icon="🔥"><h4>Religião dualista</h4><p>O <b>Zoroastrismo</b> influenciou judaísmo, cristianismo e islamismo.</p></div>
+  </div>
+
+  <h3 style="color:var(--fenicio);margin:22px 0 6px">⛵ Heranças Fenícias</h3>
+  <div class="legacy-grid">
+    <div class="legacy-card" data-icon="🔤"><h4>Alfabeto fonético</h4><p>Símbolos = sons. Antepassado direto do nosso alfabeto via gregos e romanos.</p></div>
+    <div class="legacy-card" data-icon="⛵"><h4>Técnicas de navegação</h4><p>Faróis, 2 tipos de embarcação, observação astronômica.</p></div>
+    <div class="legacy-card" data-icon="💼"><h4>Modelo comercial</h4><p>Rede de feitorias e colônias — primeiro grande comércio internacional.</p></div>
+  </div>
+
+  <h3 style="color:var(--grecia);margin:22px 0 6px">🏛️ Heranças Gregas</h3>
+  <div class="legacy-grid">
+    <div class="legacy-card" data-icon="⚖️"><h4>Democracia</h4><p>O modelo ateniense de <b>cidadania</b> e <b>participação direta</b> é a base do conceito moderno.</p></div>
+    <div class="legacy-card" data-icon="🤔"><h4>Filosofia</h4><p>Sócrates, Platão e Aristóteles fundaram a tradição racionalista ocidental.</p></div>
+    <div class="legacy-card" data-icon="🏆"><h4>Jogos Olímpicos</h4><p>Da Olímpia antiga (776 a.C.) ao evento global moderno.</p></div>
+    <div class="legacy-card" data-icon="🎭"><h4>Teatro</h4><p>Tragédia e comédia — formato dramático que persiste até hoje.</p></div>
+    <div class="legacy-card" data-icon="🏛️"><h4>Arquitetura</h4><p>Colunas <b>dóricas, jônicas e coríntias</b> usadas até hoje em prédios públicos.</p></div>
+    <div class="legacy-card" data-icon="📖"><h4>Literatura</h4><p>Ilíada e Odisseia abriram o caminho para todo o cânone literário ocidental.</p></div>
+    <div class="legacy-card" data-icon="🏃"><h4>Maratona</h4><p>A prova esportiva moderna nasce da lenda do hoplita Fidípedes (490 a.C.).</p></div>
+    <div class="legacy-card" data-icon="🌍"><h4>Cultura helenística</h4><p>A fusão greco-oriental espalhou ideias gregas pelo mundo conhecido.</p></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="tab-content" id="quiz">
+  <h2 class="section-title"><span class="ico">🎯</span>Quiz Final</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">22 perguntas dos 4 módulos com correção imediata. Boa prova!</p>
+
+  <div class="quiz-wrap" id="quizWrap">
+    <div class="quiz-progress">
+      <span id="qProgress">Pergunta 1 / 22</span>
+      <span id="qScore">Acertos: 0</span>
+    </div>
+    <div class="quiz-bar"><div id="qBar" style="width:4%"></div></div>
+    <div class="quiz-q" id="qText">...</div>
+    <div class="quiz-options" id="qOptions"></div>
+    <div class="quiz-feedback" id="qFeedback"></div>
+    <div class="quiz-actions">
+      <button id="qNext" style="display:none">Próxima →</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Material de estudo · Persas · Fenícios · Grécia · Feito com <span class="heart">♥</span> para a P2T1
+</footer>
+
+</div>
+
+<script>
+const tabs = document.querySelectorAll('#mainTabs button');
+const sections = document.querySelectorAll('.tab-content');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  sections.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* FLASHCARDS */
+const cardData = [
+  // PERSAS
+  {tema:'persa', q:'Qual região formou o Império Persa e a qual país atual ela corresponde?', a:'Ia da <b>Mesopotâmia até o rio Indo</b> (Índia). Hoje corresponde basicamente ao <b>Irã</b>.'},
+  {tema:'persa', q:'Quem foi Ciro, o Grande?', a:'<b>Primeiro imperador persa</b>. Unificou medos e persas. Era um conquistador <b>justo</b>: respeitava a cultura dos povos dominados. Libertou os judeus do <b>Cativeiro da Babilônia</b>.'},
+  {tema:'persa', q:'Por que Dario I é considerado o maior imperador persa?', a:'Porque <b>organizou o império</b>: criou as <b>satrápias</b>, os <b>sátrapas</b>, a <b>Estrada Real</b>, o <b>correio Angarion</b>, o <b>dárico</b> e unificou pesos e medidas.'},
+  {tema:'persa', q:'O que eram as SATRÁPIAS?', a:'Eram <b>províncias</b> em que Dario I dividiu o Império Persa. Cada uma era governada por um <b>sátrapa</b>.'},
+  {tema:'persa', q:'Quem eram "os olhos e ouvidos do rei"?', a:'Eram <b>fiscais</b> criados por Dario I que vigiavam os sátrapas, garantindo o cumprimento das ordens do imperador.'},
+  {tema:'persa', q:'O que foi o sistema ANGARION?', a:'O <b>primeiro correio eficiente do mundo</b>, criado pelos persas. Estações com mensageiros e cavalos descansados se revezavam.'},
+  {tema:'persa', q:'O que é o Zoroastrismo?', a:'Religião persa fundada por <b>Zoroaster (Zaratustra)</b>. É <b>DUALISTA</b>: <b>Ahura Mazda</b> (Bem) × <b>Arimã</b> (Mal). Livro sagrado: <b>Avesta</b>.'},
+  {tema:'persa', q:'Como acabou o Império Persa?', a:'Foi derrotado pelos <b>gregos</b> nas <b>Guerras Médicas</b> (com Xerxes) e, mais tarde, conquistado por <b>Alexandre, o Grande</b>.'},
+
+  // FENÍCIOS
+  {tema:'fenicio', q:'Onde viviam os fenícios e a qual país atual o território corresponde?', a:'Em uma <b>estreita faixa de terra</b> no Oriente Médio. Hoje: <b>Líbano</b> (cuja bandeira tem cores fenícias e o Cedro do Líbano).'},
+  {tema:'fenicio', q:'Como era a organização política dos fenícios?', a:'Eles <b>NÃO formaram um império unificado</b>. Organizavam-se em <b>cidades-estado</b> independentes, governadas por reis ou pelos <b>Sufetas</b>.'},
+  {tema:'fenicio', q:'O que é TALASSOCRACIA?', a:'É o <b>poder baseado no domínio do mar</b>. Define os fenícios — sua elite era de mercadores, armadores e navegadores.'},
+  {tema:'fenicio', q:'Quais eram as 4 principais cidades-estado fenícias?', a:'<b>Biblos, Sidon, Tiro e Ugarit</b>.'},
+  {tema:'fenicio', q:'Qual a colônia fenícia mais famosa?', a:'<b>Cartago</b>, no norte da África (atual <b>Tunísia</b>). Tornou-se independente e rivalizou com Roma.'},
+  {tema:'fenicio', q:'Qual o maior legado dos fenícios?', a:'O <b>alfabeto fonético</b> — primeira escrita em que os símbolos representavam <b>sons</b>, não ideias. É a base do nosso alfabeto via gregos e romanos.'},
+  {tema:'fenicio', q:'Como era a religião fenícia?', a:'<b>Politeísta</b>, com duas divindades principais: <b>Baal</b> (Sol) e <b>Astarteia</b> (Lua).'},
+
+  // GRÉCIA GERAL
+  {tema:'grecia', q:'Quais são os 5 períodos da Grécia em ordem?', a:'<b>1. Pré-Homérico, 2. Homérico, 3. Arcaico, 4. Clássico, 5. Helenístico</b>. Mnemônico: "Pedro Hoje Atirou Cinco Helicópteros".'},
+  {tema:'grecia', q:'Quem eram os cretenses?', a:'A <b>civilização minoica</b>, na ilha de <b>Creta</b>. Estabeleceram uma <b>talassocracia</b> com capital em <b>Cnossos</b>. Origem da lenda do Minotauro e do Labirinto.'},
+  {tema:'grecia', q:'O que marcou o fim da civilização micênica?', a:'A chegada dos <b>dórios</b>, que tinham armas de <b>FERRO</b> (mais resistentes que o bronze micênico).'},
+  {tema:'grecia', q:'O que era o GENOS no período Homérico?', a:'Eram comunidades agrárias unidas por <b>laço familiar</b>. A posse da terra era <b>comunitária</b>, e o chefe era o <b>Pater Famílias</b>.'},
+  {tema:'grecia', q:'Quais as 3 partes da Pólis grega?', a:'<b>ACRÓPOLE</b> (cidade alta, templo), <b>ÁGORA</b> (praça central, debates) e <b>ASTY</b> (mercado).'},
+  {tema:'grecia', q:'O que foi a Simaquia?', a:'A <b>união das cidades-estado gregas</b> para enfrentar os persas durante a 2ª Guerra Médica.'},
+  {tema:'grecia', q:'O que foi a Guerra do Peloponeso?', a:'Guerra civil entre a <b>Liga de Delos</b> (Atenas) e a <b>Liga do Peloponeso</b> (Esparta + Mégara, Corinto, Tebas). Durou cerca de <b>27 anos</b> e <b>Esparta venceu</b> em Égos-Potamos.'},
+  {tema:'grecia', q:'Quem foi Alexandre, o Grande?', a:'Filho de Filipe II da Macedônia, mentor: <b>Aristóteles</b>. Conquistou Ásia Menor, Mesopotâmia, Egito e chegou à Índia. Sua conquista produziu a <b>cultura helenística</b>. Morreu em 323 a.C., sem herdeiros.'},
+  {tema:'grecia', q:'Onde e em homenagem a quem nasceram os Jogos Olímpicos?', a:'Na cidade de <b>Olímpia</b>, em homenagem a <b>Zeus</b>. Aconteciam a cada 4 anos a partir de <b>776 a.C.</b>'},
+  {tema:'grecia', q:'Quais os 3 principais filósofos gregos?', a:'<b>Sócrates</b> (mestre), <b>Platão</b> (discípulo de Sócrates) e <b>Aristóteles</b> (discípulo de Platão e mentor de Alexandre).'},
+  {tema:'grecia', q:'Quais os 3 estilos de colunas gregas?', a:'<b>Dórica</b> (simples, robusta), <b>Jônica</b> (capitel com volutas/espirais) e <b>Coríntia</b> (capitel ornado com folhas de acanto).'},
+
+  // ATENAS
+  {tema:'atenas', q:'Quem é considerado o pai da democracia ateniense?', a:'<b>Clístenes</b>. Ele dividiu a Ática em 100 distritos, criou a <b>Bulé</b> e o <b>OSTRACISMO</b>.'},
+  {tema:'atenas', q:'Quais os 4 órgãos políticos da democracia ateniense?', a:'<b>ECLÉSIA</b> (assembleia popular), <b>BULÉ</b> (Conselho dos 500), <b>AREÓPAGO</b> (ex-arcontes vitalícios) e <b>ESTRATEGOS</b> (10 generais eleitos).'},
+  {tema:'atenas', q:'Quem podia ser cidadão em Atenas?', a:'Apenas <b>homens com 21 anos completos</b>, descendentes de jônios. Cerca de <b>10%</b> da população. Mulheres, escravos e estrangeiros (metecos) eram <b>excluídos</b>.'},
+  {tema:'atenas', q:'Por que a democracia ateniense é chamada de "escravista"?', a:'Porque excluía mulheres, estrangeiros e <b>escravos</b>, que constituíam parcela significativa da população. Atenas tinha modo de produção escravista.'},
+  {tema:'atenas', q:'O que era o OSTRACISMO?', a:'<b>Exílio de 10 anos</b> aplicado a cidadãos considerados ameaça à democracia. Decidido por votação em pedaços de cerâmica chamados <b>ostracos</b>.'},
+  {tema:'atenas', q:'Quem foi Drácon?', a:'O <b>primeiro legislador</b> ateniense. Estabeleceu as primeiras <b>leis escritas</b>, mas eram tão severas (com pena de morte frequente) que deram origem ao termo "<b>draconianas</b>".'},
+  {tema:'atenas', q:'Quais foram as principais reformas de Sólon?', a:'Acabou com a <b>escravidão por dívidas</b>, dividiu a sociedade por <b>renda</b> (não mais só por nascimento) e estabeleceu limites na posse de terra.'},
+  {tema:'atenas', q:'O que era a moeda Dracma?', a:'Moeda de Atenas, com o <b>rosto da deusa Atena</b> em um lado e a <b>coruja</b> (símbolo da sabedoria) no outro.'},
+  {tema:'atenas', q:'Quais as 6 classes da sociedade ateniense?', a:'<b>Eupátridas</b> (aristocracia), <b>Georgóis</b> (pequenos prop.), <b>Demiurgos</b> (artesãos), <b>Thetas</b> (pobres), <b>Metecos</b> (estrangeiros, sem cidadania) e <b>Escravos</b>.'},
+  {tema:'atenas', q:'Quem foi Péricles?', a:'Líder da <b>Era de Ouro</b> de Atenas (468-429 a.C.). Consolidou a democracia, transformou Atenas em império comercial e marítimo, e reconstruiu a cidade.'},
+  {tema:'atenas', q:'O que aconteceu na Batalha de Maratona?', a:'1ª Guerra Médica (490 a.C.). General <b>Milcíades</b> e os <b>10.000 hoplitas</b> atenienses derrotaram os persas. Origem da lenda de <b>Fidípedes</b> e da maratona moderna (42 km).'},
+
+  // ESPARTA
+  {tema:'esparta', q:'Quem fundou Esparta e quais suas duas marcas culturais?', a:'Fundada pelos <b>dórios</b>. Suas marcas: <b>militarismo</b> + <b>xenofobia</b> (aversão a estrangeiros).'},
+  {tema:'esparta', q:'Quais as 3 classes sociais espartanas?', a:'<b>ESPARCIATAS</b> (cidadãos dórios, donos da terra), <b>PERÍECOS</b> (livres da periferia, sem direitos políticos plenos) e <b>HILOTAS</b> (escravos do <b>Estado</b>).'},
+  {tema:'esparta', q:'O que diferencia hilotas de escravos atenienses?', a:'Hilotas eram propriedade do <b>Estado</b> espartano, enquanto em Atenas os escravos eram propriedade <b>privada</b>.'},
+  {tema:'esparta', q:'Quais as idades-chave do treinamento espartano?', a:'<b>7</b> anos: entregues ao exército. <b>17</b>: passam pela Kríptia (caçada). <b>21</b>: tornam-se hoplitas. <b>30</b>: cidadania plena, podem integrar conselhos.'},
+  {tema:'esparta', q:'O que era a DIARQUIA?', a:'Sistema político de Esparta com <b>2 reis simultâneos</b> (líderes religioso e militar). Poder limitado, não-hereditário. Em guerra, um ia ao campo e o outro ficava em casa.'},
+  {tema:'esparta', q:'Quais os 4 órgãos políticos de Esparta?', a:'<b>DIARQUIA</b> (2 reis), <b>GERÚSIA</b> (28 anciãos &gt;60 anos), <b>EFORATO</b> (5 fiscais eleitos anualmente) e <b>APELA</b> (assembleia popular).'},
+  {tema:'esparta', q:'O que foi a Batalha das Termópilas?', a:'Batalha da 2ª Guerra Médica (480 a.C.). O rei <b>Leônidas</b> e os <b>300 espartanos</b> resistiram heroicamente, mas a passagem foi tomada pelos persas.'},
+  {tema:'esparta', q:'Quem venceu a Guerra do Peloponeso?', a:'<b>Esparta</b>, na batalha de <b>Égos-Potamos</b>, encerrou cerca de 27 anos de guerra contra Atenas.'},
+];
+
+let currentIndex = 0;
+let filteredDeck = [...cardData];
+
+function renderCard(){
+  const c = filteredDeck[currentIndex];
+  if(!c){return;}
+  const card = document.getElementById('flashcard');
+  card.classList.remove('flipped','persa','fenicio','grecia','atenas','esparta');
+  card.classList.add(c.tema);
+  document.getElementById('cardTag').className = 'tag '+c.tema;
+  const tagText = {persa:'👑 PERSAS',fenicio:'⛵ FENÍCIOS',grecia:'🏛️ GRÉCIA',atenas:'⚖️ ATENAS',esparta:'🛡️ ESPARTA'};
+  document.getElementById('cardTag').textContent = tagText[c.tema];
+  document.getElementById('cardNum').textContent = (currentIndex+1)+' / '+filteredDeck.length;
+  document.getElementById('cardQ').textContent = c.q;
+  document.getElementById('cardA').innerHTML = c.a;
+  document.getElementById('cardCount').textContent = 'Card '+(currentIndex+1)+' / '+filteredDeck.length;
+}
+document.getElementById('flashcard').addEventListener('click',function(){this.classList.toggle('flipped')});
+document.getElementById('btnNext').addEventListener('click',()=>{currentIndex=(currentIndex+1)%filteredDeck.length;renderCard()});
+document.getElementById('btnPrev').addEventListener('click',()=>{currentIndex=(currentIndex-1+filteredDeck.length)%filteredDeck.length;renderCard()});
+document.querySelectorAll('.deck-controls button[data-filter]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.deck-controls button[data-filter]').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const f = b.dataset.filter;
+    filteredDeck = f==='all' ? [...cardData] : cardData.filter(c=>c.tema===f);
+    currentIndex = 0;
+    renderCard();
+  });
+});
+document.querySelector('[data-action="shuffle"]').addEventListener('click',()=>{
+  filteredDeck = filteredDeck.sort(()=>Math.random()-0.5);
+  currentIndex = 0;
+  renderCard();
+});
+renderCard();
+
+/* QUIZ */
+const quizQuestions = [
+  {q:'O território do Império Persa corresponde, hoje, basicamente a qual país?',o:['Iraque','Irã','Egito','Líbano'],correct:1,
+   ex:'O Império Persa ia da Mesopotâmia até o rio Indo — hoje corresponde basicamente ao <b>Irã</b>.'},
+  {q:'Quem é considerado o maior imperador persa?',o:['Ciro','Cambises','Dario I','Xerxes'],correct:2,
+   ex:'<b>Dario I</b> criou as satrápias, a Estrada Real, o correio Angarion e o dárico.'},
+  {q:'A religião persa, o Zoroastrismo, é caracterizada por:',o:['Politeísmo','Monoteísmo absoluto','Dualismo Bem × Mal','Culto aos antepassados'],correct:2,
+   ex:'<b>Dualismo</b>: <b>Ahura Mazda</b> (Bem) × <b>Arimã</b> (Mal). Livro: Avesta.'},
+  {q:'Qual conceito melhor define a organização política dos fenícios?',o:['Império centralizado','Cidades-estado independentes','Confederação tribal','Reino unificado'],correct:1,
+   ex:'Os fenícios <b>nunca formaram um império unificado</b>. Eram <b>cidades-estado</b> independentes (Biblos, Sidon, Tiro, Ugarit).'},
+  {q:'TALASSOCRACIA significa:',o:['Governo de filósofos','Poder pelo domínio do mar','Sistema politeísta','Aliança militar'],correct:1,
+   ex:'<b>Talassocracia</b> = poder ligado ao <b>mar</b>. Define perfeitamente os fenícios.'},
+  {q:'O maior legado dos fenícios para o Ocidente foi:',o:['O sistema postal','O alfabeto fonético','A democracia','A roda'],correct:1,
+   ex:'O <b>alfabeto fonético</b> — em que cada símbolo representa um som — é o ancestral do nosso alfabeto.'},
+  {q:'Qual a sequência correta dos 5 períodos da Grécia?',o:['Arcaico, Homérico, Pré-Homérico, Clássico, Helenístico','Pré-Homérico, Homérico, Arcaico, Clássico, Helenístico','Homérico, Pré-Homérico, Clássico, Arcaico, Helenístico','Pré-Homérico, Arcaico, Homérico, Helenístico, Clássico'],correct:1,
+   ex:'Pré-Homérico → Homérico → Arcaico → Clássico → Helenístico. Mnemônico: "<b>P</b>edro <b>H</b>oje <b>A</b>tirou <b>C</b>inco <b>H</b>elicópteros".'},
+  {q:'Em qual período surgem as cidades-estado (Pólis)?',o:['Pré-Homérico','Homérico','Arcaico','Clássico'],correct:2,
+   ex:'No <b>Período Arcaico</b> (séc. VIII–VI a.C.) surgem as Pólis. Atenas e Esparta consolidam-se.'},
+  {q:'O que caracterizava o GENOS no período Homérico?',o:['Empresa comercial','Comunidade agrária com laço familiar e posse comunitária da terra','Tribo guerreira nômade','Confederação militar entre cidades'],correct:1,
+   ex:'O <b>Genos</b> era uma <b>comunidade agrária</b> baseada no laço familiar, com posse comunitária da terra. Chefe: Pater Famílias.'},
+  {q:'As 3 partes da Pólis grega eram:',o:['Templo, palácio e mercado','Acrópole, Ágora e Asty','Palácio, ginásio e teatro','Forum, basílica e termas'],correct:1,
+   ex:'<b>Acrópole</b> (cidade alta, templo), <b>Ágora</b> (praça central, debates) e <b>Asty</b> (mercado).'},
+  {q:'Em Esparta, os HILOTAS eram:',o:['Cidadãos com plenos direitos políticos','Estrangeiros livres','Escravos privados de cidadãos','Escravos do Estado, ligados à terra'],correct:3,
+   ex:'<b>Hilotas</b> eram <b>escravos do Estado</b> espartano (NÃO privados, como em Atenas). Trabalhavam a terra dos esparciatas.'},
+  {q:'A formação militar espartana começava aos:',o:['5 anos','7 anos','12 anos','21 anos'],correct:1,
+   ex:'Aos <b>7 anos</b>, os meninos eram entregues ao exército. Aos 17: Kríptia. Aos 21: hoplita. Aos 30: cidadania.'},
+  {q:'Quem é considerado o "pai da democracia" em Atenas?',o:['Drácon','Sólon','Pisístrato','Clístenes'],correct:3,
+   ex:'<b>Clístenes</b> dividiu a Ática em 100 distritos, criou a Bulé e o ostracismo.'},
+  {q:'Quais os 4 órgãos políticos da democracia ateniense?',o:['Senado, Cônsules, Tribunos, Pretor','Eclésia, Bulé, Areópago, Estrategos','Diarquia, Gerúsia, Eforato, Apela','Assembleia, Câmara, Tribunal, Generais'],correct:1,
+   ex:'<b>Eclésia</b> (assembleia), <b>Bulé</b> (Conselho dos 500), <b>Areópago</b> (vitalício, religioso) e <b>Estrategos</b> (10 generais).'},
+  {q:'O OSTRACISMO em Atenas era:',o:['Pena de morte aplicada pelos arcontes','Exílio de 10 anos votado pelos cidadãos','Prisão por dívidas','Multa em moedas de prata'],correct:1,
+   ex:'<b>Ostracismo</b> = exílio de 10 anos, decidido por votação em pedaços de cerâmica (ostracos). Criação de Clístenes contra futuros tiranos.'},
+  {q:'Em Esparta, o sistema com 2 reis simultâneos chama-se:',o:['Eforato','Gerúsia','Diarquia','Apela'],correct:2,
+   ex:'<b>Diarquia</b> = 2 reis exercendo funções de liderança religiosa e militar. Não-hereditária.'},
+  {q:'A GERÚSIA espartana era formada por:',o:['10 estrategos','5 fiscais eleitos anualmente','28 anciãos com mais de 60 anos','100 representantes das famílias'],correct:2,
+   ex:'<b>Gerúsia</b> = Conselho dos Anciãos: <b>28 nobres</b> com mais de 60 anos (gerontes) que propunham leis e atuavam como juízes.'},
+  {q:'A Batalha das Termópilas é famosa por:',o:['A vitória ateniense que terminou a 1ª Guerra Médica','A resistência heroica de Leônidas e dos 300 espartanos','O fim da Guerra do Peloponeso','A morte de Alexandre, o Grande'],correct:1,
+   ex:'Em 480 a.C. (2ª Guerra Médica), o rei <b>Leônidas</b> e os <b>300 espartanos</b> resistiram heroicamente aos persas, mas a passagem foi tomada.'},
+  {q:'A Guerra do Peloponeso foi vencida por:',o:['Atenas','Esparta','Tebas','Macedônia'],correct:1,
+   ex:'<b>Esparta</b> derrotou Atenas na batalha de Égos-Potamos, após cerca de 27 anos de guerra.'},
+  {q:'Os Jogos Olímpicos antigos eram realizados:',o:['Em Atenas, em homenagem a Atena','Em Olímpia, em homenagem a Zeus','Em Delfos, em homenagem a Apolo','Em Esparta, em homenagem a Ares'],correct:1,
+   ex:'Os Jogos Olímpicos aconteciam em <b>Olímpia</b>, em homenagem a <b>Zeus</b>, a cada 4 anos a partir de 776 a.C.'},
+  {q:'Qual filósofo grego foi mentor de Alexandre, o Grande?',o:['Sócrates','Platão','Aristóteles','Tales de Mileto'],correct:2,
+   ex:'<b>Aristóteles</b> foi mentor de Alexandre. Ele havia sido discípulo de Platão, que por sua vez foi discípulo de Sócrates.'},
+  {q:'Os 3 estilos de coluna grega são:',o:['Toscano, Compósito, Romano','Dórica, Jônica, Coríntia','Egípcia, Persa, Grega','Alta, Média, Baixa'],correct:1,
+   ex:'<b>Dórica</b> (simples, robusta), <b>Jônica</b> (volutas) e <b>Coríntia</b> (folhas de acanto).'},
+];
+
+let qIdx = 0, qScore = 0, qAnswered = false;
+function renderQ(){
+  const q = quizQuestions[qIdx];
+  if(!q) return finishQuiz();
+  qAnswered = false;
+  document.getElementById('qProgress').textContent = `Pergunta ${qIdx+1} / ${quizQuestions.length}`;
+  document.getElementById('qScore').textContent = `Acertos: ${qScore}`;
+  document.getElementById('qBar').style.width = ((qIdx)/quizQuestions.length*100)+'%';
+  document.getElementById('qText').textContent = q.q;
+  const opts = document.getElementById('qOptions');
+  opts.innerHTML = '';
+  q.o.forEach((opt,i)=>{
+    const b = document.createElement('button');
+    b.textContent = String.fromCharCode(65+i)+'. '+opt;
+    b.addEventListener('click',()=>answer(i,b));
+    opts.appendChild(b);
+  });
+  document.getElementById('qFeedback').className = 'quiz-feedback';
+  document.getElementById('qFeedback').innerHTML = '';
+  document.getElementById('qNext').style.display = 'none';
+}
+function answer(i,btn){
+  if(qAnswered) return;
+  qAnswered = true;
+  const q = quizQuestions[qIdx];
+  const opts = document.getElementById('qOptions').querySelectorAll('button');
+  opts.forEach(b=>b.classList.add('disabled'));
+  if(i===q.correct){
+    btn.classList.add('correct');
+    qScore++;
+    document.getElementById('qFeedback').className = 'quiz-feedback show right-fb';
+    document.getElementById('qFeedback').innerHTML = '✅ <b>Correto!</b> '+q.ex;
+  }else{
+    btn.classList.add('wrong');
+    opts[q.correct].classList.add('correct');
+    document.getElementById('qFeedback').className = 'quiz-feedback show wrong-fb';
+    document.getElementById('qFeedback').innerHTML = '❌ <b>Não foi essa.</b> '+q.ex;
+  }
+  document.getElementById('qScore').textContent = `Acertos: ${qScore}`;
+  document.getElementById('qNext').style.display = 'inline-block';
+}
+document.getElementById('qNext').addEventListener('click',()=>{
+  qIdx++;
+  if(qIdx>=quizQuestions.length) finishQuiz();
+  else renderQ();
+});
+function finishQuiz(){
+  const pct = Math.round(qScore/quizQuestions.length*100);
+  let msg = '';
+  if(pct>=90) msg = '🏆 Mandou bem demais! Pronto pra prova.';
+  else if(pct>=70) msg = '✨ Muito bom! Reveja os pontos errados nos flashcards.';
+  else if(pct>=50) msg = '📘 No caminho — releia o "Conteúdo Detalhado".';
+  else msg = '💪 Vamos de novo: estude o mapa mental + flashcards.';
+  document.getElementById('qBar').style.width = '100%';
+  document.getElementById('quizWrap').innerHTML = `
+    <div class="quiz-final">
+      <div class="score-num">${qScore}/${quizQuestions.length}</div>
+      <h3>${pct}% de acerto</h3>
+      <p>${msg}</p>
+      <button onclick="location.reload()">🔁 Refazer o quiz</button>
+    </div>`;
+}
+renderQ();
+</script>
+</body>
+</html>
