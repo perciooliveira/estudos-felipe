@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filosofia P1T2 — Hobbes, Locke, Rousseau, Liberais, Kant | Material de Estudo</title>
+<style>
+:root{
+  --bg-1:#1a0f2e;
+  --bg-2:#2d1b47;
+  --bg-3:#1f1234;
+  --hobbes:#e63946;
+  --hobbes-glow:rgba(230,57,70,.35);
+  --locke:#2a9d8f;
+  --locke-glow:rgba(42,157,143,.35);
+  --rousseau:#57a773;
+  --rousseau-glow:rgba(87,167,115,.35);
+  --liberais:#f4a261;
+  --liberais-glow:rgba(244,162,97,.35);
+  --kant:#8338ec;
+  --kant-glow:rgba(131,56,236,.35);
+  --gold:#ffd166;
+  --ink:#f8f5ff;
+  --ink-dim:#c0b8d4;
+  --card:#1e1436;
+  --card-2:#28194a;
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+  --correct:#2ecc71;
+  --wrong:#e74c3c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--bg-1),var(--bg-3) 50%,var(--bg-2));
+  background-attachment:fixed;
+  min-height:100vh;line-height:1.55;
+}
+.container{max-width:1100px;margin:0 auto;padding:18px 18px 80px}
+
+.hub-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-radius:12px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.hub-bar a{
+  color:var(--ink-dim);text-decoration:none;font-size:.86rem;
+  display:inline-flex;align-items:center;gap:6px;font-weight:600;
+  transition:color .2s;
+}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{
+  font-size:.8rem;color:var(--kant);font-weight:700;
+  background:var(--kant-glow);padding:4px 10px;border-radius:6px;
+  letter-spacing:1px;
+}
+
+header.hero{
+  text-align:center;padding:30px 16px 20px;
+  background:radial-gradient(circle at 20% 30%,var(--hobbes-glow),transparent 45%),
+             radial-gradient(circle at 80% 70%,var(--kant-glow),transparent 45%);
+  border-radius:20px;margin-bottom:14px;position:relative;overflow:hidden;
+}
+header.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><text x='10' y='40' font-family='Georgia' font-style='italic' font-size='16' fill='rgba(255,209,102,.08)'>Sapere aude</text></svg>");
+  opacity:.5;pointer-events:none;
+}
+header.hero h1{
+  font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:1px;
+  background:linear-gradient(90deg,var(--hobbes),var(--gold),var(--kant));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:800;
+}
+header.hero p{margin-top:6px;color:var(--ink-dim);font-size:.92rem}
+.subtitle-tag{
+  display:inline-block;margin-top:12px;padding:6px 14px;
+  background:rgba(255,209,102,.15);border:1px solid var(--gold);
+  border-radius:999px;color:var(--gold);font-size:.76rem;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+
+nav.tabs{
+  display:flex;flex-wrap:wrap;gap:8px;
+  margin:14px 0;justify-content:center;
+  position:sticky;top:0;z-index:10;
+  background:rgba(26,15,46,.92);backdrop-filter:blur(10px);
+  padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,.06);
+}
+nav.tabs button{
+  background:transparent;color:var(--ink-dim);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 14px;border-radius:10px;
+  cursor:pointer;font-size:.84rem;
+  transition:all .25s;font-weight:600;
+}
+nav.tabs button:hover{transform:translateY(-2px);color:var(--ink)}
+nav.tabs button.active{
+  background:linear-gradient(90deg,var(--hobbes),var(--kant));
+  color:white;border-color:transparent;
+  box-shadow:0 4px 18px rgba(131,56,236,.4);
+}
+
+section.tab-content{display:none;animation:fadeIn .4s ease}
+section.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h2.section-title{font-size:1.5rem;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+h2.section-title .ico{
+  width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--hobbes),var(--kant));
+  border-radius:10px;font-size:1.2rem;
+}
+
+/* OVERVIEW */
+.modules-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:12px;margin-top:14px;
+}
+.module-card{
+  padding:16px;border-radius:14px;
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+  transition:transform .3s;
+}
+.module-card:hover{transform:translateY(-4px)}
+.module-card.hobbes{border-top:4px solid var(--hobbes)}
+.module-card.locke{border-top:4px solid var(--locke)}
+.module-card.rousseau{border-top:4px solid var(--rousseau)}
+.module-card.liberais{border-top:4px solid var(--liberais)}
+.module-card.kant{border-top:4px solid var(--kant)}
+.module-card .badge{
+  display:inline-block;padding:3px 9px;border-radius:6px;
+  font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;
+}
+.module-card.hobbes .badge{background:var(--hobbes-glow);color:var(--hobbes)}
+.module-card.locke .badge{background:var(--locke-glow);color:var(--locke)}
+.module-card.rousseau .badge{background:var(--rousseau-glow);color:var(--rousseau)}
+.module-card.liberais .badge{background:var(--liberais-glow);color:var(--liberais)}
+.module-card.kant .badge{background:var(--kant-glow);color:var(--kant)}
+.module-card h3{font-size:1.05rem;margin-bottom:6px}
+.module-card p{color:var(--ink-dim);font-size:.86rem}
+.module-card .qs{
+  display:inline-block;margin-top:8px;font-size:.75rem;
+  background:rgba(255,209,102,.1);color:var(--gold);
+  padding:3px 10px;border-radius:6px;font-weight:700;
+}
+.module-card .emoji{font-size:2rem;float:right;opacity:.85;margin-top:-4px}
+
+.criterio-box{
+  margin-top:16px;padding:16px 20px;
+  background:linear-gradient(90deg,rgba(255,209,102,.1),transparent);
+  border-left:4px solid var(--gold);border-radius:10px;
+}
+.criterio-box h4{color:var(--gold);margin-bottom:8px;font-size:.98rem}
+.criterio-box ul{padding-left:20px;color:var(--ink-dim);font-size:.86rem}
+.criterio-box li{margin:5px 0}
+
+.note{
+  background:rgba(255,209,102,.08);border-left:3px solid var(--gold);
+  padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0;
+}
+.warning{
+  background:rgba(230,57,70,.08);border-left:3px solid var(--hobbes);
+  padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0;
+}
+
+/* JOGO DA MEMÓRIA - Filósofos */
+.philosophers-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:12px;margin-top:14px;
+}
+.phil-card{
+  background:linear-gradient(135deg,var(--card),var(--card-2));
+  border-radius:14px;padding:16px;
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+.phil-card .name{
+  font-family:'Georgia', serif;font-size:1.4rem;font-weight:800;
+  color:var(--gold);margin-bottom:6px;letter-spacing:.5px;
+}
+.phil-card .concept{
+  font-style:italic;color:var(--ink);font-size:.9rem;
+  margin-top:6px;
+}
+.phil-card .lbl{
+  font-size:.66rem;text-transform:uppercase;letter-spacing:1px;
+  color:var(--ink-dim);font-weight:700;
+}
+.phil-card.hobbes{border-top:3px solid var(--hobbes)}
+.phil-card.locke{border-top:3px solid var(--locke)}
+.phil-card.rousseau{border-top:3px solid var(--rousseau)}
+.phil-card.montesquieu, .phil-card.voltaire, .phil-card.smith{border-top:3px solid var(--liberais)}
+.phil-card.kant{border-top:3px solid var(--kant)}
+
+/* EXERCÍCIOS */
+.mod-filter{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0;
+}
+.mod-filter button{
+  background:var(--card);color:var(--ink);
+  border:1px solid rgba(255,255,255,.1);
+  padding:8px 14px;border-radius:10px;
+  cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s;
+}
+.mod-filter button:hover{background:var(--card-2);transform:translateY(-2px)}
+.mod-filter button.hobbes{border-color:var(--hobbes);color:var(--hobbes)}
+.mod-filter button.locke{border-color:var(--locke);color:var(--locke)}
+.mod-filter button.rousseau{border-color:var(--rousseau);color:var(--rousseau)}
+.mod-filter button.liberais{border-color:var(--liberais);color:var(--liberais)}
+.mod-filter button.kant{border-color:var(--kant);color:var(--kant)}
+.mod-filter button.hobbes.active{background:var(--hobbes);color:white}
+.mod-filter button.locke.active{background:var(--locke);color:white}
+.mod-filter button.rousseau.active{background:var(--rousseau);color:white}
+.mod-filter button.liberais.active{background:var(--liberais);color:white}
+.mod-filter button.kant.active{background:var(--kant);color:white}
+.mod-filter button.all.active{background:var(--gold);color:#1a0f2e;border-color:var(--gold)}
+
+.exercise{
+  background:var(--card);border-radius:14px;
+  padding:18px 20px;margin-bottom:14px;
+  border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);
+  border-left:4px solid var(--gold);
+}
+.exercise.hobbes{border-left-color:var(--hobbes)}
+.exercise.locke{border-left-color:var(--locke)}
+.exercise.rousseau{border-left-color:var(--rousseau)}
+.exercise.liberais{border-left-color:var(--liberais)}
+.exercise.kant{border-left-color:var(--kant)}
+.exercise-header{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:10px;flex-wrap:wrap;margin-bottom:10px;
+}
+.exercise-header .num{
+  font-size:1.1rem;font-weight:800;color:var(--gold);
+}
+.exercise.hobbes .num{color:var(--hobbes)}
+.exercise.locke .num{color:var(--locke)}
+.exercise.rousseau .num{color:var(--rousseau)}
+.exercise.liberais .num{color:var(--liberais)}
+.exercise.kant .num{color:var(--kant)}
+.exercise-header .tags{display:flex;gap:6px;flex-wrap:wrap}
+.exercise-header .tag{
+  font-size:.7rem;padding:3px 8px;border-radius:6px;
+  background:rgba(255,255,255,.06);color:var(--ink-dim);
+  font-weight:700;letter-spacing:.5px;
+}
+.exercise-header .tag.mod{background:rgba(255,209,102,.12);color:var(--gold)}
+.exercise-header .tag.src{background:rgba(255,255,255,.08);color:var(--ink)}
+.exercise-statement{
+  color:var(--ink);font-size:.92rem;line-height:1.6;
+  margin-bottom:10px;
+}
+.exercise-statement .quote{
+  display:block;font-style:italic;color:var(--ink-dim);
+  border-left:3px solid rgba(255,255,255,.15);
+  padding:8px 14px;margin:10px 0;background:rgba(0,0,0,.15);
+  border-radius:0 8px 8px 0;font-size:.9rem;
+}
+.exercise-statement .source{
+  display:block;font-size:.78rem;color:var(--ink-dim);
+  text-align:right;margin-top:6px;font-style:italic;
+}
+.alternatives{list-style:none;margin:12px 0}
+.alternatives li{
+  padding:8px 12px 8px 30px;margin:4px 0;border-radius:8px;
+  background:rgba(0,0,0,.15);position:relative;
+  font-size:.88rem;color:var(--ink-dim);cursor:pointer;
+  transition:all .2s;border:1px solid transparent;
+}
+.alternatives li:hover{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1)}
+.alternatives li::before{
+  content:attr(data-letter);position:absolute;left:10px;
+  font-weight:800;color:var(--gold);
+}
+.alternatives li.reveal.correct{
+  background:rgba(46,204,113,.18);
+  border-color:var(--correct);color:#c6f5d6;
+}
+.alternatives li.reveal.correct::before{content:"✓ "attr(data-letter);color:var(--correct)}
+.alternatives li.reveal.wrong{
+  background:rgba(231,76,60,.08);
+  border-color:rgba(231,76,60,.3);opacity:.6;
+}
+.answer-block{
+  display:none;margin-top:12px;padding:14px 16px;
+  background:linear-gradient(90deg,rgba(46,204,113,.1),rgba(46,204,113,.02));
+  border-left:3px solid var(--correct);border-radius:8px;
+}
+.answer-block.show{display:block}
+.answer-block h4{color:var(--correct);font-size:.9rem;margin-bottom:6px;letter-spacing:.5px}
+.answer-block h4 .letter{
+  display:inline-block;background:var(--correct);color:#0a2a15;
+  padding:2px 10px;border-radius:6px;margin-left:6px;font-weight:800;
+}
+.answer-block p{color:var(--ink-dim);font-size:.86rem;margin-top:6px}
+.answer-block p b{color:var(--ink)}
+.exercise-actions{
+  display:flex;justify-content:flex-end;margin-top:8px;
+}
+.exercise-actions button{
+  background:linear-gradient(135deg,var(--hobbes),var(--kant));
+  color:white;border:none;padding:7px 16px;border-radius:8px;
+  cursor:pointer;font-weight:700;font-size:.82rem;
+  transition:transform .2s;
+}
+.exercise-actions button:hover{transform:translateY(-1px)}
+.exercise-actions button.hide{
+  background:rgba(255,255,255,.08);color:var(--ink-dim);
+}
+
+/* DISCURSIVA */
+.exercise.discursiva .alternatives{display:none}
+.exercise.discursiva .prompt{
+  background:linear-gradient(90deg,rgba(131,56,236,.1),transparent);
+  border-left:3px solid var(--kant);border-radius:8px;
+  padding:10px 14px;margin-top:10px;
+  font-weight:600;color:var(--ink);font-size:.9rem;
+}
+
+/* RESUMO */
+.summary-section{margin-top:20px}
+.summary-card{
+  background:var(--card);padding:18px 20px;border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);margin-bottom:12px;box-shadow:var(--shadow);
+}
+.summary-card h3{
+  display:flex;align-items:center;gap:10px;margin-bottom:8px;
+  font-size:1.1rem;
+}
+.summary-card h3 .b{
+  font-size:.72rem;padding:3px 8px;border-radius:6px;font-weight:700;
+}
+.summary-card.hobbes{border-left:4px solid var(--hobbes)}
+.summary-card.hobbes h3{color:var(--hobbes)}
+.summary-card.hobbes h3 .b{background:var(--hobbes-glow);color:var(--hobbes)}
+.summary-card.locke{border-left:4px solid var(--locke)}
+.summary-card.locke h3{color:var(--locke)}
+.summary-card.locke h3 .b{background:var(--locke-glow);color:var(--locke)}
+.summary-card.rousseau{border-left:4px solid var(--rousseau)}
+.summary-card.rousseau h3{color:var(--rousseau)}
+.summary-card.rousseau h3 .b{background:var(--rousseau-glow);color:var(--rousseau)}
+.summary-card.liberais{border-left:4px solid var(--liberais)}
+.summary-card.liberais h3{color:var(--liberais)}
+.summary-card.liberais h3 .b{background:var(--liberais-glow);color:var(--liberais)}
+.summary-card.kant{border-left:4px solid var(--kant)}
+.summary-card.kant h3{color:var(--kant)}
+.summary-card.kant h3 .b{background:var(--kant-glow);color:var(--kant)}
+.summary-card p{color:var(--ink-dim);font-size:.9rem;margin-bottom:6px}
+.summary-card ul{padding-left:20px;color:var(--ink-dim);font-size:.88rem}
+.summary-card ul li{margin:4px 0}
+.summary-card ul li b{color:var(--ink)}
+.summary-card .quote{
+  font-style:italic;color:var(--gold);
+  border-left:3px solid var(--gold);
+  padding:6px 12px;margin:8px 0;
+  background:rgba(255,209,102,.05);border-radius:0 6px 6px 0;
+  font-size:.86rem;
+}
+
+footer{
+  text-align:center;color:var(--ink-dim);font-size:.78rem;
+  margin-top:30px;padding:14px;border-top:1px solid rgba(255,255,255,.06);
+}
+footer .heart{color:var(--hobbes)}
+
+/* HIDDEN filter */
+.exercise.hidden{display:none}
+
+.tip-alert{
+  background:linear-gradient(90deg,rgba(255,209,102,.14),rgba(255,209,102,.04));
+  border-left:4px solid var(--gold);
+  padding:14px 18px;border-radius:10px;margin-bottom:14px;
+}
+.tip-alert h4{color:var(--gold);font-size:.95rem;margin-bottom:4px}
+.tip-alert p{color:var(--ink);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hub-bar">
+  <a href="index.html">← Hub de matérias</a>
+  <span class="subj">🏛️ FILOSOFIA</span>
+  <a href="estudo_historia_p2t1.html">História →</a>
+</div>
+
+<header class="hero">
+  <h1>Filosofia — P1T2</h1>
+  <p>Hobbes, Locke, Rousseau, os liberais e Kant. Foco nos exercícios do roteiro.</p>
+  <span class="subtitle-tag">Exercícios · Filósofos · Resumo</span>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-tab="overview" class="active">Visão Geral</button>
+  <button data-tab="filosofos">Filósofos-Chave</button>
+  <button data-tab="exercicios">Exercícios do Roteiro</button>
+  <button data-tab="resumo">Resumo dos Módulos</button>
+</nav>
+
+<!-- VISÃO GERAL -->
+<section class="tab-content active" id="overview">
+  <h2 class="section-title"><span class="ico">📚</span>Visão Geral</h2>
+  <p style="color:var(--ink-dim);max-width:820px">
+    A prova cobre os pensadores modernos que discutiram <b>estado de natureza</b>, <b>contrato social</b>, <b>liberdade</b>, <b>governo</b> e <b>ética</b>. O foco principal do estudo são os <b>exercícios listados no roteiro</b> — segundo o professor, pelo menos um de cada módulo cai na prova exatamente como está no livro.
+  </p>
+
+  <div class="modules-grid">
+    <div class="module-card hobbes">
+      <span class="emoji">👑</span>
+      <span class="badge">MÓDULO 20</span>
+      <h3>Hobbes e o Leviatã</h3>
+      <p>Estado de natureza como guerra de todos contra todos. Contrato → Leviatã.</p>
+      <span class="qs">Q. 1, 3, 7, 8, 9</span>
+    </div>
+    <div class="module-card locke">
+      <span class="emoji">📜</span>
+      <span class="badge">MÓDULO 21</span>
+      <h3>Iluminismo e Locke</h3>
+      <p>Direitos naturais: vida, liberdade, propriedade. Governo limitado, consentimento.</p>
+      <span class="qs">Q. 1, 2, 6, 7, 9</span>
+    </div>
+    <div class="module-card rousseau">
+      <span class="emoji">🌿</span>
+      <span class="badge">MÓDULO 23</span>
+      <h3>Rousseau</h3>
+      <p>Bom selvagem, crítica à desigualdade, vontade geral e contrato social.</p>
+      <span class="qs">Q. 2, 5, 6, 7, 9</span>
+    </div>
+    <div class="module-card liberais">
+      <span class="emoji">⚖️</span>
+      <span class="badge">MÓDULO 22</span>
+      <h3>Filósofos Liberais</h3>
+      <p>Montesquieu (poderes), Adam Smith (mercado), Voltaire (razão).</p>
+      <span class="qs">Q. 1, 2, 7, 8, 9</span>
+    </div>
+    <div class="module-card kant">
+      <span class="emoji">🧭</span>
+      <span class="badge">MÓDULO 26</span>
+      <h3>Ética Kantiana</h3>
+      <p>Imperativo categórico, autonomia moral, dever e esclarecimento.</p>
+      <span class="qs">Q. 1, 7, 8, 9, 14</span>
+    </div>
+  </div>
+
+  <div class="tip-alert">
+    <h4>🎯 Dica do professor</h4>
+    <p>O professor Gustavo Passos sinalizou que <b>pelo menos um exercício de cada módulo</b> vai cair na prova exatamente como está no livro. Foco total nos exercícios do roteiro — reveja cada um deles até dominar a resposta.</p>
+  </div>
+
+  <div class="criterio-box">
+    <h4>📋 Critérios de avaliação (do roteiro)</h4>
+    <ul>
+      <li><b>Mód. 20:</b> conceito de estado de natureza em Hobbes, "o homem é o lobo do homem", contrato social, Leviatã.</li>
+      <li><b>Mód. 21:</b> características do Iluminismo (razão, liberdade, crítica ao absolutismo); direitos naturais de Locke (vida, liberdade, propriedade); governo limitado e consentimento.</li>
+      <li><b>Mód. 23:</b> crítica de Rousseau à desigualdade; contrato social e liberdade política.</li>
+      <li><b>Mód. 22:</b> princípios do liberalismo político e econômico; liberdades individuais, propriedade privada, limitação do Estado.</li>
+      <li><b>Mód. 26:</b> imperativo categórico; autonomia moral e dever; esclarecimento como uso público da razão.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FILÓSOFOS -->
+<section class="tab-content" id="filosofos">
+  <h2 class="section-title"><span class="ico">🧠</span>Filósofos & Conceitos-Chave</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Do jogo da memória: cada filósofo com seu conceito assinatura. Memorize esses pares — são a base para acertar qualquer questão sobre autor.</p>
+
+  <div class="philosophers-grid">
+    <div class="phil-card hobbes">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Hobbes</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Estado de Natureza (guerra de todos contra todos)</div>
+    </div>
+    <div class="phil-card locke">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Locke</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Direitos Naturais (vida, liberdade, propriedade)</div>
+    </div>
+    <div class="phil-card rousseau">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Rousseau</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Vontade Geral</div>
+    </div>
+    <div class="phil-card montesquieu">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Montesquieu</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Separação dos Poderes</div>
+    </div>
+    <div class="phil-card voltaire">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Voltaire</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Liberdade de Expressão</div>
+    </div>
+    <div class="phil-card smith">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Adam Smith</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Mão Invisível do mercado</div>
+    </div>
+    <div class="phil-card kant">
+      <div class="lbl">Filósofo</div>
+      <div class="name">Kant</div>
+      <div class="lbl" style="margin-top:8px">Conceito-chave</div>
+      <div class="concept">Imperativo Categórico</div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:14px">📌 <b>Truque de identificação rápida:</b> se o texto fala em "guerra" ou "medo" → <b>Hobbes</b>. Fala em "propriedade" como direito natural → <b>Locke</b>. Fala em "desigualdade" ou "bom selvagem" → <b>Rousseau</b>. "Três poderes" → <b>Montesquieu</b>. "Máxima universal" ou "dever" → <b>Kant</b>. "Mercado livre" → <b>Adam Smith</b>. "Razão contra fanatismo" → <b>Voltaire</b>.</div>
+</section>
+
+<!-- EXERCÍCIOS -->
+<section class="tab-content" id="exercicios">
+  <h2 class="section-title"><span class="ico">✏️</span>Exercícios do Roteiro</h2>
+  <p style="color:var(--ink-dim);margin-bottom:6px">Enunciados transcritos exatamente como aparecem no livro. Clique em "Ver resposta" para revelar a alternativa correta e a explicação.</p>
+
+  <div class="mod-filter">
+    <button class="all active" data-filter="all">Todos</button>
+    <button class="hobbes" data-filter="hobbes">👑 Hobbes</button>
+    <button class="locke" data-filter="locke">📜 Locke</button>
+    <button class="rousseau" data-filter="rousseau">🌿 Rousseau</button>
+    <button class="liberais" data-filter="liberais">⚖️ Liberais</button>
+    <button class="kant" data-filter="kant">🧭 Kant</button>
+  </div>
+
+  <div id="exercisesList">
+
+    <!-- ===== HOBBES / MÓDULO 20 ===== -->
+
+    <div class="exercise hobbes" data-mod="hobbes">
+      <div class="exercise-header">
+        <span class="num">Questão 1</span>
+        <div class="tags"><span class="tag mod">MÓD. 20</span><span class="tag src">UFSJ</span></div>
+      </div>
+      <div class="exercise-statement">
+        Em Hobbes, a geração de um Estado é justificada
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">pelos limites impostos ao poder do soberano.</li>
+        <li data-letter="b)">pela condição política dos homens, que é inerente ao espaço da ágora na vida da pólis.</li>
+        <li data-letter="c)">pelo Leviatã na sua identificação como monstro maléfico da guerra civil.</li>
+        <li data-letter="d)" data-correct="1">pelo estado de natureza dos homens, que necessita ser controlado por meio de um pacto.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">D</span></h4>
+        <p>Para Hobbes, os homens vivem em <b>estado de natureza</b> (guerra de todos contra todos) e precisam abrir mão de parte da liberdade num <b>pacto/contrato</b> que gera o Estado (Leviatã), único capaz de garantir ordem e segurança.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise hobbes" data-mod="hobbes">
+      <div class="exercise-header">
+        <span class="num">Questão 3</span>
+        <div class="tags"><span class="tag mod">MÓD. 20</span><span class="tag src">UFU</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">"[...] a condição dos homens fora da sociedade civil (condição esta que podemos adequadamente chamar de estado de natureza) nada mais é do que uma simples guerra de todos contra todos na qual todos os homens têm igual direito a todas as coisas; [...]"<span class="source">HOBBES, Thomas. Do Cidadão. Campinas: Martins Fontes, 1992.</span></span>
+        De acordo com o trecho acima e com o pensamento de Hobbes, assinale a alternativa correta.
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)" data-correct="1">Segundo Hobbes, o estado de natureza se confunde com o estado de guerra, pois ambos são uma condição original da existência humana.</li>
+        <li data-letter="b)">Para Hobbes, o direito dos homens a todas as coisas está desvinculado da guerra de todos contra todos.</li>
+        <li data-letter="c)">Segundo Hobbes, é necessário que a condição humana seja analisada sempre como se os homens vivessem em sociedade.</li>
+        <li data-letter="d)">Segundo Hobbes, não há vínculo entre o estado de natureza e a sociedade civil.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">A</span></h4>
+        <p>O próprio trecho define: estado de natureza = <b>guerra de todos contra todos</b>. Em Hobbes, os dois conceitos coincidem — é a condição pré-política em que os homens têm direito a tudo, gerando conflito.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise hobbes" data-mod="hobbes">
+      <div class="exercise-header">
+        <span class="num">Questão 7</span>
+        <div class="tags"><span class="tag mod">MÓD. 20</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">"A natureza fez os homens tão iguais, quanto às faculdades do corpo e do espírito, que, embora por vezes se encontre um homem manifestamente mais forte de corpo, ou de espírito mais vivo do que outro, mesmo assim, quando se considera tudo isto em conjunto, a diferença entre um e outro homem não é suficientemente considerável para que um deles possa com base nela reclamar algum benefício a que outro não possa igualmente aspirar."<span class="source">HOBBES, T. Leviatã. São Paulo: Martins Fontes, 2003.</span></span>
+        Para Hobbes, antes da constituição da sociedade civil, quando dois homens desejavam o mesmo objeto, eles
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)" data-correct="1">entravam em conflito.</li>
+        <li data-letter="b)">recorriam aos clérigos.</li>
+        <li data-letter="c)">consultavam os anciãos.</li>
+        <li data-letter="d)">apelavam aos governantes.</li>
+        <li data-letter="e)">exerciam a solidariedade.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">A</span></h4>
+        <p>Como todos são iguais em capacidades e há escassez de bens, quando dois homens desejam o mesmo objeto no estado de natureza (sem árbitro comum), <b>entram em conflito</b>. É o que gera a guerra de todos contra todos.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise hobbes" data-mod="hobbes">
+      <div class="exercise-header">
+        <span class="num">Questão 8</span>
+        <div class="tags"><span class="tag mod">MÓD. 20</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">A importância do argumento de Hobbes está em parte no fato de que ele se ampara em suposições bastante plausíveis sobre as condições normais da vida humana. Para exemplificar: o argumento não supõe que todos sejam de fato movidos por orgulho e vaidade para buscar o domínio sobre os outros; essa seria uma suposição discutível que possibilitaria a conclusão pretendida por Hobbes, mas de modo fácil demais. O que torna o argumento assustador e lhe atribui importância e força dramática é que ele acredita que pessoas normais, até mesmo as mais agradáveis, podem ser inadvertidamente lançadas nesse tipo de situação, que resvalará, então, em um estado de guerra.<span class="source">RAWLS, J. Conferências sobre a história da filosofia política. São Paulo: WMF, 2012 (adaptado).</span></span>
+        O texto apresenta uma concepção de filosofia política conhecida como
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">alienação ideológica.</li>
+        <li data-letter="b)">microfísica do poder.</li>
+        <li data-letter="c)" data-correct="1">estado de natureza.</li>
+        <li data-letter="d)">contrato social.</li>
+        <li data-letter="e)">vontade geral.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">C</span></h4>
+        <p>Rawls está falando exatamente da hipótese hobbesiana do <b>estado de natureza</b>: mesmo pessoas comuns podem, sem quererem, ser lançadas em estado de guerra. Não é sobre orgulho ou vaidade especial — é a condição estrutural sem poder soberano.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise hobbes" data-mod="hobbes">
+      <div class="exercise-header">
+        <span class="num">Questão 9</span>
+        <div class="tags"><span class="tag mod">MÓD. 20</span><span class="tag src">UNESP</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">A China é a segunda maior economia do mundo. Quer garantir a hegemonia no seu quintal, como fizeram os Estados Unidos no Caribe depois da guerra civil. As Filipinas temem por um atol de rochas desabitado que disputam com a China. O Japão está de plantão por umas ilhotas de pedra e vento, que a China diz que lhe pertencem. Mesmo o Vietnã desconfia mais da China do que dos Estados Unidos.<span class="source">André Petry. O Século do Pacífico. Veja, 24.04.2013. Adaptado.</span></span>
+        A persistência histórica dos conflitos geopolíticos descritos na reportagem pode ser filosoficamente compreendida pela teoria
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">iluminista, que preconiza a possibilidade de um estado de emancipação racional da humanidade.</li>
+        <li data-letter="b)">maquiavélica, que postula o encontro da virtude com a fortuna como princípios básicos da geopolítica.</li>
+        <li data-letter="c)">política de Rousseau, para quem a submissão à vontade geral é condição para experiências de liberdade.</li>
+        <li data-letter="d)">teológica de Santo Agostinho, que considera que o processo de iluminação divina afasta os homens do pecado.</li>
+        <li data-letter="e)" data-correct="1">política de Hobbes, que conceitua a competição e a desconfiança como condições básicas da natureza humana.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">E</span></h4>
+        <p>A "competição" (China buscando hegemonia) e a "desconfiança" (o Vietnã "desconfia mais da China") são exatamente as duas causas de conflito que Hobbes lista no <i>Leviatã</i>: competição, desconfiança e glória. Sem um Leviatã global, o cenário internacional é análogo ao estado de natureza.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <!-- ===== LOCKE / MÓDULO 21 ===== -->
+
+    <div class="exercise locke" data-mod="locke">
+      <div class="exercise-header">
+        <span class="num">Questão 1</span>
+        <div class="tags"><span class="tag mod">MÓD. 21</span><span class="tag src">PUCCAMP</span></div>
+      </div>
+      <div class="exercise-statement">
+        Faz parte das características do pensamento liberal europeu, no século XIX, a defesa
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">da liberdade de imprensa e de ações afirmativas visando à reparação estatal a grupos discriminados.</li>
+        <li data-letter="b)">da distribuição equitativa de riquezas e do estado de bem-estar social.</li>
+        <li data-letter="c)" data-correct="1">do livre cambismo e do direito à propriedade privada.</li>
+        <li data-letter="d)">da liberdade de culto e do mutualismo.</li>
+        <li data-letter="e)">da nacionalização dos meios de produção e da doutrina do destino manifesto.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">C</span></h4>
+        <p>O liberalismo clássico do XIX defende <b>livre cambismo</b> (comércio livre entre nações, sem tarifas) e <b>propriedade privada</b> como direito natural (Locke, Smith). As outras opções misturam ideias socialistas, ações afirmativas contemporâneas ou nacionalismos que não são liberais.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise locke" data-mod="locke">
+      <div class="exercise-header">
+        <span class="num">Questão 2</span>
+        <div class="tags"><span class="tag mod">MÓD. 21</span><span class="tag src">PUCCAMP</span></div>
+      </div>
+      <div class="exercise-statement">
+        A elite intelectual a que o texto se refere foi responsável pela organização e publicação do mais importante veículo de divulgação das ideias do Iluminismo, no século XVIII: a <i>Enciclopédia</i>. Essa obra de inspiração racionalista,
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)" data-correct="1">defendia a teoria de que a economia deveria funcionar por suas próprias leis e na eliminação da intervenção do Estado sobre os negócios comerciais que entravava as aduanas internas.</li>
+        <li data-letter="b)">estabelecia a tese segundo a qual as estruturas sociais eram determinadas pelas circunstâncias ambientais e pela liberdade como direito incontestável de todos os homens da época.</li>
+        <li data-letter="c)">afirmava que a única esperança de garantir os direitos de cada um seria ceder todos esses direitos à comunidade civil para que um governasse de acordo com as ideias dos filósofos iluministas.</li>
+        <li data-letter="d)">defendia uma monarquia absolutista moderada por um governo baseado na razão e no ideário político e social vigente na época e não mais pelos pressupostos religiosos divulgados pela Igreja.</li>
+        <li data-letter="e)">propunha, de maneira geral, a imediata autonomização da Igreja em relação ao Estado e o combate às superstições e às diversas manifestações do pensamento dogmático eclesiástico.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">A</span></h4>
+        <p>Os enciclopedistas (Diderot, D'Alembert) eram próximos dos fisiocratas e defendiam o <b>laissez-faire</b>: economia com leis próprias e sem intervenção estatal (fim das aduanas internas). As outras opções distorcem posições iluministas ou invertem conceitos.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise locke" data-mod="locke">
+      <div class="exercise-header">
+        <span class="num">Questão 6</span>
+        <div class="tags"><span class="tag mod">MÓD. 21</span><span class="tag src">UNESP</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">Todos os homens são criados iguais, dotados pelo Criador de certos direitos inalienáveis, entre os quais figuram a vida, a liberdade e a busca da felicidade. Para assegurar esses direitos, entre os homens se instituem governos, que derivam seus justos poderes do consentimento dos governados. Sempre que uma forma de governo se dispõe a destruir essas finalidades, cabe ao povo o direito de alterá-la ou aboli-la [...].<span class="source">Declaração de Independência dos Estados Unidos (1776).</span></span>
+        O documento expõe o vínculo da luta pela independência das treze colônias com os princípios
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">liberais, que defendem a necessidade de impor regras rígidas de protecionismo fiscal.</li>
+        <li data-letter="b)">mercantilistas, que determinam os interesses de expansão do comércio externo.</li>
+        <li data-letter="c)" data-correct="1">iluministas, que enfatizam os direitos de cidadania e de rebelião contra governos tirânicos.</li>
+        <li data-letter="d)">luteranos, que obrigam as mulheres e os homens a lutar pela própria salvação.</li>
+        <li data-letter="e)">católicos, que justificam a ação humana apenas em função da vontade e do direito divinos.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">C</span></h4>
+        <p>A Declaração é <b>puro Locke</b>: direitos inalienáveis (vida, liberdade), consentimento dos governados e direito de resistência (alterar/abolir governo tirânico). Isso são princípios <b>iluministas</b>.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise locke" data-mod="locke">
+      <div class="exercise-header">
+        <span class="num">Questão 7</span>
+        <div class="tags"><span class="tag mod">MÓD. 21</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">Fala-se muito nos dias de hoje em direitos do homem. Pois bem: foi no século XVIII — em 1789, precisamente — que uma Assembleia Constituinte produziu e proclamou em Paris a Declaração dos Direitos do Homem e do Cidadão. Essa Declaração se impôs como necessária para um grupo de revolucionários, por ter sido preparada por uma mudança no plano das ideias e das mentalidades: o iluminismo.<span class="source">FORTES, L. R. S. O Iluminismo e os filósofos. São Paulo: Brasiliense, 1981 (adaptado).</span></span>
+        Correlacionando temporalidades históricas, o texto apresenta uma concepção de pensamento que tem como uma de suas bases a
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">modernização da educação escolar.</li>
+        <li data-letter="b)">atualização da disciplina moral cristã.</li>
+        <li data-letter="c)">divulgação de costumes aristocráticos.</li>
+        <li data-letter="d)">socialização do conhecimento científico.</li>
+        <li data-letter="e)" data-correct="1">universalização do princípio da igualdade civil.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">E</span></h4>
+        <p>A Declaração de 1789 nasce do iluminismo e cristaliza a ideia de <b>igualdade civil universal</b> — todos os homens são iguais em direitos, independentemente de nascimento ou classe. É o rompimento com a sociedade estamental do Antigo Regime.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise locke" data-mod="locke">
+      <div class="exercise-header">
+        <span class="num">Questão 9</span>
+        <div class="tags"><span class="tag mod">MÓD. 21</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">"Se o homem no estado de natureza é tão livre, conforme dissemos, se é senhor absoluto da sua própria pessoa e possessões, igual ao maior e a ninguém sujeito, por que abrirá ele mão dessa liberdade, por que abandonará o seu império e sujeitar-se-á ao domínio e controle de qualquer outro poder? Ao que é óbvio responder que, embora no estado natureza tenha tal direito, a utilização do mesmo é muito incerta e está constantemente exposta à invasão terceiros [...]. Estas circunstâncias obrigam-no abandonar uma condição que, embora livre, está cheia de temores e perigos constantes; e não é sem razão que procura de boa vontade juntar-se em sociedade com outros estão já unidos, ou pretendem unir-se, para a mútua conservação da vida, da liberdade e dos bens a que chamo de propriedade."<span class="source">(Os Pensadores. São Paulo: Nova Cultural, 1991)</span></span>
+        Do ponto de vista político, podemos considerar o texto como uma tentativa justificar:
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">a existência do governo como um poder oriundo da natureza.</li>
+        <li data-letter="b)">a origem do governo como uma propriedade do rei.</li>
+        <li data-letter="c)">o absolutismo monárquico como uma imposição da natureza humana.</li>
+        <li data-letter="d)" data-correct="1">a origem do governo como uma proteção à vida, aos bens e aos direitos.</li>
+        <li data-letter="e)">o poder dos governantes, colocando a liberdade individual acima da propriedade.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">D</span></h4>
+        <p>É o argumento clássico de Locke: os homens abrem mão do estado de natureza (livre mas inseguro) e formam sociedade civil para <b>proteger vida, liberdade e propriedade</b> — a tríade dos direitos naturais. O governo existe para servir a esses direitos, não para tê-los.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <!-- ===== LIBERAIS / MÓDULO 22 ===== -->
+
+    <div class="exercise liberais" data-mod="liberais">
+      <div class="exercise-header">
+        <span class="num">Questão 1</span>
+        <div class="tags"><span class="tag mod">MÓD. 22</span><span class="tag src">UFF</span></div>
+      </div>
+      <div class="exercise-statement">
+        De acordo com o filósofo iluminista Montesquieu, no livro clássico <i>O Espírito das Leis</i>, quando as mesmas pessoas concentram o poder de legislar, de executar e de julgar, instaura-se o despotismo, pois, para que os cidadãos estejam livres do <i>abuso de poder</i>, é preciso que "o poder freie o poder". Identifique a sentença que melhor resume esse pensamento de Montesquieu.
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">Para que a sociedade seja bem governada é necessário que uma só pessoa disponha do poder de legislar, agir e julgar.</li>
+        <li data-letter="b)">A separação dos poderes enfraquece o Estado e torna a sociedade vulnerável aos ataques de seus inimigos.</li>
+        <li data-letter="c)" data-correct="1">A separação e independência entre os poderes é uma das condições fundamentais para que os cidadãos possam exercer sua liberdade.</li>
+        <li data-letter="d)">A sociedade melhor organizada é aquela em que o executivo goza de poder absoluto.</li>
+        <li data-letter="e)">As mesmas pessoas podem concentrar o poder, desde que sejam bem intencionadas.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">C</span></h4>
+        <p>É a tese central de Montesquieu: só há <b>liberdade</b> onde há <b>separação e independência</b> entre Legislativo, Executivo e Judiciário. Concentração de poder = despotismo.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise liberais" data-mod="liberais">
+      <div class="exercise-header">
+        <span class="num">Questão 2</span>
+        <div class="tags"><span class="tag mod">MÓD. 22</span><span class="tag src">IFSP</span></div>
+      </div>
+      <div class="exercise-statement">
+        Em 1776, Adam Smith lançou o livro <i>A Riqueza das Nações</i>, que apresenta as bases da economia clássica. Segundo o autor, o crescimento econômico de uma nação depende
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">da quantidade de ouro e prata que cada nação tem entesourados.</li>
+        <li data-letter="b)">do dirigismo econômico feito pelo Estado, pois apenas ao rei cabe conduzir sua nação.</li>
+        <li data-letter="c)">da natureza, pois terras áridas e clima desfavorável não trarão boas colheitas.</li>
+        <li data-letter="d)" data-correct="1">da produtividade do trabalho, em função de seu grau de especialização.</li>
+        <li data-letter="e)">do comércio altamente desenvolvido através das companhias de comércio e dos monopólios.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">D</span></h4>
+        <p>Smith abre <i>A Riqueza das Nações</i> discutindo a <b>divisão do trabalho</b> (o famoso exemplo da fábrica de alfinetes): quanto maior a especialização, maior a produtividade e maior a riqueza. Ele é contra o mercantilismo (a) e o dirigismo (b, e).</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise liberais" data-mod="liberais">
+      <div class="exercise-header">
+        <span class="num">Questão 7</span>
+        <div class="tags"><span class="tag mod">MÓD. 22</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">Para que não haja abuso, é preciso organizar as coisas de maneira que o poder seja contido pelo poder. Tudo estaria perdido se o mesmo homem ou o mesmo corpo dos principais, ou dos nobres, ou do povo, exercesse esses três poderes: o de fazer leis, o de executar as resoluções públicas e o de julgar os crimes ou as divergências dos indivíduos. Assim, criam-se os poderes Legislativo, Executivo e Judiciário, atuando de forma independente para a efetivação da liberdade, sendo que esta não existe se uma pessoa ou grupo exercer os referidos poderes concomitantemente.<span class="source">MONTESQUIEU, B. Do espírito das leis. São Paulo: Abril Cultural, 1979 (adaptado).</span></span>
+        A divisão e a independência entre os poderes são condições necessárias para que possa haver liberdade em um Estado. Isso pode ocorrer apenas sob um modelo político em que haja
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">exercício de tutela sobre atividades jurídicas e políticas.</li>
+        <li data-letter="b)">consagração do poder político pela autoridade religiosa.</li>
+        <li data-letter="c)">concentração do poder nas mãos de elites técnico-científicas.</li>
+        <li data-letter="d)" data-correct="1">estabelecimento de limites aos atores públicos e às instituições do governo.</li>
+        <li data-letter="e)">reunião das funções de legislar, julgar e executar nas mãos de um governante eleito.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">D</span></h4>
+        <p>Se cada poder freia o outro (checks and balances), há <b>limites institucionais</b> impedindo que qualquer autoridade abuse. É esse limite que garante a liberdade. As outras opções fazem o oposto: concentram poder ou o subordinam a algo (religião, tutela, etc.).</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise liberais" data-mod="liberais">
+      <div class="exercise-header">
+        <span class="num">Questão 8</span>
+        <div class="tags"><span class="tag mod">MÓD. 22</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">É verdade que nas democracias o povo parece fazer o que quer; mas a liberdade política não consiste nisso. Deve-se ter sempre presente em mente o que é independência e o que é liberdade. A liberdade é o direito de fazer tudo o que as leis permitem; se um cidadão pudesse fazer tudo o que elas proíbem, não teria mais liberdade, porque os outros também teriam tal poder.<span class="source">MONTESQUIEU. Do Espírito das Leis. São Paulo: Editora Nova Cultural, 1997 (adaptado).</span></span>
+        A característica de democracia ressaltada por Montesquieu diz respeito
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">ao status de cidadania que o indivíduo adquire ao tomar as decisões por si mesmo.</li>
+        <li data-letter="b)" data-correct="1">ao condicionamento da liberdade dos cidadãos à conformidade às leis.</li>
+        <li data-letter="c)">à possibilidade de o cidadão participar no poder e, nesse caso, livre da submissão às leis.</li>
+        <li data-letter="d)">ao livre-arbítrio do cidadão em relação àquilo que é proibido, desde que ciente das consequências.</li>
+        <li data-letter="e)">ao direito do cidadão exercer sua vontade de acordo com seus valores pessoais.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">B</span></h4>
+        <p>Frase-chave: "liberdade é o direito de fazer tudo o que as leis <b>permitem</b>". Ou seja, a liberdade dos cidadãos está <b>condicionada à conformidade com as leis</b>. Sem lei comum, o poder de um vira ameaça ao outro.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise liberais" data-mod="liberais">
+      <div class="exercise-header">
+        <span class="num">Questão 9</span>
+        <div class="tags"><span class="tag mod">MÓD. 22</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote"><b>TEXTO I</b> — A centralização econômica, o protecionismo e a expansão ultramarina engrandeceram o Estado, embora beneficiassem a burguesia incipiente. <span class="source">ANDERSON, P. In: DEYON, P. O mercantilismo. Lisboa: Gradiva, 1989 (adaptado).</span></span>
+        <span class="quote"><b>TEXTO II</b> — As interferências da legislação e das práticas exclusivistas restringem a operação benéfica da lei natural na esfera das relações econômicas. <span class="source">SMITH, A. A riqueza das Nações. São Paulo: Abril Cultural, 1983 (adaptado).</span></span>
+        Entre os séculos XVI e XIX, diferentes concepções sobre as relações entre Estado e economia foram formuladas. Tais concepções, associadas a cada um dos textos, confrontam-se, respectivamente, na oposição entre as práticas de
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">valorização do pacto colonial — combate à livre-iniciativa.</li>
+        <li data-letter="b)" data-correct="1">defesa dos monopólios régios — apoio à livre concorrência.</li>
+        <li data-letter="c)">formação do sistema metropolitano — crítica à livre navegação.</li>
+        <li data-letter="d)">abandono da acumulação metalista — estímulo ao livre-comércio.</li>
+        <li data-letter="e)">eliminação das tarifas alfandegárias — incentivo ao livre-cambismo.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">B</span></h4>
+        <p>Texto I = mercantilismo (protecionismo, monopólios régios). Texto II = liberalismo econômico de Smith (lei natural do mercado, contra interferências e exclusivismos). A oposição é justamente <b>monopólios régios × livre concorrência</b>.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <!-- ===== ROUSSEAU / MÓDULO 23 ===== -->
+
+    <div class="exercise rousseau" data-mod="rousseau">
+      <div class="exercise-header">
+        <span class="num">Questão 2</span>
+        <div class="tags"><span class="tag mod">MÓD. 23</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">"O verdadeiro fundador da sociedade civil foi o primeiro que, tendo cercado um terreno, lembrou-se de dizer <i>isto é meu</i> e encontrou pessoas suficientemente simples para acreditá-lo".</span>
+        Levando em conta a principal ideia que Rousseau quer transmitir com essa afirmação, assinale a alternativa verdadeira:
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">A propriedade privada, já existente antes da sociedade de civil, trouxe a possibilidade de melhor organização entre os indivíduos e, consequentemente, facilitou sua convivência.</li>
+        <li data-letter="b)">A propriedade privada é um direito natural fundado no trabalho.</li>
+        <li data-letter="c)">A expressão "isto é meu" da frase de Rousseau quer mostrar que naturalmente o homem anseia por propriedade privada.</li>
+        <li data-letter="d)" data-correct="1">A sociedade civil tem sua origem na propriedade privada que, junto consigo, trouxe os principais problemas entre os homens.</li>
+        <li data-letter="e)">O fundador da sociedade civil era um pensador grego que tinha grande capacidade de persuasão.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">D</span></h4>
+        <p>Para Rousseau, é a <b>propriedade privada</b> que funda a sociedade civil e traz consigo <b>a desigualdade e todos os males</b>. É o oposto de Locke (que via a propriedade como direito natural positivo).</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise rousseau" data-mod="rousseau">
+      <div class="exercise-header">
+        <span class="num">Questão 5</span>
+        <div class="tags"><span class="tag mod">MÓD. 23</span><span class="tag src">PUCPR</span></div>
+      </div>
+      <div class="exercise-statement">
+        Leia o fragmento a seguir, extraído do <i>Discurso sobre a origem e os fundamentos da desigualdade entre os homens</i>, de Rousseau:
+        <span class="quote">"É do homem que devo falar, e a questão que examino me indica que vou falar a homens, pois não se propõem questões semelhantes quando se teme honrar a verdade [...]".<span class="source">ROUSSEAU, J.-J. Discurso sobre a origem e os fundamentos da desigualdade entre os homens. São Paulo: Martins Fontes, 1999, p. 159.</span></span>
+        A partir da teoria contratualista de Rousseau, assinale a alternativa que representa aquilo que o filósofo de Genebra pretende defender na obra.
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">Que a desigualdade social é permitida pela lei natural e, portanto, o Estado não é responsável pelo conflito social.</li>
+        <li data-letter="b)">Que a desigualdade social é autorizada pela lei natural, ou seja, que a natureza não se encontra submetida à lei.</li>
+        <li data-letter="c)">Que no estado natural existe apenas o direito de propriedade.</li>
+        <li data-letter="d)">Que a desigualdade moral ou política é uma continuidade daquilo que já está presente no estado natural.</li>
+        <li data-letter="e)" data-correct="1">Que há, na espécie humana, duas espécies de desigualdade: a primeira, natural, e a segunda, moral ou política.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">E</span></h4>
+        <p>É a tese central do <i>Discurso sobre a desigualdade</i>: existem <b>duas desigualdades</b> — a <b>natural/física</b> (força, saúde, idade) e a <b>moral/política</b> (criada pela sociedade e propriedade privada). Rousseau critica esta última.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise rousseau" data-mod="rousseau">
+      <div class="exercise-header">
+        <span class="num">Questão 6</span>
+        <div class="tags"><span class="tag mod">MÓD. 23</span></div>
+      </div>
+      <div class="exercise-statement">
+        Considere as seguintes afirmativas sobre o pensamento de Rousseau, um dos mais importantes filósofos do movimento iluminista, que floresceu na França, durante o século XVIII.
+        <br><br>
+        <b>I)</b> Rousseau influenciou os governantes conhecidos como "déspotas esclarecidos", defendendo a teoria do direito divino dos reis, que exaltava os reis a governarem com bondade e justiça.
+        <br><br>
+        <b>II)</b> Rousseau apontou a propriedade privada como a origem das desigualdades sociais, propondo sua limitação como condição para a formação de uma sociedade democrática.
+        <br><br>
+        <b>III)</b> Rousseau formulou a "teoria do bom selvagem", afirmando que os europeus deveriam levar a civilização e o progresso para os povos atrasados, mas cuja índole era boa.
+        <br><br>
+        Estão corretas
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">Apenas I</li>
+        <li data-letter="b)" data-correct="1">Apenas II</li>
+        <li data-letter="c)">Apenas III</li>
+        <li data-letter="d)">Apenas I e II</li>
+        <li data-letter="e)">I, II e III</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">B</span></h4>
+        <p><b>I é falsa</b> — Rousseau não defende direito divino dos reis (ele é contratualista, contra absolutismo). <b>II é verdadeira</b> — é a tese central do <i>Discurso sobre a desigualdade</i>. <b>III é falsa</b> — o "bom selvagem" é uma <b>crítica</b> à civilização europeia, não uma justificativa para "civilizar" os outros. Sobra apenas II.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise rousseau" data-mod="rousseau">
+      <div class="exercise-header">
+        <span class="num">Questão 7</span>
+        <div class="tags"><span class="tag mod">MÓD. 23</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">"O homem natural é tudo para si mesmo; é a unidade numérica, o inteiro absoluto, que só se relaciona consigo mesmo ou com seu semelhante. O homem civil é apenas uma unidade fracionária que se liga ao denominador, e cujo valor está em sua relação com o todo, que é o corpo social. As boas instituições sociais são as que melhor sabem <b>desnaturar</b> o homem, retirar-lhe sua existência absoluta para dar-lhe uma relativa [...]."<span class="source">ROUSSEAU, J. J. Emílio ou da Educação. São Paulo: Martins Fontes, 1999.</span></span>
+        A visão de Rousseau em relação à natureza humana, conforme expressa o texto, diz que
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)" data-correct="1">o homem civil é formado a partir do desvio de sua própria natureza.</li>
+        <li data-letter="b)">as instituições sociais formam o homem de acordo com a sua essência natural.</li>
+        <li data-letter="c)">o homem civil é um todo no corpo social, pois as instituições sociais dependem dele.</li>
+        <li data-letter="d)">o homem é forçado a sair da natureza para se tornar absoluto.</li>
+        <li data-letter="e)">as instituições sociais expressam a natureza humana, pois o homem é um ser político.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">A</span></h4>
+        <p>Palavra-chave: "<b>desnaturar</b>". As instituições sociais <b>afastam</b> o homem de sua natureza original (o "inteiro absoluto") para fazê-lo parte de um todo (fração do corpo social). Ou seja: o homem civil é formado pelo <b>desvio da própria natureza</b>.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise rousseau" data-mod="rousseau">
+      <div class="exercise-header">
+        <span class="num">Questão 9</span>
+        <div class="tags"><span class="tag mod">MÓD. 23</span><span class="tag src">UEL</span></div>
+      </div>
+      <div class="exercise-statement">
+        Oswald de Andrade, no Manifesto Antropofágico, procurou transformar o "bom selvagem" de Rousseau num aguerrido selvagem devorador, que digere e transforma a cultura europeia do colonizador, tornando-a parte de sua própria cultura. Considerando a questão do "bom selvagem" no pensamento de Rousseau, é correto afirmar.
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">A idealização do bom selvagem, no estado de natureza, representa a exaltação da animalidade do homem primitivo que, no estado civil, adquire forma agressiva.</li>
+        <li data-letter="b)">A felicidade original do bom selvagem se realiza no suor de seu trabalho em sua propriedade, de onde retira o necessário para a sua sobrevivência.</li>
+        <li data-letter="c)">O homem, degenerado pela civilização, só poderá recuperar a felicidade no estado de natureza com o retorno à vida isolada no meio das florestas.</li>
+        <li data-letter="d)">No estado de natureza, o bom selvagem busca satisfazer sua necessidade inata de reconhecimento de si e de admiração pelo outro.</li>
+        <li data-letter="e)" data-correct="1">No estado de natureza, o bom selvagem é autossuficiente e vive isolado, sobrevivendo com o que a natureza lhe provê e de acordo com suas necessidades inatas.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">E</span></h4>
+        <p>O bom selvagem de Rousseau é <b>autossuficiente</b> e vive isolado, satisfazendo apenas suas necessidades naturais. Cuidado: (c) é errada porque Rousseau <b>não</b> propõe volta às florestas — apenas usa esse estado como referência crítica. Já (d) atribui ao selvagem uma necessidade de reconhecimento (amor-próprio), que Rousseau associa ao homem civil, não ao natural.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <!-- ===== KANT / MÓDULO 26 ===== -->
+
+    <div class="exercise kant" data-mod="kant">
+      <div class="exercise-header">
+        <span class="num">Questão 1</span>
+        <div class="tags"><span class="tag mod">MÓD. 26</span><span class="tag src">UEMA</span></div>
+      </div>
+      <div class="exercise-statement">
+        No texto <i>Que é "Esclarecimento"?</i> (1783), o que significa, conforme Kant, a saída do homem da menoridade da qual ele mesmo é culpado?
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">O uso da razão crítica, exceto quando se tratar de doutrinas religiosas.</li>
+        <li data-letter="b)">A capacidade de aceitar passivamente a autoridade científica ou política.</li>
+        <li data-letter="c)">A liberdade para executar desejos e impulsos conforme a natureza instintiva do homem.</li>
+        <li data-letter="d)" data-correct="1">A coragem de ser autônomo, rejeitando, portanto, qualquer condição tutelar.</li>
+        <li data-letter="e)">O alcance da idade apropriada para uso da racionalidade subjetiva.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">D</span></h4>
+        <p><b>Sapere aude!</b> "Ousa saber". A saída da menoridade é justamente a <b>coragem de usar o próprio entendimento sem tutela</b> — sem depender do padre, do livro, do rei ou do médico para pensar por você. Autonomia intelectual.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise kant" data-mod="kant">
+      <div class="exercise-header">
+        <span class="num">Questão 7</span>
+        <div class="tags"><span class="tag mod">MÓD. 26</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">Uma pessoa vê-se forçada pela necessidade a pedir dinheiro emprestado. Sabe muito bem que não poderá pagar, mas vê também que não lhe emprestarão nada se não prometer firmemente pagar em prazo determinado. Sente a tentação de fazer a promessa; mas tem ainda consciência bastante para perguntar a si mesma: não é proibido e contrário ao dever livrar-se de apuros desta maneira? Admitindo que se decida a fazê-lo, a sua máxima de ação seria: quando julgo estar em apuros de dinheiro, vou pedi-lo emprestado e prometo pagá-lo, embora saiba que tal nunca sucederá.<span class="source">KANT, I. Fundamentação da metafísica dos costumes. São Paulo: Abril Cultural, 1980.</span></span>
+        De acordo com a moral kantiana, a "falsa promessa de pagamento" representada no texto
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">assegura que a ação seja aceita por todos a partir da livre discussão participativa.</li>
+        <li data-letter="b)">garante que os efeitos das ações não destruam a possibilidade da vida futura na terra.</li>
+        <li data-letter="c)" data-correct="1">opõe-se ao princípio de que toda ação do homem possa valer como norma universal.</li>
+        <li data-letter="d)">materializa-se no entendimento de que os fins da ação humana podem justificar os meios.</li>
+        <li data-letter="e)">permite que a ação individual produza a mais ampla felicidade para as pessoas envolvidas.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">C</span></h4>
+        <p>Aplicação clássica do <b>imperativo categórico</b>: "Aja de modo que a máxima da sua ação possa se tornar lei universal". Se todos fizessem promessas falsas, a instituição da promessa desaparece. A falsa promessa <b>não pode ser universalizada</b> sem contradição — logo, é imoral.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise kant" data-mod="kant">
+      <div class="exercise-header">
+        <span class="num">Questão 8</span>
+        <div class="tags"><span class="tag mod">MÓD. 26</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">A pura lealdade na amizade, embora até o presente não tenha existido nenhum amigo leal, é imposta a todo homem, essencialmente, pelo fato de tal dever estar implicado como dever em geral, anteriormente a toda experiência, na ideia de uma razão que determina a vontade segundo princípios <i>a priori</i>.<span class="source">KANT, I. Fundamentação da metafísica dos costumes. São Paulo: Barcarolla, 2009.</span></span>
+        A passagem citada expõe um pensamento caracterizado pela
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)">eficácia prática da razão empírica.</li>
+        <li data-letter="b)">transvaloração dos valores judaico-cristãos.</li>
+        <li data-letter="c)" data-correct="1">recusa em fundamentar a moral pela experiência.</li>
+        <li data-letter="d)">comparação da ética a uma ciência de rigor matemático.</li>
+        <li data-letter="e)">importância dos valores democráticos nas relações de amizade.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">C</span></h4>
+        <p>A expressão-chave é "<b>a priori</b>" — princípios anteriores a toda experiência. Kant fundamenta a moral <b>na razão pura</b>, não em observações empíricas do mundo. Mesmo se nunca tenha existido um amigo leal, o dever de lealdade persiste. Isso é <b>recusa da moral empírica</b>.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise kant" data-mod="kant">
+      <div class="exercise-header">
+        <span class="num">Questão 9</span>
+        <div class="tags"><span class="tag mod">MÓD. 26</span><span class="tag src">ENEM</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">Esclarecimento é a saída do homem de sua menoridade, da qual ele próprio é culpado. A menoridade é a incapacidade de fazer uso de seu entendimento sem a direção de outro indivíduo. O homem é o próprio culpado dessa menoridade se a causa dela não se encontra na falta de entendimento, mas na falta de decisão e coragem de servir-se de si mesmo sem a direção de outrem. Tem coragem de fazer uso de teu próprio entendimento, tal é o lema do esclarecimento.<span class="source">KANT, I. Resposta à pergunta: o que é esclarecimento? Petrópolis: Vozes, 1985 (adaptado).</span></span>
+        Kant destaca no texto o conceito de Esclarecimento, fundamental para a compreensão do contexto filosófico da Modernidade. Esclarecimento, no sentido empregado por Kant, representa
+      </div>
+      <ul class="alternatives">
+        <li data-letter="a)" data-correct="1">a reivindicação de autonomia da capacidade racional como expressão da maioridade.</li>
+        <li data-letter="b)">o exercício da racionalidade como pressuposto menor diante das verdades eternas.</li>
+        <li data-letter="c)">a imposição de verdades matemáticas, com caráter objetivo, de forma heterônoma.</li>
+        <li data-letter="d)">a compreensão de verdades religiosas que libertam o homem da falta de entendimento.</li>
+        <li data-letter="e)">a emancipação da subjetividade humana de ideologias produzidas pela própria razão.</li>
+      </ul>
+      <div class="answer-block">
+        <h4>Alternativa correta: <span class="letter">A</span></h4>
+        <p>Esclarecimento = <b>autonomia da razão</b> = usar o próprio entendimento sem tutor. Isso é o que Kant chama de <b>maioridade</b>: reivindicar a capacidade racional como expressão dessa maturidade intelectual. É o oposto de heteronomia.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+    <div class="exercise kant discursiva" data-mod="kant">
+      <div class="exercise-header">
+        <span class="num">Questão 14</span>
+        <div class="tags"><span class="tag mod">MÓD. 26</span><span class="tag src">UNESP</span><span class="tag">📝 discursiva</span></div>
+      </div>
+      <div class="exercise-statement">
+        <span class="quote">É esse o sentido da famosa formulação do filósofo Kant sobre o imperativo categórico: "Aja unicamente de acordo com uma máxima tal que você possa querer que ela se torne uma lei universal". Isso é agir de acordo com a humanidade, em vez de agir conforme o seu "euzinho querido", e obedecer à razão em vez de obedecer às suas tendências ou aos seus interesses. Uma ação só é boa se o princípio a que se submete (sua "máxima") puder valer, de direito, para todos: agir moralmente é agir de tal modo que você possa desejar, sem contradição, que todo indivíduo se submeta aos mesmos princípios que você. Não é porque Deus existe que devo agir bem; é porque devo agir bem que posso necessitar — não para ser virtuoso, mas para escapar do desespero — de crer em Deus. Mesmo se Deus não existir, mesmo se não houver nada depois da morte, isso não dispensará você de cumprir com o seu dever [...].<span class="source">André Comte-Sponville. Apresentação da filosofia, 2002. Adaptado.</span></span>
+        <div class="prompt">
+          📝 O conceito filosófico de imperativo categórico é baseado no relativismo ou na universalidade moral? Justifique sua resposta. Explique o motivo pelo qual a ética kantiana dispensa justificativas de caráter religioso.
+        </div>
+      </div>
+      <div class="answer-block">
+        <h4>Resposta modelo</h4>
+        <p><b>1) Universalidade moral.</b> O imperativo categórico é fundado na <b>universalidade</b> — não no relativismo. A própria fórmula exige que a máxima da ação possa se tornar <b>lei universal</b>, ou seja, que valha para todos os seres racionais em toda circunstância, sem contradição. Não depende de contexto, cultura, gosto ou preferência individual (que seriam critérios relativistas).</p>
+        <p style="margin-top:6px"><b>2) Independência da religião.</b> A ética kantiana dispensa Deus como fundamento porque a <b>moralidade nasce da razão pura</b>, não da revelação nem do medo de punição ou promessa de recompensa. O dever moral é <b>autônomo</b>: obrigatório em si mesmo, "a priori", independente de qualquer crença religiosa. Como diz o texto, "mesmo se Deus não existir, isso não dispensará você de cumprir com o seu dever". Agir moralmente é agir por respeito à lei racional universal, não por temor divino nem por interesse em recompensa póstuma.</p>
+      </div>
+      <div class="exercise-actions"><button onclick="toggleAns(this)">Ver resposta</button></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RESUMO -->
+<section class="tab-content" id="resumo">
+  <h2 class="section-title"><span class="ico">📖</span>Resumo dos Módulos</h2>
+  <p style="color:var(--ink-dim);margin-bottom:14px">Base conceitual mínima para atacar cada módulo. Enxuto e no que cai.</p>
+
+  <div class="summary-card hobbes">
+    <h3>👑 Módulo 20 — Hobbes e o Leviatã <span class="b">Contratualismo</span></h3>
+    <p><b>Ideia central:</b> os homens são naturalmente iguais e egoístas. Sem um poder comum, vivem em <b>estado de natureza = estado de guerra</b>: guerra de todos contra todos.</p>
+    <div class="quote">"O homem é o lobo do homem" (<i>homo homini lupus</i>)</div>
+    <ul>
+      <li><b>Estado de natureza:</b> caos, medo, insegurança. Todos têm direito a tudo → conflito.</li>
+      <li><b>Causas do conflito:</b> competição, desconfiança e glória.</li>
+      <li><b>Solução:</b> <b>contrato social</b> — os homens cedem parte da liberdade a um soberano.</li>
+      <li><b>Leviatã:</b> o Estado como monstro necessário; poder <b>absoluto</b> e <b>indivisível</b> que garante ordem e segurança.</li>
+      <li><b>Distinção:</b> Hobbes justifica um poder forte, não democrático. Diferente de Locke e Rousseau.</li>
+    </ul>
+  </div>
+
+  <div class="summary-card locke">
+    <h3>📜 Módulo 21 — Iluminismo e Locke <span class="b">Direitos naturais</span></h3>
+    <p><b>Iluminismo (séc. XVIII):</b> movimento intelectual que defende <b>razão, liberdade e crítica ao absolutismo</b>. Base filosófica das revoluções americana (1776) e francesa (1789).</p>
+    <div class="quote">"Vida, liberdade e propriedade" — a tríade dos direitos naturais em Locke</div>
+    <ul>
+      <li><b>Estado de natureza (Locke):</b> livre, mas inseguro. Diferente de Hobbes, NÃO é guerra.</li>
+      <li><b>Direitos naturais:</b> <b>vida, liberdade e propriedade</b> — anteriores ao Estado.</li>
+      <li><b>Contrato social:</b> os homens formam governo para <b>proteger</b> esses direitos.</li>
+      <li><b>Governo limitado:</b> se o governo viola os direitos, o povo tem o direito de <b>resistência</b> e destituição.</li>
+      <li><b>Consentimento dos governados:</b> autoridade legítima vem do povo, não de Deus ou do sangue.</li>
+      <li><b>Base do liberalismo político</b> e das declarações de direitos modernas.</li>
+    </ul>
+  </div>
+
+  <div class="summary-card rousseau">
+    <h3>🌿 Módulo 23 — Jean-Jacques Rousseau <span class="b">Vontade Geral</span></h3>
+    <p><b>Crítica original:</b> a civilização e a propriedade privada <b>corromperam</b> o homem, que era originalmente bom.</p>
+    <div class="quote">"O homem nasce livre e por toda parte está agrilhoado" — <i>Do Contrato Social</i></div>
+    <ul>
+      <li><b>Bom selvagem:</b> no estado de natureza, o homem é <b>autossuficiente</b>, isolado, sem maldade e sem inteligência complexa. NÃO é uma proposta de volta às florestas — é ferramenta crítica.</li>
+      <li><b>Origem da desigualdade:</b> o primeiro que cercou um terreno e disse "isto é meu" fundou a sociedade civil <b>E</b> a desigualdade.</li>
+      <li><b>Duas desigualdades:</b> a <b>natural/física</b> (idade, saúde) e a <b>moral/política</b> (criada pela sociedade — a que Rousseau critica).</li>
+      <li><b>Contrato social:</b> não é para proteger propriedade (como em Locke) — é para constituir a <b>vontade geral</b>.</li>
+      <li><b>Vontade geral:</b> não é vontade da maioria; é o interesse comum, o bem coletivo. Só há liberdade civil quando cada um obedece à vontade geral (que também é a própria vontade racional).</li>
+      <li><b>Desnaturar o homem:</b> as boas instituições tiram o homem de seu estado absoluto e o tornam parte do corpo social.</li>
+    </ul>
+  </div>
+
+  <div class="summary-card liberais">
+    <h3>⚖️ Módulo 22 — Os Filósofos Liberais <span class="b">Liberalismo</span></h3>
+    <p><b>Liberalismo político:</b> limites ao poder do Estado, garantias individuais, separação de poderes. <b>Liberalismo econômico:</b> livre mercado, propriedade privada, contra o dirigismo.</p>
+    <ul>
+      <li><b>Montesquieu — Do Espírito das Leis:</b> tese central é a <b>separação dos três poderes</b> (Legislativo, Executivo, Judiciário). Só há liberdade quando "o poder freia o poder". Liberdade = fazer o que as leis permitem.</li>
+      <li><b>Voltaire:</b> defensor da <b>liberdade de expressão</b>, da razão contra o <b>fanatismo</b> religioso e o obscurantismo. "A razão contra o veneno da hidra do fanatismo."</li>
+      <li><b>Adam Smith — A Riqueza das Nações (1776):</b> pai da economia clássica. Riqueza vem da <b>produtividade do trabalho</b> (divisão do trabalho). <b>Mão invisível</b> do mercado organiza a economia melhor que o Estado. Contra o mercantilismo, monopólios e protecionismo.</li>
+      <li><b>Princípios comuns:</b> limitação do poder do Estado, propriedade privada, livres iniciativas, livre-cambismo.</li>
+    </ul>
+  </div>
+
+  <div class="summary-card kant">
+    <h3>🧭 Módulo 26 — A Ética Kantiana e o Esclarecimento <span class="b">Deontologia</span></h3>
+    <p><b>Ética do dever</b> (deontológica): uma ação é moral pelo <b>princípio</b> que a orienta, não pelas <b>consequências</b>. Fundamentada na razão pura, não na experiência nem em Deus.</p>
+    <div class="quote">"Sapere aude! Tem a coragem de servir-te de tua própria inteligência!"</div>
+    <ul>
+      <li><b>Esclarecimento (Aufklärung):</b> "saída do homem de sua menoridade, da qual ele próprio é culpado". <b>Menoridade</b> = incapacidade de usar o próprio entendimento sem tutor. Causa: preguiça e covardia. Solução: autonomia da razão.</li>
+      <li><b>Autonomia × Heteronomia:</b> autonomia = dar a si mesmo a lei (razão); heteronomia = receber a lei de fora (Igreja, rei, tradição, desejo).</li>
+      <li><b>Imperativo categórico (1ª fórmula):</b> "Aja apenas segundo aquela máxima que você possa querer que se torne uma lei universal." → universalização.</li>
+      <li><b>Imperativo hipotético:</b> "Se quer X, faça Y" — depende de fins particulares, NÃO é moral.</li>
+      <li><b>Imperativo categórico é incondicional:</b> vale sempre, sem "se", sem cálculo de vantagem.</li>
+      <li><b>Boa vontade:</b> a única coisa incondicionalmente boa. Agir por dever, não por inclinação ou interesse.</li>
+      <li><b>Independência religiosa:</b> a moral não precisa de Deus para se fundamentar. Mesmo se Deus não existisse, o dever moral permaneceria — pois nasce da razão.</li>
+    </ul>
+  </div>
+
+  <div class="note" style="margin-top:14px">🎯 <b>Radar de contraste rápido:</b> Hobbes = <b>medo</b> · Locke = <b>propriedade</b> · Rousseau = <b>desigualdade</b> · Montesquieu = <b>3 poderes</b> · Voltaire = <b>razão vs fanatismo</b> · Smith = <b>mão invisível</b> · Kant = <b>dever universal</b>.</div>
+</section>
+
+<footer>
+  Material de estudo · Filosofia · P1T2 · Feito com <span class="heart">♥</span>
+</footer>
+
+</div>
+
+<script>
+const tabs = document.querySelectorAll('#mainTabs button');
+const sections = document.querySelectorAll('.tab-content');
+tabs.forEach(b=>b.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  sections.forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* Filtro de exercícios */
+document.querySelectorAll('.mod-filter button[data-filter]').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.mod-filter button').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const f = b.dataset.filter;
+    document.querySelectorAll('.exercise').forEach(ex=>{
+      if(f==='all' || ex.dataset.mod===f) ex.classList.remove('hidden');
+      else ex.classList.add('hidden');
+    });
+  });
+});
+
+/* Ver/ocultar resposta */
+function toggleAns(btn){
+  const ex = btn.closest('.exercise');
+  const ans = ex.querySelector('.answer-block');
+  const alts = ex.querySelectorAll('.alternatives li');
+  const showing = ans.classList.contains('show');
+  if(!showing){
+    ans.classList.add('show');
+    alts.forEach(li=>{
+      li.classList.add('reveal');
+      if(li.dataset.correct==='1') li.classList.add('correct');
+      else li.classList.add('wrong');
+    });
+    btn.textContent = 'Ocultar resposta';
+    btn.classList.add('hide');
+  }else{
+    ans.classList.remove('show');
+    alts.forEach(li=>li.classList.remove('reveal','correct','wrong'));
+    btn.textContent = 'Ver resposta';
+    btn.classList.remove('hide');
+  }
+}
+</script>
+</body>
+</html>

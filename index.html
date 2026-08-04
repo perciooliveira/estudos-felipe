@@ -15,6 +15,9 @@
   --fis:#4cc9f0;
   --fis-2:#f72585;
   --fis-glow:rgba(76,201,240,.35);
+  --filo:#8338ec;
+  --filo-2:#f4a261;
+  --filo-glow:rgba(131,56,236,.35);
   --gold:#ffd166;
   --ink:#f8f9ff;
   --ink-dim:#b9c4d6;
@@ -86,6 +89,7 @@ html,body{
 }
 .subject-card.hist{--glow:var(--hist-glow)}
 .subject-card.fis{--glow:var(--fis-glow)}
+.subject-card.filo{--glow:var(--filo-glow)}
 .subject-card .icon{
   font-size:3.4rem;display:inline-flex;
   align-items:center;justify-content:center;
@@ -96,6 +100,7 @@ html,body{
 }
 .subject-card.hist .icon{--c1:#e94560;--c2:#9b6dff}
 .subject-card.fis .icon{--c1:#4cc9f0;--c2:#f72585}
+.subject-card.filo .icon{--c1:#8338ec;--c2:#f4a261}
 .subject-card h2{
   font-size:1.7rem;font-weight:800;margin-bottom:8px;
   position:relative;z-index:1;
@@ -106,6 +111,10 @@ html,body{
 }
 .subject-card.fis h2{
   background:linear-gradient(90deg,var(--fis),var(--fis-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.subject-card.filo h2{
+  background:linear-gradient(90deg,var(--filo),var(--filo-2));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .subject-card .desc{
@@ -139,6 +148,7 @@ html,body{
 }
 .subject-card.hist .arrow{--c1:#e94560;--c2:#9b6dff}
 .subject-card.fis .arrow{--c1:#4cc9f0;--c2:#f72585}
+.subject-card.filo .arrow{--c1:#8338ec;--c2:#f4a261}
 .subject-card:hover .arrow{transform:translateX(6px)}
 
 .tip-box{
@@ -212,6 +222,23 @@ footer .heart{color:var(--hist)}
     </div>
     <div class="meta">
       <span class="stats"><b>30</b> flashcards · <b>15</b> perguntas no quiz</span>
+      <span class="arrow">→</span>
+    </div>
+  </a>
+
+  <a href="filosofia.html" class="subject-card filo">
+    <div class="icon">🏛️</div>
+    <h2>Filosofia</h2>
+    <p class="desc">Hobbes, Locke, Rousseau, os liberais e Kant. Foco nos exercícios do roteiro (com resposta comentada).</p>
+    <div class="modules">
+      <span>Mód. 20 · Hobbes</span>
+      <span>Mód. 21 · Locke</span>
+      <span>Mód. 23 · Rousseau</span>
+      <span>Mód. 22 · Liberais</span>
+      <span>Mód. 26 · Kant</span>
+    </div>
+    <div class="meta">
+      <span class="stats"><b>25</b> exercícios do roteiro · resposta + explicação</span>
       <span class="arrow">→</span>
     </div>
   </a>
