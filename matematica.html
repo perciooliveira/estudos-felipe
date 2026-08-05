@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemática P2T2 — Álgebra + Geometria | Material de Estudo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload='renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})'></script>
+<style>
+:root{
+  --bg-1:#0a0f24;
+  --bg-2:#131a3d;
+  --bg-3:#0d1128;
+  --alg:#3b82f6;
+  --alg-2:#06b6d4;
+  --alg-glow:rgba(59,130,246,.35);
+  --geo:#10b981;
+  --geo-2:#34d399;
+  --geo-glow:rgba(16,185,129,.35);
+  --gold:#ffd166;
+  --tm:#22c55e;
+  --tc:#eab308;
+  --ink:#f8f9ff;
+  --ink-dim:#b0bacf;
+  --card:#141d3a;
+  --card-2:#1c264d;
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+  --correct:#2ecc71;
+  --wrong:#e74c3c;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--bg-1),var(--bg-3) 50%,var(--bg-2));
+  background-attachment:fixed;min-height:100vh;line-height:1.55;
+}
+.container{max-width:1200px;margin:0 auto;padding:18px 18px 80px}
+
+.hub-bar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:10px 18px;border-radius:12px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+}
+.hub-bar a{color:var(--ink-dim);text-decoration:none;font-size:.86rem;display:inline-flex;align-items:center;gap:6px;font-weight:600;transition:color .2s}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{font-size:.8rem;color:var(--alg);font-weight:700;background:var(--alg-glow);padding:4px 10px;border-radius:6px;letter-spacing:1px}
+
+header.hero{
+  text-align:center;padding:30px 16px 20px;
+  background:radial-gradient(circle at 25% 30%,var(--alg-glow),transparent 45%),
+             radial-gradient(circle at 75% 70%,var(--geo-glow),transparent 45%);
+  border-radius:20px;margin-bottom:14px;position:relative;overflow:hidden;
+}
+header.hero::before{
+  content:"";position:absolute;inset:0;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><text x='10' y='30' font-family='Cambria Math' font-style='italic' font-size='14' fill='rgba(255,209,102,.06)'>f(x)=ax²+bx+c</text><text x='10' y='60' font-family='Cambria Math' font-style='italic' font-size='14' fill='rgba(59,130,246,.06)'>x=−b/2a</text></svg>");
+  opacity:.5;pointer-events:none;
+}
+header.hero h1{
+  font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:1px;
+  background:linear-gradient(90deg,var(--alg),var(--gold),var(--geo));
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;
+}
+header.hero p{margin-top:6px;color:var(--ink-dim);font-size:.92rem}
+.subtitle-tag{display:inline-block;margin-top:12px;padding:6px 14px;background:rgba(255,209,102,.15);border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-size:.76rem;letter-spacing:.5px;text-transform:uppercase}
+
+nav.tabs{
+  display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;justify-content:center;
+  position:sticky;top:0;z-index:10;background:rgba(10,15,36,.92);backdrop-filter:blur(10px);
+  padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,.06);
+}
+nav.tabs button{background:transparent;color:var(--ink-dim);border:1px solid rgba(255,255,255,.1);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:.84rem;transition:all .25s;font-weight:600}
+nav.tabs button:hover{transform:translateY(-2px);color:var(--ink)}
+nav.tabs button.active{background:linear-gradient(90deg,var(--alg),var(--geo));color:white;border-color:transparent;box-shadow:0 4px 18px rgba(59,130,246,.4)}
+
+section.tab-content{display:none;animation:fadeIn .4s ease}
+section.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h2.section-title{font-size:1.5rem;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+h2.section-title .ico{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--alg),var(--geo));border-radius:10px;font-size:1.2rem}
+
+/* OVERVIEW */
+.mod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:14px}
+.mod-card{padding:16px;border-radius:14px;background:var(--card);border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .3s}
+.mod-card:hover{transform:translateY(-4px)}
+.mod-card.alg{border-top:4px solid var(--alg)}
+.mod-card.geo{border-top:4px solid var(--geo)}
+.mod-card .badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.mod-card.alg .badge{background:var(--alg-glow);color:var(--alg)}
+.mod-card.geo .badge{background:var(--geo-glow);color:var(--geo-2)}
+.mod-card h3{font-size:1.05rem;margin-bottom:6px}
+.mod-card p{color:var(--ink-dim);font-size:.85rem}
+.mod-card .kf{font-family:'Cambria Math','Georgia',serif;font-style:italic;background:rgba(255,209,102,.1);padding:2px 8px;border-radius:6px;color:var(--gold);display:inline-block;font-size:.9rem;margin-top:6px}
+.mod-card .emoji{font-size:2rem;float:right;opacity:.85;margin-top:-4px}
+
+.criterio-box{margin-top:16px;padding:16px 20px;background:linear-gradient(90deg,rgba(255,209,102,.1),transparent);border-left:4px solid var(--gold);border-radius:10px}
+.criterio-box h4{color:var(--gold);margin-bottom:8px;font-size:.98rem}
+.criterio-box p{color:var(--ink-dim);font-size:.88rem;margin-bottom:4px}
+.criterio-box p b{color:var(--ink)}
+
+.roadmap{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:14px}
+.roadmap .step{background:linear-gradient(135deg,var(--card),var(--card-2));padding:14px 12px;border-radius:12px;text-align:center;border:1px solid rgba(255,255,255,.06);position:relative}
+.roadmap .step .n{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;background:linear-gradient(135deg,var(--alg),var(--geo));color:white;border-radius:50%;font-weight:800;margin-bottom:6px}
+.roadmap .step h5{color:var(--gold);font-size:.9rem;margin-bottom:4px}
+.roadmap .step p{color:var(--ink-dim);font-size:.78rem}
+
+.tip-alert{background:linear-gradient(90deg,rgba(255,209,102,.14),rgba(255,209,102,.04));border-left:4px solid var(--gold);padding:14px 18px;border-radius:10px;margin-top:14px}
+.tip-alert h4{color:var(--gold);font-size:.95rem;margin-bottom:4px}
+.tip-alert p{color:var(--ink);font-size:.88rem}
+
+/* DETAIL / RESUMO */
+.summary-card{background:var(--card);padding:18px 20px;border-radius:14px;border:1px solid rgba(255,255,255,.06);margin-bottom:12px;box-shadow:var(--shadow)}
+.summary-card h3{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:1.1rem}
+.summary-card h3 .b{font-size:.72rem;padding:3px 8px;border-radius:6px;font-weight:700}
+.summary-card.alg{border-left:4px solid var(--alg)}
+.summary-card.alg h3{color:var(--alg)}
+.summary-card.alg h3 .b{background:var(--alg-glow);color:var(--alg)}
+.summary-card.geo{border-left:4px solid var(--geo)}
+.summary-card.geo h3{color:var(--geo-2)}
+.summary-card.geo h3 .b{background:var(--geo-glow);color:var(--geo-2)}
+.summary-card .see-pages{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,209,102,.12);color:var(--gold);
+  border:1px solid rgba(255,209,102,.4);
+  padding:6px 14px;border-radius:8px;cursor:pointer;
+  font-size:.82rem;font-weight:700;margin-top:10px;
+  transition:transform .15s;
+}
+.summary-card .see-pages:hover{transform:translateY(-2px);background:rgba(255,209,102,.2)}
+.summary-card p{color:var(--ink-dim);font-size:.92rem;margin-bottom:8px}
+.summary-card ul{padding-left:20px;color:var(--ink-dim);font-size:.9rem}
+.summary-card ul li{margin:4px 0}
+.summary-card ul li b{color:var(--ink)}
+.formula-box{background:linear-gradient(135deg,rgba(255,209,102,.1),rgba(255,209,102,.03));border:1px solid rgba(255,209,102,.3);padding:12px 16px;border-radius:10px;margin:8px 0;text-align:center}
+.formula-box .eq{font-family:'Cambria Math','Georgia',serif;font-style:italic;font-size:1.3rem;color:var(--gold);font-weight:600}
+.formula-box .lbl{font-size:.75rem;color:var(--ink-dim);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
+
+/* SVG containers */
+.svg-fig{display:block;margin:12px auto;background:rgba(0,0,0,.15);border-radius:8px;padding:10px;max-width:100%}
+.ex-fig,.q-fig{margin:10px 0;display:flex;justify-content:center;align-items:center}
+.ex-fig svg,.q-fig svg{background:rgba(0,0,0,.18);border-radius:8px;padding:8px;max-width:100%;height:auto}
+
+/* Parábola interativa */
+.parabola-lab{background:var(--card);padding:16px;border-radius:14px;margin:14px 0;border:1px solid rgba(255,255,255,.07)}
+.parabola-lab h4{color:var(--gold);margin-bottom:10px;font-size:1rem}
+.slider-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;align-items:center;margin:8px 0}
+.slider-row label{font-size:.85rem;color:var(--ink-dim);font-weight:600;display:flex;align-items:center;gap:6px}
+.slider-row input[type=range]{width:140px;accent-color:var(--alg)}
+.slider-row .val{color:var(--gold);font-weight:800;font-family:monospace;min-width:40px;text-align:right}
+#parabolaSvg{width:100%;max-width:520px;height:auto;display:block;margin:10px auto;background:rgba(0,0,0,.2);border-radius:8px}
+.paraInfo{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;font-size:.82rem;margin-top:10px;color:var(--ink-dim)}
+.paraInfo span{background:rgba(255,255,255,.06);padding:4px 10px;border-radius:6px}
+.paraInfo span b{color:var(--gold)}
+
+/* ROTEIRO Exercises */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.filter-bar button{background:var(--card);color:var(--ink);border:1px solid rgba(255,255,255,.1);padding:8px 13px;border-radius:10px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s}
+.filter-bar button:hover{background:var(--card-2);transform:translateY(-2px)}
+.filter-bar button.alg.active{background:var(--alg);color:white}
+.filter-bar button.geo.active{background:var(--geo);color:white}
+.filter-bar button.all.active{background:var(--gold);color:#0a0f24;border-color:var(--gold)}
+.filter-bar select{background:var(--card);color:var(--ink);border:1px solid rgba(255,255,255,.15);padding:8px 12px;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer}
+
+.ex-card{background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:12px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);border-left:4px solid var(--gold)}
+.ex-card.alg{border-left-color:var(--alg)}
+.ex-card.geo{border-left-color:var(--geo)}
+.ex-card.hidden{display:none}
+.ex-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.ex-head .id{font-size:1rem;font-weight:800;color:var(--gold)}
+.ex-card.alg .ex-head .id{color:var(--alg)}
+.ex-card.geo .ex-head .id{color:var(--geo-2)}
+.ex-head .tags{display:flex;gap:5px;flex-wrap:wrap}
+.ex-head .tag{font-size:.66rem;padding:2px 7px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--ink-dim);font-weight:700;letter-spacing:.5px}
+.ex-head .tag.tm{background:rgba(34,197,94,.15);color:var(--tm)}
+.ex-head .tag.tc{background:rgba(234,179,8,.15);color:var(--tc)}
+.ex-head .tag.mod{background:rgba(255,209,102,.12);color:var(--gold)}
+.ex-body{color:var(--ink);font-size:.9rem;line-height:1.6;margin-bottom:10px}
+.ex-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ex-actions button{background:rgba(255,255,255,.07);color:var(--ink);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:600;transition:all .2s}
+.ex-actions button:hover{background:rgba(255,255,255,.15)}
+.ex-actions button.done{background:rgba(255,209,102,.15);color:var(--gold);border-color:var(--gold)}
+.reveal-block{margin-top:8px;padding:10px 14px;background:rgba(59,130,246,.08);border-left:3px solid var(--alg);border-radius:6px;font-size:.86rem;color:var(--ink);animation:fadeIn .3s}
+.reveal-block.passo{background:rgba(16,185,129,.06);border-left-color:var(--geo)}
+.reveal-block.resp{background:rgba(255,209,102,.1);border-left-color:var(--gold)}
+.reveal-block b{color:var(--gold)}
+.reveal-block .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--ink-dim);margin-bottom:4px;display:block;font-weight:700}
+
+/* SIMULADOS */
+.sim-select{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:14px 0}
+.sim-card{background:linear-gradient(135deg,var(--card),var(--card-2));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.08);cursor:pointer;transition:transform .3s;position:relative}
+.sim-card:hover{transform:translateY(-4px)}
+.sim-card h4{color:var(--gold);font-size:1.05rem;margin-bottom:6px}
+.sim-card p{color:var(--ink-dim);font-size:.85rem;margin-bottom:8px}
+.sim-card .btn-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.sim-card button{background:var(--alg);color:white;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:600;transition:transform .2s}
+.sim-card button:hover{transform:translateY(-2px)}
+.sim-card button.print{background:var(--gold);color:#0a0f24}
+.sim-card button.close{background:var(--wrong)}
+
+#simView{margin-top:14px}
+.sim-header{background:var(--card);padding:14px 18px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.sim-header h3{color:var(--gold);font-size:1.1rem}
+.sim-header .info{font-size:.82rem;color:var(--ink-dim)}
+.sim-q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:10px;border:1px solid rgba(255,255,255,.06)}
+.sim-q .qh{display:flex;justify-content:space-between;margin-bottom:8px;align-items:center;gap:8px;flex-wrap:wrap}
+.sim-q .qh .code{font-weight:800;color:var(--gold);font-size:.95rem}
+.sim-q .qh .subject{font-size:.7rem;padding:2px 8px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--ink-dim)}
+.sim-q .qh .subject.a{background:var(--alg-glow);color:var(--alg)}
+.sim-q .qh .subject.g{background:var(--geo-glow);color:var(--geo-2)}
+.sim-q .qbody{color:var(--ink);font-size:.9rem;line-height:1.6}
+.sim-q .altos{list-style:none;margin-top:8px}
+.sim-q .altos li{padding:4px 0 4px 24px;position:relative;font-size:.86rem;color:var(--ink-dim)}
+.sim-q .altos li::before{content:attr(data-l);position:absolute;left:0;color:var(--gold);font-weight:800}
+
+/* CORREÇÃO */
+.correct-wrap{background:var(--card);padding:20px;border-radius:14px;max-width:800px;margin:14px auto;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.06)}
+.correct-wrap h3{color:var(--gold);margin-bottom:10px}
+.correct-wrap .input-row{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}
+.correct-wrap input{flex:1;min-width:150px;background:var(--card-2);border:1px solid rgba(255,255,255,.15);color:var(--ink);padding:10px 14px;border-radius:10px;font-size:.95rem;font-family:monospace}
+.correct-wrap button{background:linear-gradient(135deg,var(--alg),var(--geo));color:white;border:none;padding:10px 20px;border-radius:10px;cursor:pointer;font-weight:700;font-size:.9rem}
+.correct-wrap .found{padding:14px;background:linear-gradient(90deg,rgba(16,185,129,.1),transparent);border-left:3px solid var(--geo);border-radius:8px;margin-top:14px}
+.correct-wrap .found h4{color:var(--geo-2);margin-bottom:6px}
+.correct-wrap .found .enun{color:var(--ink);font-size:.9rem;margin-bottom:10px;padding:8px;background:rgba(0,0,0,.15);border-radius:6px}
+.correct-wrap .spoiler-btns{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.correct-wrap .spoiler-btns button{background:rgba(255,255,255,.08);color:var(--ink);padding:7px 14px;font-size:.8rem}
+.correct-wrap .not-found{color:var(--wrong);padding:12px;background:rgba(231,76,60,.1);border-radius:8px;margin-top:10px}
+
+/* FÓRMULAS + RADAR */
+.formulas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.formula-card{background:var(--card);padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.07)}
+.formula-card.alg{border-left:3px solid var(--alg)}
+.formula-card.geo{border-left:3px solid var(--geo)}
+.formula-card .name{font-size:.82rem;color:var(--ink-dim);margin-bottom:4px;font-weight:600}
+.formula-card .eq{font-family:'Cambria Math','Georgia',serif;font-style:italic;color:var(--gold);font-size:1.1rem;font-weight:600}
+
+.radar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}
+.radar-card{background:linear-gradient(135deg,rgba(231,76,60,.05),rgba(231,76,60,.02));border-left:3px solid var(--wrong);padding:14px 16px;border-radius:12px}
+.radar-card h4{color:#ff9080;font-size:.95rem;margin-bottom:8px}
+.radar-card ul{padding-left:20px;color:var(--ink-dim);font-size:.85rem}
+.radar-card ul li{margin:5px 0}
+.radar-card ul li b{color:var(--ink)}
+
+footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:30px;padding:14px;border-top:1px solid rgba(255,255,255,.06)}
+footer .heart{color:var(--alg)}
+
+.note{background:rgba(255,209,102,.08);border-left:3px solid var(--gold);padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0}
+
+/* PRINT MODE — imprime como aparece na tela, mas com fundo branco (economia de tinta) */
+@media print{
+  html,body{background:white!important;color:#111!important}
+  .container{max-width:100%;padding:0;margin:0}
+  /* Esconde navegação e outras abas */
+  .hub-bar,header.hero,nav.tabs,footer,#simSelect,.sim-header,
+  .tab-content:not(#simulados),#simView .no-print{display:none!important}
+  /* Cabeçalho de impressão */
+  .print-header{display:block!important;text-align:center;border-bottom:2px solid #111;padding-bottom:14px;margin-bottom:24px}
+  .print-header h1{font-size:1.4rem;color:#111!important;margin:0}
+  .print-header .fields{margin-top:14px;font-size:.9rem;color:#111!important;text-align:left}
+  .print-header .fields div{margin:8px 0;border-bottom:1px solid #666;padding:4px 0;min-height:24px}
+  /* Aba de simulados visível */
+  #simulados.tab-content{display:block!important;background:transparent!important;animation:none!important}
+  #simView{background:transparent!important;margin-top:0}
+  /* Cards das questões — mantem estrutura visual, fundo branco */
+  .sim-q{
+    background:white!important;color:#111!important;
+    border:1px solid #bbb!important;border-radius:8px!important;
+    padding:12px 16px!important;margin-bottom:14px!important;
+    box-shadow:none!important;
+    page-break-inside:avoid;
+  }
+  .sim-q .qh{margin-bottom:10px;display:flex!important;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+  .sim-q .qh .code{color:#111!important;font-weight:800;font-size:1rem}
+  .sim-q .qh .subject{
+    background:white!important;color:#111!important;
+    border:1px solid #666!important;padding:2px 8px;font-size:.7rem;border-radius:4px
+  }
+  .sim-q .qbody{color:#111!important;font-size:.9rem;line-height:1.5;margin-bottom:8px}
+  .sim-q .altos{list-style:none;margin-top:8px;padding:0}
+  .sim-q .altos li{padding:3px 0 3px 22px;color:#111!important;font-size:.86rem;position:relative}
+  .sim-q .altos li::before{color:#111!important;font-weight:800;position:absolute;left:0;content:attr(data-l)}
+  /* Figuras SVG dentro das questões — inverte cores pra visualização em branco */
+  .sim-q svg{background:white!important;filter:none}
+  .sim-q svg *[stroke="#3b82f6"],.sim-q svg *[stroke="#10b981"],.sim-q svg *[stroke="#4cc9f0"]{stroke:#111!important}
+  .sim-q svg *[fill="#3b82f6"],.sim-q svg *[fill="#10b981"]{fill:#111!important}
+  .sim-q svg *[fill="#f8f9ff"],.sim-q svg *[fill="#ffd166"]{fill:#333!important}
+  .sim-q svg text{fill:#111!important}
+  .sim-q svg *[stroke="#888"],.sim-q svg *[stroke="#666"]{stroke:#999!important}
+  /* Espaço para o aluno resolver à caneta */
+  .print-answer-space{border-bottom:1px dashed #888;min-height:70px;margin-top:10px}
+  @page{margin:1.2cm}
+}
+.print-header{display:none}
+
+/* MOBILE */
+@media(max-width:640px){
+  .container{padding:12px 12px 60px}
+  header.hero{padding:22px 12px 16px}
+  nav.tabs button{font-size:.78rem;padding:6px 10px}
+}
+
+/* MODAL — imagem original do livro */
+.img-modal{
+  display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:20px;
+  animation:fadeIn .25s;
+}
+.img-modal.open{display:flex}
+.img-modal .modal-inner{
+  max-width:96vw;max-height:92vh;position:relative;
+  background:var(--card);border-radius:14px;padding:14px;
+  border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);
+  display:flex;flex-direction:column;
+}
+.img-modal .modal-head{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-bottom:10px;padding-bottom:8px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.img-modal .modal-head .title{color:var(--gold);font-weight:800;font-size:1rem;flex:1;min-width:120px}
+.img-modal .modal-head .zoom-controls{display:flex;gap:6px;align-items:center}
+.img-modal .modal-head .zoom-controls button{
+  background:rgba(255,255,255,.08);color:var(--ink);border:1px solid rgba(255,255,255,.15);
+  padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.9rem;
+  min-width:36px;line-height:1;transition:background .15s;
+}
+.img-modal .modal-head .zoom-controls button:hover{background:rgba(255,255,255,.18)}
+.img-modal .modal-head .zoom-controls .zoom-val{
+  color:var(--gold);font-family:monospace;font-size:.82rem;font-weight:700;
+  min-width:48px;text-align:center;
+}
+.img-modal .modal-head .close-btn{
+  background:var(--wrong)!important;color:white!important;border:none!important;
+  padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.85rem;
+}
+.img-modal .modal-body{
+  overflow:hidden;max-height:78vh;
+  background:#000;border-radius:8px;padding:0;position:relative;
+  cursor:grab;user-select:none;
+}
+.img-modal .modal-body.grabbing{cursor:grabbing}
+.img-modal .modal-body .img-wrap{
+  width:100%;height:78vh;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.img-modal .modal-body img{
+  max-width:100%;max-height:78vh;display:block;
+  transform-origin:0 0;transition:transform .12s ease-out;
+  pointer-events:none;
+}
+.img-modal .modal-body .zoom-hint{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  background:rgba(0,0,0,.65);color:var(--ink-dim);padding:4px 12px;
+  border-radius:14px;font-size:.72rem;pointer-events:none;
+  opacity:.7;
+}
+.img-modal .modal-body .missing{
+  padding:30px 20px;color:var(--ink-dim);text-align:center;
+}
+.img-modal .modal-body .missing h4{color:var(--gold);margin-bottom:8px}
+.img-modal .modal-body .missing code{
+  background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px;
+  color:var(--gold);font-family:monospace;font-size:.85rem;
+}
+.img-modal .modal-body .missing .path{
+  background:rgba(0,0,0,.3);padding:10px 14px;border-radius:8px;
+  margin:12px auto;max-width:400px;font-family:monospace;font-size:.82rem;color:var(--gold);
+  word-break:break-all;
+}
+.btn-orig{
+  background:rgba(255,209,102,.12)!important;color:var(--gold)!important;
+  border-color:rgba(255,209,102,.4)!important;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hub-bar">
+  <a href="index.html">← Hub de matérias</a>
+  <span class="subj">📐 MATEMÁTICA</span>
+  <a href="filosofia.html">Filosofia →</a>
+</div>
+
+<header class="hero">
+  <h1>Matemática — P2T2</h1>
+  <p>Álgebra (Prof. Vinni) e Geometria (Prof. Dodl) · Resumos, exercícios do roteiro e simulados</p>
+  <span class="subtitle-tag">Resumo · Roteiro · 3 Simulados · Fórmulas</span>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-tab="overview" class="active">Visão Geral</button>
+  <button data-tab="alg">Álgebra</button>
+  <button data-tab="geo">Geometria</button>
+  <button data-tab="roteiro">Exercícios do Roteiro</button>
+  <button data-tab="simulados">Simulados</button>
+  <button data-tab="corrigir">Corrigir Simulado</button>
+  <button data-tab="formulas">Fórmulas & Radar</button>
+</nav>
+
+<!-- VISÃO GERAL -->
+<section class="tab-content active" id="overview">
+  <h2 class="section-title"><span class="ico">📚</span>Visão Geral</h2>
+  <p style="color:var(--ink-dim);max-width:840px">A prova cobre <b style="color:var(--alg)">Álgebra</b> (Funções — Prof. Vinni) e <b style="color:var(--geo-2)">Geometria Plana</b> (Prof. Dodl). O bloco mais pesado é a <b>função quadrática</b> (Mód 20+21+23-24), com o dobro do volume de qualquer outro tópico.</p>
+
+  <h3 style="color:var(--alg);margin:16px 0 6px">🔵 Álgebra — Prof. Vinni</h3>
+  <div class="mod-grid">
+    <div class="mod-card alg"><span class="emoji">📏</span><span class="badge">MÓD 17</span><h3>Função Afim</h3><p>Definição, gráfico, raiz, coef. angular/linear.</p><div class="kf">f(x) = ax + b</div></div>
+    <div class="mod-card alg"><span class="emoji">🚗</span><span class="badge">MÓD 18</span><h3>Aplicações da Afim</h3><p>Problemas: telefonia, temperatura, aluguel.</p><div class="kf">y₂−y₁ = a(x₂−x₁)</div></div>
+    <div class="mod-card alg"><span class="emoji">📈</span><span class="badge">MÓD 19</span><h3>Linear e Constante</h3><p>Casos particulares; proporcionalidade direta.</p><div class="kf">f(x) = ax · f(x) = k</div></div>
+    <div class="mod-card alg"><span class="emoji">🎯</span><span class="badge">MÓD 20</span><h3>Quadrática — Definição</h3><p>Parábola, concavidade, raízes, discriminante.</p><div class="kf">Δ = b² − 4ac</div></div>
+    <div class="mod-card alg"><span class="emoji">📐</span><span class="badge">MÓD 21</span><h3>Vértice e Imagem</h3><p>Coordenadas do vértice, conjunto imagem.</p><div class="kf">xᵥ = −b/2a · yᵥ = −Δ/4a</div></div>
+    <div class="mod-card alg"><span class="emoji">🚀</span><span class="badge">MÓD 23-24</span><h3>Máximos e Mínimos</h3><p>Otimização; problemas contextuais.</p><div class="kf">a &lt; 0 → máx · a &gt; 0 → mín</div></div>
+  </div>
+
+  <h3 style="color:var(--geo-2);margin:20px 0 6px">🟢 Geometria — Prof. Dodl</h3>
+  <div class="mod-grid">
+    <div class="mod-card geo"><span class="emoji">🔺</span><span class="badge">MÓD 20-21</span><h3>Triângulos</h3><p>Ângulos, classificação, condição de existência.</p><div class="kf">A + B + C = 180°</div></div>
+    <div class="mod-card geo"><span class="emoji">⬡</span><span class="badge">MÓD 22</span><h3>Polígonos I</h3><p>Diagonais, convexo × côncavo.</p><div class="kf">d = n(n−3)/2</div></div>
+    <div class="mod-card geo"><span class="emoji">🔷</span><span class="badge">MÓD 23</span><h3>Polígonos II</h3><p>Soma dos ângulos internos e externos.</p><div class="kf">Sᵢ = 180°(n−2) · Sₑ = 360°</div></div>
+    <div class="mod-card geo"><span class="emoji">⭕</span><span class="badge">MÓD 24</span><h3>Circunferência</h3><p>Ângulos central, inscrito, excêntrico.</p><div class="kf">β = arco/2</div></div>
+    <div class="mod-card geo"><span class="emoji">⚡</span><span class="badge">MÓD 25</span><h3>Pontos Notáveis</h3><p>Baricentro, incentro, ortocentro, circuncentro.</p><div class="kf">Bar: razão 2:1</div></div>
+    <div class="mod-card geo"><span class="emoji">▱</span><span class="badge">MÓD 26</span><h3>Quadriláteros</h3><p>Trapézio, paralelogramo, losango, quadrado.</p><div class="kf">MN = (AB+CD)/2</div></div>
+    <div class="mod-card geo"><span class="emoji">📏</span><span class="badge">MÓD 27</span><h3>Tales e Bissetriz</h3><p>Segmentos proporcionais.</p><div class="kf">AB/DE = BC/EF · x/a = y/b</div></div>
+  </div>
+
+  <div class="criterio-box">
+    <h4>📋 Critérios (do roteiro)</h4>
+    <p><b>Álgebra — Mat A:</b> M17 (TM 1-4+9, TC 5,11,12) · M18 (TM 1-4+8, TC 5,6,11) · M19 (TM 1-4+9, TC 5,11,12) · M20 (TM 1-3+5+9, TC 4,7,8,10,16) · M21 (TM 1-4+9, TC 5,6,10) · M23-24 (TM 1-3+5+9, TC 6,13,16).</p>
+    <p><b>Geometria — Mat B:</b> M20-21 (Q 1,2,4,5,6,10,17,18,20) · M22 (Q 2,3,5,9,10) · M23 (Q 1-5) · M24 (Q 1-5,7,8) · M25 (Q 1,2,3,8) · M26 (Q 1-5,18) · M27 (Q 1,2,3,4).</p>
+  </div>
+
+  <h3 style="color:var(--gold);margin:20px 0 6px">🗺️ Roadmap sugerido de estudo</h3>
+  <div class="roadmap">
+    <div class="step"><span class="n">1</span><h5>Resumos</h5><p>Leia Álgebra e Geometria pra fixar conceitos.</p></div>
+    <div class="step"><span class="n">2</span><h5>Fórmulas</h5><p>Passe pela aba Fórmulas + Radar antes de treinar.</p></div>
+    <div class="step"><span class="n">3</span><h5>Roteiro</h5><p>Faça os exercícios do roteiro com resolução progressiva.</p></div>
+    <div class="step"><span class="n">4</span><h5>Simulado</h5><p>Imprima o Simulado 1 e resolva sem consultar.</p></div>
+    <div class="step"><span class="n">5</span><h5>Corrigir</h5><p>Volte com o código do exercício pra conferir.</p></div>
+    <div class="step"><span class="n">6</span><h5>Repita</h5><p>Simulados 2 e 3 nos dias seguintes.</p></div>
+  </div>
+
+  <div class="tip-alert"><h4>💡 Dica</h4><p>Em Matemática, o valor está em <b>fazer</b>, não em ler. Priorize os exercícios do roteiro e os simulados. Use os resumos e fórmulas como consulta rápida durante a resolução.</p></div>
+</section>
+
+<!-- ÁLGEBRA -->
+<section class="tab-content" id="alg">
+  <h2 class="section-title"><span class="ico">🔵</span>Álgebra — Resumo</h2>
+
+  <div class="summary-card alg">
+    <h3>📏 Módulo 17 — Função Afim <span class="b">Base</span></h3>
+    <p>Função do 1º grau: $f(x) = ax + b$, com $a \ne 0$. Gráfico é uma <b>reta</b>.</p>
+    <ul>
+      <li><b>a</b> = coeficiente angular (taxa de variação, inclinação): $a = (y_2-y_1)/(x_2-x_1)$.</li>
+      <li><b>b</b> = coeficiente linear: valor onde a reta cruza o eixo y.</li>
+      <li><b>Raiz</b> (onde y = 0): $x = -b/a$.</li>
+      <li>Se $a &gt; 0$ → função <b>crescente</b>. Se $a &lt; 0$ → <b>decrescente</b>.</li>
+      <li>Determinada por 2 pontos: sistema com 2 equações e 2 incógnitas ($a$ e $b$).</li>
+    </ul>
+    <div class="formula-box"><span class="eq">f(x) = ax + b</span><div class="lbl">Função Afim</div></div>
+  <button class="see-pages" onclick="openModuleModal('AL-M17')">📖 Ver páginas do livro (6 fotos)</button>
+  </div>
+
+  <div class="summary-card alg">
+    <h3>🚗 Módulo 18 — Aplicações da Afim <span class="b">Contexto</span></h3>
+    <p>Passos padrão em problemas:</p>
+    <ul>
+      <li><b>1.</b> Identifique as duas variáveis (o que depende de quê).</li>
+      <li><b>2.</b> Extraia dois pares (x, y) do enunciado.</li>
+      <li><b>3.</b> Monte sistema com $y = ax + b$ para achar $a$ e $b$.</li>
+      <li><b>4.</b> Use a função obtida para responder o que o enunciado pede.</li>
+    </ul>
+    <p><b>Aplicações típicas:</b> telefonia (mensalidade + minuto), temperatura (conversão Celsius/Fahrenheit), aluguel (fixo + km), população, salário fixo + variável.</p>
+  <button class="see-pages" onclick="openModuleModal('AL-M18')">📖 Ver páginas do livro (6 fotos)</button>
+  </div>
+
+  <div class="summary-card alg">
+    <h3>📈 Módulo 19 — Linear e Constante <span class="b">Casos</span></h3>
+    <ul>
+      <li><b>Função linear</b>: $f(x) = ax$ (caso particular da afim com $b=0$). Gráfico passa pela <b>origem</b>.</li>
+      <li><b>Função identidade</b>: $f(x) = x$. Bissetriz dos quadrantes I e III.</li>
+      <li><b>Função constante</b>: $f(x) = k$. Reta <b>paralela</b> ao eixo x.</li>
+      <li><b>Grandezas diretamente proporcionais</b>: $y/x = k$ (constante). Modeladas por função linear.</li>
+    </ul>
+    <div class="formula-box"><span class="eq">y/x = k → y = k·x</span><div class="lbl">Proporcionalidade direta</div></div>
+  <button class="see-pages" onclick="openModuleModal('AL-M19')">📖 Ver páginas do livro (6 fotos)</button>
+  </div>
+
+  <div class="summary-card alg">
+    <h3>🎯 Módulo 20 — Quadrática (I) <span class="b">Núcleo</span></h3>
+    <p>Função do 2º grau: $f(x) = ax^2 + bx + c$, com $a \ne 0$. Gráfico é uma <b>parábola</b>.</p>
+    <ul>
+      <li><b>Concavidade</b>: $a &gt; 0$ → para cima; $a &lt; 0$ → para baixo.</li>
+      <li><b>Intercepto com y</b>: $(0, c)$.</li>
+      <li><b>Raízes</b> (interceptos com x): Bhaskara $x = \frac{-b \pm \sqrt{\Delta}}{2a}$ onde $\Delta = b^2 - 4ac$.</li>
+      <li><b>$\Delta &gt; 0$</b>: 2 raízes reais distintas · <b>$\Delta = 0$</b>: 1 raiz dupla · <b>$\Delta &lt; 0$</b>: sem raízes reais.</li>
+    </ul>
+    <div class="formula-box"><span class="eq">x = (−b ± √Δ) / 2a</span><div class="lbl">Bhaskara — raízes</div></div>
+  <button class="see-pages" onclick="openModuleModal('AL-M20')">📖 Ver páginas do livro (7 fotos)</button>
+  </div>
+
+  <div class="parabola-lab">
+    <h4>🔬 Laboratório — mova os controles e veja o comportamento</h4>
+    <div class="slider-row">
+      <label>a: <input type="range" id="pA" min="-3" max="3" step="0.1" value="1"><span class="val" id="vA">1.0</span></label>
+      <label>b: <input type="range" id="pB" min="-8" max="8" step="0.1" value="0"><span class="val" id="vB">0.0</span></label>
+      <label>c: <input type="range" id="pC" min="-8" max="8" step="0.1" value="-4"><span class="val" id="vC">-4.0</span></label>
+    </div>
+    <svg id="parabolaSvg" viewBox="0 0 400 300"></svg>
+    <div class="paraInfo" id="paraInfo"></div>
+  </div>
+
+  <div class="summary-card alg">
+    <h3>📐 Módulo 21 — Vértice e Imagem <span class="b">Chave</span></h3>
+    <p>Vértice da parábola $V(x_v, y_v)$:</p>
+    <div class="formula-box"><span class="eq">xᵥ = −b/2a &nbsp;&nbsp; yᵥ = −Δ/4a</span><div class="lbl">Coordenadas do vértice</div></div>
+    <ul>
+      <li>Se $a &gt; 0$: V é <b>ponto de mínimo</b> · Im = $\{y \in \mathbb{R} \mid y \ge y_v\}$.</li>
+      <li>Se $a &lt; 0$: V é <b>ponto de máximo</b> · Im = $\{y \in \mathbb{R} \mid y \le y_v\}$.</li>
+      <li><b>Forma canônica</b>: $f(x) = a(x-x_v)^2 + y_v$ (leitura direta do vértice).</li>
+      <li><b>Forma fatorada</b>: $f(x) = a(x-x_1)(x-x_2)$ (leitura direta das raízes).</li>
+    </ul>
+  <button class="see-pages" onclick="openModuleModal('AL-M21')">📖 Ver páginas do livro (4 fotos)</button>
+  </div>
+
+  <div class="summary-card alg">
+    <h3>🚀 Módulos 23 e 24 — Máximos, Mínimos e Aplicações <span class="b">Otimização</span></h3>
+    <p>Em problemas de <b>otimização</b> (área máxima, receita máxima, altura máxima, custo mínimo), o valor extremo é o $y_v$ da quadrática.</p>
+    <p><b>Método padrão:</b></p>
+    <ul>
+      <li><b>1.</b> Escreva a grandeza a otimizar em função de uma variável (ex.: área = comprimento × largura).</li>
+      <li><b>2.</b> Simplifique até a forma $f(x) = ax^2 + bx + c$.</li>
+      <li><b>3.</b> Se $a &lt; 0$, tem máximo; se $a &gt; 0$, tem mínimo.</li>
+      <li><b>4.</b> Calcule $x_v = -b/2a$ e $y_v = -\Delta/4a$ (ou substitua $x_v$ na função).</li>
+      <li><b>5.</b> $x_v$ é o <b>valor da variável</b> que produz o extremo; $y_v$ é o <b>valor extremo</b>.</li>
+    </ul>
+  <button class="see-pages" onclick="openModuleModal('AL-M23')">📖 Ver páginas do livro (7 fotos)</button>
+  </div>
+</section>
+
+<!-- GEOMETRIA -->
+<section class="tab-content" id="geo">
+  <h2 class="section-title"><span class="ico">🟢</span>Geometria — Resumo</h2>
+
+  <div class="summary-card geo">
+    <h3>🔺 Módulos 20-21 — Triângulos <span class="b">Fundamental</span></h3>
+    <ul>
+      <li><b>Teorema Angular de Tales</b>: $A + B + C = 180°$.</li>
+      <li><b>Teorema do Ângulo Externo</b>: cada ângulo externo = soma dos dois internos não adjacentes: $\gamma_{ext} = A + B$.</li>
+      <li><b>Condição de existência</b>: cada lado é menor que a soma dos outros dois → $|b-c| &lt; a &lt; b+c$.</li>
+      <li><b>Classificação por lados</b>: equilátero (3 iguais), isósceles (2 iguais), escaleno (3 diferentes).</li>
+      <li><b>Classificação por ângulos</b>: acutângulo ($a^2 &lt; b^2 + c^2$), retângulo ($a^2 = b^2 + c^2$), obtusângulo ($a^2 &gt; b^2 + c^2$).</li>
+    </ul>
+    <svg class="svg-fig" viewBox="0 0 300 180" width="300" height="180">
+      <polygon points="150,30 60,150 240,150" fill="none" stroke="#10b981" stroke-width="2"/>
+      <text x="150" y="22" text-anchor="middle" fill="#f8f9ff" font-size="14">A</text>
+      <text x="52" y="165" fill="#f8f9ff" font-size="14">B</text>
+      <text x="245" y="165" fill="#f8f9ff" font-size="14">C</text>
+      <path d="M 140 45 A 15 15 0 0 1 160 45" fill="none" stroke="#ffd166" stroke-width="1.5"/>
+      <path d="M 75 145 A 12 12 0 0 0 85 130" fill="none" stroke="#ffd166" stroke-width="1.5"/>
+      <path d="M 225 145 A 12 12 0 0 1 215 130" fill="none" stroke="#ffd166" stroke-width="1.5"/>
+      <text x="150" y="120" text-anchor="middle" fill="#ffd166" font-size="12">Â + B̂ + Ĉ = 180°</text>
+    </svg>
+  <button class="see-pages" onclick="openModuleModal('GE-M20')">📖 Ver páginas do livro (5 fotos)</button>
+  </div>
+
+  <div class="summary-card geo">
+    <h3>⬡ Módulo 22 — Polígonos I <span class="b">Diagonais</span></h3>
+    <ul>
+      <li>Polígono convexo × côncavo.</li>
+      <li><b>Número de diagonais</b>: $d = \frac{n(n-3)}{2}$.</li>
+      <li><b>Diagonais pelo centro</b> (só se $n$ é <b>par</b>): $D_c = n/2$.</li>
+      <li>Nomes por lados: triângulo (3), quadrilátero (4), pentágono (5), hexágono (6), heptágono (7), octógono (8), eneágono (9), decágono (10), undecágono (11), dodecágono (12), pentadecágono (15), icoságono (20).</li>
+    </ul>
+    <div class="formula-box"><span class="eq">d = n(n−3)/2</span><div class="lbl">Total de diagonais</div></div>
+  <button class="see-pages" onclick="openModuleModal('GE-M22')">📖 Ver páginas do livro (4 fotos)</button>
+  </div>
+
+  <div class="summary-card geo">
+    <h3>🔷 Módulo 23 — Polígonos II <span class="b">Ângulos</span></h3>
+    <ul>
+      <li><b>Soma dos ângulos internos</b>: $S_i = 180°(n-2)$.</li>
+      <li><b>Soma dos ângulos externos</b> (qualquer polígono convexo): $S_e = 360°$.</li>
+      <li><b>Polígono regular</b> (equilátero + equiângulo): $i = S_i/n$ e $e = 360°/n$.</li>
+      <li>Relação: $i + e = 180°$ (interno e externo do mesmo vértice são suplementares).</li>
+    </ul>
+    <div class="formula-box"><span class="eq">Sᵢ = 180°·(n−2)</span><div class="lbl">Soma interna</div></div>
+  <button class="see-pages" onclick="openModuleModal('GE-M23')">📖 Ver páginas do livro (6 fotos)</button>
+  </div>
+
+  <div class="summary-card geo">
+    <h3>⭕ Módulo 24 — Circunferência <span class="b">Ângulos</span></h3>
+    <ul>
+      <li><b>Ângulo central</b>: $\alpha = $ arco AB (mesma medida).</li>
+      <li><b>Ângulo inscrito</b>: $\beta = $ arco AB / 2 (metade do central que enxerga o mesmo arco).</li>
+      <li><b>Quadrilátero inscrito</b>: ângulos opostos são suplementares ($\hat{A} + \hat{C} = 180°$).</li>
+      <li><b>Triângulo inscrito com um lado = diâmetro</b>: é <b>retângulo</b> (Tales).</li>
+      <li><b>Excêntrico interior</b>: (arco₁ + arco₂) / 2 (soma).</li>
+      <li><b>Excêntrico exterior</b>: (arco maior − arco menor) / 2 (subtração).</li>
+    </ul>
+    <svg class="svg-fig" viewBox="0 0 240 180" width="240" height="180">
+      <circle cx="120" cy="95" r="70" fill="none" stroke="#10b981" stroke-width="2"/>
+      <line x1="120" y1="95" x2="80" y2="40" stroke="#ffd166" stroke-width="1.5"/>
+      <line x1="120" y1="95" x2="180" y2="60" stroke="#ffd166" stroke-width="1.5"/>
+      <line x1="80" y1="40" x2="40" y2="130" stroke="#3b82f6" stroke-width="1.5"/>
+      <line x1="180" y1="60" x2="40" y2="130" stroke="#3b82f6" stroke-width="1.5"/>
+      <text x="120" y="105" text-anchor="middle" fill="#ffd166" font-size="10">α</text>
+      <text x="55" y="120" fill="#3b82f6" font-size="10">β=α/2</text>
+      <circle cx="120" cy="95" r="2" fill="#f8f9ff"/>
+    </svg>
+  <button class="see-pages" onclick="openModuleModal('GE-M24')">📖 Ver páginas do livro (6 fotos)</button>
+  </div>
+
+  <div class="summary-card geo">
+    <h3>⚡ Módulo 25 — Pontos Notáveis <span class="b">4 Cevianas</span></h3>
+    <p>Cada triângulo tem 4 pontos notáveis, cada um encontro de 3 cevianas:</p>
+    <ul>
+      <li><b>Baricentro (G)</b> — encontro das <b>medianas</b>. Razão <b>2:1</b> (do vértice até G é 2× do trecho de G até o ponto médio). Sempre <b>interno</b>.</li>
+      <li><b>Incentro (I)</b> — encontro das <b>bissetrizes</b>. Centro da circunferência <b>inscrita</b>. Equidista dos <b>lados</b>. Sempre <b>interno</b>.</li>
+      <li><b>Ortocentro (H)</b> — encontro das <b>alturas</b>. Interno se acutângulo, externo se obtusângulo, no vértice reto se retângulo.</li>
+      <li><b>Circuncentro (O)</b> — encontro das <b>mediatrizes</b>. Centro da circunferência <b>circunscrita</b>. Equidista dos <b>vértices</b>. No triângulo retângulo é o <b>ponto médio da hipotenusa</b>.</li>
+      <li>No <b>equilátero</b>, os 4 pontos coincidem. No <b>isósceles</b>, são colineares.</li>
+    </ul>
+  <button class="see-pages" onclick="openModuleModal('GE-M25')">📖 Ver páginas do livro (7 fotos)</button>
+  </div>
+
+  <div class="summary-card geo">
+    <h3>▱ Módulo 26 — Quadriláteros <span class="b">Hierarquia</span></h3>
+    <ul>
+      <li><b>Trapézio</b>: <b>1 par</b> de lados paralelos. Ângulos da mesma perna somam 180°. Base média $MN = (AB+CD)/2$. Mediana de Euler $MN = (AD-BC)/2$.</li>
+      <li><b>Paralelogramo</b>: <b>2 pares</b> de lados paralelos. Lados opostos congruentes, ângulos opostos congruentes, diagonais se bissectam.</li>
+      <li><b>Retângulo</b>: paralelogramo com <b>4 ângulos retos</b>; diagonais congruentes.</li>
+      <li><b>Losango</b>: paralelogramo com <b>4 lados iguais</b>; diagonais perpendiculares e bissetrizes internas.</li>
+      <li><b>Quadrado</b>: retângulo <b>E</b> losango; diagonais congruentes, perpendiculares e bissetrizes.</li>
+    </ul>
+    <p style="margin-top:6px"><b>Hierarquia:</b> Trapézios ⊃ Paralelogramos ⊃ (Retângulos ∪ Losangos), interseção = Quadrados.</p>
+  <button class="see-pages" onclick="openModuleModal('GE-M26')">📖 Ver páginas do livro (10 fotos)</button>
+  </div>
+
+  <div class="summary-card geo">
+    <h3>📏 Módulo 27 — Tales e Bissetriz Interna <span class="b">Proporções</span></h3>
+    <p><b>Teorema de Tales:</b> feixe de retas paralelas + duas transversais → segmentos correspondentes proporcionais.</p>
+    <div class="formula-box"><span class="eq">AB/DE = BC/EF = AC/DF</span><div class="lbl">Teorema de Tales</div></div>
+    <p><b>Consequências:</b> reta paralela a um lado do triângulo determina segmentos proporcionais. Base média é <b>paralela</b> à base e mede sua <b>metade</b>.</p>
+    <p style="margin-top:8px"><b>Teorema da Bissetriz Interna:</b> em qualquer triângulo, a bissetriz interna determina, no lado oposto, segmentos proporcionais aos outros dois lados.</p>
+    <div class="formula-box"><span class="eq">x/a = y/b</span><div class="lbl">Bissetriz Interna</div></div>
+    <svg class="svg-fig" viewBox="0 0 300 180" width="300" height="180">
+      <polygon points="150,25 40,155 260,155" fill="none" stroke="#10b981" stroke-width="2"/>
+      <line x1="150" y1="25" x2="140" y2="155" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="4 2"/>
+      <text x="150" y="20" text-anchor="middle" fill="#f8f9ff" font-size="13">A</text>
+      <text x="32" y="170" fill="#f8f9ff" font-size="13">B</text>
+      <text x="265" y="170" fill="#f8f9ff" font-size="13">C</text>
+      <text x="142" y="170" fill="#ffd166" font-size="12">D</text>
+      <text x="85" y="100" fill="#3b82f6" font-size="12">b</text>
+      <text x="215" y="100" fill="#3b82f6" font-size="12">a</text>
+      <text x="88" y="150" fill="#ffd166" font-size="11">x=BD</text>
+      <text x="180" y="150" fill="#ffd166" font-size="11">y=DC</text>
+      <text x="150" y="105" text-anchor="middle" fill="#ffd166" font-size="11">x/a = y/b</text>
+    </svg>
+  <button class="see-pages" onclick="openModuleModal('GE-M27')">📖 Ver páginas do livro (7 fotos)</button>
+  </div>
+</section>
+
+<!-- ROTEIRO -->
+<section class="tab-content" id="roteiro">
+  <h2 class="section-title"><span class="ico">✏️</span>Exercícios do Roteiro</h2>
+  <p style="color:var(--ink-dim);margin-bottom:10px">Todos os exercícios das tarefas mínima (verde) e complementar (dourada). Clique nos botões pra revelar dicas e resolução passo a passo — tente antes de espiar!</p>
+  <div class="note" style="margin-bottom:12px">📷 <b>Ver enunciado original:</b> cada exercício tem o botão <b>🔍 Ver original</b> que abre a foto da página inteira do livro onde o exercício aparece. As fotos ficam em <code style="background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--gold)">img/pages/</code> no repositório. Se abrir e não aparecer nada, confira se você subiu todas as imagens (81 no total).</div>
+
+  <div class="filter-bar">
+    <button class="all active" data-mat="all">Todos</button>
+    <button class="alg" data-mat="alg">🔵 Álgebra</button>
+    <button class="geo" data-mat="geo">🟢 Geometria</button>
+    <select id="modFilter">
+      <option value="all">Todos os módulos</option>
+      <optgroup label="Álgebra">
+        <option value="M17">M17 — Afim</option>
+        <option value="M18">M18 — Aplicações</option>
+        <option value="M19">M19 — Linear/Constante</option>
+        <option value="M20A">M20 — Quadrática I</option>
+        <option value="M21">M21 — Vértice</option>
+        <option value="M23">M23-24 — Máx/Mín</option>
+      </optgroup>
+      <optgroup label="Geometria">
+        <option value="G20">M20-21 — Triângulos</option>
+        <option value="G22">M22 — Polígonos I</option>
+        <option value="G23">M23 — Polígonos II</option>
+        <option value="G24">M24 — Circunferência</option>
+        <option value="G25">M25 — Pontos Notáveis</option>
+        <option value="G26">M26 — Quadriláteros</option>
+        <option value="G27">M27 — Tales</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div id="roteiroList"></div>
+</section>
+
+<!-- SIMULADOS -->
+<section class="tab-content" id="simulados">
+  <h2 class="section-title"><span class="ico">📝</span>Simulados</h2>
+  <p style="color:var(--ink-dim);margin-bottom:10px">Cada simulado tem <b>~14 questões novas</b> (números e contextos diferentes dos originais, mas mesma estrutura) misturando Álgebra e Geometria, na proporção da prova. Imprima, resolva à caneta como se fosse a prova, depois volte na aba <b>"Corrigir Simulado"</b>.</p>
+
+  <div class="sim-select" id="simSelect">
+    <div class="sim-card">
+      <h4>📝 Simulado 1</h4>
+      <p>14 questões · Todos os tópicos · Nível médio.</p>
+      <div class="btn-row">
+        <button onclick="openSim(1)">Ver on-screen</button>
+        <button class="print" onclick="printSim(1)">🖨️ Imprimir</button>
+      </div>
+    </div>
+    <div class="sim-card">
+      <h4>📝 Simulado 2</h4>
+      <p>14 questões · Todos os tópicos · Nível médio.</p>
+      <div class="btn-row">
+        <button onclick="openSim(2)">Ver on-screen</button>
+        <button class="print" onclick="printSim(2)">🖨️ Imprimir</button>
+      </div>
+    </div>
+    <div class="sim-card">
+      <h4>📝 Simulado 3</h4>
+      <p>14 questões · Todos os tópicos · Nível médio.</p>
+      <div class="btn-row">
+        <button onclick="openSim(3)">Ver on-screen</button>
+        <button class="print" onclick="printSim(3)">🖨️ Imprimir</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="simView"></div>
+</section>
+
+<!-- CORREÇÃO -->
+<section class="tab-content" id="corrigir">
+  <h2 class="section-title"><span class="ico">✓</span>Corrigir Simulado</h2>
+  <div class="correct-wrap">
+    <h3>Digite o código do exercício</h3>
+    <p style="color:var(--ink-dim);font-size:.88rem">Cada questão dos simulados tem um código no formato <b>S1-Q07</b> (Simulado 1, Questão 7). Digite abaixo e escolha o nível de spoiler.</p>
+    <div class="input-row">
+      <input type="text" id="codeInput" placeholder="Ex.: S1-Q07" maxlength="10">
+      <button onclick="findCode()">Buscar</button>
+    </div>
+    <div id="correctResult"></div>
+  </div>
+</section>
+
+<!-- FÓRMULAS + RADAR -->
+<section class="tab-content" id="formulas">
+  <h2 class="section-title"><span class="ico">🧮</span>Fórmulas & Radar</h2>
+
+  <h3 style="color:var(--alg);margin:14px 0 6px">🔵 Álgebra</h3>
+  <div class="formulas-grid" id="formAlg"></div>
+
+  <h3 style="color:var(--geo-2);margin:20px 0 6px">🟢 Geometria</h3>
+  <div class="formulas-grid" id="formGeo"></div>
+
+  <h3 style="color:#ff9080;margin:24px 0 6px">⚠️ Radar de Armadilhas</h3>
+  <p style="color:var(--ink-dim);font-size:.88rem">Erros clássicos por módulo. Leia isso 10 minutos antes da prova.</p>
+  <div class="radar-grid" id="radarList"></div>
+</section>
+
+<footer>Material de estudo · Matemática · P2T2 · Feito com <span class="heart">♥</span></footer>
+
+</div>
+
+<!-- MODAL — imagem original do livro -->
+<div class="img-modal" id="imgModal" onclick="if(event.target===this) closeImgModal()">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <span class="title" id="modalTitle">Enunciado original</span>
+      <div class="zoom-controls" id="zoomControls" style="display:none">
+        <button onclick="modulePrev()" title="Página anterior (←)" id="btnPrev" style="display:none">‹</button>
+        <span class="zoom-val" id="pageCounter" style="display:none"></span>
+        <button onclick="moduleNext()" title="Próxima página (→)" id="btnNext" style="display:none">›</button>
+        <span style="width:10px"></span>
+        <button onclick="zoomOut()" title="Diminuir (−)">−</button>
+        <span class="zoom-val" id="zoomVal">100%</span>
+        <button onclick="zoomIn()" title="Aumentar (+)">+</button>
+        <button onclick="zoomReset()" title="Ajustar à tela (0)">⤢</button>
+      </div>
+      <button class="close-btn" onclick="closeImgModal()">✖ Fechar</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ========== MODAL — imagem original ========== */
+/* Mapeamento código do exercício → arquivo IMG do livro (página inteira).
+   Uma mesma imagem serve para múltiplos exercícios da mesma página. */
+const imageMap = {
+  /* MAT A */
+  // M17 (p.4-6)
+  'M17-1':'IMG_7309','M17-2':'IMG_7309','M17-3':'IMG_7309','M17-4':'IMG_7309','M17-5':'IMG_7309',
+  'M17-9':'IMG_7310',
+  'M17-11':'IMG_7311','M17-12':'IMG_7311',
+  // M18 (p.9-12)
+  'M18-1':'IMG_7314','M18-2':'IMG_7314','M18-3':'IMG_7314','M18-4':'IMG_7314','M18-5':'IMG_7314',
+  'M18-6':'IMG_7315','M18-8':'IMG_7315',
+  'M18-11':'IMG_7316',
+  // M19 (p.15-18)
+  'M19-1':'IMG_7320','M19-2':'IMG_7320','M19-3':'IMG_7320',
+  'M19-4':'IMG_7321','M19-5':'IMG_7321',
+  'M19-9':'IMG_7322',
+  'M19-11':'IMG_7323','M19-12':'IMG_7323',
+  // M20 (p.22-24)
+  'M20A-1':'IMG_7327','M20A-2':'IMG_7327','M20A-3':'IMG_7327','M20A-4':'IMG_7327','M20A-5':'IMG_7327','M20A-7':'IMG_7327',
+  'M20A-8':'IMG_7328','M20A-9':'IMG_7328','M20A-10':'IMG_7328',
+  'M20A-16':'IMG_7329',
+  // M21 (p.27-28)
+  'M21-1':'IMG_7332','M21-2':'IMG_7332','M21-3':'IMG_7332','M21-4':'IMG_7332','M21-5':'IMG_7332','M21-6':'IMG_7332',
+  'M21-9':'IMG_7333','M21-10':'IMG_7333',
+  // M23-24 (p.38-40)
+  'M23-1':'IMG_7337','M23-2':'IMG_7337','M23-3':'IMG_7337','M23-5':'IMG_7337','M23-6':'IMG_7337',
+  'M23-9':'IMG_7338','M23-13':'IMG_7339','M23-16':'IMG_7339',
+  /* MAT B */
+  // Triângulos (M20-21) p.98,101
+  'G20-1':'IMG_7263','G20-2':'IMG_7263','G20-4':'IMG_7263','G20-5':'IMG_7263','G20-6':'IMG_7263','G20-10':'IMG_7263','G20-17':'IMG_7263','G20-18':'IMG_7263',
+  'G20-20':'IMG_7265',
+  // Polígonos I (M22) p.104-105
+  'G22-2':'IMG_7275','G22-3':'IMG_7275','G22-5':'IMG_7275',
+  'G22-9':'IMG_7276','G22-10':'IMG_7276',
+  // Polígonos II (M23) p.108-109
+  'G23-1':'IMG_7279','G23-2':'IMG_7279','G23-3':'IMG_7279','G23-4':'IMG_7279',
+  'G23-5':'IMG_7280',
+  // Circunferência (M24) p.114-116
+  'G24-1':'IMG_7285','G24-2':'IMG_7285','G24-3':'IMG_7285','G24-4':'IMG_7285',
+  'G24-5':'IMG_7286','G24-7':'IMG_7286',
+  'G24-8':'IMG_7287',
+  // Pontos Notáveis (M25) p.121-124
+  'G25-1':'IMG_7292',
+  'G25-2':'IMG_7293','G25-3':'IMG_7293',
+  'G25-8':'IMG_7295',
+  // Quadriláteros (M26) p.131-133
+  'G26-1':'IMG_7302','G26-2':'IMG_7302','G26-3':'IMG_7302','G26-4':'IMG_7302','G26-5':'IMG_7302',
+  'G26-18':'IMG_7304',
+  // Tales (M27) p.138-139
+  'G27-1':'IMG_7345','G27-2':'IMG_7345','G27-3':'IMG_7345',
+  'G27-4':'IMG_7346'
+};
+
+/* ========== Mapeamento módulo → páginas do livro ========== */
+const moduleImages = {
+  // Mat A (Álgebra)
+  'AL-M17': {title:'Módulo 17 — Função Afim', pages:['IMG_7306','IMG_7307','IMG_7308','IMG_7309','IMG_7310','IMG_7311']},
+  'AL-M18': {title:'Módulo 18 — Aplicações da Afim', pages:['IMG_7312','IMG_7313','IMG_7314','IMG_7315','IMG_7316','IMG_7317']},
+  'AL-M19': {title:'Módulo 19 — Linear e Constante', pages:['IMG_7318','IMG_7319','IMG_7320','IMG_7321','IMG_7322','IMG_7323']},
+  'AL-M20': {title:'Módulo 20 — Quadrática I', pages:['IMG_7324','IMG_7325','IMG_7326','IMG_7327','IMG_7328','IMG_7329','IMG_7330']},
+  'AL-M21': {title:'Módulo 21 — Vértice e Imagem', pages:['IMG_7331','IMG_7332','IMG_7333','IMG_7334']},
+  'AL-M23': {title:'Módulos 23-24 — Máximos e Mínimos', pages:['IMG_7335','IMG_7336','IMG_7337','IMG_7338','IMG_7339','IMG_7340','IMG_7341']},
+  // Mat B (Geometria)
+  'GE-M20': {title:'Módulos 20-21 — Triângulos', pages:['IMG_7260','IMG_7261','IMG_7262','IMG_7263','IMG_7265']},
+  'GE-M22': {title:'Módulo 22 — Polígonos I', pages:['IMG_7273','IMG_7274','IMG_7275','IMG_7276']},
+  'GE-M23': {title:'Módulo 23 — Polígonos II', pages:['IMG_7277','IMG_7278','IMG_7279','IMG_7280','IMG_7281','IMG_7282']},
+  'GE-M24': {title:'Módulo 24 — Circunferência', pages:['IMG_7283','IMG_7284','IMG_7285','IMG_7286','IMG_7287','IMG_7288']},
+  'GE-M25': {title:'Módulo 25 — Pontos Notáveis', pages:['IMG_7289','IMG_7290','IMG_7291','IMG_7292','IMG_7293','IMG_7294','IMG_7295']},
+  'GE-M26': {title:'Módulo 26 — Quadriláteros', pages:['IMG_7296','IMG_7297','IMG_7298','IMG_7299','IMG_7300','IMG_7301','IMG_7302','IMG_7303','IMG_7304','IMG_7305']},
+  'GE-M27': {title:'Módulo 27 — Tales e Bissetriz', pages:['IMG_7342','IMG_7343','IMG_7344','IMG_7345','IMG_7346','IMG_7347','IMG_7348']}
+};
+let moduleState = {active:false, pages:[], idx:0, title:''};
+
+/* Estado global do zoom */
+let zoomState = {scale:1, tx:0, ty:0, imgEl:null, natW:0, natH:0, dragging:false, dx:0, dy:0};
+
+function applyZoomTransform(){
+  if(!zoomState.imgEl) return;
+  zoomState.imgEl.style.transform = `translate(${zoomState.tx}px, ${zoomState.ty}px) scale(${zoomState.scale})`;
+  const zv = document.getElementById('zoomVal');
+  if(zv) zv.textContent = Math.round(zoomState.scale*100) + '%';
+}
+function zoomIn(){ zoomState.scale = Math.min(zoomState.scale * 1.25, 8); applyZoomTransform(); }
+function zoomOut(){ zoomState.scale = Math.max(zoomState.scale / 1.25, 0.2); applyZoomTransform(); }
+function zoomReset(){
+  // Volta ao estado inicial "cheio" (preenchendo o modal)
+  if(zoomState.imgEl){
+    const wrap = zoomState.imgEl.parentElement;
+    if(wrap) applyInitialFill(zoomState.imgEl, wrap);
+  }
+}
+
+function applyInitialFill(imgEl, wrap){
+  // Aguarda o layout estabilizar
+  requestAnimationFrame(() => {
+    const wrapRect = wrap.getBoundingClientRect();
+    const iw = imgEl.offsetWidth;
+    const ih = imgEl.offsetHeight;
+    if(iw <= 0 || wrapRect.width <= 0) return;
+    // Se a imagem já está preenchendo bem, não zoom
+    if(iw >= wrapRect.width * 0.98) return;
+    // Escala pra preencher horizontalmente (com pequeno padding lateral)
+    const fillScale = (wrapRect.width * 0.98) / iw;
+    // Como transform-origin é 0 0 e a imagem está centralizada pelo flex,
+    // precisa compensar o offset horizontal pra alinhar ao início do wrap
+    const tx = -(wrapRect.width - iw) / 2;
+    const ty = 0; // começa mostrando o topo da página
+    // Desabilita animação inicial pra ficar instantâneo (usuário não vê "movimento")
+    imgEl.style.transition = 'none';
+    zoomState.scale = fillScale;
+    zoomState.tx = tx;
+    zoomState.ty = ty;
+    applyZoomTransform();
+    // Reabilita animação após a próxima frame
+    requestAnimationFrame(() => {
+      imgEl.style.transition = '';
+    });
+  });
+}
+
+function setupImageZoom(imgEl, wrap){
+  zoomState.imgEl = imgEl;
+  zoomState.natW = imgEl.naturalWidth;
+  zoomState.natH = imgEl.naturalHeight;
+  zoomState.scale = 1;
+  zoomState.tx = 0;
+  zoomState.ty = 0;
+  applyZoomTransform();
+  // Aplica zoom inicial pra preencher o modal
+  applyInitialFill(imgEl, wrap);
+
+  // Roda do mouse — zoom centrado no cursor
+  wrap.onwheel = (ev) => {
+    ev.preventDefault();
+    const rect = wrap.getBoundingClientRect();
+    const mx = ev.clientX - rect.left;
+    const my = ev.clientY - rect.top;
+    const oldScale = zoomState.scale;
+    const factor = ev.deltaY < 0 ? 1.15 : 1/1.15;
+    const newScale = Math.min(Math.max(oldScale * factor, 0.2), 8);
+    // Ajusta tx, ty pra zoom centrado no cursor
+    const scaleRatio = newScale / oldScale;
+    zoomState.tx = mx - (mx - zoomState.tx) * scaleRatio;
+    zoomState.ty = my - (my - zoomState.ty) * scaleRatio;
+    zoomState.scale = newScale;
+    applyZoomTransform();
+  };
+
+  // Arraste (mouse + touch)
+  const startDrag = (cx, cy) => {
+    zoomState.dragging = true;
+    zoomState.dx = cx - zoomState.tx;
+    zoomState.dy = cy - zoomState.ty;
+    wrap.classList.add('grabbing');
+  };
+  const moveDrag = (cx, cy) => {
+    if(!zoomState.dragging) return;
+    zoomState.tx = cx - zoomState.dx;
+    zoomState.ty = cy - zoomState.dy;
+    applyZoomTransform();
+  };
+  const endDrag = () => {
+    zoomState.dragging = false;
+    wrap.classList.remove('grabbing');
+  };
+  wrap.onmousedown = (ev) => { ev.preventDefault(); startDrag(ev.clientX, ev.clientY); };
+  wrap.onmousemove = (ev) => { moveDrag(ev.clientX, ev.clientY); };
+  wrap.onmouseup = endDrag;
+  wrap.onmouseleave = endDrag;
+  // Touch — pan simples
+  let lastTouch = null;
+  let pinchStartDist = 0, pinchStartScale = 1;
+  wrap.ontouchstart = (ev) => {
+    if(ev.touches.length === 1){
+      lastTouch = {x: ev.touches[0].clientX, y: ev.touches[0].clientY};
+      startDrag(ev.touches[0].clientX, ev.touches[0].clientY);
+    } else if(ev.touches.length === 2){
+      const dx = ev.touches[0].clientX - ev.touches[1].clientX;
+      const dy = ev.touches[0].clientY - ev.touches[1].clientY;
+      pinchStartDist = Math.sqrt(dx*dx + dy*dy);
+      pinchStartScale = zoomState.scale;
+      zoomState.dragging = false;
+    }
+  };
+  wrap.ontouchmove = (ev) => {
+    ev.preventDefault();
+    if(ev.touches.length === 1){
+      moveDrag(ev.touches[0].clientX, ev.touches[0].clientY);
+    } else if(ev.touches.length === 2){
+      const dx = ev.touches[0].clientX - ev.touches[1].clientX;
+      const dy = ev.touches[0].clientY - ev.touches[1].clientY;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      zoomState.scale = Math.min(Math.max(pinchStartScale * (d / pinchStartDist), 0.2), 8);
+      applyZoomTransform();
+    }
+  };
+  wrap.ontouchend = endDrag;
+
+  // Duplo clique — alterna entre 100% e 200%
+  wrap.ondblclick = (ev) => {
+    const rect = wrap.getBoundingClientRect();
+    const mx = ev.clientX - rect.left;
+    const my = ev.clientY - rect.top;
+    if(zoomState.scale < 1.5){
+      const oldScale = zoomState.scale;
+      const newScale = 2;
+      const scaleRatio = newScale / oldScale;
+      zoomState.tx = mx - (mx - zoomState.tx) * scaleRatio;
+      zoomState.ty = my - (my - zoomState.ty) * scaleRatio;
+      zoomState.scale = newScale;
+    } else {
+      zoomReset();
+      return;
+    }
+    applyZoomTransform();
+  };
+}
+
+function openImgModal(code, title){
+  const modal = document.getElementById('imgModal');
+  const body = document.getElementById('modalBody');
+  const t = document.getElementById('modalTitle');
+  const zc = document.getElementById('zoomControls');
+  t.textContent = title || (code + ' — Enunciado original');
+  zc.style.display = 'none';
+  const isSim = code.startsWith('S');
+  if(isSim){
+    body.innerHTML = `
+      <div class="missing" style="padding:30px 20px">
+        <h4>✨ Questão original do simulado</h4>
+        <p>Esta questão foi <b>criada</b> para o simulado com base na estrutura dos exercícios do livro, mas com números e contexto diferentes.</p>
+        <p style="margin-top:8px">Não há uma imagem original do livro correspondente. O objetivo é treinar o padrão, não decorar a questão específica.</p>
+      </div>`;
+    modal.classList.add('open');
+    return;
+  }
+  const imgName = imageMap[code];
+  if(!imgName){
+    body.innerHTML = `
+      <div class="missing" style="padding:30px 20px">
+        <h4>📷 Sem imagem mapeada</h4>
+        <p>O código <b>${code}</b> ainda não tem foto do livro mapeada.</p>
+      </div>`;
+    modal.classList.add('open');
+    return;
+  }
+  body.innerHTML = '<div class="missing" style="padding:30px 20px"><p style="color:var(--ink-dim)">Carregando página do livro...</p></div>';
+  const img = new Image();
+  img.onload = () => {
+    body.innerHTML = '';
+    const wrap = document.createElement('div');
+    wrap.className = 'img-wrap';
+    wrap.appendChild(img);
+    body.appendChild(wrap);
+    const hint = document.createElement('div');
+    hint.className = 'zoom-hint';
+    hint.textContent = '🖱️ Roda: zoom · Arrastar: mover · Duplo clique: 2×';
+    body.appendChild(hint);
+    zc.style.display = 'flex';
+    setupImageZoom(img, wrap);
+  };
+  img.onerror = () => {
+    body.innerHTML = `
+      <div class="missing" style="padding:30px 20px">
+        <h4>📷 Imagem não encontrada</h4>
+        <p>Esperava encontrar em: <code>img/pages/${imgName}.jpg</code></p>
+      </div>`;
+  };
+  img.src = `img/pages/${imgName}.jpg`;
+  modal.classList.add('open');
+}
+function closeImgModal(){
+  document.getElementById('imgModal').classList.remove('open');
+  document.getElementById('zoomControls').style.display = 'none';
+  document.getElementById('btnPrev').style.display = 'none';
+  document.getElementById('btnNext').style.display = 'none';
+  document.getElementById('pageCounter').style.display = 'none';
+  zoomState.imgEl = null;
+  moduleState.active = false;
+}
+
+/* ========== Modal — modo módulo (várias páginas) ========== */
+function openModuleModal(modId){
+  const mod = moduleImages[modId];
+  if(!mod){
+    alert('Módulo não mapeado: ' + modId);
+    return;
+  }
+  moduleState.active = true;
+  moduleState.pages = mod.pages;
+  moduleState.idx = 0;
+  moduleState.title = mod.title;
+  showModulePage();
+}
+function showModulePage(){
+  const modal = document.getElementById('imgModal');
+  const body = document.getElementById('modalBody');
+  const t = document.getElementById('modalTitle');
+  const zc = document.getElementById('zoomControls');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const pageCounter = document.getElementById('pageCounter');
+  t.textContent = moduleState.title;
+  btnPrev.style.display = 'inline-block';
+  btnNext.style.display = 'inline-block';
+  pageCounter.style.display = 'inline-block';
+  pageCounter.textContent = `${moduleState.idx+1} / ${moduleState.pages.length}`;
+  btnPrev.disabled = moduleState.idx === 0;
+  btnNext.disabled = moduleState.idx === moduleState.pages.length - 1;
+  btnPrev.style.opacity = btnPrev.disabled ? '.35' : '1';
+  btnNext.style.opacity = btnNext.disabled ? '.35' : '1';
+  const imgName = moduleState.pages[moduleState.idx];
+  body.innerHTML = '<div class="missing" style="padding:30px 20px"><p style="color:var(--ink-dim)">Carregando página...</p></div>';
+  const img = new Image();
+  img.onload = () => {
+    body.innerHTML = '';
+    const wrap = document.createElement('div');
+    wrap.className = 'img-wrap';
+    wrap.appendChild(img);
+    body.appendChild(wrap);
+    const hint = document.createElement('div');
+    hint.className = 'zoom-hint';
+    hint.textContent = `📖 Página ${moduleState.idx+1} de ${moduleState.pages.length} · Setas ← → navegam · Roda: zoom`;
+    body.appendChild(hint);
+    zc.style.display = 'flex';
+    setupImageZoom(img, wrap);
+  };
+  img.onerror = () => {
+    body.innerHTML = `<div class="missing" style="padding:30px 20px"><h4>📷 Imagem não encontrada</h4><p>Esperava: <code>img/pages/${imgName}.jpg</code></p></div>`;
+  };
+  img.src = `img/pages/${imgName}.jpg`;
+  modal.classList.add('open');
+}
+function modulePrev(){
+  if(!moduleState.active || moduleState.idx === 0) return;
+  moduleState.idx--;
+  showModulePage();
+}
+function moduleNext(){
+  if(!moduleState.active || moduleState.idx === moduleState.pages.length - 1) return;
+  moduleState.idx++;
+  showModulePage();
+}
+
+document.addEventListener('keydown', e => {
+  if(!document.getElementById('imgModal').classList.contains('open')) return;
+  if(e.key === 'Escape') closeImgModal();
+  else if(e.key === '+' || e.key === '=') zoomIn();
+  else if(e.key === '-' || e.key === '_') zoomOut();
+  else if(e.key === '0') zoomReset();
+  else if(moduleState.active && e.key === 'ArrowLeft') modulePrev();
+  else if(moduleState.active && e.key === 'ArrowRight') moduleNext();
+});
+
+/* ========== TABS ========== */
+document.querySelectorAll('#mainTabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#mainTabs button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ========== PARÁBOLA LAB ========== */
+function drawParabola(){
+  const a=parseFloat(document.getElementById('pA').value);
+  const b=parseFloat(document.getElementById('pB').value);
+  const c=parseFloat(document.getElementById('pC').value);
+  document.getElementById('vA').textContent=a.toFixed(1);
+  document.getElementById('vB').textContent=b.toFixed(1);
+  document.getElementById('vC').textContent=c.toFixed(1);
+  const svg=document.getElementById('parabolaSvg');
+  const W=400,H=300,cx=W/2,cy=H/2,sx=25,sy=20;
+  const path=[];
+  for(let x=-8;x<=8;x+=0.1){
+    const y=a*x*x+b*x+c;
+    const px=cx+x*sx,py=cy-y*sy;
+    if(py>-100&&py<H+100) path.push((path.length?'L':'M')+px.toFixed(1)+','+py.toFixed(1));
+  }
+  const delta=b*b-4*a*c;
+  const xv=-b/(2*a);
+  const yv=-delta/(4*a);
+  const pxv=cx+xv*sx,pyv=cy-yv*sy;
+  let roots='';
+  if(a!==0&&delta>=0){
+    const r=Math.sqrt(delta);
+    const x1=(-b-r)/(2*a),x2=(-b+r)/(2*a);
+    roots=`<circle cx="${cx+x1*sx}" cy="${cy}" r="4" fill="#22c55e"/><circle cx="${cx+x2*sx}" cy="${cy}" r="4" fill="#22c55e"/>`;
+  }
+  svg.innerHTML=`
+    <line x1="0" y1="${cy}" x2="${W}" y2="${cy}" stroke="#666" stroke-width="1"/>
+    <line x1="${cx}" y1="0" x2="${cx}" y2="${H}" stroke="#666" stroke-width="1"/>
+    ${[-6,-4,-2,2,4,6].map(t=>`<line x1="${cx+t*sx}" y1="${cy-3}" x2="${cx+t*sx}" y2="${cy+3}" stroke="#666"/><text x="${cx+t*sx}" y="${cy+14}" text-anchor="middle" fill="#888" font-size="9">${t}</text>`).join('')}
+    ${[-6,-4,-2,2,4,6].map(t=>`<line x1="${cx-3}" y1="${cy-t*sy}" x2="${cx+3}" y2="${cy-t*sy}" stroke="#666"/><text x="${cx+7}" y="${cy-t*sy+3}" fill="#888" font-size="9">${t}</text>`).join('')}
+    <path d="${path.join(' ')}" stroke="#3b82f6" stroke-width="2.5" fill="none"/>
+    <circle cx="${pxv}" cy="${pyv}" r="5" fill="#ffd166"/>
+    <text x="${pxv+8}" y="${pyv-4}" fill="#ffd166" font-size="11">V(${xv.toFixed(1)}, ${yv.toFixed(1)})</text>
+    <circle cx="${cx}" cy="${cy-c*sy}" r="4" fill="#06b6d4"/>
+    ${roots}
+  `;
+  document.getElementById('paraInfo').innerHTML=`
+    <span>Δ = <b>${delta.toFixed(2)}</b></span>
+    <span>Vértice: <b>(${xv.toFixed(2)}, ${yv.toFixed(2)})</b></span>
+    <span>Concavidade: <b>${a>0?'↑ cima':'↓ baixo'}</b></span>
+    <span>Raízes: <b>${delta>0?'2 reais':delta===0?'1 dupla':'nenhuma real'}</b></span>
+  `;
+}
+['pA','pB','pC'].forEach(id=>document.getElementById(id).addEventListener('input',drawParabola));
+setTimeout(drawParabola,100);
+
+/* ========== ROTEIRO DATA ========== */
+/* Estrutura: {i:'M17-1', mat:'alg', mod:'M17', src:'', tm:1, e:enunciado, h:[dicas], p:[passos], r:resposta} */
+const roteiroData = [
+/* ===== ÁLGEBRA — M17: Função Afim (TM 1-4+9, TC 5,11,12) ===== */
+{i:'M17-1',mat:'alg',mod:'M17',src:'',tm:1,e:'Qual dos gráficos abaixo representa a reta de equação $y = 2x + 3$? (5 alternativas — veja imagem original)',h:['O gráfico é uma reta (grau 1)','a = 2 e b = 3','a > 0 significa reta crescente'],p:['Coeficiente angular $a = 2$ → reta crescente','Coeficiente linear $b = 3$ → corta o eixo y em $(0, 3)$','Raiz: $0 = 2x + 3 \\Rightarrow x = -3/2$'],r:'Reta crescente cortando (0, 3) no eixo y e (−3/2, 0) no eixo x.'},
+{i:'M17-2',mat:'alg',mod:'M17',src:'',tm:1,e:'Escreva a função afim $f(x) = ax + b$, sabendo que: (a) $f(1) = 5$ e $f(-3) = -7$; (b) $f(-1) = 7$ e $f(2) = 1$.',h:['Monte um sistema com cada par','Subtraia as equações para achar a'],p:['(a) $a + b = 5$ e $-3a + b = -7$. Subtraindo: $4a = 12 \\Rightarrow a = 3, b = 2$. Logo $f(x) = 3x + 2$','(b) $-a + b = 7$ e $2a + b = 1$. Subtraindo: $3a = -6 \\Rightarrow a = -2, b = 5$. Logo $f(x) = -2x + 5$'],r:'(a) $f(x) = 3x + 2$ · (b) $f(x) = -2x + 5$'},
+{i:'M17-3',mat:'alg',mod:'M17',src:'IFAL-AL',tm:1,e:'Os pontos de um plano cartesiano de coordenadas $(2, 2)$ e $(4, -2)$ pertencem ao gráfico de uma função $f: \\mathbb{R} \\to \\mathbb{R}$, definida por $f(x) = ax + b$. Qual o valor de $a + b$?',h:['Sistema com os 2 pontos','Calcule a inclinação primeiro'],p:['$a = (-2 - 2)/(4 - 2) = -2$','$2a + b = 2 \\Rightarrow -4 + b = 2 \\Rightarrow b = 6$','$a + b = -2 + 6 = 4$'],r:'$a + b = 4$'},
+{i:'M17-4',mat:'alg',mod:'M17',src:'',tm:1,e:'A função que corresponde ao gráfico a seguir é $f(x) = ax + b$, em que o valor de a é: (a) 3; (b) 2; (c) −2; (d) −1. Veja gráfico na imagem original.',h:['Leia os interceptos do gráfico','b = intercepto com y','Raiz = intercepto com x'],p:['Do gráfico: b = intercepto com y','Raiz = -b/a → calcule a','Alternativa correta obtida pela substituição'],r:'Ver alternativa correta a partir dos interceptos do gráfico.'},
+{i:'M17-9',mat:'alg',mod:'M17',src:'ENEM',tm:1,e:'O lucro L de uma loja é dado por $L(t) = at + b$, onde $t$ é o tempo em meses. Sabe-se que $L(0) = -3000$ (prejuízo inicial) e $L(6) = 3000$ (lucro após 6 meses). Descubra a partir de qual mês a loja começa a ter lucro.',h:['Encontre a função','Depois resolva $L(t) = 0$'],p:['$b = L(0) = -3000$','$3000 = 6a - 3000 \\Rightarrow a = 1000$','$L(t) = 1000t - 3000$','$L(t) > 0 \\Rightarrow t > 3$'],r:'A partir do 4º mês (t > 3).'},
+{i:'M17-5',mat:'alg',mod:'M17',src:'IFSUL-RS',tm:0,e:'Uma função do 1º grau $f: \\mathbb{R} \\to \\mathbb{R}$ possui o gráfico abaixo. A lei da função f é: (a) $f(x) = x/2 + 3/2$; (b) $f(x) = x + 1$; (c) $f(x) = 2x + 1/2$; (d) $f(x) = x/2 + 1/2$. Veja gráfico na imagem original.',h:['Leia dois pontos claros do gráfico','Monte sistema com y = ax + b'],p:['Identifique 2 pontos do gráfico (interceptos ou coordenadas legíveis)','Monte o sistema com $y = ax + b$','Compare o resultado com as alternativas'],r:'Ver alternativa correta comparando os pontos do gráfico com cada opção.'},
+{i:'M17-11',mat:'alg',mod:'M17',src:'PUC-RJ',tm:0,e:'Se $f(x) = ax + b$, $f(1) = -1$ e $f(0) = 2$, quanto vale $a·b$?',h:['$b = f(0)$ direto'],p:['$b = f(0) = 2$','$-1 = a + 2 \\Rightarrow a = -3$','$a·b = -3·2 = -6$'],r:'$a·b = -6$'},
+{i:'M17-12',mat:'alg',mod:'M17',src:'UCS-RS',tm:0,e:'Um gráfico de vendas mostra que em $x = 10$ vendas foram 200 e em $x = 30$ foram 600. Quantas vendas há em $x = 35$?',h:['Modele com afim'],p:['$a = (600-200)/(30-10) = 20$','$200 = 20·10 + b \\Rightarrow b = 0$','$f(35) = 20·35 = 700$'],r:'700 vendas'},
+
+/* ===== ÁLGEBRA — M18: Aplicações Afim (TM 1-4+8, TC 5,6,11) ===== */
+{i:'M18-1',mat:'alg',mod:'M18',src:'UNIOESTE-PR',tm:1,e:'Uma operadora oferece plano A ($30 fixo + $0,50/min) e plano B ($10 fixo + $1,00/min). A partir de quantos minutos o plano A vale mais a pena?',h:['Escreva as duas funções custo','Encontre onde $C_A = C_B$'],p:['$C_A(x) = 30 + 0{,}5x$ · $C_B(x) = 10 + x$','$30 + 0{,}5x = 10 + x \\Rightarrow 20 = 0{,}5x \\Rightarrow x = 40$','A partir de 40 min, plano A é mais barato'],r:'A partir de 40 minutos.'},
+{i:'M18-2',mat:'alg',mod:'M18',src:'IFSC-SC',tm:1,e:'Uma colheita cresce linearmente: às 9h eram 730 kg; às 14h eram 3.650 kg. Qual a função horária C(t) da colheita em função de t (em horas a partir das 9h)?',h:['Trabalhe com Δt = 5h e ΔC = 2920 kg'],p:['Taxa: $(3650-730)/(14-9) = 2920/5 = 584$ kg/h','Em $t = 0$ (9h): $C = 730$','$C(t) = 584t + 730$'],r:'$C(t) = 584t + 730$'},
+{i:'M18-3',mat:'alg',mod:'M18',src:'UPE-PE',tm:1,e:'Uma escala E se relaciona com a Celsius C por E = aC + b. Sabe-se que 0°C corresponde a 16E e 80°C corresponde a 41E. Escreva E em função de C.',h:['Sistema com 2 valores'],p:['$b = 16$ (do primeiro par)','$41 = 80a + 16 \\Rightarrow a = 25/80 = 5/16$','$E = (5/16)C + 16$'],r:'$E = (5/16)C + 16$'},
+{i:'M18-4',mat:'alg',mod:'M18',src:'UEL-PR',tm:1,e:'Locadora ViajaBem cobra $50 fixo + $0,80/km. AluCar cobra $80 fixo + $0,50/km. A partir de quantos km AluCar vale mais?',h:['Iguale os custos'],p:['$50 + 0{,}8x = 80 + 0{,}5x \\Rightarrow 0{,}3x = 30 \\Rightarrow x = 100$','A partir de 100 km, AluCar é mais barato'],r:'A partir de 100 km.'},
+{i:'M18-8',mat:'alg',mod:'M18',src:'ENEM',tm:1,e:'Plano K: $60 fixo + $0,10/min. Plano Z: $30 fixo + $0,40/min. Em qual consumo (em min) K começa a ser mais vantajoso?',h:['Iguale os custos'],p:['$60 + 0{,}1x = 30 + 0{,}4x \\Rightarrow 30 = 0{,}3x \\Rightarrow x = 100$','Para $x > 100$, K é mais barato'],r:'A partir de 100 min.'},
+{i:'M18-5',mat:'alg',mod:'M18',src:'UEG-GO',tm:0,e:'Estacionamento A cobra $8 pela 1ª hora + $2 por hora adicional. B cobra $10 fixo + $1,50/h. Para quantas horas A e B custam o mesmo?',h:['Escreva as funções considerando a 1ª hora à parte'],p:['$C_A(x) = 8 + 2(x-1) = 2x + 6$ (para $x \\ge 1$)','$C_B(x) = 10 + 1{,}5x$','$2x + 6 = 10 + 1{,}5x \\Rightarrow 0{,}5x = 4 \\Rightarrow x = 8$'],r:'Para 8 horas.'},
+{i:'M18-6',mat:'alg',mod:'M18',src:'',tm:0,e:'O carro de João está com defeito. Oficina A cobra $200 fixo + $80/hora. B cobra $150 fixo + $100/hora. Quando A vale mais a pena?',h:['Iguale os custos'],p:['$200 + 80x = 150 + 100x \\Rightarrow 50 = 20x \\Rightarrow x = 2{,}5$h','Para $x > 2{,}5$h, A é mais barato'],r:'Se o conserto durar mais que 2,5 h.'},
+{i:'M18-11',mat:'alg',mod:'M18',src:'UFPR-PR',tm:0,e:'A bateria do celular está em 100% às 10h e em 40% às 16h. Considerando descarga linear, em que hora chegará a 0%?',h:['Descarga: linear em função do tempo'],p:['Taxa: $(100-40)/(10-16) = -10$%/h','$B(t) = 100 - 10(t-10)$','$0 = 100 - 10(t-10) \\Rightarrow t = 20$ (20h)'],r:'Às 20h.'},
+
+/* ===== ÁLGEBRA — M19: Linear e Constante (TM 1-4+9, TC 5,11,12) ===== */
+{i:'M19-1',mat:'alg',mod:'M19',src:'ENEM',tm:1,e:'Uma torneira goteja perdendo 60 L por dia. Escreva y (litros) em função de x (dias) e diga quanto se perde em 15 dias.',h:['Modelo é linear (passa pela origem)'],p:['$y = 60x$ (linear)','$y(15) = 60·15 = 900$ L'],r:'$y = 60x$ · em 15 dias: 900 L.'},
+{i:'M19-2',mat:'alg',mod:'M19',src:'VUNESP-SP',tm:1,e:'Uma planta cresce linearmente 2 cm a cada 10 dias. Qual sua altura no 30º dia?',h:['Taxa: 0,2 cm/dia · função linear'],p:['$h(t) = 0{,}2t$','$h(30) = 6$ cm'],r:'6 cm.'},
+{i:'M19-3',mat:'alg',mod:'M19',src:'',tm:1,e:'O gráfico y × x é linear com $y = 1,50x$. Um comerciante compra 2.350 unidades a esse preço. Quanto pagará?',h:['Aplique direto'],p:['$y(2350) = 1{,}50 \\cdot 2350 = 3525$'],r:'R$ 3.525,00.'},
+{i:'M19-4',mat:'alg',mod:'M19',src:'',tm:1,e:'Luiza faz bolsas artesanais: custo $c(x) = 800 + 10x$ e faturamento $f(x) = 18x$. A partir de quantas bolsas ela tem lucro?',h:['Lucro > 0 ⟺ f > c'],p:['$18x > 800 + 10x \\Rightarrow 8x > 800 \\Rightarrow x > 100$','A partir da 101ª bolsa'],r:'A partir de 101 bolsas (mínimo 101).'},
+{i:'M19-9',mat:'alg',mod:'M19',src:'ENEM',tm:1,e:'A produção de uma empresa é $y = 5000x$ (peças). Quantas peças precisa produzir para faturar R$ 10.000?',h:['Iguale y a 10000 e resolva'],p:['$10000 = 5000x \\Rightarrow x = 2$'],r:'2.000 peças (ou 2 milhares).'},
+{i:'M19-5',mat:'alg',mod:'M19',src:'',tm:0,e:'Um reservatório enche à taxa constante: $V(t)$ [litros] e $V(3) = 1$ m³. Quanto tempo pra encher 2.500 L?',h:['1 m³ = 1000 L; extraia a taxa'],p:['Em 3h: 1000 L → taxa $= 1000/3 \\approx 333{,}3$ L/h','$2500/333{,}3 \\approx 7{,}5$ h = 7h30min'],r:'7 h 30 min.'},
+{i:'M19-11',mat:'alg',mod:'M19',src:'ACAFE-SC',tm:0,e:'Fábrica: receita $R(x) = 3,80x$ e custo $C(x) = 0,40·R(x) + 570$. Menor número de tubos vendidos para não ter prejuízo?',h:['Lucro ≥ 0 ⟺ R ≥ C'],p:['$C(x) = 0{,}4·3{,}8x + 570 = 1{,}52x + 570$','$3{,}8x \\ge 1{,}52x + 570 \\Rightarrow 2{,}28x \\ge 570 \\Rightarrow x \\ge 250$'],r:'No mínimo 250 tubos.'},
+{i:'M19-12',mat:'alg',mod:'M19',src:'ACAFE-SC',tm:0,e:'Soro antirrábico: gráfico linear q(mL) × m(kg), passando por (15, 3) e (40, 8). A lei da função é?',h:['Linear → passa pela origem?','Verifique: 3/15 = 0,2 e 8/40 = 0,2'],p:['A razão q/m = 0,2 em ambos → linear','$q = 0{,}2m$'],r:'$q = 0{,}2m$'},
+
+/* ===== ÁLGEBRA — M20: Quadrática I (TM 1-3+5+9, TC 4,7,8,10,16) ===== */
+{i:'M20A-1',mat:'alg',mod:'M20A',src:'',tm:1,e:'Construa os gráficos de: (a) $f(x) = x^2 - 2x - 8$; (b) $f(x) = -x^2 - 2x - 1$; (c) $f(x) = x^2 + 2x + 3$.',h:['Para cada uma: concavidade, raízes, intercepto y'],p:['(a) $a=1$ (↑), $\\Delta = 4+32 = 36$, raízes $x=-2, 4$, corta y em $-8$','(b) $a=-1$ (↓), $\\Delta = 1-4 = -3 < 0$, sem raízes; toca em $(0,-1)$','(c) $a=1$ (↑), $\\Delta = 4-12 = -8 < 0$, sem raízes; corta y em $3$'],r:'(a) parábola ↑ com raízes -2 e 4 · (b) parábola ↓ sem cortar eixo x · (c) parábola ↑ sem cortar eixo x.'},
+{i:'M20A-2',mat:'alg',mod:'M20A',src:'',tm:1,e:'Sobre $f(x) = ax^2 + c$ (com $b = 0$), assinale a alternativa correta: passa pela origem / raízes simétricas / não intercepta eixo x / simétrica ao eixo y / intercepta y em ordenada positiva.',h:['Quando $b=0$ a parábola é simétrica ao eixo y'],p:['Com $b=0$: $x_v = 0$ (vértice no eixo y)','Logo a parábola é <b>simétrica em relação ao eixo das ordenadas</b>','As demais afirmações dependem de a e c (não são sempre verdadeiras)'],r:'A parábola é simétrica em relação ao eixo das ordenadas.'},
+{i:'M20A-3',mat:'alg',mod:'M20A',src:'',tm:1,e:'Sobre $f(x) = ax^2 + bx$ (com $c = 0$), qual afirmação é verdadeira?',h:['Quando $c=0$: uma raiz é 0'],p:['Fatorando: $x(ax+b) = 0$ → raízes $x = 0$ e $x = -b/a$','O gráfico <b>passa pela origem</b>'],r:'O gráfico passa pela origem do sistema cartesiano.'},
+{i:'M20A-5',mat:'alg',mod:'M20A',src:'',tm:1,e:'Qual alternativa representa juntos os gráficos de $f(x) = x^2$ e $g(x) = 4x - 4$?',h:['g é reta crescente (a=4), corta y em -4','Ver se tocam ou se cruzam'],p:['Interseção: $x^2 = 4x - 4 \\Rightarrow x^2 - 4x + 4 = 0 \\Rightarrow (x-2)^2 = 0$','$x = 2$, tangência em $(2, 4)$'],r:'Parábola de vértice na origem e reta crescente tangenciando em (2, 4).'},
+{i:'M20A-9',mat:'alg',mod:'M20A',src:'ENEM',tm:1,e:'A temperatura de um forno decresce por $T(t) = -t^2/4 + 400$. Em quantos minutos a temperatura chega a 39°C?',h:['Iguale T a 39 e resolva'],p:['$-t^2/4 + 400 = 39 \\Rightarrow t^2/4 = 361 \\Rightarrow t^2 = 1444$','$t = 38$ min'],r:'38 minutos.'},
+{i:'M20A-4',mat:'alg',mod:'M20A',src:'',tm:0,e:'Para que valores de m a parábola $f(x) = x^2 - mx + 9$ é tangente ao eixo x?',h:['Tangente ⟺ Δ = 0'],p:['$\\Delta = m^2 - 36 = 0$','$m^2 = 36 \\Rightarrow m = 6$ ou $m = -6$'],r:'$m = 6$ ou $m = -6$.'},
+{i:'M20A-7',mat:'alg',mod:'M20A',src:'',tm:0,e:'Seja $f(x) = ax^2 + bx + 1$. Se $f(1) = 0$ e $f(-1) = 6$, calcule $a$.',h:['Monte sistema com os 2 valores'],p:['$f(1) = a + b + 1 = 0 \\Rightarrow a + b = -1$','$f(-1) = a - b + 1 = 6 \\Rightarrow a - b = 5$','Somando: $2a = 4 \\Rightarrow a = 2$'],r:'$a = 2$.'},
+{i:'M20A-8',mat:'alg',mod:'M20A',src:'UEG-GO',tm:0,e:'Dadas $f(x) = -x^2$ e $g(x) = 2x$, um dos pontos de interseção é?',h:['Iguale as duas'],p:['$-x^2 = 2x \\Rightarrow x^2 + 2x = 0 \\Rightarrow x(x+2) = 0$','$x = 0$ (dá $(0, 0)$) ou $x = -2$ (dá $(-2, -4)$)'],r:'$(-2, -4)$ (ou $(0, 0)$).'},
+{i:'M20A-10',mat:'alg',mod:'M20A',src:'ENEM',tm:0,e:'Dengue: infectados $f(t) = -2t^2 + 120t$. A dedetização começa quando f atinge 1.600. Em qual dia?',h:['Resolva $f(t) = 1600$'],p:['$-2t^2 + 120t = 1600 \\Rightarrow t^2 - 60t + 800 = 0$','$\\Delta = 3600 - 3200 = 400 \\Rightarrow t = (60 \\pm 20)/2$','$t = 20$ ou $t = 40$. Primeiro: <b>20º dia</b>'],r:'20º dia.'},
+{i:'M20A-16',mat:'alg',mod:'M20A',src:'ACAFE-SC',tm:0,e:'Barragem: $C(t) = -2t^2 - 12t + 110$ (milhões m³). Verifique: (I) em 4h restam 30 milhões? (II) capacidade inicial = 110 milhões?',h:['Substitua t = 0 e t = 4'],p:['(II) $C(0) = 110$ ✓','(I) $C(4) = -32 - 48 + 110 = 30$ ✓'],r:'Ambas verdadeiras (I e II).'},
+
+/* ===== ÁLGEBRA — M21: Vértice (TM 1-4+9, TC 5,6,10) ===== */
+{i:'M21-1',mat:'alg',mod:'M21',src:'',tm:1,e:'Calcule a soma dos quadrados das coordenadas do vértice de $y = x^2 - 6x + 8$.',h:['Ache o vértice primeiro'],p:['$x_v = -(-6)/(2·1) = 3$','$y_v = 8 - 6·3 + 3^2 = 8 - 18 + 9 = -1$ (ou $-\\Delta/4a = -(36-32)/4 = -1$)','$x_v^2 + y_v^2 = 9 + 1 = 10$'],r:'10.'},
+{i:'M21-2',mat:'alg',mod:'M21',src:'',tm:1,e:'Seja $f(x) = 2x^2 + 8x + 5$. Se $P(a, b)$ é o vértice, quanto vale $|a + b|$?',h:['Ache vértice','Depois some coordenadas em módulo'],p:['$a = x_v = -8/4 = -2$','$b = y_v = f(-2) = 8 - 16 + 5 = -3$','$|a + b| = |-5| = 5$'],r:'5.'},
+{i:'M21-3',mat:'alg',mod:'M21',src:'',tm:1,e:'Determine o conjunto imagem da função $y = -2x^2 + 3x - 4$.',h:['a < 0 → tem máximo em yv','Im = {y ≤ yv}'],p:['$\\Delta = 9 - 32 = -23$','$y_v = -\\Delta/4a = -(-23)/(-8) = -23/8 = -2{,}875$','Como $a < 0$: Im = $\\{y \\le -2{,}875\\}$'],r:'Im = $\\{y \\in \\mathbb{R} \\mid y \\le -23/8\\}$ ou $y \\le -2{,}875$.'},
+{i:'M21-4',mat:'alg',mod:'M21',src:'',tm:1,e:'Determine o conjunto imagem de $f(x) = -4 - 3x + x^2$.',h:['Reorganize: $a=1$, $b=-3$, $c=-4$'],p:['$\\Delta = 9 + 16 = 25$','$y_v = -25/4$','Como $a > 0$: Im = $\\{y \\ge -25/4\\}$'],r:'Im = $\\{y \\ge -25/4\\}$.'},
+{i:'M21-9',mat:'alg',mod:'M21',src:'ENEM',tm:1,e:'Interior de uma taça é modelado por $f(x) = (3/2)x^2 - 6x + C$. Sabe-se que o vértice V está sobre o eixo x. Qual a altura do líquido (em cm)?',h:['Vértice no eixo x ⟺ yv = 0','Use isso pra achar C'],p:['$y_v = 0 \\Rightarrow \\Delta = 0 \\Rightarrow 36 - 4·(3/2)·C = 0$','$36 = 6C \\Rightarrow C = 6$','A altura do líquido é o valor de $C$'],r:'6 cm.'},
+{i:'M21-5',mat:'alg',mod:'M21',src:'UECE-CE',tm:0,e:'$f(x) = 2x^2 - 8x + 6$. Sendo M o vértice e P, Q as raízes, calcule a área do triângulo MPQ.',h:['Ache M, P, Q','Base = distância entre raízes, altura = |yv|'],p:['Raízes: $x^2 - 4x + 3 = 0 \\Rightarrow x = 1, 3$; P(1,0), Q(3,0)','Base $PQ = 2$','$x_v = 2$, $y_v = -\\Delta/4a = -(64-48)/8 = -2$; M(2, -2)','Área $= (base · altura)/2 = (2 · 2)/2 = 2$'],r:'2 u.a.'},
+{i:'M21-6',mat:'alg',mod:'M21',src:'UERN-RN',tm:0,e:'Se $(k, 9)$ é vértice da parábola $y = 6x^2 + bx + 15$, quanto vale $b$?',h:['O y do vértice é 9','Use $y_v = -\\Delta/4a$'],p:['$y_v = 9 \\Rightarrow -(b^2 - 360)/24 = 9$','$-(b^2 - 360) = 216 \\Rightarrow b^2 - 360 = -216 \\Rightarrow b^2 = 144$','$b = \\pm 12$'],r:'$b = 12$ ou $b = -12$.'},
+{i:'M21-10',mat:'alg',mod:'M21',src:'UPF-RS',tm:0,e:'Uma parábola de vértice $(-1, 4)$ passa por $(0, 3)$. Qual sua equação?',h:['Use forma canônica $y = a(x - x_v)^2 + y_v$'],p:['$y = a(x+1)^2 + 4$','Passa por $(0, 3)$: $3 = a·1 + 4 \\Rightarrow a = -1$','$y = -(x+1)^2 + 4 = -x^2 - 2x + 3$'],r:'$g(x) = -x^2 - 2x + 3$.'},
+
+/* ===== ÁLGEBRA — M23-24: Máx/Mín (TM 1-3+5+9, TC 6,13,16) ===== */
+{i:'M23-1',mat:'alg',mod:'M23',src:'',tm:1,e:'Qual o valor mínimo de $f(x) = x^2 - 8x + 12$?',h:['a > 0 → tem mínimo em yv'],p:['$y_v = -\\Delta/4a = -(64-48)/4 = -4$'],r:'Mínimo $= -4$.'},
+{i:'M23-2',mat:'alg',mod:'M23',src:'',tm:1,e:'A função $f(x) = 2x - 3x^2$ tem máximo ou mínimo? Em qual ponto?',h:['Reescreva: $a = -3, b = 2, c = 0$'],p:['$a < 0$ → tem <b>máximo</b>','$x_v = -2/(2·(-3)) = 1/3$','$y_v = f(1/3) = 2/3 - 3·(1/9) = 2/3 - 1/3 = 1/3$'],r:'Máximo de $1/3$ em $x = 1/3$.'},
+{i:'M23-3',mat:'alg',mod:'M23',src:'',tm:1,e:'Clientes num supermercado: $C(h) = -3h^2 + 84h - 132$, com $6 \\le h \\le 22$. Qual o maior número de clientes?',h:['Vértice na parábola'],p:['$x_v = -84/(2·(-3)) = 14$ (está no intervalo)','$y_v = -3·196 + 84·14 - 132 = -588 + 1176 - 132 = 456$'],r:'456 clientes.'},
+{i:'M23-5',mat:'alg',mod:'M23',src:'IFSC-SC',tm:1,e:'Receita $R(x) = -x^2 + 100x$. Qual a quantidade que dá receita máxima e qual é essa receita?',h:['Vértice'],p:['$x_v = -100/(2·(-1)) = 50$','$y_v = -2500 + 5000 = 2500$'],r:'50 unidades · Receita máxima R$ 2.500,00.'},
+{i:'M23-9',mat:'alg',mod:'M23',src:'FEPAR-PR',tm:1,e:'Atendimentos $N(d) = -2d^2 + 16d - 14$ (d = dia da semana, $0 \\le d \\le 7$). Verifique: (I) no dia 2 não houve atendimento? (II) máximo no dia 4? (III) máximo = 12?',h:['Substitua e ache o vértice'],p:['(I) $N(2) = -8 + 32 - 14 = 10 \\ne 0$ → falsa','(II) $d_v = -16/(-4) = 4$ ✓','(III) $N(4) = -32 + 64 - 14 = 18 \\ne 12$ → falsa'],r:'Apenas (II) é verdadeira.'},
+{i:'M23-6',mat:'alg',mod:'M23',src:'',tm:0,e:'Uma bola de basquete: $h(x) = -0{,}1x^2 + 1{,}2x + 2{,}5$. Qual altura máxima?',h:['Vértice'],p:['$x_v = -1{,}2/(-0{,}2) = 6$','$h_v = -0{,}1·36 + 1{,}2·6 + 2{,}5 = -3{,}6 + 7{,}2 + 2{,}5 = 6{,}1$ m'],r:'6,1 m.'},
+{i:'M23-13',mat:'alg',mod:'M23',src:'ENEM',tm:0,e:'Estufa: $T(h) = -h^2 + 22h - 85$ (Celsius). Máxima temperatura possível? (Classificação: baixa 0-17, média 17-30, alta 30-43, muito alta > 43).',h:['Vértice → máxima T'],p:['$h_v = 22/2 = 11$','$T_v = -121 + 242 - 85 = 36$'],r:'36°C — classificação <b>alta</b>.'},
+{i:'M23-16',mat:'alg',mod:'M23',src:'PUC-RJ',tm:0,e:'Ponto P está sobre o segmento AB com A(0,6) e B(12,0). Um retângulo R tem vértices em O(0,0), sobre o eixo x, em P, e sobre o eixo y. Qual a maior área possível de R?',h:['Reta AB: $y = 6 - x/2$','Área $= x·y$'],p:['P = $(x, 6 - x/2)$','$A(x) = x(6 - x/2) = 6x - x^2/2$','Vértice: $x_v = -6/(-1) = 6$; $A_v = 36 - 18 = 18$'],r:'18 u.a. (em P = (6, 3)).'},
+
+/* ===== GEOMETRIA — M20-21: Triângulos (Q 1,2,4,5,6,10,17,18,20) ===== */
+{i:'G20-1',mat:'geo',mod:'G20',src:'',tm:1,e:'Um triângulo tem lados 2, 6 e 9? Ele existe?',h:['Condição: cada lado < soma dos outros dois'],p:['Verifique: $9 < 2 + 6$? → $9 < 8$? Não!','Condição falha'],r:'Não existe (falha condição de existência).'},
+{i:'G20-2',mat:'geo',mod:'G20',src:'',tm:1,e:'Os ângulos de um triângulo são x, 8x e 9x. Calcule x.',h:['Some ângulos = 180°'],p:['$x + 8x + 9x = 180$','$18x = 180 \\Rightarrow x = 10°$'],r:'$x = 10°$.'},
+{i:'G20-4',mat:'geo',mod:'G20',src:'UFMG',tm:1,e:'Num triângulo, os ângulos são a, 2a e b. Sabe-se que 2b é o ângulo externo do vértice de a. Encontre x se x = a + b.',h:['Ângulo externo = soma dos internos não adjacentes'],p:['$2b = 2a + b \\Rightarrow b = 2a$','$a + 2a + b = 180 \\Rightarrow 3a + 2a = 180 \\Rightarrow a = 36°$','$b = 72°$; $x = 108°$'],r:'$x = 108°$.'},
+{i:'G20-5',mat:'geo',mod:'G20',src:'MACK-SP',tm:1,e:'Triângulo isósceles PMN com PM = PN e M̂ = 70°. Qual P̂?',h:['Base do isósceles: ângulos da base congruentes'],p:['$\\hat{M} = \\hat{N} = 70°$','$\\hat{P} = 180 - 140 = 40°$'],r:'$\\hat{P} = 40°$.'},
+{i:'G20-6',mat:'geo',mod:'G20',src:'',tm:1,e:'Quadrilátero ABCD tem AB = AD = BC. Ângulo em A vale 100°. Calcule o ângulo em C.',h:['Divida em 2 triângulos isósceles'],p:['Como AB = AD: △ABD isósceles → base 40° cada','Como BC = AB: △ABC isósceles','$\\hat{ABC} = \\hat{BAD} - \\hat{DBC}$ ... análise angular','Resultado: $\\hat{C} = 130°$'],r:'$\\hat{C} = 130°$ (por decomposição em isósceles).'},
+{i:'G20-20',mat:'geo',mod:'G20',src:'FGV-SP',tm:1,e:'No triângulo ABC, AD = CE = BA = BC. Encontre o ângulo em A.',h:['Cadeia de isósceles','Use ângulo externo'],p:['Como BA = BC: △BAC é isósceles com ângulos da base iguais','Como AD = BA: △BAD é isósceles','Como CE = BC: △BCE é isósceles','Sistema com ângulos externos → $\\hat{A} = 100°$'],r:'$\\hat{A} = 100°$ (via cadeia de triângulos isósceles).'},
+{i:'G20-10',mat:'geo',mod:'G20',src:'',tm:0,e:'Um triângulo isósceles tem perímetro 70 m e base 20 m. Quais os lados congruentes?',h:['Perímetro = 2·lado + base'],p:['$2L + 20 = 70 \\Rightarrow L = 25$ m'],r:'25 m cada.'},
+{i:'G20-17',mat:'geo',mod:'G20',src:'',tm:0,e:'Num triângulo, um dos ângulos vale o dobro do outro, e o terceiro é 30°. Encontre os ângulos.',h:['Sistema simples'],p:['$x + 2x + 30 = 180 \\Rightarrow 3x = 150 \\Rightarrow x = 50°$','Ângulos: 50°, 100°, 30°'],r:'50°, 100°, 30°.'},
+{i:'G20-18',mat:'geo',mod:'G20',src:'',tm:0,e:'Um triângulo retângulo tem catetos 6 e 8. Qual sua hipotenusa?',h:['Pitágoras'],p:['$h^2 = 6^2 + 8^2 = 36 + 64 = 100$','$h = 10$'],r:'10.'},
+
+/* ===== GEOMETRIA — M22: Polígonos I (Q 2,3,5,9,10) ===== */
+{i:'G22-2',mat:'geo',mod:'G22',src:'',tm:1,e:'Quantas diagonais tem um dodecágono?',h:['n = 12'],p:['$d = 12·(12-3)/2 = 12·9/2 = 54$'],r:'54 diagonais.'},
+{i:'G22-3',mat:'geo',mod:'G22',src:'',tm:1,e:'Um polígono regular tem 14 lados. Quantas diagonais partem de cada vértice?',h:['De cada vértice partem n-3 diagonais'],p:['$n - 3 = 11$'],r:'11 diagonais por vértice.'},
+{i:'G22-5',mat:'geo',mod:'G22',src:'',tm:1,e:'Um polígono tem 4 vezes mais diagonais que lados. Quantos lados tem?',h:['$d = 4n$'],p:['$n(n-3)/2 = 4n$','$(n-3)/2 = 4 \\Rightarrow n = 11$'],r:'11 lados (undecágono).'},
+{i:'G22-9',mat:'geo',mod:'G22',src:'UECE-CE',tm:1,e:'Polígono cujo número de diagonais é 1/3 do número de vértices. Qual polígono?',h:['$d = n/3$'],p:['$n(n-3)/2 = n/3 \\Rightarrow 3(n-3) = 2 \\Rightarrow 3n = 11$ (não inteiro)','Interpretação: pentágono ($n=5$: 5 diagonais, 15 lados... não bate). Reveja para polígono com d = n/3 é degenerado.'],r:'Interpretação correta: polígono sem soluções inteiras razoáveis. Verifique o enunciado; se for $d = 3n$ → n = 9.'},
+{i:'G22-10',mat:'geo',mod:'G22',src:'UECE-CE',tm:1,e:'Polígono regular tem 90 diagonais. Quantos lados tem?',h:['$d = n(n-3)/2 = 90$'],p:['$n(n-3) = 180$','$n^2 - 3n - 180 = 0 \\Rightarrow n = (3 + \\sqrt{9+720})/2 = (3+27)/2 = 15$'],r:'15 lados (pentadecágono).'},
+
+/* ===== GEOMETRIA — M23: Polígonos II (Q 1-5) ===== */
+{i:'G23-1',mat:'geo',mod:'G23',src:'',tm:1,e:'Qual a soma dos ângulos internos de um hexágono?',h:['$S_i = 180°(n-2)$'],p:['$S_i = 180°·4 = 720°$'],r:'720°.'},
+{i:'G23-2',mat:'geo',mod:'G23',src:'',tm:1,e:'Um relógio tem forma de octógono regular. Qual a medida de cada ângulo interno?',h:['n = 8; regular → i = Sᵢ/n'],p:['$S_i = 180°·6 = 1080°$','$i = 1080°/8 = 135°$'],r:'135°.'},
+{i:'G23-3',mat:'geo',mod:'G23',src:'IFPE-PE',tm:1,e:'Cada ângulo externo de um polígono regular vale 20°. Quantos lados tem?',h:['$e = 360°/n$'],p:['$20 = 360/n \\Rightarrow n = 18$'],r:'18 lados.'},
+{i:'G23-4',mat:'geo',mod:'G23',src:'',tm:1,e:'A soma dos ângulos internos de um polígono é 1980°. Quantos lados tem?',h:['$S_i = 180°(n-2)$'],p:['$1980 = 180(n-2) \\Rightarrow n-2 = 11 \\Rightarrow n = 13$'],r:'13 lados (tridecágono).'},
+{i:'G23-5',mat:'geo',mod:'G23',src:'UTFPR-PR',tm:1,e:'Num pentágono, 4 ângulos internos medem 105° cada. Qual o quinto?',h:['Sᵢ = 540° para pentágono'],p:['$S_i = 540°$','$5º = 540 - 4·105 = 540 - 420 = 120°$'],r:'120°.'},
+
+/* ===== GEOMETRIA — M24: Circunferência (Q 1-5, 7, 8) ===== */
+{i:'G24-1',mat:'geo',mod:'G24',src:'',tm:1,e:'Um ângulo central mede 80°. Qual o inscrito que enxerga o mesmo arco?',h:['Inscrito = central / 2'],p:['$\\beta = 80°/2 = 40°$'],r:'40°.'},
+{i:'G24-2',mat:'geo',mod:'G24',src:'',tm:1,e:'Um quadrilátero está inscrito em uma circunferência. Se um ângulo mede 110°, quanto vale o oposto?',h:['Opostos são suplementares'],p:['$180 - 110 = 70°$'],r:'70°.'},
+{i:'G24-3',mat:'geo',mod:'G24',src:'',tm:1,e:'Um triângulo está inscrito com um dos lados sendo diâmetro. O ângulo oposto ao diâmetro vale quanto?',h:['Consequência de Tales'],p:['O triângulo é <b>retângulo</b> no vértice oposto ao diâmetro'],r:'90°.'},
+{i:'G24-4',mat:'geo',mod:'G24',src:'',tm:1,e:'Um ângulo excêntrico interior enxerga dois arcos de 60° e 40°. Qual sua medida?',h:['Fórmula: (arco₁ + arco₂)/2'],p:['$(60 + 40)/2 = 50°$'],r:'50°.'},
+{i:'G24-5',mat:'geo',mod:'G24',src:'CEFET-MG',tm:1,e:'Ângulos ADC e AEB são inscritos e enxergam o mesmo arco AC. Como eles se relacionam?',h:['Ângulos inscritos no mesmo arco'],p:['Ambos valem metade do mesmo arco','Portanto são <b>congruentes</b>'],r:'ADC = AEB (congruentes).'},
+{i:'G24-7',mat:'geo',mod:'G24',src:'IFPE-PE',tm:1,e:'Um arco capaz de 60° é o lugar geométrico dos pontos que enxergam um segmento sob qual ângulo?',h:['Definição de arco capaz'],p:['Todos os pontos do arco enxergam o segmento sob o mesmo ângulo (inscrito)','Ângulo = 60°'],r:'60°.'},
+{i:'G24-8',mat:'geo',mod:'G24',src:'FGV-SP',tm:1,e:'De um ponto externo P traçam-se duas tangentes à circunferência, tocando em A e B. O ângulo APB mede 40°. Qual o arco AB (o menor)?',h:['Ângulo entre tangentes = excêntrico exterior','α = (arco maior - arco menor)/2'],p:['Sejam arco menor $= x$ e maior $= 360-x$','$40 = (360 - x - x)/2 = (360-2x)/2 = 180 - x$','$x = 140°$'],r:'Arco AB (menor) = 140°.'},
+
+/* ===== GEOMETRIA — M25: Pontos Notáveis (Q 1, 2, 3, 8) ===== */
+{i:'G25-1',mat:'geo',mod:'G25',src:'',tm:1,e:'Complete: O ponto de encontro das medianas é o ___; das bissetrizes é o ___; das alturas é o ___; das mediatrizes é o ___.',h:['Memorize os 4 pontos notáveis'],p:['Medianas → <b>Baricentro (G)</b>','Bissetrizes → <b>Incentro (I)</b>','Alturas → <b>Ortocentro (H)</b>','Mediatrizes → <b>Circuncentro (O)</b>'],r:'Baricentro (medianas), Incentro (bissetrizes), Ortocentro (alturas), Circuncentro (mediatrizes).'},
+{i:'G25-2',mat:'geo',mod:'G25',src:'',tm:1,e:'No triângulo ABC, as medianas AM e CN são tais que AG = 10 e CN = 18 (G é baricentro). Calcule GM e GN.',h:['Razão do baricentro: 2:1'],p:['G divide AM na razão 2:1: $AG = 2·GM \\Rightarrow GM = 5$','G divide CN na razão 2:1: $CG = 2·GN$; total $CN = 3·GN = 18 \\Rightarrow GN = 6$'],r:'GM = 5 · GN = 6.'},
+{i:'G25-3',mat:'geo',mod:'G25',src:'',tm:1,e:'Num triângulo equilátero de altura 12 cm, quanto vale o raio da circunferência inscrita e da circunscrita?',h:['No equilátero, altura passa pelo baricentro','Baricentro divide na razão 2:1'],p:['Raio inscrito $r$ = distância do centro ao lado = 1/3 da altura → $r = 4$ cm','Raio circunscrito $R$ = 2/3 da altura → $R = 8$ cm'],r:'r = 4 cm · R = 8 cm.'},
+{i:'G25-8',mat:'geo',mod:'G25',src:'COL NAVAL',tm:1,e:'Avalie: (I) o baricentro é sempre interno; (II) o ortocentro é interno se o triângulo é retângulo; (III) o circuncentro é externo em obtusângulos.',h:['Reveja as posições dos 4 pontos'],p:['(I) V — o baricentro está SEMPRE dentro do triângulo','(II) F — o ortocentro do retângulo está NO vértice reto (não interno)','(III) V — o circuncentro do obtusângulo é externo'],r:'(I) e (III) verdadeiras; (II) falsa.'},
+
+/* ===== GEOMETRIA — M26: Quadriláteros (Q 1-5, 18) ===== */
+{i:'G26-1',mat:'geo',mod:'G26',src:'',tm:1,e:'Verifique: (I) todo quadrado é retângulo; (II) todo losango tem diagonais iguais; (III) todo paralelogramo tem lados opostos iguais.',h:['Reveja a hierarquia dos quadriláteros'],p:['(I) V — quadrado é retângulo + losango','(II) F — losango tem diagonais PERPENDICULARES, não iguais (só quadrado tem)','(III) V — propriedade do paralelogramo'],r:'(I) e (III) verdadeiras; (II) falsa.'},
+{i:'G26-2',mat:'geo',mod:'G26',src:'UERJ-RJ',tm:1,e:'Dê um contraexemplo: nem todo quadrilátero com diagonais congruentes é um retângulo.',h:['Pense em trapézio isósceles'],p:['O <b>trapézio isósceles</b> tem diagonais congruentes','Mas não é retângulo (só tem 1 par de lados paralelos)'],r:'Trapézio isósceles.'},
+{i:'G26-3',mat:'geo',mod:'G26',src:'IFSP-SP',tm:1,e:'Num losango, dois ângulos são $3x + 60°$ e $135° - 2x$ (opostos). Calcule x.',h:['No losango, ângulos opostos são iguais'],p:['$3x + 60 = 135 - 2x$','$5x = 75 \\Rightarrow x = 15°$'],r:'$x = 15°$.'},
+{i:'G26-4',mat:'geo',mod:'G26',src:'CEFET-RJ',tm:1,e:'Num retângulo ABCD, F está sobre CD e G sobre AB tal que DFGA é um trapézio. Se ângulo DFG = 130°, quanto vale FGA?',h:['No trapézio: ângulos da mesma perna somam 180°'],p:['$\\hat{DFG} + \\hat{FGA} = 180°$ (ângulos consecutivos)','$\\hat{FGA} = 180 - 130 = 50°$'],r:'50°.'},
+{i:'G26-5',mat:'geo',mod:'G26',src:'UFJF-MG',tm:1,e:'Avalie: (I) todo quadrado é losango; (II) todo trapézio é paralelogramo; (III) as diagonais de um retângulo se bissectam.',h:['Hierarquia dos quadriláteros'],p:['(I) V — quadrado é losango com 4 ângulos retos','(II) F — todo paralelogramo é trapézio (não o contrário)','(III) V — todo paralelogramo (e o retângulo é um) tem essa propriedade'],r:'(I) e (III) verdadeiras; (II) falsa.'},
+{i:'G26-18',mat:'geo',mod:'G26',src:'UDESC-SC',tm:0,e:'ABCD é paralelogramo com AB = 5, AD = 2. CE é bissetriz de $\\hat{C}$, com E sobre AB. Calcule o perímetro de ADCE.',h:['Bissetriz + paralelogramo → E divide AB em 2 partes com relação ao lado'],p:['Como CE bissetriz e AB ∥ CD, o triângulo BCE é isósceles com BE = BC = 2','AE = AB - BE = 5 - 2 = 3','Perímetro ADCE = AD + DC + CE + EA','CE (calculado pela bissetriz): via lei dos cossenos ou aplicando bissetriz interna...','Simplificando para o caso comum: perímetro = 2 + 5 + CE + 3'],r:'Perímetro depende do valor de CE (via cálculo específico de bissetriz interna).'},
+
+/* ===== GEOMETRIA — M27: Tales (Q 1, 2, 3, 4) ===== */
+{i:'G27-1',mat:'geo',mod:'G27',src:'',tm:1,e:'Retas paralelas r // s // t são cortadas por duas transversais. Na primeira: segmentos 8 e x. Na segunda: 5 e 6. Encontre x.',h:['Tales: proporção direta'],p:['$8/x = 5/6$','$5x = 48 \\Rightarrow x = 9{,}6$'],r:'$x = 9{,}6$.'},
+{i:'G27-2',mat:'geo',mod:'G27',src:'CEFET-MG',tm:1,e:'Triângulo ABC tem perímetro 120 cm. A bissetriz de $\\hat{A}$ divide BC em 18 e 22. Calcule os outros lados.',h:['Bissetriz interna: 18/AB = 22/AC'],p:['Sejam $AB = c$ e $AC = b$','Bissetriz: $18/c = 22/b \\Rightarrow b/c = 22/18 = 11/9$','Perímetro: $b + c + 40 = 120 \\Rightarrow b + c = 80$','$b = (11/9)c$; $(11/9)c + c = 80 \\Rightarrow (20/9)c = 80 \\Rightarrow c = 36$; $b = 44$'],r:'AB = 36 cm · AC = 44 cm.'},
+{i:'G27-3',mat:'geo',mod:'G27',src:'',tm:1,e:'Três lotes com frentes para a rua A medindo 10, 25 e 30 m. Lote 2 tem 32 m de frente para a rua B (com ruas paralelas). Quanto tem cada lote na rua B?',h:['Tales: proporção 10:25:30 = frenteA:32:frenteC'],p:['Razão fixa: lote 2 tem 25/32 → constante = 25/32','Lote 1 rua B: $10 · (32/25) = 12{,}8$','Lote 3 rua B: $30 · (32/25) = 38{,}4$','Total: $12{,}8 + 32 + 38{,}4 = 83{,}2$ m'],r:'Total ≈ 83,2 m de asfalto.'},
+{i:'G27-4',mat:'geo',mod:'G27',src:'CEFET-MG',tm:1,e:'Retas r, s, t, w são paralelas cortadas por transversal, com segmentos 18, a, 24 (entre outras) na primeira transversal, e a, b, c na segunda, sendo a + b + c = 100.',h:['Aplique Tales entre as transversais'],p:['Proporção 18/a = 24/b = 33/c','Se a+b+c = 100 e razão constante...','Solução: a = 24, b = 32, c = 44'],r:'a = 24 · b = 32 · c = 44.'}
+];
+
+/* ========== RENDER ROTEIRO ========== */
+function renderRoteiro(){
+  const list = document.getElementById('roteiroList');
+  const matFilter = document.querySelector('.filter-bar button[data-mat].active').dataset.mat;
+  const modFilter = document.getElementById('modFilter').value;
+  const filtered = roteiroData.filter(e =>
+    (matFilter === 'all' || e.mat === matFilter) &&
+    (modFilter === 'all' || e.mod === modFilter)
+  );
+  if(filtered.length === 0){
+    list.innerHTML = '<p style="color:var(--ink-dim);text-align:center;padding:24px">Nenhum exercício com esses filtros.</p>';
+    return;
+  }
+  list.innerHTML = filtered.map(e => `
+    <div class="ex-card ${e.mat}" id="ex-${e.i}">
+      <div class="ex-head">
+        <span class="id">${e.i}</span>
+        <div class="tags">
+          <span class="tag mod">${e.mod}</span>
+          ${e.tm ? '<span class="tag tm">TM</span>' : '<span class="tag tc">TC</span>'}
+          ${e.src ? `<span class="tag">${e.src}</span>` : ''}
+        </div>
+      </div>
+      <div class="ex-actions">
+        <button class="btn-orig" onclick="openImgModal('${e.i}', '${e.i} — Enunciado original')">🔍 Ver original</button>
+        <button onclick="revealAllHints('${e.i}')">💡 Dica</button>
+        <button onclick="revealAllSteps('${e.i}')">📝 Passo a passo</button>
+        <button onclick="revealAns('${e.i}')" style="background:rgba(255,209,102,.15);color:var(--gold);border-color:var(--gold)">✅ Resposta</button>
+      </div>
+      <div id="reveal-${e.i}"></div>
+    </div>
+  `).join('');
+}
+function revealAllHints(id){
+  const ex = roteiroData.find(x => x.i === id);
+  const container = document.getElementById(`reveal-${id}`);
+  const existing = container.querySelector('.reveal-block.dicas-block');
+  if(existing){ existing.remove(); return; }
+  const el = document.createElement('div');
+  el.className = 'reveal-block dicas-block';
+  const items = ex.h.map((h,i) => `<div style="margin:4px 0"><b>${i+1}.</b> ${h}</div>`).join('');
+  el.innerHTML = `<span class="lbl">Dicas</span>${items}`;
+  container.appendChild(el);
+  if(window.renderMathInElement) renderMathInElement(el,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+}
+function revealAllSteps(id){
+  const ex = roteiroData.find(x => x.i === id);
+  const container = document.getElementById(`reveal-${id}`);
+  const existing = container.querySelector('.reveal-block.passos-block');
+  if(existing){ existing.remove(); return; }
+  const el = document.createElement('div');
+  el.className = 'reveal-block passo passos-block';
+  const items = ex.p.map((p,i) => `<div style="margin:4px 0"><b>Passo ${i+1}:</b> ${p}</div>`).join('');
+  el.innerHTML = `<span class="lbl">Passo a passo</span>${items}`;
+  container.appendChild(el);
+  if(window.renderMathInElement) renderMathInElement(el,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+}
+function revealAns(id){
+  const ex = roteiroData.find(x => x.i === id);
+  const container = document.getElementById(`reveal-${id}`);
+  const existing = container.querySelector('.reveal-block.resp-block');
+  if(existing){ existing.remove(); return; }
+  const el = document.createElement('div');
+  el.className = 'reveal-block resp resp-block';
+  el.innerHTML = `<span class="lbl">Resposta</span> <b>${ex.r}</b>`;
+  container.appendChild(el);
+  if(window.renderMathInElement) renderMathInElement(el,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+}
+
+document.querySelectorAll('.filter-bar button[data-mat]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter-bar button[data-mat]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  renderRoteiro();
+}));
+document.getElementById('modFilter').addEventListener('change', renderRoteiro);
+renderRoteiro();
+
+/* ========== SIMULADOS DATA ========== */
+/* Estrutura: {code, subj:'a'|'g', q:enunciado, o:alternativas, r:resposta, s:resolução, h:primeira dica} */
+const simuladosData = {
+  1: [
+    {code:'S1-Q01',subj:'a',q:'Uma função afim tem $f(0) = 5$ e $f(3) = -1$. Qual sua lei?',o:['$f(x) = 2x + 5$','$f(x) = -2x + 5$','$f(x) = -3x + 5$','$f(x) = x + 5$'],r:'B',h:'$b = f(0) = 5$; use o segundo par pra achar a.',s:'$b = 5$; $-1 = 3a + 5 \\Rightarrow a = -2$. Logo $f(x) = -2x + 5$.'},
+    {code:'S1-Q02',subj:'g',q:'A soma dos ângulos internos de um decágono é:',o:['1080°','1260°','1440°','1620°'],r:'C',h:'$S_i = 180°(n-2)$ com n = 10.',s:'$S_i = 180 \\cdot 8 = 1440°$.'},
+    {code:'S1-Q03',subj:'a',q:'A raiz da função $f(x) = 3x - 12$ é:',o:['4','−4','12','−12'],r:'A',h:'Faça $f(x) = 0$.',s:'$3x - 12 = 0 \\Rightarrow x = 4$.'},
+    {code:'S1-Q04',subj:'g',q:'Um triângulo isósceles tem base 8 e lados iguais 5. Quanto vale sua altura relativa à base?',f:'<svg viewBox="0 0 200 130" width="200" height="130"><polygon points="100,20 30,110 170,110" fill="none" stroke="#10b981" stroke-width="1.5"/><line x1="100" y1="20" x2="100" y2="110" stroke="#ffd166" stroke-dasharray="3,2"/><text x="55" y="70" fill="#3b82f6" font-size="10">5</text><text x="140" y="70" fill="#3b82f6" font-size="10">5</text><text x="100" y="125" text-anchor="middle" fill="#3b82f6" font-size="10">8</text><text x="105" y="65" fill="#ff9080" font-size="10">h?</text></svg>',o:['3','4','5','6'],r:'A',h:'A altura divide a base ao meio → triângulo retângulo com hipotenusa 5.',s:'Cateto base = 4; hipotenusa = 5; outro cateto (altura): $h^2 + 16 = 25 \\Rightarrow h = 3$.'},
+    {code:'S1-Q05',subj:'a',q:'A parábola $y = x^2 - 4x + 3$ tem vértice em:',o:['(2, −1)','(2, 1)','(−2, 3)','(−2, −1)'],r:'A',h:'$x_v = -b/2a$; substitua para achar $y_v$.',s:'$x_v = 4/2 = 2$; $y_v = 4 - 8 + 3 = -1$. Vértice $(2, -1)$.'},
+    {code:'S1-Q06',subj:'g',q:'Quantas diagonais tem um octógono?',o:['16','20','24','28'],r:'B',h:'$d = n(n-3)/2$.',s:'$d = 8 \\cdot 5 / 2 = 20$.'},
+    {code:'S1-Q07',subj:'a',q:'Uma cisterna vaza $V(t) = 500 - 25t$ (litros, em minutos). Em quanto tempo esvazia?',o:['15 min','18 min','20 min','25 min'],r:'C',h:'Iguale $V(t) = 0$.',s:'$500 - 25t = 0 \\Rightarrow t = 20$ min.'},
+    {code:'S1-Q08',subj:'g',q:'No triângulo ABC, o baricentro G está numa mediana AM. Se AM = 15, quanto vale AG?',o:['5','7,5','10','12'],r:'C',h:'Razão do baricentro: 2:1 (do vértice até G é 2/3 da mediana).',s:'$AG = (2/3) \\cdot 15 = 10$.'},
+    {code:'S1-Q09',subj:'a',q:'O valor máximo de $f(x) = -x^2 + 6x$ é:',o:['3','6','9','12'],r:'C',h:'$a < 0$ → tem máximo. Use $y_v = -\\Delta/4a$.',s:'$\\Delta = 36$; $y_v = -36/(-4) = 9$.'},
+    {code:'S1-Q10',subj:'g',q:'Num quadrilátero inscrito em circunferência, um ângulo vale 85°. O oposto vale:',f:'<svg viewBox="0 0 180 150" width="180" height="150"><circle cx="90" cy="75" r="60" fill="none" stroke="#10b981" stroke-width="1.4"/><polygon points="90,15 150,75 90,135 30,75" fill="none" stroke="#3b82f6" stroke-width="1.4"/><text x="90" y="30" text-anchor="middle" fill="#ffd166" font-size="10">85°</text><text x="90" y="127" text-anchor="middle" fill="#ff9080" font-size="10">?</text></svg>',o:['85°','95°','105°','115°'],r:'B',h:'Ângulos opostos são suplementares.',s:'$180 - 85 = 95°$.'},
+    {code:'S1-Q11',subj:'a',q:'Se $y = 2x$ (função linear), quanto vale $y$ quando $x = 7$?',o:['12','14','16','18'],r:'B',h:'Substitua direto.',s:'$y = 2 \\cdot 7 = 14$.'},
+    {code:'S1-Q12',subj:'g',q:'Uma bissetriz interna divide o lado oposto em 4 e 6. Se os dois outros lados são 8 e x, calcule x.',f:'<svg viewBox="0 0 220 130" width="220" height="130"><polygon points="110,15 20,115 200,115" fill="none" stroke="#10b981" stroke-width="1.5"/><line x1="110" y1="15" x2="98" y2="115" stroke="#ffd166" stroke-dasharray="3,2"/><text x="55" y="72" fill="#3b82f6" font-size="10">8</text><text x="160" y="72" fill="#3b82f6" font-size="10">x</text><text x="55" y="128" fill="#ff9080" font-size="10">4</text><text x="145" y="128" fill="#ff9080" font-size="10">6</text></svg>',o:['10','12','14','16'],r:'B',h:'$x/a = y/b$ (bissetriz interna).',s:'$4/8 = 6/x \\Rightarrow x = 12$.'},
+    {code:'S1-Q13',subj:'a',q:'Duas quadráticas $f = x^2$ e $g = 4x - 4$ se relacionam como?',o:['Não se cruzam','Se cruzam em 2 pontos','Se tangenciam em 1 ponto','g corta f no vértice'],r:'C',h:'Iguale as duas: $x^2 = 4x - 4$.',s:'$x^2 - 4x + 4 = 0 \\Rightarrow (x-2)^2 = 0$; tangência em $(2, 4)$.'},
+    {code:'S1-Q14',subj:'g',q:'Num polígono regular, o ângulo externo mede 30°. Quantos lados tem?',o:['10','12','15','18'],r:'B',h:'$e = 360/n$.',s:'$n = 360/30 = 12$ lados.'}
+  ],
+  2: [
+    {code:'S2-Q01',subj:'a',q:'Uma reta passa por $(1, 3)$ e $(4, 12)$. Seu coeficiente angular é:',o:['2','3','4','5'],r:'B',h:'$a = \\Delta y / \\Delta x$.',s:'$a = (12-3)/(4-1) = 9/3 = 3$.'},
+    {code:'S2-Q02',subj:'g',q:'Num triângulo equilátero de lado 6, a altura vale:',o:['$3$','$3\\sqrt{3}$','$6$','$6\\sqrt{3}$'],r:'B',h:'$h = L\\sqrt{3}/2$ no equilátero.',s:'$h = 6\\sqrt{3}/2 = 3\\sqrt{3}$.'},
+    {code:'S2-Q03',subj:'a',q:'A função $f(x) = -x^2 + 4x - 3$ tem raízes:',o:['1 e 3','−1 e −3','1 e −3','−1 e 3'],r:'A',h:'Bhaskara ou soma-produto: $x_1 + x_2 = 4$ e $x_1 \\cdot x_2 = 3$.',s:'$\\Delta = 16 - 12 = 4$; $x = (4 \\pm 2)/2 = 3$ ou $1$.'},
+    {code:'S2-Q04',subj:'g',q:'Um hexágono regular tem cada ângulo interno igual a:',o:['108°','120°','135°','144°'],r:'B',h:'$i = 180(n-2)/n$ com $n = 6$.',s:'$i = 720/6 = 120°$.'},
+    {code:'S2-Q05',subj:'a',q:'A função $f(x) = 3x + 5$ é:',o:['Crescente com raiz $5/3$','Decrescente com raiz $-5/3$','Crescente com raiz $-5/3$','Decrescente com raiz $5/3$'],r:'C',h:'$a > 0$ → crescente. Raiz: $x = -b/a$.',s:'Crescente ($a = 3 > 0$); raiz $= -5/3$.'},
+    {code:'S2-Q06',subj:'g',q:'Retas r // s // t cortam duas transversais: 6, x e 15 na primeira; 8, 12 e y na segunda. O valor de x é:',f:'<svg viewBox="0 0 240 160" width="240" height="160"><line x1="10" y1="30" x2="230" y2="30" stroke="#10b981" stroke-width="1.5"/><line x1="10" y1="80" x2="230" y2="80" stroke="#10b981" stroke-width="1.5"/><line x1="10" y1="130" x2="230" y2="130" stroke="#10b981" stroke-width="1.5"/><line x1="60" y1="15" x2="140" y2="145" stroke="#3b82f6" stroke-width="1.5"/><line x1="140" y1="15" x2="220" y2="145" stroke="#3b82f6" stroke-width="1.5"/><text x="235" y="34" fill="#10b981" font-size="10">r</text><text x="235" y="84" fill="#10b981" font-size="10">s</text><text x="235" y="134" fill="#10b981" font-size="10">t</text><text x="72" y="60" fill="#ffd166" font-size="10">6</text><text x="98" y="110" fill="#ff9080" font-size="10">x</text><text x="155" y="60" fill="#ffd166" font-size="10">8</text><text x="180" y="110" fill="#ffd166" font-size="10">12</text></svg>',o:['4','6','9','10'],r:'C',h:'Tales: $6/8 = x/12$.',s:'$x = 6 \\cdot 12 / 8 = 9$.'},
+    {code:'S2-Q07',subj:'a',q:'Uma bola é lançada por $h(t) = -5t^2 + 20t$. Sua altura máxima é:',o:['15 m','20 m','25 m','30 m'],r:'B',h:'$y_v = -\\Delta/4a$; $a = -5$, $b = 20$.',s:'$\\Delta = 400$; $y_v = -400/(-20) = 20$ m.'},
+    {code:'S2-Q08',subj:'g',q:'O circuncentro de um triângulo retângulo com hipotenusa 10 está a uma distância de qual valor de cada vértice?',o:['3','4','5','7'],r:'C',h:'Circuncentro = ponto médio da hipotenusa.',s:'Raio = metade da hipotenusa = 5.'},
+    {code:'S2-Q09',subj:'a',q:'A imagem de $f(x) = x^2 - 4$ é:',o:['$\\{y \\ge -4\\}$','$\\{y \\ge 0\\}$','$\\{y \\le -4\\}$','$\\{y \\le 0\\}$'],r:'A',h:'$a > 0$ → mínimo em $y_v$.',s:'$y_v = -\\Delta/4a = -16/4 = -4$; Im = $\\{y \\ge -4\\}$.'},
+    {code:'S2-Q10',subj:'g',q:'Um polígono tem 35 diagonais. Quantos lados tem?',o:['8','9','10','11'],r:'C',h:'$n(n-3)/2 = 35$.',s:'$n^2 - 3n - 70 = 0 \\Rightarrow n = (3+17)/2 = 10$.'},
+    {code:'S2-Q11',subj:'a',q:'Numa função afim $f(x) = ax + b$, sabe-se que $f(2) = 10$ e $f(-1) = 1$. Então $a + b$ é:',o:['5','7','9','11'],r:'C',h:'Sistema com os 2 valores.',s:'$a = (10-1)/3 = 3$; $b = 10 - 6 = 4$; $a + b = 7$.'},
+    {code:'S2-Q12',subj:'g',q:'Um losango tem diagonais 6 e 8. Seu lado mede:',f:'<svg viewBox="0 0 180 160" width="180" height="160"><polygon points="90,20 150,80 90,140 30,80" fill="none" stroke="#10b981" stroke-width="1.8"/><line x1="90" y1="20" x2="90" y2="140" stroke="#ffd166" stroke-dasharray="3,2"/><line x1="30" y1="80" x2="150" y2="80" stroke="#ffd166" stroke-dasharray="3,2"/><text x="95" y="85" fill="#ffd166" font-size="10">6</text><text x="70" y="75" fill="#ffd166" font-size="10">8</text><text x="30" y="55" fill="#ff9080" font-size="10">?</text></svg>',o:['4','5','6','7'],r:'B',h:'Diagonais se cortam ao meio e são perpendiculares.',s:'Metades: 3 e 4; hipotenusa (lado) $= \\sqrt{9+16} = 5$.'},
+    {code:'S2-Q13',subj:'a',q:'O gráfico da função $y = -2x + 6$:',o:['Passa por (3, 0) e é decrescente','Passa por (−3, 0) e é crescente','Passa por (0, −6) e é crescente','Passa por (3, 6) e é decrescente'],r:'A',h:'Raiz $= -b/a = 3$; $a < 0$ → decrescente.',s:'$-2x + 6 = 0 \\Rightarrow x = 3$; $a = -2 < 0$ → decrescente.'},
+    {code:'S2-Q14',subj:'g',q:'Num triângulo ABC, a bissetriz de $\\hat{A}$ divide BC em segmentos 8 e 12. Sabendo que AB = 6, qual AC?',o:['9','10','11','12'],r:'A',h:'$8/6 = 12/AC$ (bissetriz interna).',s:'$AC = 6 \\cdot 12 / 8 = 9$.'}
+  ],
+  3: [
+    {code:'S3-Q01',subj:'a',q:'Uma função linear $y = kx$ passa por $(4, 20)$. Quanto vale k?',o:['3','4','5','6'],r:'C',h:'Substitua o ponto.',s:'$20 = 4k \\Rightarrow k = 5$.'},
+    {code:'S3-Q02',subj:'g',q:'Um polígono regular tem 12 lados. Cada ângulo interno vale:',o:['135°','140°','144°','150°'],r:'D',h:'$i = 180(n-2)/n$.',s:'$i = 180 \\cdot 10 / 12 = 150°$.'},
+    {code:'S3-Q03',subj:'a',q:'A parábola $y = x^2 + 2x - 8$ tem raízes:',o:['−4 e 2','4 e −2','−4 e −2','4 e 2'],r:'A',h:'Bhaskara.',s:'$\\Delta = 4 + 32 = 36$; $x = (-2 \\pm 6)/2$ → $x = 2$ ou $x = -4$.'},
+    {code:'S3-Q04',subj:'g',q:'Num triângulo inscrito, um lado é diâmetro da circunferência. O ângulo oposto ao diâmetro vale:',o:['45°','60°','90°','120°'],r:'C',h:'Consequência do teorema de Tales na circunferência.',s:'É um triângulo retângulo → ângulo oposto ao diâmetro é 90°.'},
+    {code:'S3-Q05',subj:'a',q:'O vértice de $y = -x^2 + 8x - 10$ é:',o:['(4, 6)','(4, 22)','(−4, 6)','(4, −10)'],r:'A',h:'$x_v = -b/2a$; substitua.',s:'$x_v = -8/(-2) = 4$; $y_v = -16 + 32 - 10 = 6$.'},
+    {code:'S3-Q06',subj:'g',q:'Num triângulo isósceles, os ângulos da base valem 65° cada. Qual o ângulo do vértice?',o:['30°','40°','50°','60°'],r:'C',h:'Soma dos ângulos = 180°.',s:'$180 - 130 = 50°$.'},
+    {code:'S3-Q07',subj:'a',q:'A empresa X tem custo $C(x) = 30 + 5x$ e receita $R(x) = 10x$. A partir de que valor de x tem lucro?',o:['5','6','7','8'],r:'B',h:'Lucro > 0 ⟺ R > C.',s:'$10x > 30 + 5x \\Rightarrow x > 6$; a partir de 6 (inclusive x=6 dá lucro 0; > 6 dá lucro positivo).'},
+    {code:'S3-Q08',subj:'g',q:'Um ângulo inscrito em circunferência mede 35°. O arco correspondente mede:',o:['35°','70°','105°','140°'],r:'B',h:'Arco = 2 × inscrito.',s:'$70°$.'},
+    {code:'S3-Q09',subj:'a',q:'Uma torneira jorra $V(t) = 8t$ L. Em quantos minutos enche um recipiente de 240 L?',o:['15','20','25','30'],r:'D',h:'Iguale a 240.',s:'$8t = 240 \\Rightarrow t = 30$.'},
+    {code:'S3-Q10',subj:'g',q:'Num paralelogramo, um ângulo mede 70°. O ângulo adjacente vale:',f:'<svg viewBox="0 0 220 130" width="220" height="130"><polygon points="30,20 190,20 170,110 10,110" fill="none" stroke="#10b981" stroke-width="1.8"/><text x="45" y="38" fill="#ffd166" font-size="10">70°</text><text x="170" y="38" fill="#ff9080" font-size="10">?</text></svg>',o:['70°','90°','110°','120°'],r:'C',h:'Ângulos consecutivos do paralelogramo são suplementares.',s:'$180 - 70 = 110°$.'},
+    {code:'S3-Q11',subj:'a',q:'A soma das raízes de $x^2 - 5x + 6 = 0$ é:',o:['3','5','6','11'],r:'B',h:'Soma = $-b/a$ (relações de Vieta).',s:'Soma $= 5/1 = 5$.'},
+    {code:'S3-Q12',subj:'g',q:'Num triângulo, as medianas de dois vértices se encontram em G. Se uma mediana vale 12, a distância de G ao vértice é:',o:['4','6','8','10'],r:'C',h:'Baricentro: 2:1 do vértice.',s:'$2/3 \\cdot 12 = 8$.'},
+    {code:'S3-Q13',subj:'a',q:'O intervalo em que $f(x) = x^2 - 9$ é positiva:',o:['$x > 3$','$-3 < x < 3$','$x < -3$ ou $x > 3$','$x = 0$'],r:'C',h:'Raízes ±3; parábola $\\uparrow$ → positiva fora das raízes.',s:'Raízes $\\pm 3$; positiva quando $x < -3$ ou $x > 3$.'},
+    {code:'S3-Q14',subj:'g',q:'Um trapézio tem bases 8 e 14. A base média mede:',f:'<svg viewBox="0 0 220 140" width="220" height="140"><polygon points="60,25 160,25 200,115 20,115" fill="none" stroke="#10b981" stroke-width="1.5"/><line x1="40" y1="70" x2="180" y2="70" stroke="#ffd166" stroke-dasharray="3,2"/><text x="105" y="20" text-anchor="middle" fill="#3b82f6" font-size="10">8</text><text x="110" y="128" text-anchor="middle" fill="#3b82f6" font-size="10">14</text><text x="105" y="65" text-anchor="middle" fill="#ff9080" font-size="10">MN=?</text></svg>',o:['9','10','11','12'],r:'C',h:'Base média = (b1 + b2)/2.',s:'$MN = (8+14)/2 = 11$.'}
+  ]
+};
+
+/* ========== SIMULADOS UI ========== */
+function openSim(n){
+  const sim = simuladosData[n];
+  const view = document.getElementById('simView');
+  document.getElementById('simSelect').style.display = 'none';
+  view.innerHTML = `
+    <div class="sim-header no-print">
+      <h3>📝 Simulado ${n}</h3>
+      <div class="info">${sim.length} questões · não veja as respostas antes de tentar</div>
+      <div>
+        <button class="print" onclick="printSim(${n})" style="background:var(--gold);color:#0a0f24;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;margin-right:6px">🖨️ Imprimir</button>
+        <button onclick="closeSim()" style="background:var(--wrong);color:white;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">✖️ Fechar</button>
+      </div>
+    </div>
+    <div class="print-header">
+      <h1>Simulado ${n} — Matemática · P2T2</h1>
+      <div class="fields">
+        <div>Nome: ______________________________________________</div>
+        <div>Data: ____/____/______</div>
+      </div>
+    </div>
+    ${sim.map(q => `
+      <div class="sim-q">
+        <div class="qh">
+          <span class="code">${q.code}</span>
+          <span class="subject ${q.subj}">${q.subj === 'a' ? 'ÁLGEBRA' : 'GEOMETRIA'}</span>
+          <button class="no-print btn-orig" onclick="openImgModal('${q.code}', '${q.code} — Sobre esta questão')" style="background:rgba(255,209,102,.12);color:var(--gold);border:1px solid rgba(255,209,102,.4);padding:4px 10px;border-radius:6px;cursor:pointer;font-size:.75rem;font-weight:600">ℹ️ Sobre</button>
+        </div>
+        <div class="qbody">${q.q}${q.f ? '<div class="q-fig">'+q.f+'</div>' : ''}</div>
+        <ul class="altos">
+          ${q.o.map((op, i) => `<li data-l="${String.fromCharCode(65+i)})">${op}</li>`).join('')}
+        </ul>
+        <div class="print-answer-space"></div>
+      </div>
+    `).join('')}
+  `;
+  if(window.renderMathInElement) renderMathInElement(view,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+  view.scrollIntoView({behavior:'smooth'});
+}
+function closeSim(){
+  document.getElementById('simView').innerHTML = '';
+  document.getElementById('simSelect').style.display = 'grid';
+}
+function printSim(n){
+  if(!document.getElementById('simView').innerHTML){
+    openSim(n);
+    setTimeout(() => window.print(), 300);
+  } else {
+    window.print();
+  }
+}
+
+/* ========== CORREÇÃO ========== */
+function findCode(){
+  const code = document.getElementById('codeInput').value.trim().toUpperCase();
+  const result = document.getElementById('correctResult');
+  let found = null;
+  for(const n in simuladosData){
+    const q = simuladosData[n].find(x => x.code.toUpperCase() === code);
+    if(q){ found = q; break; }
+  }
+  if(!found){
+    result.innerHTML = `<div class="not-found">Código <b>${code}</b> não encontrado. Verifique se digitou no formato <b>S1-Q07</b>.</div>`;
+    return;
+  }
+  result.innerHTML = `
+    <div class="found">
+      <h4>${found.code} · ${found.subj === 'a' ? '🔵 Álgebra' : '🟢 Geometria'}</h4>
+      <div class="enun">${found.q}</div>
+      <ul style="color:var(--ink-dim);font-size:.85rem;padding-left:20px;margin-bottom:8px">
+        ${found.o.map((op, i) => `<li>${String.fromCharCode(65+i)}) ${op}</li>`).join('')}
+      </ul>
+      <div class="spoiler-btns">
+        <button onclick="revealCorrect('answer','${found.code}')">✅ Só a resposta</button>
+        <button onclick="revealCorrect('hint','${found.code}')">💡 Só uma dica</button>
+        <button onclick="revealCorrect('full','${found.code}')">📝 Resolução completa</button>
+      </div>
+      <div id="spoilerZone"></div>
+    </div>
+  `;
+  if(window.renderMathInElement) renderMathInElement(result,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+}
+function revealCorrect(mode, code){
+  let found = null;
+  for(const n in simuladosData){
+    const q = simuladosData[n].find(x => x.code === code);
+    if(q){ found = q; break; }
+  }
+  const zone = document.getElementById('spoilerZone');
+  let content = '';
+  if(mode === 'answer'){
+    content = `<div class="reveal-block resp"><span class="lbl">Alternativa correta</span> <b>${found.r}</b></div>`;
+  } else if(mode === 'hint'){
+    content = `<div class="reveal-block"><span class="lbl">Dica</span> ${found.h}</div>`;
+  } else {
+    content = `
+      <div class="reveal-block"><span class="lbl">Dica</span> ${found.h}</div>
+      <div class="reveal-block passo"><span class="lbl">Resolução</span> ${found.s}</div>
+      <div class="reveal-block resp"><span class="lbl">Resposta</span> <b>${found.r}</b></div>
+    `;
+  }
+  zone.innerHTML = content;
+  if(window.renderMathInElement) renderMathInElement(zone,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+}
+document.getElementById('codeInput').addEventListener('keypress', e => { if(e.key === 'Enter') findCode(); });
+
+/* ========== FÓRMULAS ========== */
+const formulas = {
+  alg: [
+    {n:'Função afim (padrão)', e:'f(x) = ax + b'},
+    {n:'Raiz da afim', e:'x = −b/a'},
+    {n:'Coef. angular por 2 pontos', e:'a = (y₂−y₁)/(x₂−x₁)'},
+    {n:'Função linear', e:'f(x) = ax'},
+    {n:'Função constante', e:'f(x) = k'},
+    {n:'Proporcionalidade direta', e:'y/x = k'},
+    {n:'Quadrática (padrão)', e:'f(x) = ax² + bx + c'},
+    {n:'Discriminante', e:'Δ = b² − 4ac'},
+    {n:'Bhaskara — raízes', e:'x = (−b ± √Δ) / 2a'},
+    {n:'Vértice — abscissa', e:'xᵥ = −b/2a'},
+    {n:'Vértice — ordenada', e:'yᵥ = −Δ/4a'},
+    {n:'Forma canônica', e:'f(x) = a(x−xᵥ)² + yᵥ'},
+    {n:'Forma fatorada', e:'f(x) = a(x−x₁)(x−x₂)'},
+    {n:'Soma das raízes', e:'x₁ + x₂ = −b/a'},
+    {n:'Produto das raízes', e:'x₁ · x₂ = c/a'},
+    {n:'Máximo (a<0)', e:'yᵥ é máximo'},
+    {n:'Mínimo (a>0)', e:'yᵥ é mínimo'}
+  ],
+  geo: [
+    {n:'Soma ângulos triângulo', e:'A + B + C = 180°'},
+    {n:'Ângulo externo', e:'γₑₓₜ = A + B'},
+    {n:'Condição existência', e:'|b−c| < a < b+c'},
+    {n:'Diagonais polígono', e:'d = n(n−3)/2'},
+    {n:'Diagonais pelo centro', e:'Dc = n/2 (n par)'},
+    {n:'Soma ângulos internos', e:'Sᵢ = 180°(n−2)'},
+    {n:'Soma ângulos externos', e:'Sₑ = 360°'},
+    {n:'Ângulo interno regular', e:'i = 180°(n−2)/n'},
+    {n:'Ângulo externo regular', e:'e = 360°/n'},
+    {n:'Ângulo central', e:'α = arco'},
+    {n:'Ângulo inscrito', e:'β = arco/2'},
+    {n:'Excêntrico interior', e:'(arco₁ + arco₂)/2'},
+    {n:'Excêntrico exterior', e:'(arco_max − arco_min)/2'},
+    {n:'Base média trapézio', e:'MN = (AB + CD)/2'},
+    {n:'Mediana de Euler', e:'MN = (AD − BC)/2'},
+    {n:'Baricentro (razão)', e:'AG : GM = 2 : 1'},
+    {n:'Teorema de Tales', e:'AB/DE = BC/EF'},
+    {n:'Bissetriz interna', e:'x/a = y/b'},
+    {n:'Pitágoras', e:'a² = b² + c²'}
+  ]
+};
+
+function renderFormulas(){
+  document.getElementById('formAlg').innerHTML = formulas.alg.map(f =>
+    `<div class="formula-card alg"><div class="name">${f.n}</div><div class="eq">${f.e}</div></div>`
+  ).join('');
+  document.getElementById('formGeo').innerHTML = formulas.geo.map(f =>
+    `<div class="formula-card geo"><div class="name">${f.n}</div><div class="eq">${f.e}</div></div>`
+  ).join('');
+}
+renderFormulas();
+
+/* ========== RADAR ========== */
+const radar = [
+  {t:'Função Afim', its:['Não esquecer o sinal negativo em x = <b>−</b>b/a.','Crescente se a > 0; decrescente se a < 0. Cuidado ao inverter y quando f é decrescente.','Coeficiente angular é a inclinação, coeficiente linear é onde corta o eixo y.']},
+  {t:'Quadrática — Bhaskara', its:['<b>Δ = b² − 4ac</b> — sinal do c importa (se c é negativo, −4ac vira positivo).','Se Δ < 0 e a > 0: parábola sempre positiva (não corta eixo x).','Se Δ < 0 e a < 0: parábola sempre negativa.','Concavidade determina se yᵥ é máximo (a<0) ou mínimo (a>0).']},
+  {t:'Vértice', its:['<b>xᵥ = −b/2a</b> — sinal negativo obrigatório.','Vértice tem <b>duas</b> coordenadas (xᵥ, yᵥ) — muita gente reporta só uma.','Imagem depende do sinal de a: {y ≥ yᵥ} se a>0, {y ≤ yᵥ} se a<0.','Domínio restrito [a,b]: se vértice cai fora, extremos estão nas bordas.']},
+  {t:'Otimização', its:['Escreva a grandeza em função de UMA variável antes de aplicar vértice.','Área máxima e receita máxima: a costuma ser < 0 (parábola voltada pra baixo).','Cuidado com contextos: perguntar "em qual x é máximo" (=xᵥ) ≠ "qual o valor máximo" (=yᵥ).']},
+  {t:'Triângulos', its:['Condição de existência: verifique sempre com o <b>maior lado</b>.','Isósceles: ângulos da base são iguais (opostos aos lados iguais).','Ângulo externo = soma dos <b>internos não adjacentes</b> (só os outros dois).']},
+  {t:'Polígonos', its:['Diagonais totais: d = n(n−3)/2 — não esquecer o <b>/2</b>.','Diagonais pelo centro só existem se n é <b>par</b>: Dc = n/2.','Sᵢ = 180°(n−2), não 180°·n.','Confundir <b>total de diagonais</b> com <b>diagonais por vértice</b> (que é n−3).']},
+  {t:'Circunferência', its:['Inscrito = <b>metade</b> do central que enxerga o mesmo arco.','Excêntrico interior <b>soma</b> os arcos; exterior <b>subtrai</b>.','Quadrilátero inscrito: opostos <b>suplementares</b> (somam 180°).','Triângulo com um lado = diâmetro é sempre <b>retângulo</b>.']},
+  {t:'Pontos Notáveis', its:['<b>Inc</b>entro → circunferência <b>inscrita</b>. <b>Circun</b>centro → <b>circunscrita</b>.','Baricentro é <b>sempre</b> interno; ortocentro tem 3 posições (int/vertice/ext).','Baricentro divide mediana na razão <b>2:1</b> (do vértice até G é 2× do resto).','No triângulo retângulo: circuncentro = <b>ponto médio da hipotenusa</b>.']},
+  {t:'Quadriláteros', its:['Todo paralelogramo é trapézio (mas não o contrário).','Losango tem 4 lados iguais, mas ângulos <b>não</b> precisam ser retos.','Retângulo tem 4 ângulos retos, mas lados <b>não</b> precisam ser iguais.','Quadrado = interseção retângulo ∩ losango.','Diagonais do losango: <b>perpendiculares</b>. Diagonais do retângulo: <b>congruentes</b>. Do quadrado: <b>ambas</b>.']},
+  {t:'Tales e Bissetriz', its:['Tales: mantenha a ordem dos segmentos correspondentes (cima→baixo nas duas transversais).','Bissetriz interna: a razão é com os <b>lados adjacentes ao vértice</b>, não com o lado oposto.','Base média é <b>paralela</b> à base e mede sua <b>metade</b>.','Semelhança: razão de <b>áreas</b> é a razão de lados <b>ao quadrado</b>.']}
+];
+
+document.getElementById('radarList').innerHTML = radar.map(r => `
+  <div class="radar-card">
+    <h4>${r.t}</h4>
+    <ul>${r.its.map(i => `<li>${i}</li>`).join('')}</ul>
+  </div>
+`).join('');
+</script>
+</body>
+</html>
