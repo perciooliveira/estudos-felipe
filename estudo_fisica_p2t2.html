@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Física P2T2 — Dinâmica (Leis de Newton) e Gases | Material de Estudo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload='renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false})'></script>
+<style>
+:root{
+  --bg-1:#0a1929; --bg-2:#10243a; --bg-3:#0f1d2e;
+  --din:#4cc9f0;            /* Física A - Dinâmica */
+  --din-2:#4361ee;
+  --din-glow:rgba(76,201,240,.35);
+  --gas:#f72585;            /* Física B - Gases */
+  --gas-2:#fb8500;
+  --gas-glow:rgba(247,37,133,.35);
+  --gold:#ffd166;
+  --ink:#f8f9ff; --ink-dim:#b9c4d6;
+  --card:#142339; --card-2:#1c2e48;
+  --wrong:#e74c3c;
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--bg-1),var(--bg-3) 50%,var(--bg-2));
+  background-attachment:fixed;min-height:100vh;line-height:1.55;
+}
+.container{max-width:1200px;margin:0 auto;padding:18px 18px 80px}
+
+/* HUB BACK NAV */
+.hub-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-radius:12px;margin-bottom:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.hub-bar a{color:var(--ink-dim);text-decoration:none;font-size:.86rem;display:inline-flex;align-items:center;gap:6px;font-weight:600;transition:color .2s}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{font-size:.8rem;color:var(--din);font-weight:700;background:var(--din-glow);padding:4px 10px;border-radius:6px;letter-spacing:1px}
+
+/* HEADER */
+header.hero{text-align:center;padding:30px 16px 20px;background:radial-gradient(circle at 25% 30%,var(--din-glow),transparent 50%),radial-gradient(circle at 75% 70%,var(--gas-glow),transparent 50%);border-radius:20px;margin-bottom:14px;position:relative;overflow:hidden}
+header.hero::before{content:"";position:absolute;inset:0;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'><text x='8' y='34' font-family='monospace' font-size='13' fill='rgba(255,209,102,.07)'>F=m·a</text><text x='8' y='60' font-family='monospace' font-size='13' fill='rgba(76,201,240,.07)'>pV=nRT</text></svg>");opacity:.5;pointer-events:none}
+header.hero h1{font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:1px;background:linear-gradient(90deg,var(--din),var(--gold),var(--gas));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+header.hero p{margin-top:6px;color:var(--ink-dim);font-size:.92rem}
+.subtitle-tag{display:inline-block;margin-top:12px;padding:6px 14px;background:rgba(255,209,102,.15);border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-size:.76rem;letter-spacing:.5px;text-transform:uppercase}
+
+nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;justify-content:center;position:sticky;top:0;z-index:10;background:rgba(10,25,41,.92);backdrop-filter:blur(10px);padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
+nav.tabs button{background:transparent;color:var(--ink-dim);border:1px solid rgba(255,255,255,.1);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:.84rem;transition:all .25s;font-weight:600}
+nav.tabs button:hover{transform:translateY(-2px);color:var(--ink)}
+nav.tabs button.active{background:linear-gradient(90deg,var(--din),var(--gas));color:white;border-color:transparent;box-shadow:0 4px 18px rgba(76,201,240,.4)}
+
+section.tab-content{display:none;animation:fadeIn .4s ease}
+section.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+h2.section-title{font-size:1.5rem;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+h2.section-title .ico{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--din),var(--gas));border-radius:10px;font-size:1.2rem}
+
+/* OVERVIEW */
+.subject-section{margin-top:18px;padding:16px;border-radius:18px;background:linear-gradient(135deg,rgba(76,201,240,.05),rgba(76,201,240,.02));border:1px solid rgba(76,201,240,.15)}
+.subject-section.gas{background:linear-gradient(135deg,rgba(247,37,133,.05),rgba(247,37,133,.02));border:1px solid rgba(247,37,133,.15)}
+.subject-section h3{display:flex;align-items:center;gap:10px;margin-bottom:6px;font-size:1.2rem;color:var(--din);flex-wrap:wrap}
+.subject-section.gas h3{color:var(--gas)}
+.subject-section h3 .teacher{font-size:.7rem;background:rgba(255,255,255,.07);padding:3px 10px;border-radius:6px;color:var(--ink-dim);letter-spacing:1px;font-weight:600}
+.subject-section .lead{color:var(--ink-dim);font-size:.86rem;margin-bottom:12px}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px}
+.module-card{padding:16px;border-radius:14px;background:var(--card);border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .3s;border-top:4px solid var(--din)}
+.module-card.gas{border-top-color:var(--gas)}
+.module-card:hover{transform:translateY(-4px)}
+.module-card .badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;background:var(--din-glow);color:var(--din)}
+.module-card.gas .badge{background:var(--gas-glow);color:var(--gas)}
+.module-card h4{font-size:1.05rem;margin-bottom:6px}
+.module-card ul{margin-top:6px;padding-left:18px;color:var(--ink-dim);font-size:.82rem}
+.module-card li{margin:3px 0}
+.module-card .qtag{margin-top:10px;font-size:.72rem;color:var(--gold);background:rgba(255,209,102,.1);padding:3px 8px;border-radius:6px;display:inline-block}
+.module-card .emoji{font-size:1.9rem;float:right;opacity:.85;margin-top:-4px}
+
+.criterio-box{margin-top:16px;padding:16px 20px;background:linear-gradient(90deg,rgba(255,209,102,.08),transparent);border-left:4px solid var(--gold);border-radius:10px}
+.criterio-box h4{color:var(--gold);margin-bottom:8px;font-size:.98rem}
+.criterio-box ul{padding-left:20px;color:var(--ink-dim);font-size:.86rem}
+.criterio-box li{margin:5px 0}
+.criterio-box .src{font-size:.72rem;color:var(--ink-dim);opacity:.75;margin-top:8px;display:block}
+
+.roadmap{margin-top:16px;padding:16px 20px;background:var(--card);border-radius:14px;border:1px solid rgba(255,255,255,.07)}
+.roadmap h4{color:var(--din);margin-bottom:8px}
+.roadmap ol{padding-left:22px;color:var(--ink-dim);font-size:.88rem}
+.roadmap li{margin:6px 0}
+
+/* RESUMO */
+.resumo-card{background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:14px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);border-left:4px solid var(--din)}
+.resumo-card.gas{border-left-color:var(--gas)}
+.resumo-card h3{font-size:1.1rem;margin-bottom:4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.resumo-card h3 .mtag{font-size:.7rem;background:var(--din-glow);color:var(--din);padding:2px 8px;border-radius:6px;font-weight:700}
+.resumo-card.gas h3 .mtag{background:var(--gas-glow);color:var(--gas)}
+.resumo-card p{color:var(--ink-dim);font-size:.88rem;margin:6px 0}
+.resumo-card .keyf{display:inline-block;font-family:'Cambria Math','Georgia',serif;background:rgba(255,209,102,.1);padding:2px 8px;border-radius:6px;color:var(--gold);margin:4px 6px 4px 0;font-size:.95rem}
+.see-pages{margin-top:10px;background:rgba(76,201,240,.12);color:var(--din);border:1px solid rgba(76,201,240,.35);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:600}
+.resumo-card.gas .see-pages{background:rgba(247,37,133,.12);color:var(--gas);border-color:rgba(247,37,133,.35)}
+.see-pages:hover{filter:brightness(1.15)}
+
+/* ROTEIRO */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.filter-bar button{background:var(--card);color:var(--ink);border:1px solid rgba(255,255,255,.1);padding:8px 13px;border-radius:10px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s}
+.filter-bar button:hover{background:var(--card-2);transform:translateY(-2px)}
+.filter-bar button.din.active{background:var(--din);color:#062033}
+.filter-bar button.gas.active{background:var(--gas);color:white}
+.filter-bar button.all.active{background:var(--gold);color:#0a0f24;border-color:var(--gold)}
+.filter-bar select{background:var(--card);color:var(--ink);border:1px solid rgba(255,255,255,.15);padding:8px 12px;border-radius:10px;font-size:.82rem;font-weight:600;cursor:pointer}
+
+.ex-card{background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:12px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);border-left:4px solid var(--din)}
+.ex-card.gas{border-left-color:var(--gas)}
+.ex-card.hidden{display:none}
+.ex-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.ex-head .id{font-size:1rem;font-weight:800;color:var(--din)}
+.ex-card.gas .ex-head .id{color:var(--gas)}
+.ex-head .tags{display:flex;gap:5px;flex-wrap:wrap}
+.ex-head .tag{font-size:.66rem;padding:2px 7px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--ink-dim);font-weight:700;letter-spacing:.5px}
+.ex-head .tag.mod{background:rgba(255,209,102,.12);color:var(--gold)}
+.ex-head .tag.banca{background:rgba(76,201,240,.12);color:var(--din)}
+.ex-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ex-actions button{background:rgba(255,255,255,.07);color:var(--ink);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:600;transition:all .2s}
+.ex-actions button:hover{background:rgba(255,255,255,.15)}
+.reveal-block{margin-top:8px;padding:10px 14px;background:rgba(76,201,240,.08);border-left:3px solid var(--din);border-radius:6px;font-size:.86rem;color:var(--ink);animation:fadeIn .3s}
+.reveal-block.passo{background:rgba(67,97,238,.08);border-left-color:var(--din-2)}
+.reveal-block.resp{background:rgba(255,209,102,.1);border-left-color:var(--gold)}
+.reveal-block b{color:var(--gold)}
+.reveal-block .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--ink-dim);margin-bottom:4px;display:block;font-weight:700}
+.reveal-block .verif{color:#ffb08a;font-weight:700}
+.btn-orig{background:rgba(255,209,102,.12)!important;color:var(--gold)!important;border-color:rgba(255,209,102,.4)!important}
+
+/* SIMULADO */
+.sim-select{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.sim-card{background:linear-gradient(135deg,var(--card),var(--card-2));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.08);position:relative}
+.sim-card h4{color:var(--gold);font-size:1.05rem;margin-bottom:6px}
+.sim-card p{color:var(--ink-dim);font-size:.85rem;margin-bottom:8px}
+.sim-card .btn-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.sim-card button{background:var(--din);color:#062033;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700;transition:transform .2s}
+.sim-card button:hover{transform:translateY(-2px)}
+.sim-card button.print{background:var(--gold);color:#0a0f24}
+#simView{margin-top:14px}
+.sim-header{background:var(--card);padding:14px 18px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.sim-header h3{color:var(--gold);font-size:1.1rem}
+.sim-header .info{font-size:.82rem;color:var(--ink-dim)}
+.sim-q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:10px;border:1px solid rgba(255,255,255,.06)}
+.sim-q .qh{display:flex;justify-content:space-between;margin-bottom:8px;align-items:center;gap:8px;flex-wrap:wrap}
+.sim-q .qh .code{font-weight:800;color:var(--gold);font-size:.95rem}
+.sim-q .qh .subject{font-size:.7rem;padding:2px 8px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--ink-dim)}
+.sim-q .qh .subject.d{background:var(--din-glow);color:var(--din)}
+.sim-q .qh .subject.g{background:var(--gas-glow);color:var(--gas)}
+.sim-q .qbody{color:var(--ink);font-size:.9rem;line-height:1.6}
+.sim-q .altos{list-style:none;margin-top:8px}
+.sim-q .altos li{padding:4px 0 4px 24px;position:relative;font-size:.86rem;color:var(--ink-dim)}
+.sim-q .altos li::before{content:attr(data-l);position:absolute;left:0;color:var(--gold);font-weight:800}
+.sim-gab{margin-top:14px;padding:14px 18px;background:rgba(255,209,102,.08);border-left:4px solid var(--gold);border-radius:10px}
+.sim-gab h4{color:var(--gold);margin-bottom:6px}
+.sim-gab p{font-size:.85rem;color:var(--ink-dim)}
+
+/* FÓRMULAS + RADAR */
+.formulas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+.formula-card{background:var(--card);padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--din)}
+.formula-card.gas{border-left-color:var(--gas)}
+.formula-card .name{font-size:.82rem;color:var(--ink-dim);margin-bottom:6px;font-weight:600}
+.formula-card .eq{color:var(--gold);font-size:1.05rem}
+.radar-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:14px}
+.radar-card{background:linear-gradient(135deg,rgba(231,76,60,.05),rgba(231,76,60,.02));border-left:3px solid var(--wrong);padding:14px 16px;border-radius:12px}
+.radar-card h4{color:#ff9080;font-size:.95rem;margin-bottom:8px}
+.radar-card ul{padding-left:20px;color:var(--ink-dim);font-size:.85rem}
+.radar-card ul li{margin:5px 0}
+.radar-card ul li b{color:var(--ink)}
+
+.note{background:rgba(255,209,102,.08);border-left:3px solid var(--gold);padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0}
+.note code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--gold)}
+footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:30px;padding:14px;border-top:1px solid rgba(255,255,255,.06)}
+footer .heart{color:var(--gas)}
+
+/* PRINT — simulado imprimível */
+@media print{
+  html,body{background:white!important;color:#111!important}
+  .container{max-width:100%;padding:0;margin:0}
+  .hub-bar,header.hero,nav.tabs,footer,#simSelect,.sim-header,
+  .tab-content:not(#simulado),#simView .no-print{display:none!important}
+  .print-header{display:block!important;text-align:center;border-bottom:2px solid #111;padding-bottom:14px;margin-bottom:24px}
+  .print-header h1{font-size:1.4rem;color:#111!important;margin:0}
+  .print-header .fields{margin-top:14px;font-size:.9rem;color:#111!important;text-align:left}
+  .print-header .fields div{margin:8px 0;border-bottom:1px solid #666;padding:4px 0;min-height:24px}
+  #simulado.tab-content{display:block!important;background:transparent!important;animation:none!important}
+  #simView{background:transparent!important;margin-top:0}
+  .sim-gab{display:none!important}
+  .sim-q{background:white!important;color:#111!important;border:1px solid #bbb!important;border-radius:8px!important;padding:12px 16px!important;margin-bottom:14px!important;box-shadow:none!important;page-break-inside:avoid}
+  .sim-q .qh .code{color:#111!important}
+  .sim-q .qh .subject{background:white!important;color:#111!important;border:1px solid #666!important}
+  .sim-q .qbody{color:#111!important}
+  .sim-q .altos li{color:#111!important}
+  .sim-q .altos li::before{color:#111!important}
+  .print-answer-space{border-bottom:1px dashed #888;min-height:64px;margin-top:10px}
+  @page{margin:1.2cm}
+}
+.print-header{display:none}
+
+@media(max-width:640px){
+  .container{padding:12px 12px 60px}
+  header.hero{padding:22px 12px 16px}
+  nav.tabs button{font-size:.78rem;padding:6px 10px}
+}
+
+/* MODAL — imagem original do livro */
+.img-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s}
+.img-modal.open{display:flex}
+.img-modal .modal-inner{max-width:96vw;max-height:92vh;position:relative;background:var(--card);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.img-modal .modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.img-modal .modal-head .title{color:var(--gold);font-weight:800;font-size:1rem;flex:1;min-width:120px}
+.img-modal .modal-head .zoom-controls{display:flex;gap:6px;align-items:center}
+.img-modal .modal-head .zoom-controls button{background:rgba(255,255,255,.08);color:var(--ink);border:1px solid rgba(255,255,255,.15);padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.9rem;min-width:36px;line-height:1;transition:background .15s}
+.img-modal .modal-head .zoom-controls button:hover{background:rgba(255,255,255,.18)}
+.img-modal .modal-head .zoom-controls .zoom-val{color:var(--gold);font-family:monospace;font-size:.82rem;font-weight:700;min-width:48px;text-align:center}
+.img-modal .modal-head .close-btn{background:var(--wrong)!important;color:white!important;border:none!important;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.85rem}
+.img-modal .modal-body{overflow:hidden;max-height:78vh;background:#000;border-radius:8px;padding:0;position:relative;cursor:grab;user-select:none}
+.img-modal .modal-body.grabbing{cursor:grabbing}
+.img-modal .modal-body .img-wrap{width:100%;height:78vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.img-modal .modal-body img{max-width:100%;max-height:78vh;display:block;transform-origin:0 0;transition:transform .12s ease-out;pointer-events:none}
+.img-modal .modal-body .zoom-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);color:var(--ink-dim);padding:4px 12px;border-radius:14px;font-size:.72rem;pointer-events:none;opacity:.7}
+.img-modal .modal-body .missing{padding:30px 20px;color:var(--ink-dim);text-align:center}
+.img-modal .modal-body .missing h4{color:var(--gold);margin-bottom:8px}
+.img-modal .modal-body .missing code{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px;color:var(--gold);font-family:monospace;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hub-bar">
+  <a href="index.html">← Hub de matérias</a>
+  <span class="subj">⚛️ FÍSICA · P2T2</span>
+  <a href="fisica.html">Física T1 →</a>
+</div>
+
+<header class="hero">
+  <h1>Física — P2T2</h1>
+  <p>Dinâmica / Leis de Newton (Prof. Alan) e Transformações Gasosas (Prof. Scotti)</p>
+  <span class="subtitle-tag">Visão Geral · Resumo · Roteiro · Simulado · Fórmulas</span>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-tab="overview" class="active">Visão Geral</button>
+  <button data-tab="resumo">Resumo</button>
+  <button data-tab="roteiro">Exercícios do Roteiro</button>
+  <button data-tab="simulado">Simulado</button>
+  <button data-tab="formulas">Fórmulas &amp; Radar</button>
+</nav>
+
+<!-- ===================== VISÃO GERAL ===================== -->
+<section class="tab-content active" id="overview">
+  <h2 class="section-title"><span class="ico">🗺️</span>Visão Geral</h2>
+  <div class="note">Conteúdo montado <b>somente</b> a partir do que você enviou: os 2 roteiros (FSC‑A Prof. Alan e FSC‑B Prof. Scotti) e as 35 páginas do livro. Os critérios abaixo estão <b>transcritos exatamente</b> como no roteiro. As questões do roteiro aparecem só com código + banca; o enunciado oficial é a foto em <b>🔍 Ver original</b>.</div>
+
+  <!-- FÍSICA A -->
+  <div class="subject-section">
+    <h3>🚀 Física A — Dinâmica <span class="teacher">PROF. ALAN · FSC‑A</span></h3>
+    <p class="lead">As Leis de Newton: força, inércia, princípio fundamental da dinâmica, ação e reação, plano inclinado e atrito. Livro: págs. 8–37.</p>
+    <div class="modules-grid">
+      <div class="module-card">
+        <span class="emoji">🧲</span><span class="badge">MÓDULO 18</span>
+        <h4>Estudo da Força</h4>
+        <ul><li>Definição de força (grandeza vetorial)</li><li>Tipos de força: contato e campo</li><li>Cálculo da força resultante</li></ul>
+        <span class="qtag">Roteiro: 01, 02, 03, 06, 07, 08</span>
+      </div>
+      <div class="module-card">
+        <span class="emoji">🚌</span><span class="badge">MÓDULO 19</span>
+        <h4>Leis de Newton I — Inércia</h4>
+        <ul><li>Conceito de inércia</li><li>Referenciais inerciais e não inerciais</li><li>1ª lei de Newton</li></ul>
+        <span class="qtag">Roteiro: 02, 03, 04, 07, 13</span>
+      </div>
+      <div class="module-card">
+        <span class="emoji">🛗</span><span class="badge">MÓDULO 20</span>
+        <h4>Leis de Newton II — PFD</h4>
+        <ul><li>Princípio Fundamental da Dinâmica</li><li>2ª lei de Newton</li><li>Aplicação em elevadores</li></ul>
+        <span class="qtag">Roteiro: 01 ao 04, 06 e 07</span>
+      </div>
+      <div class="module-card">
+        <span class="emoji">🔁</span><span class="badge">MÓDULO 21</span>
+        <h4>Leis de Newton III — Ação e reação</h4>
+        <ul><li>Forças em pares (3ª lei)</li><li>Par ação‑reação × forças em equilíbrio</li><li>Sistemas de blocos</li></ul>
+        <span class="qtag">Roteiro: 01 ao 05, 12 e 13</span>
+      </div>
+      <div class="module-card">
+        <span class="emoji">📐</span><span class="badge">MÓDULO 22</span>
+        <h4>Plano Inclinado</h4>
+        <ul><li>Decomposição do peso ($P_t$, $P_n$)</li><li>$N = P\cos\theta$; $a = g\,\text{sen}\,\theta$</li><li>Blocos ligados por fio/polia</li></ul>
+        <span class="qtag">Roteiro: 01, 02, 05, 09</span>
+      </div>
+      <div class="module-card">
+        <span class="emoji">🛑</span><span class="badge">MÓDULO 23</span>
+        <h4>Força de Atrito</h4>
+        <ul><li>Atrito estático e dinâmico</li><li>$F_{at,máx}=\mu_e N$; $F_{at,D}=\mu_d N$</li><li>Coeficientes de atrito</li></ul>
+        <span class="qtag">Roteiro: 01, 02, 04, 08, 09</span>
+      </div>
+    </div>
+    <div class="criterio-box">
+      <h4>📋 Critérios de avaliação (transcrição do roteiro FSC‑A)</h4>
+      <ul>
+        <li><b>Mód. 18:</b> 1. Definição de força; 2. Tipos de força; 3. Cálculo de força resultante.</li>
+        <li><b>Mód. 19:</b> 1. Dominar os conceitos relacionados à inércia; 2. Compreender os referenciais inerciais e não inerciais; 3. Identificar a aplicação da primeira lei de Newton, em situações propostas.</li>
+        <li><b>Mód. 20:</b> 1. Compreender o princípio fundamental da dinâmica; 2. Entender e aplicar a Segunda lei de Newton nas questões envolvendo elevadores.</li>
+        <li><b>Mód. 21, 22 e 23:</b> 1. Compreender a lei da ação e reação; 2. Identificar o princípio da ação e reação na natureza; 3. Aplicar as leis de Newton nos sistemas de blocos; 4. Compreender e aplicar o estudo das forças em um plano inclinado; 5. Dominar e aplicar os conceitos relacionados à força de atrito.</li>
+      </ul>
+      <span class="src">Fonte: 1º ANO · T2P2 · FIS · ALAN (roteiro).</span>
+    </div>
+  </div>
+
+  <!-- FÍSICA B -->
+  <div class="subject-section gas">
+    <h3>🎈 Física B — Gases <span class="teacher">PROF. SCOTTI · FSC‑B</span></h3>
+    <p class="lead">Transformações gasosas e o modelo de gás ideal. Livro: págs. 117–121.</p>
+    <div class="modules-grid">
+      <div class="module-card gas">
+        <span class="emoji">🎈</span><span class="badge">MÓDULO 13</span>
+        <h4>Transformações Gasosas I</h4>
+        <ul><li>Gás ideal / perfeito</li><li>Relação pressão × temperatura</li><li>Equação de Clapeyron e lei geral dos gases</li><li>Sistemas abertos e fechados</li></ul>
+        <span class="qtag">Roteiro: 02, 03, 04, 06, 09, 10, 11, 12</span>
+      </div>
+      <div class="module-card gas">
+        <span class="emoji">🧪</span><span class="badge">LAB</span>
+        <h4>Laboratório</h4>
+        <ul><li>Conceitos e experimentos das aulas de laboratório</li><li>Experimentos da latinha e do galão</li></ul>
+        <span class="qtag">Sem questão de livro associada</span>
+      </div>
+    </div>
+    <div class="criterio-box">
+      <h4>📋 Critérios de avaliação (transcrição do roteiro FSC‑B)</h4>
+      <ul>
+        <li><b>Mód. 13:</b> 1. Compreender o conceito de gás ideal; 2. Entender a relação entre pressão e temperatura; 3. Saber trabalhar com a equação das transformações gasosas; 4. Saber diferenciar sistemas abertos e fechados.</li>
+        <li><b>Lab:</b> 1. Trabalhar com os conceitos e experimentos trabalhados durante as aulas no laboratório (latinha e galão).</li>
+      </ul>
+      <span class="src">Fonte: 1º ANO · T2P2 · FIS · SCOTTI (roteiro).</span>
+    </div>
+  </div>
+
+  <div class="roadmap">
+    <h4>🧭 Roteiro sugerido de estudo</h4>
+    <ol>
+      <li>Leia o <b>Resumo</b> de cada módulo e, na dúvida, abra as fotos do livro em "📖 Ver páginas do livro".</li>
+      <li>Refaça os <b>Exercícios do Roteiro</b> (aba própria): tente pela foto original, depois confira dica → passo a passo → resposta.</li>
+      <li>Decore as <b>Fórmulas</b> e leia o <b>Radar de Armadilhas</b> na véspera.</li>
+      <li>Imprima o <b>Simulado</b>, resolva à caneta cronometrando, e confira pelo gabarito.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== RESUMO ===================== -->
+<section class="tab-content" id="resumo">
+  <h2 class="section-title"><span class="ico">📖</span>Resumo</h2>
+  <div class="note">Resumo <b>enxuto</b> — as definições e fórmulas essenciais. Para o conteúdo completo (com figuras e exemplos), use o botão <b>📖 Ver páginas do livro</b> em cada módulo: abre as fotos das páginas de teoria, com zoom e navegação por setas.</div>
+
+  <h3 style="color:var(--din);margin:16px 0 8px">🚀 Física A — Dinâmica</h3>
+
+  <div class="resumo-card">
+    <h3><span class="mtag">MÓD 18</span> Estudo da Força</h3>
+    <p>Força é uma grandeza <b>vetorial</b> (direção, sentido e intensidade). Ela altera o estado de movimento/repouso (efeito dinâmico) ou deforma um corpo (efeito estático).</p>
+    <p><b>Natureza:</b> força de <b>contato</b> (tração, atrito, normal) ou de <b>campo</b> (gravitacional, elétrica, magnética — agem à distância). Unidade SI: newton, $1\,\text{N}=1\,\text{kg·m/s}^2$; $1\,\text{kgf}=9,8\,\text{N}$.</p>
+    <p><b>Resultante:</b> soma vetorial das forças. Em <b>equilíbrio</b>, $F_R = 0$.</p>
+    <span class="keyf">$P = m\,g$</span><span class="keyf">$\vec F_R = \vec F_1 + \vec F_2 + \dots + \vec F_n$</span>
+    <br><button class="see-pages" onclick="openModuleModal('M18')">📖 Ver páginas do livro (6 fotos)</button>
+  </div>
+
+  <div class="resumo-card">
+    <h3><span class="mtag">MÓD 19</span> Leis de Newton I — Inércia</h3>
+    <p><b>1ª lei (princípio da inércia):</b> "Um corpo mantém seu estado de repouso ou de MRU se a resultante das forças externas que atuam nele for nula." Repouso = equilíbrio estático; MRU = equilíbrio dinâmico.</p>
+    <p><b>Inércia</b> é a resistência do corpo a mudar seu estado; a <b>massa</b> é a medida quantitativa da inércia. <b>Referenciais inerciais</b>: aqueles sem aceleração (valem a 1ª lei). A "força centrífuga" é fictícia (aparece em referencial não inercial).</p>
+    <br><button class="see-pages" onclick="openModuleModal('M19')">📖 Ver páginas do livro (4 fotos)</button>
+  </div>
+
+  <div class="resumo-card">
+    <h3><span class="mtag">MÓD 20</span> Leis de Newton II — PFD</h3>
+    <p><b>2ª lei (PFD):</b> a aceleração é proporcional à força resultante e tem a mesma direção e sentido; a constante de proporcionalidade é a massa.</p>
+    <p><b>Elevador</b> (peso aparente = leitura da balança = normal $N$): $a=0 \Rightarrow N=P$; subindo acelerado/descendo retardado $\Rightarrow N-P=ma$; descendo acelerado/subindo retardado $\Rightarrow P-N=ma$. O peso <b>real</b> não muda.</p>
+    <span class="keyf">$\vec F_R = m\,\vec a$</span><span class="keyf">$N - P = m\,a$</span><span class="keyf">$P - N = m\,a$</span>
+    <br><button class="see-pages" onclick="openModuleModal('M20')">📖 Ver páginas do livro (5 fotos)</button>
+  </div>
+
+  <div class="resumo-card">
+    <h3><span class="mtag">MÓD 21</span> Leis de Newton III — Ação e reação</h3>
+    <p><b>3ª lei:</b> "A toda ação existe sempre uma reação oposta, de mesma intensidade." As forças de um par ação‑reação: têm mesma intensidade e direção, sentidos opostos, são de <b>mesma natureza</b> e atuam em <b>corpos diferentes</b> — por isso <b>nunca se cancelam</b>.</p>
+    <p>Cuidado: peso $P$ e normal $N$ (de um corpo sobre a mesa) <b>não</b> formam par ação‑reação (atuam no mesmo corpo).</p>
+    <span class="keyf">$\vec F_{AB} = -\vec F_{BA}$</span><span class="keyf">$F_{AB} = F_{BA}$ (em módulo)</span>
+    <br><button class="see-pages" onclick="openModuleModal('M21')">📖 Ver páginas do livro (5 fotos)</button>
+  </div>
+
+  <div class="resumo-card">
+    <h3><span class="mtag">MÓD 22</span> Plano Inclinado</h3>
+    <p>Num plano inclinado liso, o peso se decompõe em componente <b>tangencial</b> (paralela ao plano) e <b>normal</b> (perpendicular). A normal equilibra o componente normal; o componente tangencial é a resultante que acelera o bloco.</p>
+    <span class="keyf">$P_t = P\,\text{sen}\,\theta$</span><span class="keyf">$P_n = P\cos\theta$</span><span class="keyf">$N = P_n$</span><span class="keyf">$a = g\,\text{sen}\,\theta$</span>
+    <br><button class="see-pages" onclick="openModuleModal('M22')">📖 Ver páginas do livro (5 fotos)</button>
+  </div>
+
+  <div class="resumo-card">
+    <h3><span class="mtag">MÓD 23</span> Força de Atrito</h3>
+    <p><b>Atrito estático</b>: de intensidade variável; enquanto há repouso equilibra a força motriz ($F_{at,E}=F$), até o valor máximo (iminência de movimento). <b>Atrito dinâmico</b> (cinético): surge no movimento relativo, sentido oposto, módulo constante. O coeficiente ($\mu$) é adimensional e depende dos materiais; em geral $\mu_d < \mu_e$.</p>
+    <span class="keyf">$F_{at,máx} = \mu_e\,N$</span><span class="keyf">$F_{at,D} = \mu_d\,N$</span><span class="keyf">$0 \le F_{at,E} \le F_{at,máx}$</span>
+    <br><button class="see-pages" onclick="openModuleModal('M23')">📖 Ver páginas do livro (5 fotos)</button>
+  </div>
+
+  <h3 style="color:var(--gas);margin:22px 0 8px">🎈 Física B — Gases</h3>
+
+  <div class="resumo-card gas">
+    <h3><span class="mtag">MÓD 13</span> Transformações Gasosas I</h3>
+    <p><b>Gás ideal/perfeito:</b> modelo teórico — partículas de tamanho desprezível, em número grande e movimento aleatório, colisões que conservam a energia cinética. Gases reais se aproximam do ideal sob <b>baixas pressões e altas temperaturas</b>.</p>
+    <p><b>Variáveis de estado:</b> pressão $p$, volume $V$ e temperatura absoluta $T$ (em <b>kelvin</b>). Uma transformação altera pelo menos uma delas.</p>
+    <p><b>Equação de Clapeyron</b> (estado dos gases perfeitos) e <b>lei geral</b> (comparando dois estados):</p>
+    <span class="keyf">$p\,V = n\,R\,T$</span><span class="keyf">$\dfrac{p_1 V_1}{T_1} = \dfrac{p_2 V_2}{T_2}$</span><span class="keyf">$n = \dfrac{m}{M}$</span>
+    <p style="margin-top:6px">$R = 0{,}082\ \text{atm·L/(mol·K)} = 8{,}31\ \text{J/(mol·K)}$ · $1\,\text{atm}=760\,\text{mmHg}$ · $T(K)=\theta(°C)+273$.</p>
+    <br><button class="see-pages" onclick="openModuleModal('M13')">📖 Ver páginas do livro (5 fotos)</button>
+  </div>
+</section>
+
+<!-- ===================== ROTEIRO ===================== -->
+<section class="tab-content" id="roteiro">
+  <h2 class="section-title"><span class="ico">✏️</span>Exercícios do Roteiro</h2>
+  <div class="note">📷 <b>Ver original:</b> cada exercício mostra só o <b>código + banca</b>; o botão <b>🔍 Ver original</b> abre a foto da página inteira do livro onde ele está (com zoom). As fotos ficam em <code>img/pages/</code>.</div>
+  <div class="note" style="border-left-color:#ff9080;background:rgba(231,76,60,.06)">⚠️ <b>Sobre as resoluções:</b> o <b>Gabarito comentado</b> de cada questão traz o <b>conceito + passo a passo + fórmula + resposta</b>, tudo junto — é uma <b>resolução minha</b>, não vem do livro (o material não traz gabarito das tarefas). Use como conferência e valide com o professor. Onde a figura/alternativas não permitiram concluir com segurança, marquei <span class="verif">[VERIFICAR]</span>.</div>
+
+  <div class="filter-bar">
+    <button class="all active" data-prof="all">Todos</button>
+    <button class="din" data-prof="din">🚀 Dinâmica (A)</button>
+    <button class="gas" data-prof="gas">🎈 Gases (B)</button>
+    <select id="modFilter">
+      <option value="all">Todos os módulos</option>
+      <optgroup label="Dinâmica (Prof. Alan)">
+        <option value="M18">Mód 18 — Força</option>
+        <option value="M19">Mód 19 — Inércia</option>
+        <option value="M20">Mód 20 — 2ª lei / PFD</option>
+        <option value="M21">Mód 21 — Ação e reação</option>
+        <option value="M22">Mód 22 — Plano inclinado</option>
+        <option value="M23">Mód 23 — Atrito</option>
+      </optgroup>
+      <optgroup label="Gases (Prof. Scotti)">
+        <option value="M13">Mód 13 — Transformações gasosas</option>
+      </optgroup>
+    </select>
+  </div>
+
+  <div id="roteiroList"></div>
+</section>
+
+<!-- ===================== SIMULADO ===================== -->
+<section class="tab-content" id="simulado">
+  <h2 class="section-title"><span class="ico">📝</span>Simulado</h2>
+  <div class="note">✨ <b>Questões originais:</b> os três simulados foram <b>criados por mim</b> com a mesma estrutura das questões do livro, mas com números e contextos diferentes — para treinar o padrão, não decorar. Eles <b>não</b> reproduzem o roteiro. Todos cobrem os critérios do roteiro: Dinâmica (força, inércia, PFD/elevadores, ação‑reação, plano inclinado, atrito) e Gases (gás ideal, pressão×temperatura, transformações gasosas). Use $g=10\,\text{m/s}^2$ salvo indicação.</div>
+
+  <div class="sim-select" id="simSelect">
+    <div class="sim-card">
+      <h4>🟢 Simulado 1 — Fácil</h4>
+      <p>12 questões · <b>memorização e prática</b> de conceitos e fórmulas (aplicação direta).</p>
+      <div class="btn-row">
+        <button onclick="openSim(1)">Ver na tela</button>
+        <button class="print" onclick="printSim(1)">🖨️ Imprimir</button>
+      </div>
+    </div>
+    <div class="sim-card">
+      <h4>🟡 Simulado 2 — Médio</h4>
+      <p>12 questões · com <b>interpretação de texto</b> (situações do dia a dia, dois passos).</p>
+      <div class="btn-row">
+        <button onclick="openSim(2)">Ver na tela</button>
+        <button class="print" onclick="printSim(2)">🖨️ Imprimir</button>
+      </div>
+    </div>
+    <div class="sim-card">
+      <h4>🔴 Simulado 3 — Difícil</h4>
+      <p>12 questões · <b>nível vestibular</b> (sistemas de blocos, várias etapas e combinações).</p>
+      <div class="btn-row">
+        <button onclick="openSim(3)">Ver na tela</button>
+        <button class="print" onclick="printSim(3)">🖨️ Imprimir</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="simView"></div>
+</section>
+
+<!-- ===================== FÓRMULAS + RADAR ===================== -->
+<section class="tab-content" id="formulas">
+  <h2 class="section-title"><span class="ico">🧮</span>Fórmulas &amp; Radar</h2>
+  <div class="note">Todas as fórmulas abaixo estão no material enviado (livro, págs. 8–37 e 117–121).</div>
+
+  <h3 style="color:var(--din);margin:14px 0 6px">🚀 Dinâmica</h3>
+  <div class="formulas-grid" id="formDin"></div>
+
+  <h3 style="color:var(--gas);margin:22px 0 6px">🎈 Gases</h3>
+  <div class="formulas-grid" id="formGas"></div>
+
+  <h3 style="color:#ff9080;margin:24px 0 6px">⚠️ Radar de Armadilhas</h3>
+  <p style="color:var(--ink-dim);font-size:.88rem">Erros clássicos. Leia 10 minutos antes da prova.</p>
+  <div class="radar-grid" id="radarList"></div>
+</section>
+
+<footer>Material de estudo · Física · P2T2 · Dinâmica + Gases · Feito com <span class="heart">♥</span></footer>
+
+</div>
+
+<!-- Cabeçalho de impressão do simulado -->
+<div class="print-header">
+  <h1 id="printTitle">Simulado — Física P2T2 (Dinâmica + Gases)</h1>
+  <div class="fields">
+    <div>Nome: ____________________________________________</div>
+    <div>Data: ______ / ______ / ________ &nbsp;&nbsp;&nbsp; Nota: __________</div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="img-modal" id="imgModal" onclick="if(event.target===this) closeImgModal()">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <span class="title" id="modalTitle">Enunciado original</span>
+      <div class="zoom-controls" id="zoomControls" style="display:none">
+        <button onclick="modulePrev()" title="Página anterior (←)" id="btnPrev" style="display:none">‹</button>
+        <span class="zoom-val" id="pageCounter" style="display:none"></span>
+        <button onclick="moduleNext()" title="Próxima página (→)" id="btnNext" style="display:none">›</button>
+        <span style="width:10px"></span>
+        <button onclick="zoomOut()" title="Diminuir (−)">−</button>
+        <span class="zoom-val" id="zoomVal">100%</span>
+        <button onclick="zoomIn()" title="Aumentar (+)">+</button>
+        <button onclick="zoomReset()" title="Ajustar à tela (0)">⤢</button>
+      </div>
+      <button class="close-btn" onclick="closeImgModal()">✖ Fechar</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ========== Mapeamento código do exercício → foto da página do livro ========== */
+const imageMap = {
+  // Mód 18 (Força)
+  'D18-1':'t2-fisica-forca-10','D18-2':'t2-fisica-forca-10','D18-3':'t2-fisica-forca-10',
+  'D18-6':'t2-fisica-forca-11','D18-7':'t2-fisica-forca-11','D18-8':'t2-fisica-forca-11',
+  // Mód 19 (Inércia)
+  'D19-2':'t2-fisica-inercia-15',
+  'D19-3':'t2-fisica-inercia-16','D19-4':'t2-fisica-inercia-16','D19-7':'t2-fisica-inercia-16',
+  'D19-13':'t2-fisica-inercia-17',
+  // Mód 20 (2ª lei / PFD)
+  'D20-1':'t2-fisica-2lei-20','D20-2':'t2-fisica-2lei-20','D20-3':'t2-fisica-2lei-20','D20-4':'t2-fisica-2lei-20','D20-6':'t2-fisica-2lei-20','D20-7':'t2-fisica-2lei-20',
+  // Mód 21 (Ação e reação)
+  'D21-1':'t2-fisica-acaoreacao-25','D21-2':'t2-fisica-acaoreacao-25','D21-3':'t2-fisica-acaoreacao-25','D21-4':'t2-fisica-acaoreacao-25',
+  'D21-5':'t2-fisica-acaoreacao-26',
+  'D21-12':'t2-fisica-acaoreacao-27','D21-13':'t2-fisica-acaoreacao-27',
+  // Mód 22 (Plano inclinado)
+  'D22-1':'t2-fisica-planoinclinado-30','D22-2':'t2-fisica-planoinclinado-30','D22-5':'t2-fisica-planoinclinado-30',
+  'D22-9':'t2-fisica-planoinclinado-31',
+  // Mód 23 (Atrito)
+  'D23-1':'t2-fisica-atrito-35','D23-2':'t2-fisica-atrito-35','D23-4':'t2-fisica-atrito-35',
+  'D23-8':'t2-fisica-atrito-36',
+  'D23-9':'t2-fisica-atrito-37',
+  // Mód 13 (Gases)
+  'T13-2':'t2-fisica-gases-119','T13-3':'t2-fisica-gases-119','T13-4':'t2-fisica-gases-119',
+  'T13-6':'t2-fisica-gases-120','T13-9':'t2-fisica-gases-120','T13-10':'t2-fisica-gases-120',
+  'T13-11':'t2-fisica-gases-121','T13-12':'t2-fisica-gases-121'
+};
+
+/* ========== Mapeamento módulo → páginas do livro (galeria) ========== */
+const moduleImages = {
+  'M18': {title:'Módulo 18 — Estudo da Força', pages:['t2-fisica-forca-08','t2-fisica-forca-09','t2-fisica-forca-10','t2-fisica-forca-11','t2-fisica-forca-12','t2-fisica-forca-13']},
+  'M19': {title:'Módulo 19 — Leis de Newton I (Inércia)', pages:['t2-fisica-inercia-14','t2-fisica-inercia-15','t2-fisica-inercia-16','t2-fisica-inercia-17']},
+  'M20': {title:'Módulo 20 — Leis de Newton II (PFD)', pages:['t2-fisica-2lei-18','t2-fisica-2lei-19','t2-fisica-2lei-20','t2-fisica-2lei-21','t2-fisica-2lei-22']},
+  'M21': {title:'Módulo 21 — Leis de Newton III (Ação e reação)', pages:['t2-fisica-acaoreacao-23','t2-fisica-acaoreacao-24','t2-fisica-acaoreacao-25','t2-fisica-acaoreacao-26','t2-fisica-acaoreacao-27']},
+  'M22': {title:'Módulo 22 — Plano Inclinado', pages:['t2-fisica-planoinclinado-28','t2-fisica-planoinclinado-29','t2-fisica-planoinclinado-30','t2-fisica-planoinclinado-31','t2-fisica-planoinclinado-32']},
+  'M23': {title:'Módulo 23 — Força de Atrito', pages:['t2-fisica-atrito-33','t2-fisica-atrito-34','t2-fisica-atrito-35','t2-fisica-atrito-36','t2-fisica-atrito-37']},
+  'M13': {title:'Módulo 13 — Transformações Gasosas I', pages:['t2-fisica-gases-117','t2-fisica-gases-118','t2-fisica-gases-119','t2-fisica-gases-120','t2-fisica-gases-121']}
+};
+let moduleState = {active:false, pages:[], idx:0, title:''};
+let zoomState = {scale:1, tx:0, ty:0, imgEl:null, natW:0, natH:0, dragging:false, dx:0, dy:0};
+
+function applyZoomTransform(){
+  if(!zoomState.imgEl) return;
+  zoomState.imgEl.style.transform = `translate(${zoomState.tx}px, ${zoomState.ty}px) scale(${zoomState.scale})`;
+  const zv = document.getElementById('zoomVal');
+  if(zv) zv.textContent = Math.round(zoomState.scale*100) + '%';
+}
+function zoomIn(){ zoomState.scale = Math.min(zoomState.scale * 1.25, 8); applyZoomTransform(); }
+function zoomOut(){ zoomState.scale = Math.max(zoomState.scale / 1.25, 0.2); applyZoomTransform(); }
+function zoomReset(){ if(zoomState.imgEl){ const wrap = zoomState.imgEl.parentElement; if(wrap) applyInitialFill(zoomState.imgEl, wrap); } }
+function applyInitialFill(imgEl, wrap){
+  requestAnimationFrame(() => {
+    const wrapRect = wrap.getBoundingClientRect();
+    const iw = imgEl.offsetWidth;
+    if(iw <= 0 || wrapRect.width <= 0) return;
+    if(iw >= wrapRect.width * 0.98) return;
+    const fillScale = (wrapRect.width * 0.98) / iw;
+    const tx = -(wrapRect.width - iw) / 2;
+    imgEl.style.transition = 'none';
+    zoomState.scale = fillScale; zoomState.tx = tx; zoomState.ty = 0;
+    applyZoomTransform();
+    requestAnimationFrame(() => { imgEl.style.transition = ''; });
+  });
+}
+function setupImageZoom(imgEl, wrap){
+  zoomState.imgEl = imgEl; zoomState.natW = imgEl.naturalWidth; zoomState.natH = imgEl.naturalHeight;
+  zoomState.scale = 1; zoomState.tx = 0; zoomState.ty = 0;
+  applyZoomTransform(); applyInitialFill(imgEl, wrap);
+  wrap.onwheel = (ev) => {
+    ev.preventDefault();
+    const rect = wrap.getBoundingClientRect();
+    const mx = ev.clientX - rect.left, my = ev.clientY - rect.top;
+    const oldScale = zoomState.scale;
+    const factor = ev.deltaY < 0 ? 1.15 : 1/1.15;
+    const newScale = Math.min(Math.max(oldScale * factor, 0.2), 8);
+    const scaleRatio = newScale / oldScale;
+    zoomState.tx = mx - (mx - zoomState.tx) * scaleRatio;
+    zoomState.ty = my - (my - zoomState.ty) * scaleRatio;
+    zoomState.scale = newScale; applyZoomTransform();
+  };
+  const startDrag = (cx, cy) => { zoomState.dragging = true; zoomState.dx = cx - zoomState.tx; zoomState.dy = cy - zoomState.ty; wrap.classList.add('grabbing'); };
+  const moveDrag = (cx, cy) => { if(!zoomState.dragging) return; zoomState.tx = cx - zoomState.dx; zoomState.ty = cy - zoomState.dy; applyZoomTransform(); };
+  const endDrag = () => { zoomState.dragging = false; wrap.classList.remove('grabbing'); };
+  wrap.onmousedown = (ev) => { ev.preventDefault(); startDrag(ev.clientX, ev.clientY); };
+  wrap.onmousemove = (ev) => { moveDrag(ev.clientX, ev.clientY); };
+  wrap.onmouseup = endDrag; wrap.onmouseleave = endDrag;
+  let pinchStartDist = 0, pinchStartScale = 1;
+  wrap.ontouchstart = (ev) => {
+    if(ev.touches.length === 1){ startDrag(ev.touches[0].clientX, ev.touches[0].clientY); }
+    else if(ev.touches.length === 2){ const dx = ev.touches[0].clientX - ev.touches[1].clientX; const dy = ev.touches[0].clientY - ev.touches[1].clientY; pinchStartDist = Math.sqrt(dx*dx+dy*dy); pinchStartScale = zoomState.scale; zoomState.dragging = false; }
+  };
+  wrap.ontouchmove = (ev) => {
+    ev.preventDefault();
+    if(ev.touches.length === 1){ moveDrag(ev.touches[0].clientX, ev.touches[0].clientY); }
+    else if(ev.touches.length === 2){ const dx = ev.touches[0].clientX - ev.touches[1].clientX; const dy = ev.touches[0].clientY - ev.touches[1].clientY; const d = Math.sqrt(dx*dx+dy*dy); zoomState.scale = Math.min(Math.max(pinchStartScale * (d / pinchStartDist), 0.2), 8); applyZoomTransform(); }
+  };
+  wrap.ontouchend = endDrag;
+  wrap.ondblclick = (ev) => {
+    const rect = wrap.getBoundingClientRect();
+    const mx = ev.clientX - rect.left, my = ev.clientY - rect.top;
+    if(zoomState.scale < 1.5){ const oldScale = zoomState.scale; const newScale = 2; const scaleRatio = newScale/oldScale; zoomState.tx = mx - (mx - zoomState.tx)*scaleRatio; zoomState.ty = my - (my - zoomState.ty)*scaleRatio; zoomState.scale = newScale; } else { zoomReset(); return; }
+    applyZoomTransform();
+  };
+}
+function openImgModal(code, title){
+  const modal = document.getElementById('imgModal');
+  const body = document.getElementById('modalBody');
+  const t = document.getElementById('modalTitle');
+  const zc = document.getElementById('zoomControls');
+  moduleState.active = false;
+  document.getElementById('btnPrev').style.display = 'none';
+  document.getElementById('btnNext').style.display = 'none';
+  document.getElementById('pageCounter').style.display = 'none';
+  t.textContent = title || (code + ' — Enunciado original');
+  zc.style.display = 'none';
+  const imgName = imageMap[code];
+  if(!imgName){
+    body.innerHTML = `<div class="missing"><h4>📷 Sem imagem mapeada</h4><p>O código <b>${code}</b> ainda não tem foto do livro mapeada.</p></div>`;
+    modal.classList.add('open'); return;
+  }
+  body.innerHTML = '<div class="missing"><p style="color:var(--ink-dim)">Carregando página do livro…</p></div>';
+  const img = new Image();
+  img.onload = () => {
+    body.innerHTML = '';
+    const wrap = document.createElement('div'); wrap.className = 'img-wrap'; wrap.appendChild(img); body.appendChild(wrap);
+    const hint = document.createElement('div'); hint.className = 'zoom-hint'; hint.textContent = '🖱️ Roda: zoom · Arrastar: mover · Duplo clique: 2×'; body.appendChild(hint);
+    zc.style.display = 'flex'; setupImageZoom(img, wrap);
+  };
+  img.onerror = () => { body.innerHTML = `<div class="missing"><h4>📷 Imagem não encontrada</h4><p>Esperava encontrar em: <code>img/pages/${imgName}.jpg</code></p></div>`; };
+  img.src = `img/pages/${imgName}.jpg`;
+  modal.classList.add('open');
+}
+function closeImgModal(){
+  document.getElementById('imgModal').classList.remove('open');
+  document.getElementById('zoomControls').style.display = 'none';
+  document.getElementById('btnPrev').style.display = 'none';
+  document.getElementById('btnNext').style.display = 'none';
+  document.getElementById('pageCounter').style.display = 'none';
+  zoomState.imgEl = null; moduleState.active = false;
+}
+function openModuleModal(modId){
+  const mod = moduleImages[modId];
+  if(!mod){ alert('Módulo não mapeado: ' + modId); return; }
+  moduleState.active = true; moduleState.pages = mod.pages; moduleState.idx = 0; moduleState.title = mod.title;
+  showModulePage();
+}
+function showModulePage(){
+  const modal = document.getElementById('imgModal');
+  const body = document.getElementById('modalBody');
+  const t = document.getElementById('modalTitle');
+  const zc = document.getElementById('zoomControls');
+  const btnPrev = document.getElementById('btnPrev'), btnNext = document.getElementById('btnNext'), pageCounter = document.getElementById('pageCounter');
+  t.textContent = moduleState.title;
+  btnPrev.style.display = 'inline-block'; btnNext.style.display = 'inline-block'; pageCounter.style.display = 'inline-block';
+  pageCounter.textContent = `${moduleState.idx+1} / ${moduleState.pages.length}`;
+  btnPrev.disabled = moduleState.idx === 0; btnNext.disabled = moduleState.idx === moduleState.pages.length - 1;
+  btnPrev.style.opacity = btnPrev.disabled ? '.35' : '1'; btnNext.style.opacity = btnNext.disabled ? '.35' : '1';
+  const imgName = moduleState.pages[moduleState.idx];
+  body.innerHTML = '<div class="missing"><p style="color:var(--ink-dim)">Carregando página…</p></div>';
+  const img = new Image();
+  img.onload = () => {
+    body.innerHTML = '';
+    const wrap = document.createElement('div'); wrap.className = 'img-wrap'; wrap.appendChild(img); body.appendChild(wrap);
+    const hint = document.createElement('div'); hint.className = 'zoom-hint'; hint.textContent = `📖 Página ${moduleState.idx+1} de ${moduleState.pages.length} · Setas ← → navegam · Roda: zoom`; body.appendChild(hint);
+    zc.style.display = 'flex'; setupImageZoom(img, wrap);
+  };
+  img.onerror = () => { body.innerHTML = `<div class="missing"><h4>📷 Imagem não encontrada</h4><p>Esperava: <code>img/pages/${imgName}.jpg</code></p></div>`; };
+  img.src = `img/pages/${imgName}.jpg`;
+  modal.classList.add('open');
+}
+function modulePrev(){ if(!moduleState.active || moduleState.idx === 0) return; moduleState.idx--; showModulePage(); }
+function moduleNext(){ if(!moduleState.active || moduleState.idx === moduleState.pages.length - 1) return; moduleState.idx++; showModulePage(); }
+document.addEventListener('keydown', e => {
+  if(!document.getElementById('imgModal').classList.contains('open')) return;
+  if(e.key === 'Escape') closeImgModal();
+  else if(e.key === '+' || e.key === '=') zoomIn();
+  else if(e.key === '-' || e.key === '_') zoomOut();
+  else if(e.key === '0') zoomReset();
+  else if(moduleState.active && e.key === 'ArrowLeft') modulePrev();
+  else if(moduleState.active && e.key === 'ArrowRight') moduleNext();
+});
+
+/* ========== TABS ========== */
+document.querySelectorAll('#mainTabs button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#mainTabs button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.tab).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+/* ========== DADOS DO ROTEIRO ========== */
+/* prof: 'din' (Física A) | 'gas' (Física B); mod: módulo; src: banca; g: gabarito comentado (dissertativo).
+   Enunciados NÃO são reproduzidos (ver foto original em "Ver original"). As resoluções são minhas. */
+const roteiroData = [
+/* ---- MÓDULO 18 — Estudo da Força ---- */
+{i:'D18-1',prof:'din',mod:'M18',src:'',g:'<b>Conceito.</b> As forças de <b>contato</b> (tração, atrito, normal, contato entre superfícies) exigem que os corpos se toquem; já as forças de <b>campo</b> agem à distância (gravitacional, elétrica e magnética). <b>Análise.</b> Tração num fio, atrito entre superfícies, normal e o contato escada–parede são todas de contato. A interação entre um ímã e um prego de aço acontece <b>sem contato</b> — é magnética, portanto de campo. <b>Resposta: a força de interação magnética entre o ímã e o prego de aço.</b>'},
+{i:'D18-2',prof:'din',mod:'M18',src:'',g:'<b>Conceito.</b> Um corpo em repouso com uma força aplicada continua em equilíbrio se a resultante for nula; e a 2ª lei ($F_R=m\\,a$) proíbe aceleração com resultante nula. <b>Análise das afirmações.</b> <b>01</b> pode continuar em repouso (equilíbrio estático) ✔; <b>02</b> pode ser deformado (efeito estático da força) ✔; <b>04</b> ser acelerado com resultante nula é impossível ✗; <b>08</b> pode ter resultante nula porque a normal equilibra a soma do peso com a força aplicada ✔; <b>16</b> é incorreto dizer que o peso equilibra F — quem equilibra a força é a normal ✗. <b>Somatório:</b> $01+02+08$. <b>Resposta: 11.</b> (questão de somatório — confira a figura em "Ver original")'},
+{i:'D18-3',prof:'din',mod:'M18',src:'',g:'<b>Conceito.</b> A resultante é a soma vetorial de todas as forças; um mesmo valor de resultante pode vir de infinitas combinações de forças. <b>Análise.</b> Por isso as opções que fixam pares específicos de forças são apenas <i>possíveis</i>, não certas. A única afirmação garantida: se atuar uma <b>única</b> força sobre o corpo, ela própria é a resultante, valendo 20 N. <b>Resposta: se houver apenas uma única força atuando, ela tem intensidade de 20 N.</b>'},
+{i:'D18-6',prof:'din',mod:'M18',src:'',g:'<b>Conceito.</b> Corpo em repouso ⇒ resultante nula em cada direção; as forças se equilibram duas a duas. <b>Passo a passo.</b> Na vertical, a normal $N$ (para cima) equilibra o peso $P$ (para baixo); na horizontal, $F$ e $T$ se equilibram. O par pedido é o das forças verticais. <b>Resposta: N e P.</b>'},
+{i:'D18-7',prof:'din',mod:'M18',src:'',g:'<b>Conceito.</b> Caixa em repouso ⇒ resultante vertical nula. <b>Fórmula/passos.</b> Atuam a tração $T$ (↑), a normal $N=35$ N (↑) e o peso $P=47$ N (↓). Do equilíbrio: $T + N = P \\Rightarrow T = P - N = 47 - 35$. <b>Resposta: $T = 12\\ \\text{N}$.</b>'},
+{i:'D18-8',prof:'din',mod:'M18',src:'',g:'<b>Conceito.</b> Fio e polia ideais transmitem integralmente a tração; corpos em equilíbrio ⇒ resultante nula. <b>Passo a passo.</b> O bloco Y (pendurado) está em equilíbrio, então o fio sustenta seu peso: $T = P_Y = 2\\ \\text{N}$. O bloco X está em repouso na horizontal e, sem atrito, a única força horizontal além da tração é $F$: $F = T = 2\\ \\text{N}$ (o peso de X, 5 N, é equilibrado pela normal). <b>Resposta: $T = 2\\ \\text{N}$ e $F = 2\\ \\text{N}$.</b>'},
+
+/* ---- MÓDULO 19 — Leis de Newton I (Inércia) ---- */
+{i:'D19-2',prof:'din',mod:'M19',src:'UFRGS-RS',g:'<b>Conceito.</b> Inércia é a tendência natural do corpo de manter seu estado de repouso ou de MRU — ou seja, sua incapacidade de, sozinho, mudar esse estado. <b>Análise.</b> A afirmação I descreve exatamente isso (correta). A II está errada: havendo força resultante, o estado muda. A III trata de "exercer forças", que nada tem a ver com inércia. <b>Resposta: apenas a afirmação I.</b>'},
+{i:'D19-3',prof:'din',mod:'M19',src:'PUC-SP',g:'<b>Conceito/fórmula.</b> No MRU a velocidade é constante, logo a aceleração é nula. Pela 1ª lei de Newton, aceleração nula ⇒ resultante das forças nula. <b>Resposta: nula.</b>'},
+{i:'D19-4',prof:'din',mod:'M19',src:'PUC-PR',g:'<b>Conceito.</b> O equilíbrio pode ser <b>estático</b> (repouso) ou <b>dinâmico</b> (MRU). <b>Análise.</b> I: sem força externa, o corpo está em equilíbrio (estático ou dinâmico) — correta. II: afirma que só há equilíbrio em repouso — falsa, pois o MRU também é equilíbrio. III: inércia é a resistência à variação do estado de repouso/movimento — correta. <b>Resposta: as proposições I e III.</b>'},
+{i:'D19-7',prof:'din',mod:'M19',src:'ACAFE-SC',g:'<b>Conceito.</b> O cinto de segurança é aplicação direta da <b>1ª lei (princípio da inércia)</b>: numa colisão o corpo tende a manter sua velocidade e seria projetado para a frente; o cinto fornece a força que impede isso. <b>Resposta: "Todo corpo permanece em repouso ou em movimento retilíneo uniforme, a menos que seja obrigado a mudá-lo por forças atuantes sobre ele."</b>'},
+{i:'D19-13',prof:'din',mod:'M19',src:'UDESC-SC',g:'<b>Conceito.</b> Mudar a direção do movimento só é possível pela ação de uma <b>força</b> — princípio da inércia (1ª lei): sem força, a trajetória não muda. A alternativa que cita uma "Lei Zero de Newton (Lei da Cinemática)" é incorreta, pois essa lei não existe. <b>Resposta: <span class="verif">[VERIFICAR: conferir o texto exato das alternativas na foto]</span> — o conceito correto é que é necessária uma força para alterar a direção do movimento.</b>'},
+
+/* ---- MÓDULO 20 — Leis de Newton II (PFD) ---- */
+{i:'D20-1',prof:'din',mod:'M20',src:'',g:'<b>Conceito/fórmula.</b> A resultante vem da 2ª lei (PFD): $F_R = m\\,a$. A velocidade inicial (72 km/h) é informação irrelevante para esse cálculo. <b>Passo.</b> $F_R = 8 \\cdot 5$. <b>Resposta: $F_R = 40\\ \\text{N}$.</b>'},
+{i:'D20-2',prof:'din',mod:'M20',src:'UFRGS-RS',g:'<b>Conceito.</b> "Aumenta 10 m/s a cada 2 s" fornece a aceleração; depois usamos a 2ª lei. <b>Passo a passo.</b> $a = 10/2 = 5\\ \\text{m/s}^2$; $m = F/a = 20/5$. <b>Resposta: $m = 4\\ \\text{kg}$.</b>'},
+{i:'D20-3',prof:'din',mod:'M20',src:'',g:'<b>Conceito.</b> Forças horizontais opostas ⇒ resultante pela diferença; depois PFD e cinemática. <b>Passo a passo.</b> $F_R = 11 - 5 = 6\\ \\text{N}$; $a = F_R/m = 6/3 = 2\\ \\text{m/s}^2$; $\\Delta v = a\\,t = 2 \\cdot 5 = 10\\ \\text{m/s}$. <b>Resposta: $a = 2\\ \\text{m/s}^2$ e $\\Delta v = 10\\ \\text{m/s}$.</b>'},
+{i:'D20-4',prof:'din',mod:'M20',src:'',g:'<b>Conceito.</b> Comparando a função horária com $s = s_0 + v_0 t + \\tfrac12 a t^2$ obtemos a aceleração. <b>Passo a passo.</b> De $s = 5 - 3t + 2t^2$: $\\tfrac12 a = 2 \\Rightarrow a = 4\\ \\text{m/s}^2$; pela 2ª lei, $F_R = m\\,a = 7{,}5 \\cdot 4$. <b>Resposta: $F_R = 30\\ \\text{N}$.</b>'},
+{i:'D20-6',prof:'din',mod:'M20',src:'ACAFE-SC',g:'<b>Conceito.</b> A leitura da balança é a normal (peso aparente). Com velocidade constante, a aceleração é nula. <b>Fórmula.</b> $a = 0 \\Rightarrow N = P$ (peso real). Logo a leitura é a mesma de um elevador em repouso. <b>Resposta: igual — em repouso.</b>'},
+{i:'D20-7',prof:'din',mod:'M20',src:'UCS-RS',g:'<b>Conceito.</b> A força do piso é a normal; usamos $N - P = m\\,a$, com a aceleração vinda da variação de velocidade. <b>Passo a passo.</b> $m = P/g = 600/10 = 60\\ \\text{kg}$; subindo e freando, $a = (2-8)/3 = -2\\ \\text{m/s}^2$ (aponta para baixo); $N = P + m\\,a = 600 + 60\\cdot(-2)$. <b>Resposta: $N = 480\\ \\text{N}$.</b>'},
+
+/* ---- MÓDULO 21 — Leis de Newton III (Ação e reação) ---- */
+{i:'D21-1',prof:'din',mod:'M21',src:'',g:'<b>Conceito.</b> As forças de ação e reação têm mesma intensidade e direção, sentidos opostos, são de <b>mesma natureza</b> e atuam em <b>corpos diferentes</b>. <b>Análise.</b> I (nunca há ação sem reação) — correta; II (nunca se equilibram, pois atuam em corpos diferentes) — correta; III (ação de campo com reação de contato) — falsa, o par é sempre da mesma natureza. <b>Resposta: I e II.</b>'},
+{i:'D21-2',prof:'din',mod:'M21',src:'PUC-MG',g:'<b>Conceito.</b> Ainda que tenham mesma intensidade e sentidos opostos, o par ação–reação <b>não se cancela</b> porque atua em <b>corpos diferentes</b> — e forças só se somam/cancelam quando atuam no mesmo corpo. <b>Resposta: porque elas agem em objetos (corpos) diferentes.</b>'},
+{i:'D21-3',prof:'din',mod:'M21',src:'ACAFE-SC',g:'<b>Conceito.</b> O texto diz que, assim como o planeta é atraído pela estrela, a estrela também é atraída pelo planeta — a força de atração vem sempre aos pares. Isso é a <b>3ª lei de Newton</b>. <b>Resposta: Lei de Newton da ação e reação.</b>'},
+{i:'D21-4',prof:'din',mod:'M21',src:'',g:'<b>Conceito.</b> É preciso distinguir <b>par ação–reação</b> (corpos diferentes) de forças que <b>se equilibram</b> (mesmo corpo). <b>Análise.</b> Pares ação–reação: P e F (livro–Terra) e N e M (livro–mesa). As forças que atuam no próprio livro e se equilibram são a normal $N$ e o peso $P$. <b>Resposta: N e P.</b>'},
+{i:'D21-5',prof:'din',mod:'M21',src:'PUC-SP',g:'<b>Conceito.</b> Garfield em repouso na balança ⇒ $N = P$; e par ação–reação atua em corpos diferentes. <b>Análise.</b> I (peso = 150 N) — correta; II (a balança exerce 150 N sobre ele, que é a normal) — correta; III é falsa: peso e força da balança sobre Garfield atuam no <b>mesmo</b> corpo, logo não são par ação–reação. <b>Resposta: somente I e II.</b>'},
+{i:'D21-12',prof:'din',mod:'M21',src:'UFSC-SC',g:'<b>Análise item a item.</b> 01 (velocidade ∝ força, 1ª lei) — falso; 02 (velocidade ∝ força, 2ª lei) — falso, a 2ª lei relaciona força com <b>aceleração</b>; 04 (avião a jato/foguete pela 3ª lei) — verdadeiro ✔; 08 (1ª lei só para corpos parados) — falso; 16 (MR com velocidade constante tem resultante não-nula) — falso, é nula; 32 (ação e reação no mesmo corpo) — falso; 64 (massas iguais e resultantes iguais ⇒ acelerações iguais) — verdadeiro ✔. <b>Somatório:</b> $04+64$. <b>Resposta: 68.</b> (somatório — confira pela foto)'},
+{i:'D21-13',prof:'din',mod:'M21',src:'UFPR-PR',g:'<b>Análise item a item.</b> 01 (aceleração na queda livre depende da massa) — falso; 02 (ação e reação no mesmo corpo) — falso; 04 (massa é propriedade intrínseca) — verdadeiro ✔; 08 (leis de Newton só valem em referenciais inerciais) — verdadeiro ✔; 16 (maior massa, maior inércia) — verdadeiro ✔; 32 (é preciso força para manter MRU) — falso, contraria a inércia. <b>Somatório:</b> $04+08+16$. <b>Resposta: 28.</b> (somatório — confira pela foto)'},
+
+/* ---- MÓDULO 22 — Plano Inclinado ---- */
+{i:'D22-1',prof:'din',mod:'M22',src:'',g:'<b>Conceito/fórmula.</b> Num plano inclinado <b>sem atrito</b>, a única força ao longo do plano é o componente tangencial do peso, e a aceleração não depende da massa: $a = g\\,\\text{sen}\\,\\theta$. <b>Passo.</b> Com $\\text{sen}\\,37° = 0{,}6$: $a = 10 \\cdot 0{,}6$. <b>Resposta: $a = 6{,}0\\ \\text{m/s}^2$.</b>'},
+{i:'D22-2',prof:'din',mod:'M22',src:'',g:'<b>Conceito.</b> Em <b>movimento uniforme</b> a resultante é nula, então a força $F$ paralela ao plano equilibra o componente tangencial do peso. <b>Fórmula/passo.</b> $F = P_t = m\\,g\\,\\text{sen}\\,\\theta = 1{,}2 \\cdot 10 \\cdot 0{,}7$. <b>Resposta: $F = 8{,}4\\ \\text{N}$.</b>'},
+{i:'D22-5',prof:'din',mod:'M22',src:'',g:'<b>Conceito.</b> Sistema em <b>repouso</b>: o peso do bloco A (pendurado) equilibra o componente do peso de B ao longo do plano. <b>Passo a passo.</b> $m_A\\,g = m_B\\,g\\,\\text{sen}\\,\\theta \\Rightarrow \\text{sen}\\,\\theta = m_A/m_B = 2/4 = 0{,}5 \\Rightarrow \\theta = 30°$. <b>Resposta: $\\theta = 30°$.</b>'},
+{i:'D22-9',prof:'din',mod:'M22',src:'FEI-SP',g:'<b>Conceito/fórmula.</b> A reação normal equilibra o componente normal do peso: $N = P\\cos\\theta = m\\,g\\cos\\theta$. <b>Passo.</b> Com $\\cos 60° = 0{,}5$: $N = 20 \\cdot 10 \\cdot 0{,}5$. <b>Resposta: $N = 100\\ \\text{N}$.</b>'},
+
+/* ---- MÓDULO 23 — Força de Atrito ---- */
+{i:'D23-1',prof:'din',mod:'M23',src:'UFSC-SC',g:'<b>Análise item a item.</b> 01 (atrito é inútil) — falso; 02 (contribui para o desgaste de peças) — verdadeiro ✔; 04 (sem atrito seria difícil caminhar) — verdadeiro ✔; 08 (força de atrito proporcional à normal, $F_{at}=\\mu N$) — verdadeiro ✔; 16 (coef. cinético ∝ velocidade e unidade N·m/s) — falso, o coeficiente é adimensional; 32 (coef. cinético sempre maior que o estático) — falso, é o contrário ($\\mu_d < \\mu_e$). <b>Somatório:</b> $02+04+08$. <b>Resposta: 14.</b> (somatório — confira pela foto)'},
+{i:'D23-2',prof:'din',mod:'M23',src:'FGV-SP',g:'<b>Conceito/fórmula.</b> O bloco acelera sob a força aplicada menos o atrito: $F - F_{at} = m\\,a$. <b>Passo.</b> $F_{at} = F - m\\,a = 20 - 4 \\cdot 3$. <b>Resposta: $F_{at} = 8\\ \\text{N}$.</b>'},
+{i:'D23-4',prof:'din',mod:'M23',src:'UEL-PR',g:'<b>Conceito.</b> Na iminência de escorregar, o peso dos elos pendurados iguala o atrito máximo sobre os elos apoiados na mesa. <b>Passo a passo.</b> Sendo $n$ os pendurados e $(12-n)$ na mesa, com peso $w$ por elo: $n\\,w = \\mu\\,(12-n)\\,w$, $\\mu=0{,}5$. Então $n = 0{,}5(12-n) \\Rightarrow 1{,}5n = 6 \\Rightarrow n = 4$. <b>Resposta: 4 elos.</b>'},
+{i:'D23-8',prof:'din',mod:'M23',src:'UFSC-SC',g:'<b>Conceito.</b> O livro fica em repouso <b>relativo</b> à mesa; e a força F atua na <b>mesa</b>, não no livro. <b>Análise.</b> 01 (mesa com v constante ⇒ atrito no livro ≠ 0) — falso, com v constante o livro não tem resultante, atrito = 0; 02 (atrito no livro = F) — falso; 04 (mesa acelerada ⇒ só peso, normal e F no livro) — falso, no livro atuam peso, normal e atrito (não F); 08 (mesa acelerada ⇒ o atrito é quem acelera o livro) — verdadeiro ✔; 16 (mesa com v constante ⇒ só peso e normal no livro) — verdadeiro ✔; 32 (mesa acelerada para a direita ⇒ atrito no livro para a direita) — verdadeiro ✔. <b>Somatório:</b> $08+16+32$. <b>Resposta: 56.</b> (somatório — confira pela foto)'},
+{i:'D23-9',prof:'din',mod:'M23',src:'ACAFE-SC',g:'<b>Conceito.</b> O traje de competição melhora o desempenho reduzindo a resistência ao avanço na água — ou seja, <b>diminuindo o atrito</b> entre a água e o nadador. <b>Resposta: reduz a força de atrito entre a água e o nadador.</b>'},
+
+/* ---- MÓDULO 13 — Transformações Gasosas ---- */
+{i:'T13-2',prof:'gas',mod:'M13',src:'FIA-SP',g:'<b>Conceito/fórmula.</b> Usamos a <b>lei geral dos gases</b>, $\\dfrac{p_1V_1}{T_1} = \\dfrac{p_2V_2}{T_2}$, com temperaturas em kelvin. <b>Passo a passo.</b> $T_1 = 127+273 = 400\\ \\text{K}$; $T_2 = 0+273 = 273\\ \\text{K}$. $V_2 = \\dfrac{p_1 V_1 T_2}{T_1\\,p_2} = \\dfrac{600 \\cdot 20 \\cdot 273}{400 \\cdot 819}$. <b>Resposta: $V_2 = 10{,}0\\ \\text{mL}$.</b>'},
+{i:'T13-3',prof:'gas',mod:'M13',src:'FAAP-SP',g:'<b>Conceito.</b> Mesma <b>massa</b> e mesma <b>temperatura</b> ⇒ vale a lei de Boyle (isotérmica): $p_1 V_1 = p_2 V_2$. <b>Passo.</b> $V_2 = \\dfrac{p_1 V_1}{p_2} = \\dfrac{1 \\cdot 4}{5}$. <b>Resposta: $V_2 = 0{,}8\\ \\text{litros}$.</b>'},
+{i:'T13-4',prof:'gas',mod:'M13',src:'MACK-SP',g:'<b>Atenção.</b> A temperatura em °C dobra, mas na lei dos gases usa-se <b>kelvin</b>. <b>Passo a passo.</b> Sejam $\\theta_1$ a inicial e $\\theta_2 = 2\\theta_1$. Com $p_2 = 3p_1$ e $V_2 = V_1/2$ na lei geral: $\\dfrac{p_1V_1}{\\theta_1+273} = \\dfrac{3p_1(V_1/2)}{2\\theta_1+273}$, que leva a $2\\theta_1+273 = 1{,}5(\\theta_1+273) \\Rightarrow 0{,}5\\theta_1 = 136{,}5 \\Rightarrow \\theta_1 = 273\\,°\\text{C} = 546\\ \\text{K}$. <b>Resposta: $T_1 = 546\\ \\text{K}$.</b>'},
+{i:'T13-6',prof:'gas',mod:'M13',src:'PUC-SP',g:'<b>Conceito.</b> Achamos o número de mols por Clapeyron e multiplicamos pelo número de Avogadro. <b>Passo a passo.</b> $n = \\dfrac{pV}{RT} = \\dfrac{2{,}9 \\cdot 41}{0{,}082 \\cdot 290} = 5{,}0\\ \\text{mol}$; $N = n \\cdot 6{,}02\\cdot10^{23} = 5 \\cdot 6{,}02\\cdot10^{23}$. <b>Resposta: $N \\approx 3{,}00\\cdot10^{24}$ moléculas.</b>'},
+{i:'T13-9',prof:'gas',mod:'M13',src:'PUCCAMP-SP',g:'<b>Conceito/fórmula.</b> Lei geral entre os estados A e B, com T em kelvin ($T_A = 300\\ \\text{K}$, $T_B = 400\\ \\text{K}$). <b>Passo.</b> $V_B = \\dfrac{p_A V_A T_B}{T_A\\,p_B} = \\dfrac{2 \\cdot 0{,}9 \\cdot 400}{300 \\cdot 1{,}5}$. <b>Resposta: $V_B = 1{,}6\\ \\text{L}$.</b>'},
+{i:'T13-10',prof:'gas',mod:'M13',src:'IFSP-SP',g:'<b>Conceito.</b> Aplicamos a lei geral convertendo unidades. <b>Passo a passo.</b> $V_1 = 1\\ \\text{L} = 1000\\ \\text{cm}^3$, $T_1 = 8+273 = 281\\ \\text{K}$ (no alto); $p_2 = 1\\ \\text{atm}$, $V_2 = 900\\ \\text{cm}^3$, $T_2 = 14+273 = 287\\ \\text{K}$ (no pé, pois a temperatura sobe 6 °C). $p_1 = \\dfrac{p_2 V_2 T_1}{V_1 T_2} = \\dfrac{1 \\cdot 900 \\cdot 281}{1000 \\cdot 287}$. <b>Resposta: $p_1 \\approx 0{,}88\\ \\text{atm}$.</b>'},
+{i:'T13-11',prof:'gas',mod:'M13',src:'ESTÁCIO-RJ',g:'<b>Conceito.</b> Lei geral com temperaturas em kelvin. <b>Passo a passo.</b> $-73\\,°\\text{C} = 200\\ \\text{K}$ e $127\\,°\\text{C} = 400\\ \\text{K}$; $V_2 = \\dfrac{p_1 V_1 T_2}{p_2 T_1} = \\dfrac{1 \\cdot 10 \\cdot 400}{2 \\cdot 200}$. <b>Resposta: $V_2 = 10\\ \\text{L}$.</b>'},
+{i:'T13-12',prof:'gas',mod:'M13',src:'PUC-RS',g:'<b>Conceito.</b> Lei geral com temperaturas em kelvin. <b>Passo a passo.</b> $T_1 = 20+273 = 293\\ \\text{K}$; $T_2 = 10+273 = 283\\ \\text{K}$; $V_2 = \\dfrac{p_1 V_1 T_2}{T_1\\,p_2} = \\dfrac{2 \\cdot 2 \\cdot 283}{293 \\cdot 0{,}5}$. <b>Resposta: $V_2 \\approx 7{,}73\\ \\text{L}$.</b>'}
+];
+
+/* ========== RENDER ROTEIRO ========== */
+function kx(el){ if(window.renderMathInElement) renderMathInElement(el,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false}); }
+function renderRoteiro(){
+  const list = document.getElementById('roteiroList');
+  const profFilter = document.querySelector('.filter-bar button[data-prof].active').dataset.prof;
+  const modFilter = document.getElementById('modFilter').value;
+  const filtered = roteiroData.filter(e =>
+    (profFilter === 'all' || e.prof === profFilter) &&
+    (modFilter === 'all' || e.mod === modFilter)
+  );
+  if(filtered.length === 0){ list.innerHTML = '<p style="color:var(--ink-dim);text-align:center;padding:24px">Nenhum exercício com esses filtros.</p>'; return; }
+  const modName = {M18:'Mód 18',M19:'Mód 19',M20:'Mód 20',M21:'Mód 21',M22:'Mód 22',M23:'Mód 23',M13:'Mód 13'};
+  list.innerHTML = filtered.map(e => `
+    <div class="ex-card ${e.prof}" id="ex-${e.i}">
+      <div class="ex-head">
+        <span class="id">${e.i}</span>
+        <div class="tags">
+          <span class="tag mod">${modName[e.mod]||e.mod}</span>
+          ${e.src ? `<span class="tag banca">${e.src}</span>` : ''}
+        </div>
+      </div>
+      <div class="ex-actions">
+        <button class="btn-orig" onclick="openImgModal('${e.i}', '${e.i} — Enunciado original')">🔍 Ver original</button>
+        <button onclick="revealGab('${e.i}')" style="background:rgba(255,209,102,.15);color:var(--gold);border-color:var(--gold)">📖 Gabarito comentado</button>
+      </div>
+      <div id="reveal-${e.i}"></div>
+    </div>
+  `).join('');
+}
+function revealGab(id){
+  const ex = roteiroData.find(x => x.i === id);
+  const container = document.getElementById(`reveal-${id}`);
+  const existing = container.querySelector('.gab-block'); if(existing){ existing.remove(); return; }
+  const el = document.createElement('div'); el.className = 'reveal-block resp gab-block';
+  el.innerHTML = `<span class="lbl">Gabarito comentado (resolução minha — confira)</span>${ex.g}`;
+  container.appendChild(el); kx(el);
+}
+document.querySelectorAll('.filter-bar button[data-prof]').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter-bar button[data-prof]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); renderRoteiro();
+}));
+document.getElementById('modFilter').addEventListener('change', renderRoteiro);
+renderRoteiro();
+
+/* ========== SIMULADOS (questões ORIGINAIS, inventadas) — 3 níveis ========== */
+const simMeta = {
+  1:{nome:'Simulado 1 — Fácil', nivel:'Fácil', emoji:'🟢'},
+  2:{nome:'Simulado 2 — Médio', nivel:'Médio', emoji:'🟡'},
+  3:{nome:'Simulado 3 — Difícil', nivel:'Difícil', emoji:'🔴'}
+};
+const simData = {
+  /* ---------- NÍVEL 1 — FÁCIL (uma fórmula/conceito por questão) ---------- */
+  1:[
+    {code:'S1-Q01',subj:'d',q:'Uma força resultante de 20 N atua sobre um corpo de massa 4 kg sobre uma superfície sem atrito. A aceleração adquirida é:',o:['2 m/s²','4 m/s²','5 m/s²','80 m/s²'],r:'C',s:'$a = F_R/m = 20/4 = 5\\ \\text{m/s}^2$.'},
+    {code:'S1-Q02',subj:'d',q:'Qual é a intensidade do peso de um corpo de massa 8 kg num local onde $g = 10\\,\\text{m/s}^2$?',o:['0,8 N','8 N','80 N','800 N'],r:'C',s:'$P = m\\,g = 8\\cdot10 = 80\\ \\text{N}$.'},
+    {code:'S1-Q03',subj:'d',q:'Um corpo se move em MRU numa superfície horizontal. A resultante das forças que atuam sobre ele é:',o:['constante e não nula','nula','igual ao peso','crescente'],r:'B',s:'MRU → aceleração nula → resultante nula (1ª lei).'},
+    {code:'S1-Q04',subj:'d',q:'Uma pessoa de 60 kg está numa balança dentro de um elevador parado. Adote $g=10\\,\\text{m/s}^2$. A balança indica:',o:['0 N','60 N','600 N','660 N'],r:'C',s:'Parado: $a=0 \\Rightarrow N = P = 60\\cdot10 = 600\\ \\text{N}$.'},
+    {code:'S1-Q05',subj:'d',q:'Sobre duas forças de ação e reação, é correto afirmar que:',o:['atuam no mesmo corpo','se cancelam sempre','atuam em corpos diferentes','têm sentidos iguais'],r:'C',s:'O par ação‑reação atua em corpos diferentes (por isso não se cancela).'},
+    {code:'S1-Q06',subj:'d',q:'Um bloco é abandonado num plano inclinado liso de 30°. Adote $g=10\\,\\text{m/s}^2$ e $\\text{sen}\\,30°=0{,}5$. A aceleração de descida é:',o:['2,5 m/s²','5 m/s²','8,7 m/s²','10 m/s²'],r:'B',s:'$a = g\\,\\text{sen}\\,\\theta = 10\\cdot0{,}5 = 5\\ \\text{m/s}^2$.'},
+    {code:'S1-Q07',subj:'d',q:'A força de atrito dinâmico sobre um bloco vale $F_{at}=\\mu_d\\,N$. Se $\\mu_d = 0{,}4$ e $N = 50$ N, então $F_{at}$ é:',o:['12,5 N','20 N','50 N','125 N'],r:'B',s:'$F_{at} = \\mu_d N = 0{,}4\\cdot50 = 20\\ \\text{N}$.'},
+    {code:'S1-Q08',subj:'d',q:'Duas forças de mesma direção e mesmo sentido, de 6 N e 4 N, atuam sobre um corpo. A intensidade da resultante é:',o:['2 N','10 N','24 N','5 N'],r:'B',s:'Mesmo sentido → soma: $F_R = 6 + 4 = 10\\ \\text{N}$.'},
+    {code:'S1-Q09',subj:'g',q:'Um gás ideal ocupa 6,0 L a 1,0 atm. Mantida a temperatura constante, a pressão passa a 2,0 atm. O novo volume é:',o:['1,5 L','3,0 L','6,0 L','12,0 L'],r:'B',s:'Boyle: $p_1V_1 = p_2V_2 \\Rightarrow V_2 = (1\\cdot6)/2 = 3{,}0\\ \\text{L}$.'},
+    {code:'S1-Q10',subj:'g',q:'Um gás ideal ocupa 4,0 L a 200 K. Mantida a pressão constante, a temperatura passa a 400 K. O novo volume é:',o:['2,0 L','4,0 L','8,0 L','16,0 L'],r:'C',s:'Charles: $V_1/T_1 = V_2/T_2 \\Rightarrow V_2 = 4\\cdot400/200 = 8{,}0\\ \\text{L}$.'},
+    {code:'S1-Q11',subj:'g',q:'Um gás em recipiente rígido está a 2,0 atm e 300 K. Aquecido a 600 K (volume constante), sua pressão passa a:',o:['1,0 atm','2,0 atm','4,0 atm','6,0 atm'],r:'C',s:'Gay‑Lussac: $p_1/T_1 = p_2/T_2 \\Rightarrow p_2 = 2\\cdot600/300 = 4{,}0\\ \\text{atm}$.'},
+    {code:'S1-Q12',subj:'g',q:'Uma temperatura de 27 °C corresponde, na escala absoluta, a:',o:['246 K','300 K','27 K','573 K'],r:'B',s:'$T(\\text{K}) = \\theta + 273 = 27 + 273 = 300\\ \\text{K}$.'}
+  ],
+  /* ---------- NÍVEL 2 — MÉDIO (interpretação de texto / situações do dia a dia) ---------- */
+  2:[
+    {code:'S2-Q01',subj:'d',q:'Ana, de 60 kg, entra num elevador de um shopping. Ao arrancar para subir, o elevador acelera a 1,5 m/s². Se houvesse uma balança sob os pés dela, nesse instante ela marcaria (adote $g=10\\,\\text{m/s}^2$):',o:['510 N','600 N','690 N','750 N'],r:'C',s:'Subindo acelerado: $N - P = m a \\Rightarrow N = 600 + 60\\cdot1{,}5 = 690\\ \\text{N}$ (peso aparente maior).'},
+    {code:'S2-Q02',subj:'d',q:'Num ônibus que freia bruscamente, os passageiros em pé são "lançados" para a frente. O princípio físico que explica esse fato é:',o:['a lei da ação e reação','o princípio da inércia (1ª lei de Newton)','o princípio fundamental da dinâmica','a força de atrito com o piso'],r:'B',s:'Pela inércia, os corpos tendem a manter sua velocidade; quando o ônibus freia, os passageiros continuam em movimento (1ª lei).'},
+    {code:'S2-Q03',subj:'d',q:'Para descarregar caixas de um caminhão, um funcionário usa uma rampa lisa inclinada de 30° com o solo. Uma caixa de 20 kg é abandonada no alto e desce livremente. Sua aceleração de descida é (adote $g=10\\,\\text{m/s}^2$ e $\\text{sen}\\,30°=0{,}5$):',o:['2,5 m/s²','5 m/s²','8,7 m/s²','10 m/s²'],r:'B',s:'Plano liso: $a = g\\,\\text{sen}\\,\\theta = 10\\cdot0{,}5 = 5\\ \\text{m/s}^2$ (não depende da massa).'},
+    {code:'S2-Q04',subj:'d',q:'Um caixote de 4 kg é arrastado sobre um piso horizontal por uma força de 20 N e desliza em velocidade constante. Como a velocidade é constante, a força de atrito iguala a força aplicada. O coeficiente de atrito cinético entre o caixote e o piso é (adote $g=10\\,\\text{m/s}^2$):',o:['0,20','0,40','0,50','0,80'],r:'C',s:'Velocidade constante: $F = F_{at} = \\mu_d\\,m g \\Rightarrow \\mu_d = 20/(4\\cdot10) = 0{,}5$.'},
+    {code:'S2-Q05',subj:'d',q:'Dois rebocadores puxam um grande navio parado: um exerce 300 N no sentido norte e o outro 400 N no sentido leste (forças perpendiculares). A intensidade da força resultante sobre o navio é:',o:['100 N','350 N','500 N','700 N'],r:'C',s:'Forças perpendiculares: $F_R = \\sqrt{300^2 + 400^2} = \\sqrt{250000} = 500\\ \\text{N}$.'},
+    {code:'S2-Q06',subj:'d',q:'Ao dar a largada numa prova de natação, o nadador empurra a parede da piscina para trás e dispara para a frente. A força que o impulsiona para a frente é:',o:['a força que ele faz na parede','a reação da parede sobre ele','o seu próprio peso','o empuxo da água'],r:'B',s:'Ele aplica uma força na parede (ação); a parede reage com força de mesma intensidade sobre ele (reação), impulsionando‑o para a frente (3ª lei).'},
+    {code:'S2-Q07',subj:'d',q:'Um carrinho de brinquedo de 3 kg parte do repouso e, sob a ação de uma força constante, atinge 12 m/s após 4 s. A intensidade dessa força é:',o:['4 N','9 N','12 N','36 N'],r:'B',s:'$a = \\Delta v/\\Delta t = 12/4 = 3\\ \\text{m/s}^2$; $F = m a = 3\\cdot3 = 9\\ \\text{N}$.'},
+    {code:'S2-Q08',subj:'g',q:'Um mergulhador inspira 3,0 L de ar na superfície, onde a pressão é 1,0 atm. Ao descer até uma profundidade em que a pressão é 4,0 atm, mantida a temperatura, esse mesmo ar passaria a ocupar:',o:['0,75 L','3,0 L','7,0 L','12 L'],r:'A',s:'Isotérmica (Boyle): $p_1V_1 = p_2V_2 \\Rightarrow V_2 = (1\\cdot3)/4 = 0{,}75\\ \\text{L}$.'},
+    {code:'S2-Q09',subj:'g',q:'O ar dentro de um pneu está a 2,0 atm numa manhã de 27 °C. Depois de o carro rodar bastante, o pneu esquenta e o ar chega a 87 °C, praticamente sem mudar de volume. A nova pressão do ar é:',o:['1,7 atm','2,0 atm','2,4 atm','6,0 atm'],r:'C',s:'Volume constante (Gay‑Lussac): $300\\,\\text{K}\\to360\\,\\text{K}$; $p_2 = 2\\cdot360/300 = 2{,}4\\ \\text{atm}$.'},
+    {code:'S2-Q10',subj:'g',q:'A embalagem de uma lata de aerossol traz o aviso "não jogue no fogo". A lata (volume constante) está a 1,0 atm e 27 °C. Se for aquecida até 327 °C, a pressão interna passa a:',o:['1,0 atm','2,0 atm','3,0 atm','12 atm'],r:'B',s:'Volume constante: $300\\,\\text{K}\\to600\\,\\text{K}$; $p_2 = 1\\cdot600/300 = 2{,}0\\ \\text{atm}$ (dobra — por isso o risco de explosão).'},
+    {code:'S2-Q11',subj:'g',q:'Um balão de festa cheio de ar ocupa 5,0 L numa sala a 27 °C. Deixado ao sol, o ar interno chega a 87 °C, mantendo a pressão praticamente constante. O volume do balão passa a:',o:['5,0 L','6,0 L','7,5 L','10 L'],r:'B',s:'Isobárica (Charles): $300\\,\\text{K}\\to360\\,\\text{K}$; $V_2 = 5\\cdot360/300 = 6{,}0\\ \\text{L}$.'},
+    {code:'S2-Q12',subj:'g',q:'Numa seringa fechada (sem agulha) há 20 mL de ar a 1,0 atm. Empurrando o êmbolo, sem deixar o ar escapar e mantendo a temperatura, a pressão sobe até 2,5 atm. O volume do ar passa a:',o:['8 mL','10 mL','12,5 mL','50 mL'],r:'A',s:'Isotérmica (Boyle): $V_2 = p_1V_1/p_2 = (1\\cdot20)/2{,}5 = 8\\ \\text{mL}$.'}
+  ],
+  /* ---------- NÍVEL 3 — DIFÍCIL (sistemas / várias etapas) ---------- */
+  3:[
+    {code:'S3-Q01',subj:'d',q:'Bloco A (3 kg) está sobre uma mesa horizontal sem atrito, ligado por fio ideal que passa por uma polia à borda da mesa e sustenta o bloco B (2 kg), pendurado. Adote $g=10\\,\\text{m/s}^2$. A aceleração do sistema é:',o:['2 m/s²','4 m/s²','5 m/s²','10 m/s²'],r:'B',s:'$a = \\dfrac{m_B\\,g}{m_A+m_B} = \\dfrac{2\\cdot10}{3+2} = 4\\ \\text{m/s}^2$.'},
+    {code:'S3-Q02',subj:'d',q:'No sistema da questão anterior (A = 3 kg na mesa, B = 2 kg pendurado, $g=10\\,\\text{m/s}^2$, sem atrito), a tração no fio vale:',o:['8 N','12 N','20 N','30 N'],r:'B',s:'Para A: $T = m_A\\,a = 3\\cdot4 = 12\\ \\text{N}$.'},
+    {code:'S3-Q03',subj:'d',q:'Um bloco A (2 kg) está num plano inclinado liso de 30° ligado por fio/polia a um bloco B (3 kg) pendurado. Adote $g=10\\,\\text{m/s}^2$ e $\\text{sen}\\,30°=0{,}5$. A aceleração do sistema é:',o:['2 m/s²','4 m/s²','6 m/s²','10 m/s²'],r:'B',s:'$a = \\dfrac{m_B g - m_A g\\,\\text{sen}\\,\\theta}{m_A+m_B} = \\dfrac{30 - 2\\cdot10\\cdot0{,}5}{5} = \\dfrac{20}{5} = 4\\ \\text{m/s}^2$.'},
+    {code:'S3-Q04',subj:'d',q:'Uma pessoa de 80 kg está numa balança dentro de um elevador; a balança indica 640 N. Adote $g=10\\,\\text{m/s}^2$. A aceleração do elevador é:',o:['2 m/s² para cima','2 m/s² para baixo','4 m/s² para baixo','nula'],r:'B',s:'$N - P = m a \\Rightarrow 640 - 800 = 80a \\Rightarrow a = -2\\ \\text{m/s}^2$ (aponta para baixo).'},
+    {code:'S3-Q05',subj:'d',q:'Um bloco desliza com velocidade inicial de 10 m/s numa superfície horizontal com atrito ($\\mu_d = 0{,}5$; $g=10\\,\\text{m/s}^2$). A distância percorrida até parar é:',o:['5 m','10 m','20 m','25 m'],r:'B',s:'$a = \\mu_d\\,g = 5\\ \\text{m/s}^2$ (retardando); $d = \\dfrac{v^2}{2a} = \\dfrac{100}{10} = 10\\ \\text{m}$.'},
+    {code:'S3-Q06',subj:'d',q:'Um bloco desce um plano inclinado de 37° com atrito ($\\mu_d = 0{,}25$; $g=10\\,\\text{m/s}^2$; $\\text{sen}\\,37°=0{,}6$; $\\cos 37°=0{,}8$). Sua aceleração de descida é:',o:['2 m/s²','4 m/s²','6 m/s²','8 m/s²'],r:'B',s:'$a = g(\\text{sen}\\,\\theta - \\mu_d\\cos\\theta) = 10(0{,}6 - 0{,}25\\cdot0{,}8) = 10(0{,}4) = 4\\ \\text{m/s}^2$.'},
+    {code:'S3-Q07',subj:'d',q:'Dois blocos, X (2 kg) e Y (4 kg), estão encostados sobre uma superfície sem atrito. Uma força horizontal de 12 N é aplicada em X, empurrando o conjunto. A força de contato que X exerce sobre Y vale:',o:['4 N','6 N','8 N','12 N'],r:'C',s:'$a = \\dfrac{F}{m_X+m_Y} = \\dfrac{12}{6} = 2\\ \\text{m/s}^2$; contato $= m_Y\\,a = 4\\cdot2 = 8\\ \\text{N}$.'},
+    {code:'S3-Q08',subj:'d',q:'No sistema plano inclinado (A = 2 kg no plano de 30°) + B pendurado, o sistema permanece em EQUILÍBRIO (repouso). Adote $\\text{sen}\\,30°=0{,}5$. A massa de B é:',o:['0,5 kg','1,0 kg','2,0 kg','4,0 kg'],r:'B',s:'Equilíbrio: $m_B g = m_A g\\,\\text{sen}\\,\\theta \\Rightarrow m_B = m_A\\,\\text{sen}\\,\\theta = 2\\cdot0{,}5 = 1{,}0\\ \\text{kg}$.'},
+    {code:'S3-Q09',subj:'g',q:'Um gás ideal sofre duas etapas: (1) de 2,0 atm, 5,0 L e 300 K é aquecido a 400 K sob pressão constante; (2) depois é comprimido isotermicamente até 2,0 L. A pressão final é aproximadamente:',o:['3,3 atm','5,0 atm','6,7 atm','8,0 atm'],r:'C',s:'Etapa 1 (isobárica): $V = 5\\cdot400/300 = 6{,}67\\ \\text{L}$ (2 atm, 400 K). Etapa 2 (isotérmica): $2\\cdot6{,}67 = p\\cdot2 \\Rightarrow p \\approx 6{,}7\\ \\text{atm}$.'},
+    {code:'S3-Q10',subj:'g',q:'Um recipiente rígido contém gás perfeito a 2,0 atm. Mantendo a temperatura constante, deixa‑se escapar 1/4 da massa gasosa. A nova pressão é:',o:['0,5 atm','1,0 atm','1,5 atm','2,0 atm'],r:'C',s:'V e T constantes; $n \\to \\tfrac34 n$. Como $p \\propto n$: $p_2 = \\tfrac34\\cdot2 = 1{,}5\\ \\text{atm}$.'},
+    {code:'S3-Q11',subj:'g',q:'Uma amostra de gás tem massa 1,28 g, ocupa 0,600 L sob 0,82 atm a 27 °C. (Dado: $R = 0{,}082$.) A massa molar do gás é:',o:['16 g/mol','32 g/mol','44 g/mol','64 g/mol'],r:'D',s:'$n = \\dfrac{pV}{RT} = \\dfrac{0{,}82\\cdot0{,}6}{0{,}082\\cdot300} = 0{,}02\\ \\text{mol}$; $M = \\dfrac{m}{n} = \\dfrac{1{,}28}{0{,}02} = 64\\ \\text{g/mol}$.'},
+    {code:'S3-Q12',subj:'g',q:'Um balão com 2,0 L de hélio a 3,0 atm e 27 °C sobe até uma altitude onde a pressão é 0,5 atm e a temperatura é −3 °C. O novo volume do balão é:',o:['5,4 L','9,0 L','10,8 L','12,0 L'],r:'C',s:'$T_1 = 300\\,\\text{K}$, $T_2 = 270\\,\\text{K}$. $V_2 = \\dfrac{p_1V_1T_2}{T_1 p_2} = \\dfrac{3\\cdot2\\cdot270}{300\\cdot0{,}5} = \\dfrac{1620}{150} = 10{,}8\\ \\text{L}$.'}
+  ]
+};
+
+/* Resolução dissertativa (comentada) de cada questão do simulado */
+const simSol = {
+ 'S1-Q01':'<b>Conceito:</b> pela 2ª lei de Newton (PFD), a aceleração é a força resultante dividida pela massa. <b>Fórmula:</b> $a=F_R/m$. <b>Cálculo:</b> $a=20/4=5\\ \\text{m/s}^2$. → <b>alternativa C</b>.',
+ 'S1-Q02':'<b>Conceito:</b> o peso é a força com que a Terra atrai o corpo. <b>Fórmula:</b> $P=m\\,g$. <b>Cálculo:</b> $P=8\\cdot10=80\\ \\text{N}$. → <b>alternativa C</b>.',
+ 'S1-Q03':'<b>Conceito:</b> no MRU a velocidade é constante, logo a aceleração é nula; pela 1ª lei de Newton, a resultante das forças é nula. → <b>alternativa B</b>.',
+ 'S1-Q04':'<b>Conceito:</b> com o elevador parado não há aceleração, então a balança marca o peso real (normal = peso). <b>Fórmula:</b> $N=P=m\\,g$. <b>Cálculo:</b> $N=60\\cdot10=600\\ \\text{N}$. → <b>alternativa C</b>.',
+ 'S1-Q05':'<b>Conceito:</b> o par ação–reação tem mesma intensidade e sentidos opostos, mas atua em corpos diferentes — por isso não se cancela. → <b>alternativa C</b>.',
+ 'S1-Q06':'<b>Conceito:</b> em plano liso, a aceleração de descida depende só do ângulo. <b>Fórmula:</b> $a=g\\,\\text{sen}\\,\\theta$. <b>Cálculo:</b> $a=10\\cdot0{,}5=5\\ \\text{m/s}^2$. → <b>alternativa B</b>.',
+ 'S1-Q07':'<b>Conceito:</b> a força de atrito dinâmico é proporcional à normal. <b>Fórmula:</b> $F_{at}=\\mu_d\\,N$. <b>Cálculo:</b> $F_{at}=0{,}4\\cdot50=20\\ \\text{N}$. → <b>alternativa B</b>.',
+ 'S1-Q08':'<b>Conceito:</b> forças de mesma direção e sentido somam-se. <b>Cálculo:</b> $F_R=6+4=10\\ \\text{N}$. → <b>alternativa B</b>.',
+ 'S1-Q09':'<b>Conceito:</b> temperatura constante ⇒ lei de Boyle. <b>Fórmula:</b> $p_1V_1=p_2V_2$. <b>Cálculo:</b> $V_2=(1\\cdot6)/2=3{,}0\\ \\text{L}$. → <b>alternativa B</b>.',
+ 'S1-Q10':'<b>Conceito:</b> pressão constante ⇒ lei de Charles. <b>Fórmula:</b> $V_1/T_1=V_2/T_2$. <b>Cálculo:</b> $V_2=4\\cdot400/200=8{,}0\\ \\text{L}$. → <b>alternativa C</b>.',
+ 'S1-Q11':'<b>Conceito:</b> volume constante ⇒ lei de Gay-Lussac. <b>Fórmula:</b> $p_1/T_1=p_2/T_2$. <b>Cálculo:</b> $p_2=2\\cdot600/300=4{,}0\\ \\text{atm}$. → <b>alternativa C</b>.',
+ 'S1-Q12':'<b>Conceito:</b> a escala absoluta soma 273 aos graus Celsius. <b>Fórmula:</b> $T(\\text{K})=\\theta+273$. <b>Cálculo:</b> $27+273=300\\ \\text{K}$. → <b>alternativa B</b>.',
+
+ 'S2-Q01':'<b>Conceito:</b> subindo em aceleração, a balança marca o peso aparente (normal), maior que o real. <b>Fórmula:</b> $N-P=m\\,a$. <b>Cálculo:</b> $N=600+60\\cdot1{,}5=690\\ \\text{N}$. → <b>alternativa C</b>.',
+ 'S2-Q02':'<b>Conceito:</b> pela inércia (1ª lei), os corpos tendem a manter sua velocidade; quando o ônibus freia, os passageiros continuam se movendo para a frente. → <b>alternativa B</b>.',
+ 'S2-Q03':'<b>Conceito:</b> em plano liso a aceleração de descida não depende da massa. <b>Fórmula:</b> $a=g\\,\\text{sen}\\,\\theta$. <b>Cálculo:</b> $a=10\\cdot0{,}5=5\\ \\text{m/s}^2$. → <b>alternativa B</b>.',
+ 'S2-Q04':'<b>Conceito:</b> em velocidade constante a resultante é nula, então a força aplicada iguala o atrito. <b>Fórmula:</b> $F=\\mu_d\\,m g$. <b>Cálculo:</b> $\\mu_d=20/(4\\cdot10)=0{,}5$. → <b>alternativa C</b>.',
+ 'S2-Q05':'<b>Conceito:</b> forças perpendiculares compõem-se pelo teorema de Pitágoras. <b>Fórmula:</b> $F_R=\\sqrt{F_1^2+F_2^2}$. <b>Cálculo:</b> $\\sqrt{300^2+400^2}=500\\ \\text{N}$. → <b>alternativa C</b>.',
+ 'S2-Q06':'<b>Conceito:</b> o nadador empurra a parede (ação) e a parede o empurra de volta (reação), impulsionando-o para a frente — 3ª lei de Newton. → <b>alternativa B</b>.',
+ 'S2-Q07':'<b>Conceito:</b> força constante gera aceleração constante (2ª lei). <b>Passos:</b> $a=\\Delta v/\\Delta t=12/4=3\\ \\text{m/s}^2$; $F=m\\,a=3\\cdot3=9\\ \\text{N}$. → <b>alternativa B</b>.',
+ 'S2-Q08':'<b>Conceito:</b> mesma temperatura ⇒ lei de Boyle. <b>Fórmula:</b> $p_1V_1=p_2V_2$. <b>Cálculo:</b> $V_2=(1\\cdot3)/4=0{,}75\\ \\text{L}$. → <b>alternativa A</b>.',
+ 'S2-Q09':'<b>Conceito:</b> volume constante ⇒ Gay-Lussac (T em kelvin). <b>Passos:</b> $300\\to360\\ \\text{K}$; $p_2=2\\cdot360/300=2{,}4\\ \\text{atm}$. → <b>alternativa C</b>.',
+ 'S2-Q10':'<b>Conceito:</b> volume constante ⇒ Gay-Lussac. <b>Passos:</b> $300\\to600\\ \\text{K}$; $p_2=1\\cdot600/300=2{,}0\\ \\text{atm}$ (a pressão dobra — daí o risco de explosão). → <b>alternativa B</b>.',
+ 'S2-Q11':'<b>Conceito:</b> pressão constante ⇒ Charles (T em kelvin). <b>Passos:</b> $300\\to360\\ \\text{K}$; $V_2=5\\cdot360/300=6{,}0\\ \\text{L}$. → <b>alternativa B</b>.',
+ 'S2-Q12':'<b>Conceito:</b> temperatura constante ⇒ Boyle. <b>Fórmula:</b> $V_2=p_1V_1/p_2$. <b>Cálculo:</b> $(1\\cdot20)/2{,}5=8\\ \\text{mL}$. → <b>alternativa A</b>.',
+
+ 'S3-Q01':'<b>Conceito:</b> no sistema (bloco na mesa + bloco pendurado), a força motriz é o peso do pendurado e a massa acelerada é a soma das duas. <b>Fórmula:</b> $a=\\dfrac{m_B\\,g}{m_A+m_B}$. <b>Cálculo:</b> $a=\\dfrac{2\\cdot10}{5}=4\\ \\text{m/s}^2$. → <b>alternativa B</b>.',
+ 'S3-Q02':'<b>Conceito:</b> a tração é a força resultante sobre o bloco A (na mesa, sem atrito). <b>Fórmula:</b> $T=m_A\\,a$. <b>Cálculo:</b> $T=3\\cdot4=12\\ \\text{N}$. → <b>alternativa B</b>.',
+ 'S3-Q03':'<b>Conceito:</b> no plano, o peso do pendurado puxa e o componente do peso de A ($m_A g\\,\\text{sen}\\,\\theta$) resiste. <b>Fórmula:</b> $a=\\dfrac{m_B g-m_A g\\,\\text{sen}\\,\\theta}{m_A+m_B}$. <b>Cálculo:</b> $a=\\dfrac{30-10}{5}=4\\ \\text{m/s}^2$. → <b>alternativa B</b>.',
+ 'S3-Q04':'<b>Conceito:</b> a balança marca a normal; comparando-a com o peso descobrimos a aceleração. <b>Fórmula:</b> $N-P=m\\,a$. <b>Cálculo:</b> $640-800=80a\\Rightarrow a=-2\\ \\text{m/s}^2$ (aponta para baixo). → <b>alternativa B</b>.',
+ 'S3-Q05':'<b>Conceito:</b> o atrito desacelera o bloco; a distância sai da equação de Torricelli. <b>Passos:</b> $a=\\mu_d\\,g=5\\ \\text{m/s}^2$; $d=\\dfrac{v^2}{2a}=\\dfrac{100}{10}=10\\ \\text{m}$. → <b>alternativa B</b>.',
+ 'S3-Q06':'<b>Conceito:</b> num plano com atrito, a aceleração de descida desconta o atrito. <b>Fórmula:</b> $a=g(\\text{sen}\\,\\theta-\\mu_d\\cos\\theta)$. <b>Cálculo:</b> $a=10(0{,}6-0{,}25\\cdot0{,}8)=4\\ \\text{m/s}^2$. → <b>alternativa B</b>.',
+ 'S3-Q07':'<b>Conceito:</b> primeiro a aceleração do conjunto, depois a força de contato que acelera apenas o bloco da frente. <b>Passos:</b> $a=F/(m_X+m_Y)=12/6=2\\ \\text{m/s}^2$; contato $=m_Y\\,a=4\\cdot2=8\\ \\text{N}$. → <b>alternativa C</b>.',
+ 'S3-Q08':'<b>Conceito:</b> em equilíbrio, o peso do pendurado iguala o componente do peso no plano. <b>Fórmula:</b> $m_B=m_A\\,\\text{sen}\\,\\theta$. <b>Cálculo:</b> $m_B=2\\cdot0{,}5=1{,}0\\ \\text{kg}$. → <b>alternativa B</b>.',
+ 'S3-Q09':'<b>Conceito:</b> duas etapas — isobárica e depois isotérmica. <b>Passos:</b> (1) isobárica: $V=5\\cdot400/300=6{,}67\\ \\text{L}$ (a 2 atm, 400 K); (2) isotérmica: $2\\cdot6{,}67=p\\cdot2\\Rightarrow p\\approx6{,}7\\ \\text{atm}$. → <b>alternativa C</b>.',
+ 'S3-Q10':'<b>Conceito:</b> com V e T constantes, a pressão é proporcional à quantidade de gás. <b>Passos:</b> sai 1/4 da massa ⇒ resta $\\tfrac34 n$; $p_2=\\tfrac34\\cdot2=1{,}5\\ \\text{atm}$. → <b>alternativa C</b>.',
+ 'S3-Q11':'<b>Conceito:</b> acha-se o número de mols por Clapeyron e depois a massa molar. <b>Passos:</b> $n=\\dfrac{0{,}82\\cdot0{,}6}{0{,}082\\cdot300}=0{,}02\\ \\text{mol}$; $M=m/n=1{,}28/0{,}02=64\\ \\text{g/mol}$. → <b>alternativa D</b>.',
+ 'S3-Q12':'<b>Conceito:</b> lei geral dos gases com T em kelvin. <b>Passos:</b> $T_1=300\\ \\text{K}$, $T_2=270\\ \\text{K}$; $V_2=\\dfrac{p_1V_1T_2}{T_1 p_2}=\\dfrac{3\\cdot2\\cdot270}{300\\cdot0{,}5}=10{,}8\\ \\text{L}$. → <b>alternativa C</b>.'
+};
+
+function simQuestionHTML(x, showSpace){
+  const subjLabel = x.subj === 'd' ? 'Dinâmica' : 'Gases';
+  const alts = x.o.map((o,idx) => `<li data-l="${String.fromCharCode(97+idx)})">${o}</li>`).join('');
+  return `<div class="sim-q">
+    <div class="qh"><span class="code">${x.code}</span><span class="subject ${x.subj}">${subjLabel}</span></div>
+    <div class="qbody">${x.q}<ul class="altos">${alts}</ul></div>
+    ${showSpace ? '<div class="print-answer-space"></div>' : ''}
+  </div>`;
+}
+function openSim(n){
+  const meta = simMeta[n]; const data = simData[n];
+  const view = document.getElementById('simView');
+  const qs = data.map(x => simQuestionHTML(x, false)).join('');
+  const gab = data.map(x => `<b>${x.code}</b>: ${x.r}`).join(' &nbsp;·&nbsp; ');
+  const sol = data.map(x => `<div style="margin:8px 0;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.06)"><b>${x.code}</b> — ${simSol[x.code]||x.s}</div>`).join('');
+  view.innerHTML = `
+    <div class="sim-header no-print">
+      <h3>${meta.emoji} ${meta.nome}</h3>
+      <div class="info">12 questões originais · Dinâmica + Gases · nível ${meta.nivel}</div>
+      <div><button onclick="printSim(${n})" style="background:var(--gold);color:#0a0f24;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;margin-right:6px">🖨️ Imprimir</button>
+      <button onclick="document.getElementById('simView').innerHTML=''" style="background:var(--wrong);color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">✖ Fechar</button></div>
+    </div>
+    ${qs}
+    <div class="sim-gab" id="simGab" style="display:none">
+      <h4>🔑 Gabarito &amp; resolução</h4>
+      <p style="margin-bottom:8px"><b>Gabarito:</b> ${gab}</p>
+      <div style="font-size:.85rem">${sol}</div>
+    </div>
+    <div class="no-print" style="text-align:center;margin-top:12px"><button onclick="const g=document.getElementById('simGab');g.style.display=g.style.display==='none'?'block':'none'" style="background:var(--card-2);color:var(--gold);border:1px solid var(--gold);padding:8px 16px;border-radius:10px;cursor:pointer;font-weight:700">🔑 Mostrar / ocultar gabarito e resolução</button></div>
+  `;
+  kx(view);
+  window.scrollTo({top:document.getElementById('simView').offsetTop-20,behavior:'smooth'});
+}
+function printSim(n){
+  const meta = simMeta[n];
+  document.getElementById('printTitle').textContent = `${meta.nome} — Física P2T2 (Dinâmica + Gases)`;
+  const view = document.getElementById('simView');
+  view.innerHTML = simData[n].map(x => simQuestionHTML(x, true)).join('');
+  kx(view);
+  setTimeout(() => window.print(), 300);
+}
+
+/* ========== FÓRMULAS + RADAR ========== */
+const formDin = [
+  {n:'Peso', e:'$P = m\\cdot g$'},
+  {n:'Força resultante', e:'$\\vec F_R = \\vec F_1 + \\vec F_2 + \\dots + \\vec F_n$'},
+  {n:'Equilíbrio', e:'$F_R = 0$'},
+  {n:'2ª lei (PFD)', e:'$\\vec F_R = m\\cdot\\vec a$'},
+  {n:'Elevador (sobe acel./desce retard.)', e:'$N - P = m\\,a$'},
+  {n:'Elevador (desce acel./sobe retard.)', e:'$P - N = m\\,a$'},
+  {n:'3ª lei (ação e reação)', e:'$\\vec F_{AB} = -\\vec F_{BA}$'},
+  {n:'Plano inclinado — componentes', e:'$P_t = P\\,\\text{sen}\\,\\theta$ · $P_n = P\\cos\\theta$'},
+  {n:'Plano inclinado — normal e aceleração', e:'$N = P\\cos\\theta$ · $a = g\\,\\text{sen}\\,\\theta$'},
+  {n:'Atrito estático máximo', e:'$F_{at,máx} = \\mu_e\\cdot N$'},
+  {n:'Atrito dinâmico', e:'$F_{at,D} = \\mu_d\\cdot N$'},
+  {n:'Resistência do ar (Saiba+)', e:'$R_{ar} = k\\cdot v^2$'}
+];
+const formGas = [
+  {n:'Clapeyron (estado dos gases)', e:'$p\\cdot V = n\\cdot R\\cdot T$'},
+  {n:'Lei geral dos gases', e:'$\\dfrac{p_1 V_1}{T_1} = \\dfrac{p_2 V_2}{T_2}$'},
+  {n:'Número de mols', e:'$n = \\dfrac{m}{M}$'},
+  {n:'Constante universal', e:'$R = 0{,}082\\ \\tfrac{\\text{atm·L}}{\\text{mol·K}} = 8{,}31\\ \\tfrac{\\text{J}}{\\text{mol·K}}$'},
+  {n:'Conversões', e:'$1\\,\\text{atm}=760\\,\\text{mmHg}=101325\\,\\text{Pa}$'},
+  {n:'Temperatura absoluta', e:'$T(\\text{K}) = \\theta(°\\text{C}) + 273$'}
+];
+document.getElementById('formDin').innerHTML = formDin.map(f=>`<div class="formula-card"><div class="name">${f.n}</div><div class="eq">${f.e}</div></div>`).join('');
+document.getElementById('formGas').innerHTML = formGas.map(f=>`<div class="formula-card gas"><div class="name">${f.n}</div><div class="eq">${f.e}</div></div>`).join('');
+
+const radar = [
+  {t:'Ação e reação', items:['Atuam em <b>corpos diferentes</b> → por isso <b>nunca se cancelam</b>.','Peso e normal (de um corpo sobre a mesa) <b>não</b> são par ação‑reação — atuam no mesmo corpo.']},
+  {t:'Elevador', items:['O <b>peso real não muda</b>; muda a leitura da balança (peso aparente = normal N).','Velocidade constante → $a=0$ → $N=P$ (leitura = peso real).']},
+  {t:'Plano inclinado', items:['A normal é $N = P\\cos\\theta$, <b>não</b> $N=P$.','A aceleração no plano liso é $a = g\\,\\text{sen}\\,\\theta$ (não depende da massa).']},
+  {t:'Atrito', items:['$F_{at,máx}=\\mu_e N$ é o <b>valor máximo</b>; em repouso o atrito se ajusta à força motriz (pode ser menor).','Em geral $\\mu_d < \\mu_e$ (cinético menor que o estático).']},
+  {t:'Gases', items:['Use SEMPRE a temperatura em <b>kelvin</b> ($T=\\theta+273$).','Ao misturar unidades, converta pressão (1 atm = 760 mmHg) e volume (1 L = 1000 cm³).']},
+  {t:'1ª lei', items:['MRU ou repouso → resultante <b>nula</b> (não "constante não nula").','A 2ª lei relaciona força com <b>aceleração</b>, não com velocidade.']}
+];
+document.getElementById('radarList').innerHTML = radar.map(r=>`<div class="radar-card"><h4>⚠️ ${r.t}</h4><ul>${r.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+if(window.renderMathInElement) renderMathInElement(document.getElementById('formulas'),{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+</script>
+</body>
+</html>

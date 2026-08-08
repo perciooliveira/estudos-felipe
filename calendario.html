@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendário de Estudos — Felipe · 1º ano EM</title>
+<style>
+:root{
+  --bg-1:#0a0d1a;
+  --bg-2:#12173a;
+  --bg-3:#0f1428;
+  /* tema do calendário: teal + violeta */
+  --cal:#2dd4bf;
+  --cal-2:#818cf8;
+  --cal-glow:rgba(45,212,191,.30);
+  --gold:#ffd166;
+  --ink:#f8f9ff;
+  --ink-dim:#b9c4d6;
+  --card:#142339;
+  --line:rgba(255,255,255,.08);
+  --shadow:0 20px 50px rgba(0,0,0,.55);
+  /* cores por tipo de evento */
+  --t-prova:#e94560;      --t-prova-bg:rgba(233,69,96,.18);
+  --t-p2:#f97316;         --t-p2-bg:rgba(249,115,22,.16);
+  --t-segunda:#eab308;    --t-segunda-bg:rgba(234,179,8,.16);
+  --t-simulado:#22c55e;   --t-simulado-bg:rgba(34,197,94,.18);
+  --t-recup:#ec4899;      --t-recup-bg:rgba(236,72,153,.18);
+  --t-aula:#38bdf8;       --t-aula-bg:rgba(56,189,248,.16);
+  --t-pessoal:#a78bfa;    --t-pessoal-bg:rgba(167,139,250,.18);
+  --t-estudo:#2dd4bf;     --t-estudo-bg:rgba(45,212,191,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+  color:var(--ink);
+  background:linear-gradient(135deg,var(--bg-1),var(--bg-2) 50%,var(--bg-3));
+  background-attachment:fixed;
+  min-height:100vh;line-height:1.5;
+  overflow-x:hidden;
+}
+.container{max-width:1180px;margin:0 auto;padding:18px 16px 70px;position:relative;z-index:1}
+
+/* estrelas de fundo */
+.stars{position:fixed;inset:0;pointer-events:none;z-index:0}
+.stars span{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:.4;animation:twinkle 4s infinite ease-in-out}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:.8;transform:scale(1.4)}}
+
+/* hub-bar */
+.hub-bar{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:10px 18px;border-radius:12px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid var(--line);
+}
+.hub-bar a{color:var(--ink-dim);text-decoration:none;font-size:.86rem;display:inline-flex;align-items:center;gap:6px;font-weight:600;transition:color .2s}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{font-size:.8rem;color:var(--cal);font-weight:700;background:var(--cal-glow);padding:4px 10px;border-radius:6px;letter-spacing:1px}
+
+/* hero */
+header.hero{
+  text-align:center;padding:26px 16px 18px;
+  background:radial-gradient(circle at 20% 30%,var(--cal-glow),transparent 45%),
+             radial-gradient(circle at 80% 70%,rgba(129,140,248,.28),transparent 45%);
+  border-radius:20px;margin-bottom:16px;position:relative;overflow:hidden;
+}
+header.hero h1{
+  font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:.5px;font-weight:800;
+  background:linear-gradient(90deg,var(--cal),var(--gold),var(--cal-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:6px;
+}
+header.hero p{color:var(--ink-dim);font-size:.95rem;max-width:640px;margin:0 auto}
+
+/* barra de controle */
+.toolbar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:14px 18px;margin-bottom:16px;box-shadow:var(--shadow);
+}
+.nav{display:flex;align-items:center;gap:10px}
+.nav button{
+  cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.05);
+  color:var(--ink);width:40px;height:40px;border-radius:12px;font-size:1.2rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.nav button:hover{background:var(--cal-glow);border-color:var(--cal);color:var(--cal)}
+.nav .month-title{min-width:210px;text-align:center;font-size:1.25rem;font-weight:800;color:var(--ink);text-transform:capitalize}
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+.btn{
+  cursor:pointer;border:1px solid var(--line);background:rgba(255,255,255,.05);
+  color:var(--ink-dim);padding:9px 14px;border-radius:10px;font-size:.84rem;font-weight:700;
+  display:inline-flex;align-items:center;gap:6px;transition:all .2s;
+}
+.btn:hover{color:var(--ink);border-color:var(--cal);background:var(--cal-glow)}
+.btn.gold{color:var(--gold);border-color:rgba(255,209,102,.4)}
+.btn.gold:hover{background:rgba(255,209,102,.14)}
+
+/* legenda */
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:0 2px 16px}
+.legend .item{display:inline-flex;align-items:center;gap:7px;font-size:.78rem;color:var(--ink-dim);font-weight:600}
+.legend .dot{width:12px;height:12px;border-radius:4px;flex:none}
+
+/* grade do calendário */
+.weekdays{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-bottom:8px}
+.weekdays div{text-align:center;font-size:.74rem;font-weight:800;letter-spacing:1px;color:var(--ink-dim);text-transform:uppercase;padding:4px 0}
+.weekdays div.wknd{color:var(--cal)}
+.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.cell{
+  min-height:118px;border-radius:14px;padding:8px 8px 6px;position:relative;
+  background:var(--card);border:1px solid var(--line);
+  display:flex;flex-direction:column;gap:5px;transition:transform .15s,border-color .2s,box-shadow .2s;
+}
+.cell.filler{background:transparent;border:1px solid transparent}
+.cell.has-events{cursor:pointer}
+.cell.has-events:hover{transform:translateY(-3px);border-color:var(--cal);box-shadow:0 12px 26px rgba(0,0,0,.4)}
+.cell.wknd{background:rgba(255,255,255,.02)}
+.cell.free{cursor:pointer}
+.cell.free:hover{border-color:rgba(255,209,102,.4)}
+.cell.free::after{
+  content:"livre p/ estudo";position:absolute;bottom:7px;left:9px;right:9px;
+  font-size:.62rem;color:rgba(255,209,102,.55);font-weight:700;letter-spacing:.3px;
+  opacity:0;transition:opacity .2s;
+}
+.cell.free:hover::after{opacity:1}
+.cell.school{cursor:pointer}
+.cell.school:hover{border-color:var(--cal)}
+.cell.school::after{
+  content:attr(data-free);position:absolute;bottom:6px;left:9px;right:9px;
+  font-size:.6rem;color:rgba(45,212,191,.85);font-weight:700;line-height:1.2;
+  opacity:0;transition:opacity .2s;pointer-events:none;
+  background:linear-gradient(180deg,transparent,rgba(20,35,57,.96) 30%);padding-top:10px;
+}
+.cell.school:hover::after{opacity:1}
+.cell.exam-day{
+  background:linear-gradient(160deg,rgba(244,63,94,.16),rgba(244,63,94,.05));
+  border-color:rgba(244,63,94,.45);
+}
+.cell.exam-day:hover{border-color:rgba(244,63,94,.75)}
+/* dias já passados: esmaecidos, como desabilitados */
+.cell.past{opacity:.38;filter:saturate(.6)}
+.cell.past:hover{opacity:.72;filter:none}
+.cell.today{border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,209,102,.35) inset}
+.daynum{font-size:.9rem;font-weight:800;color:var(--ink-dim);display:flex;align-items:center;justify-content:space-between}
+.cell.today .daynum .n{
+  background:var(--gold);color:#1a1408;border-radius:50%;width:26px;height:26px;
+  display:inline-flex;align-items:center;justify-content:center;font-weight:900;
+}
+.daynum .count{font-size:.66rem;color:var(--cal);font-weight:800;background:var(--cal-glow);padding:1px 6px;border-radius:20px}
+.daynum .freeh{font-size:.63rem;font-weight:800;color:var(--gold);background:rgba(255,209,102,.12);border:1px solid rgba(255,209,102,.28);padding:1px 6px;border-radius:20px;font-variant-numeric:tabular-nums}
+.daynum .freeh.none{color:#f87171;background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.3)}
+/* distribuição por período: Manhã / Tarde / Noite */
+.periods{display:flex;flex-direction:column;gap:3px;min-width:0}
+.per{display:flex;gap:5px;align-items:flex-start;min-width:0}
+.per .pl{flex:none;width:13px;font-size:.6rem;font-weight:900;color:var(--ink-dim);opacity:.65;padding-top:2px}
+.per .pc{display:flex;flex-wrap:wrap;gap:3px;min-width:0;flex:1}
+.blk{
+  font-size:.63rem;line-height:1.2;font-weight:700;border-radius:5px;padding:2px 5px;
+  border-left:3px solid var(--c);background:var(--bg);color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;
+}
+.blk em{font-style:normal;color:var(--gold);font-weight:800;font-size:.92em}
+.blk.k-aula{--c:#38bdf8;--bg:rgba(56,189,248,.12)}
+.blk.k-aulaprova{--c:#fb923c;--bg:rgba(251,146,60,.16)}
+.blk.k-prova{--c:#f43f5e;--bg:rgba(244,63,94,.16)}
+.blk.k-academia{--c:#a78bfa;--bg:rgba(167,139,250,.16)}
+.blk.livre{--c:transparent;background:transparent;color:rgba(255,209,102,.7);font-weight:700;padding-left:0}
+.blk.none{--c:transparent;background:transparent;color:var(--ink-dim);opacity:.4;font-weight:700;padding-left:0}
+
+/* próximos compromissos */
+.upcoming{margin-top:26px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow)}
+.upcoming h3{color:var(--gold);font-size:1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.up-item{display:flex;align-items:center;gap:12px;padding:9px 4px;border-top:1px solid var(--line);cursor:pointer;transition:background .15s;border-radius:8px}
+.up-item:first-of-type{border-top:none}
+.up-item:hover{background:rgba(255,255,255,.03)}
+.up-date{flex:none;text-align:center;min-width:52px}
+.up-date .d{font-size:1.35rem;font-weight:900;color:var(--ink);line-height:1}
+.up-date .m{font-size:.66rem;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.5px}
+.up-badge{flex:none;width:8px;height:38px;border-radius:6px;background:var(--c)}
+.up-body{flex:1;min-width:0}
+.up-body .ttl{font-size:.9rem;font-weight:700;color:var(--ink)}
+.up-body .sub{font-size:.75rem;color:var(--ink-dim)}
+.up-time{flex:none;font-size:.8rem;font-weight:800;color:var(--gold)}
+.up-empty{color:var(--ink-dim);font-size:.85rem;padding:6px 2px}
+
+/* modal */
+.modal-back{
+  position:fixed;inset:0;background:rgba(4,7,18,.72);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;z-index:50;padding:18px;
+}
+.modal-back.open{display:flex}
+.modal{
+  background:linear-gradient(160deg,#16213e,#0f1730);border:1px solid var(--line);
+  border-radius:20px;max-width:520px;width:100%;max-height:85vh;overflow:auto;
+  box-shadow:0 30px 70px rgba(0,0,0,.7);animation:pop .2s ease;
+}
+@keyframes pop{from{transform:scale(.94);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-head{
+  padding:20px 22px 14px;position:sticky;top:0;
+  background:linear-gradient(160deg,#16213e,#141d38);border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+}
+.modal-head .dow{font-size:.78rem;color:var(--cal);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.modal-head h2{font-size:1.5rem;font-weight:800;color:var(--ink)}
+.modal-close{cursor:pointer;border:none;background:rgba(255,255,255,.06);color:var(--ink);width:34px;height:34px;border-radius:50%;font-size:1.1rem;flex:none;transition:background .2s}
+.modal-close:hover{background:var(--t-prova-bg);color:var(--t-prova)}
+.modal-body{padding:14px 22px 22px;display:flex;flex-direction:column;gap:10px}
+.m-ev{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.m-ev .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.m-ev .badge{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--c);background:var(--bg);padding:2px 8px;border-radius:20px}
+.m-ev .time{font-size:.82rem;font-weight:800;color:var(--gold)}
+.m-ev .ttl{font-size:1rem;font-weight:700;color:var(--ink);margin-top:6px}
+.m-ev .note{font-size:.8rem;color:var(--ink-dim);margin-top:5px}
+.m-ev.prova{--c:var(--t-prova);--bg:var(--t-prova-bg)}
+.m-ev.p2{--c:var(--t-p2);--bg:var(--t-p2-bg)}
+.m-ev.segunda{--c:var(--t-segunda);--bg:var(--t-segunda-bg)}
+.m-ev.simulado{--c:var(--t-simulado);--bg:var(--t-simulado-bg)}
+.m-ev.recup{--c:var(--t-recup);--bg:var(--t-recup-bg)}
+.m-ev.aula{--c:var(--t-aula);--bg:var(--t-aula-bg)}
+.m-ev.pessoal{--c:var(--t-pessoal);--bg:var(--t-pessoal-bg)}
+.m-ev.estudo{--c:var(--t-estudo);--bg:var(--t-estudo-bg)}
+/* total de horas livres do mês */
+.month-free{margin:-6px 2px 16px;font-size:.84rem;color:var(--ink-dim);font-weight:600}
+.month-free b{color:var(--gold)}
+.month-free .dim{color:var(--ink-dim);opacity:.75;font-weight:500}
+
+/* destaque de tempo livre no modal */
+.m-freehero{border:1px solid rgba(45,212,191,.32);background:linear-gradient(160deg,rgba(45,212,191,.14),rgba(45,212,191,.03));border-radius:12px;padding:13px 16px}
+.m-freehero .fh-top{display:flex;align-items:baseline;gap:8px}
+.m-freehero .fh-n{font-size:1.9rem;font-weight:900;color:var(--t-estudo);line-height:1}
+.m-freehero .fh-lbl{font-size:.92rem;font-weight:700;color:var(--ink)}
+.m-freehero .fh-split{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:.82rem;color:var(--ink-dim)}
+.m-freehero .fh-split b{color:var(--ink);font-weight:700}
+.m-freehero .fh-note{font-size:.72rem;color:var(--ink-dim);opacity:.8;margin-top:8px;line-height:1.4}
+
+/* período no modal */
+.m-period{border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.m-period-h{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--cal);margin-bottom:8px}
+.m-blk{border-left:4px solid var(--c);border-radius:10px;padding:9px 11px;background:rgba(255,255,255,.02);margin-bottom:8px}
+.m-blk .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.m-blk .badge{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--c);background:var(--bg);padding:2px 8px;border-radius:20px}
+.m-blk .time{font-size:.82rem;font-weight:800;color:var(--gold)}
+.m-blk.k-aula{--c:#38bdf8;--bg:rgba(56,189,248,.14)}
+.m-blk.k-aulaprova{--c:#fb923c;--bg:rgba(251,146,60,.16)}
+.m-blk.k-prova{--c:#f43f5e;--bg:rgba(244,63,94,.16)}
+.m-blk.k-academia{--c:#a78bfa;--bg:rgba(167,139,250,.16)}
+.m-blk .closed-note{font-size:.68rem;color:var(--ink-dim);margin:6px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+.m-provas{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.m-provas .pv{font-size:.86rem;color:var(--ink)}
+.m-provas .pv-t{font-weight:700}
+.m-free-line{font-size:.84rem;font-weight:700;color:var(--t-estudo);background:var(--t-estudo-bg);border-radius:8px;padding:7px 10px;margin-top:2px}
+.m-free-line .dim{color:var(--ink-dim);opacity:.8;font-weight:500}
+
+/* bloco de aulas no modal */
+.m-school{border:1px solid var(--line);border-left:4px solid var(--t-aula);border-radius:12px;padding:12px 14px;background:rgba(56,189,248,.05)}
+.m-school-head{font-size:.9rem;font-weight:800;color:var(--t-aula);margin-bottom:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.m-school-head .closed{font-size:.66rem;font-weight:700;color:var(--ink-dim);background:rgba(255,255,255,.05);border:1px solid var(--line);padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.4px}
+.cl-list{display:flex;flex-direction:column;gap:2px}
+.cl-row{display:grid;grid-template-columns:96px 1fr auto;gap:8px;align-items:baseline;font-size:.82rem;padding:3px 0;border-bottom:1px dashed rgba(255,255,255,.06)}
+.cl-row:last-child{border-bottom:none}
+.cl-time{color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+.cl-sub{color:var(--ink);font-weight:700}
+.cl-prof{color:var(--ink-dim);font-size:.74rem}
+.m-free-win{margin-top:10px;font-size:.82rem;font-weight:700;color:var(--t-estudo);background:var(--t-estudo-bg);border-radius:8px;padding:8px 10px}
+.m-free{text-align:center;padding:24px 10px;color:var(--ink-dim)}
+.m-free .big{font-size:2.4rem;margin-bottom:6px}
+.m-free .lead{color:var(--gold);font-weight:700;font-size:1rem}
+.m-link{display:inline-flex;align-items:center;gap:6px;margin-top:8px;font-size:.8rem;font-weight:700;color:var(--cal);text-decoration:none;border:1px solid var(--cal);padding:6px 12px;border-radius:8px;transition:all .2s}
+.m-link:hover{background:var(--cal-glow)}
+
+footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:34px;padding:14px;border-top:1px solid var(--line)}
+
+/* impressão para o campo Aluno/Data — escondido na tela */
+.print-head{display:none}
+
+@media (max-width:720px){
+  .cell{min-height:96px}
+  .ev{font-size:.62rem}
+  .nav .month-title{min-width:140px;font-size:1.05rem}
+  .cell.free::after{display:none}
+}
+
+/* ===================== IMPRESSÃO ===================== */
+@media print{
+  @page{size:A4 landscape;margin:10mm}
+  html,body{background:#fff !important;color:#000 !important}
+  .stars,.hub-bar,.toolbar,.upcoming,footer,.modal-back,header.hero,.month-free{display:none !important}
+  .container{max-width:100%;padding:0}
+  .print-head{display:flex !important;justify-content:space-between;align-items:flex-end;gap:20px;border-bottom:2px solid #000;padding-bottom:6px;margin-bottom:10px}
+  .print-head .ttl{font-size:1.15rem;font-weight:800;color:#000}
+  .print-head .fields{display:flex;gap:24px;font-size:.85rem;color:#000}
+  .print-head .fields span{border-bottom:1px solid #000;min-width:150px;display:inline-block}
+  .legend{margin:0 0 8px;gap:6px 12px}
+  .legend .item{color:#000}
+  .weekdays div{color:#000}
+  .weekdays div.wknd{color:#000}
+  .grid{gap:1px}
+  .cell{background:#fff !important;border:1px solid #999 !important;min-height:52px;box-shadow:none !important;border-radius:0;color:#000;break-inside:avoid;padding:2px 3px;gap:1px}
+  .daynum{font-size:.68rem;color:#000}
+  .cell.filler{border:1px solid transparent !important}
+  .cell.past{opacity:1 !important;filter:none !important}
+  .cell.exam-day{background:#fde7ea !important;border-color:#d1436a !important}
+  .cell.today{box-shadow:none !important;border:2px solid #000 !important}
+  .cell.today .daynum .n{background:#000;color:#fff}
+  .daynum .freeh{color:#000 !important;background:#fff !important;border:1px solid #999 !important;padding:0 4px}
+  .daynum .freeh.none{color:#000 !important}
+  .periods{gap:0}
+  .per{gap:3px}
+  .per .pl{color:#000;opacity:1;padding-top:1px}
+  .blk{font-size:.5rem;padding:0 3px;line-height:1.25;color:#000;background:#fff !important;border:1px solid #ccc;border-left:3px solid var(--c);white-space:normal}
+  .blk em{color:#000}
+  .blk.livre{border:none;color:#333;background:transparent !important;padding-left:0}
+}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+<div class="container">
+
+  <div class="hub-bar">
+    <a href="index.html">← Hub de matérias</a>
+    <span class="subj">📅 CALENDÁRIO</span>
+    <a href="matematica.html">Matemática →</a>
+  </div>
+
+  <header class="hero">
+    <h1>Calendário de Estudos</h1>
+    <p>Provas, recuperação, simulados e janelas livres pra planejar os estudos do Felipe. Clique num dia pra ver os detalhes.</p>
+  </header>
+
+  <!-- cabeçalho só de impressão -->
+  <div class="print-head">
+    <div class="ttl" id="printTitle">Calendário</div>
+    <div class="fields">
+      <div>Aluno: <span></span></div>
+      <div>Data: <span></span></div>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="nav">
+      <button id="prev" aria-label="Mês anterior">‹</button>
+      <div class="month-title" id="monthTitle">—</div>
+      <button id="next" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="tools">
+      <button class="btn gold" id="todayBtn">● Hoje</button>
+      <button class="btn" id="printBtn">🖨️ Imprimir mês</button>
+    </div>
+  </div>
+
+  <div class="weekdays" id="weekdays"></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="upcoming">
+    <h3>⏭️ Próximos compromissos</h3>
+    <div id="upcomingList"></div>
+  </div>
+
+  <footer>
+    Calendário de Estudos · 1º ano EM · Atualizado conforme as agendas chegam
+  </footer>
+</div>
+
+<div class="modal-back" id="modalBack">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <div>
+        <div class="dow" id="modalDow"></div>
+        <h2 id="modalDate"></h2>
+      </div>
+      <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   AGENDA — banco de eventos
+   Formato de cada evento:
+   { date:"AAAA-MM-DD", time:"HH:MM" (ou ""), type:"...", title:"...", note:"..." }
+   Tipos: prova | p2 | segunda | simulado | recup | aula | pessoal | estudo
+   Para adicionar novas agendas, basta acrescentar objetos neste array.
+   ============================================================ */
+const EVENTS = [
+  /* ---------- TRIMESTRE 2 (provas) ---------- */
+  {date:"2026-05-08", time:"08:00", type:"prova", title:"P1T2 de Redação"},
+
+  {date:"2026-05-29", time:"08:00", type:"prova", title:"P1T2 de Química"},
+  {date:"2026-05-29", time:"08:00", type:"prova", title:"P1T2 de Geografia"},
+
+  {date:"2026-06-03", time:"08:00", type:"prova", title:"P1T2 de Biologia", note:"Quarta-feira."},
+  {date:"2026-06-03", time:"08:00", type:"prova", title:"P1T2 de Português", note:"Quarta-feira."},
+
+  {date:"2026-06-12", time:"08:00", type:"prova", title:"P1T2 de Matemática"},
+  {date:"2026-06-12", time:"08:00", type:"prova", title:"P1T2 de Geopolítica"},
+  {date:"2026-06-12", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P1T2 de Química, Geografia, Biologia, Português e Redação. Início às 14h15."},
+
+  {date:"2026-06-19", time:"08:00", type:"prova", title:"P1T2 de Física"},
+  {date:"2026-06-19", time:"08:00", type:"prova", title:"P1T2 de História"},
+
+  {date:"2026-06-20", time:"", type:"simulado", title:"Simulado ENEM", note:"Sábado."},
+
+  {date:"2026-06-26", time:"08:00", type:"prova", title:"P1T2 de Literatura"},
+  {date:"2026-06-26", time:"08:00", type:"prova", title:"P1T2 de Inglês"},
+
+  {date:"2026-07-03", time:"08:00", type:"p2", title:"P2T2 de Química"},
+  {date:"2026-07-03", time:"08:00", type:"p2", title:"P2T2 de Geografia"},
+  {date:"2026-07-03", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P1T2 de Matemática, Geopolítica, Física e História. Início às 14h15."},
+
+  {date:"2026-07-09", time:"08:00", type:"p2", title:"P2T2 de Redação", note:"Quinta-feira."},
+
+  {date:"2026-07-31", time:"08:00", type:"p2", title:"P2T2 de Biologia"},
+  {date:"2026-07-31", time:"08:00", type:"p2", title:"P2T2 de Português"},
+
+  {date:"2026-08-01", time:"", type:"simulado", title:"Simulado UFSC", note:"Sábado."},
+
+  {date:"2026-08-07", time:"08:00", type:"p2", title:"P2T2 de Matemática"},
+  {date:"2026-08-07", time:"08:00", type:"prova", title:"P1T2 de Filosofia/Sociologia"},
+  {date:"2026-08-07", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P1T2 de Literatura, Inglês, P2T2 de Química, Geografia e Redação. Início às 14h15."},
+
+  {date:"2026-08-14", time:"08:00", type:"p2", title:"P2T2 de Física"},
+  {date:"2026-08-14", time:"08:00", type:"p2", title:"P2T2 de História"},
+  {date:"2026-08-14", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P2T2 de Biologia, Português, Matemática e P1T2 de Filosofia/Sociologia. Início às 14h15."},
+
+  {date:"2026-08-19", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P2T2 de Física e História. Quarta-feira, início às 14h15."},
+
+  /* ---------- RECUPERAÇÃO T2 (22 a 28/ago) ---------- */
+  {date:"2026-08-22", time:"08:00", type:"recup", title:"Recuperação — Redação", note:"08h00–09h30. AEE: 7h30 até 9h30. Sábado."},
+  {date:"2026-08-22", time:"09:45", type:"recup", title:"Recuperação — Literatura", note:"09h45–10h30. AEE: 9h45 até 10h50. Sábado."},
+
+  {date:"2026-08-24", time:"14:15", type:"recup", title:"Recuperação — Química", note:"14h15–15h05. AEE: 14h15 até 15h25."},
+  {date:"2026-08-24", time:"15:35", type:"recup", title:"Recuperação — Geografia", note:"15h35–16h25. AEE: 15h35 até 16h45."},
+
+  {date:"2026-08-25", time:"14:15", type:"recup", title:"Recuperação — Português", note:"14h15–15h05. AEE: 14h15 até 15h25."},
+  {date:"2026-08-25", time:"15:35", type:"recup", title:"Recuperação — Biologia", note:"15h35–16h25. AEE: 15h35 até 16h45."},
+
+  {date:"2026-08-26", time:"14:15", type:"recup", title:"Recuperação — Matemática", note:"14h15–15h05. AEE: 14h15 até 15h25."},
+  {date:"2026-08-26", time:"15:35", type:"recup", title:"Recuperação — Filosofia ou Sociologia", note:"15h35–16h25. AEE: 15h35 até 16h45."},
+
+  {date:"2026-08-27", time:"14:15", type:"recup", title:"Recuperação — Física", note:"14h15–15h05. AEE: 14h15 até 15h25."},
+  {date:"2026-08-27", time:"15:35", type:"recup", title:"Recuperação — História", note:"15h35–16h25. AEE: 15h35 até 16h45."},
+
+  {date:"2026-08-28", time:"14:15", type:"recup", title:"Recuperação — Inglês", note:"14h15–15h05. AEE: 14h15 até 15h25."},
+  {date:"2026-08-28", time:"15:35", type:"recup", title:"Recuperação — Geopolítica", note:"15h35–16h25. AEE: 15h35 até 16h45."},
+  {date:"2026-08-28", time:"16:45", type:"recup", title:"Recuperação — Ed. Física", note:"16h45–17h30. AEE: 16h45 até 17h50. No período das provas de recuperação as aulas do vespertino ficam suspensas (inclusive eletivas); mantêm-se só as monitorias."},
+
+  /* ---------- TRIMESTRE 3 (provas) ---------- */
+  {date:"2026-09-04", time:"08:00", type:"prova", title:"P1T3 de Redação"},
+
+  {date:"2026-09-18", time:"", type:"simulado", title:"Simulado ENEM (parte 1)", note:"Sexta-feira."},
+  {date:"2026-09-19", time:"", type:"simulado", title:"Simulado ENEM (parte 2)", note:"Sábado."},
+
+  {date:"2026-09-25", time:"08:00", type:"prova", title:"P1T3 de Geopolítica"},
+  {date:"2026-09-25", time:"08:00", type:"prova", title:"P1T3 de Filosofia/Sociologia"},
+
+  {date:"2026-10-02", time:"08:00", type:"prova", title:"P1T3 de Literatura"},
+  {date:"2026-10-02", time:"08:00", type:"prova", title:"P1T3 de Inglês"},
+
+  {date:"2026-10-09", time:"08:00", type:"prova", title:"P1T3 de Química"},
+  {date:"2026-10-09", time:"08:00", type:"prova", title:"P1T3 de Geografia"},
+  {date:"2026-10-09", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P1T3 de Redação, Geopolítica, Filosofia e Sociologia. Início às 14h15."},
+
+  {date:"2026-10-16", time:"08:00", type:"prova", title:"P1T3 de Biologia"},
+  {date:"2026-10-16", time:"08:00", type:"prova", title:"P1T3 de Português"},
+
+  {date:"2026-10-17", time:"", type:"simulado", title:"Simulado UFSC", note:"Sábado."},
+
+  {date:"2026-10-23", time:"08:00", type:"prova", title:"P1T3 de Matemática"},
+
+  {date:"2026-10-30", time:"08:00", type:"prova", title:"P1T3 de Física"},
+  {date:"2026-10-30", time:"08:00", type:"prova", title:"P1T3 de História"},
+  {date:"2026-10-30", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P1T3 de Literatura, Inglês, Química e Geografia. Início às 14h15."},
+
+  {date:"2026-11-06", time:"08:00", type:"p2", title:"P2T3 de Redação"},
+  {date:"2026-11-06", time:"14:15", type:"segunda", title:"Segunda chamada", note:"P1T3 de Biologia, Português, Matemática, Física e História. Início às 14h15."},
+
+  {date:"2026-11-13", time:"08:00", type:"p2", title:"P2T3 de Geopolítica"},
+  {date:"2026-11-13", time:"08:00", type:"p2", title:"P2T3 de Filosofia/Sociologia"},
+
+  {date:"2026-11-16", time:"08:00", type:"p2", title:"P2T3 de Química"},
+  {date:"2026-11-16", time:"08:00", type:"p2", title:"P2T3 de Geografia"},
+
+  {date:"2026-11-17", time:"08:00", type:"p2", title:"P2T3 de Biologia"},
+  {date:"2026-11-17", time:"08:00", type:"p2", title:"P2T3 de Português"},
+
+  {date:"2026-11-18", time:"08:00", type:"p2", title:"P2T3 de Matemática"},
+
+  {date:"2026-11-19", time:"08:00", type:"p2", title:"P2T3 de Física"},
+  {date:"2026-11-19", time:"08:00", type:"p2", title:"P2T3 de História"},
+];
+
+/* rótulos e ordem dos tipos (para legenda e badges) */
+const TYPES = {
+  prova:    {label:"Prova (P1)",       cls:"prova"},
+  p2:       {label:"Prova (P2)",       cls:"p2"},
+  segunda:  {label:"Segunda chamada",  cls:"segunda"},
+  simulado: {label:"Simulado",         cls:"simulado"},
+  recup:    {label:"Recuperação",      cls:"recup"},
+  aula:     {label:"Aula",             cls:"aula"},
+  pessoal:  {label:"Pessoal",          cls:"pessoal"},
+  estudo:   {label:"Estudo",           cls:"estudo"},
+};
+/* tipo -> variável de cor (para bolinhas da legenda e dos "próximos") */
+const TYPE_COLOR = {
+  prova:"var(--t-prova)", p2:"var(--t-p2)", segunda:"var(--t-segunda)",
+  simulado:"var(--t-simulado)", recup:"var(--t-recup)", aula:"var(--t-aula)",
+  pessoal:"var(--t-pessoal)", estudo:"var(--t-estudo)",
+};
+
+const MONTHS = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+const MONTHS_SHORT = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const WD_SHORT = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+const WD_LONG = ["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira","Sábado"];
+
+/* ============================================================
+   HORÁRIO FIXO DE AULAS — Turma 1E · SL 203 (2º semestre/2026)
+   Estes horários ficam FECHADOS: o aluno está em aula e o tempo
+   NÃO pode ser usado como janela livre de estudo.
+   Chave = dia da semana (1=Seg ... 5=Sex). s=início, e=fim.
+   ============================================================ */
+const TURMA = "1E · SL 203";
+const WEEKLY = {
+  1:[ // Segunda — só manhã
+    {s:"08:00",e:"08:42",ab:"GRA",prof:"Mari"},
+    {s:"08:42",e:"09:24",ab:"MAT",prof:"Vinni"},
+    {s:"09:24",e:"10:06",ab:"Maker",prof:"Orestes"},
+    {s:"10:48",e:"11:30",ab:"Maker",prof:"Orestes"},
+    {s:"11:30",e:"12:12",ab:"LIT",prof:"Joseane"},
+    {s:"12:12",e:"12:54",ab:"GRA",prof:"Mari"},
+  ],
+  2:[ // Terça — manhã + tarde
+    {s:"08:00",e:"08:42",ab:"FIL",prof:"Gustavo Passos"},
+    {s:"08:42",e:"09:24",ab:"QUI",prof:"Angelise"},
+    {s:"09:24",e:"10:06",ab:"HIS",prof:"Tâmyta"},
+    {s:"10:48",e:"11:30",ab:"MAT",prof:"Lucas Dodl"},
+    {s:"11:30",e:"12:12",ab:"BIO",prof:"Rafael"},
+    {s:"12:12",e:"12:54",ab:"QUI",prof:"Angelise"},
+    {s:"14:15",e:"14:55",ab:"LAB",prof:"Glauber/Gui Gross"},
+    {s:"14:55",e:"15:35",ab:"LAB",prof:"Glauber/Gui Gross"},
+    {s:"15:50",e:"16:30",ab:"TUT",prof:"Gabriel/Angelise"},
+    {s:"16:30",e:"17:10",ab:"TUT",prof:"Gabriel/Angelise"},
+  ],
+  3:[ // Quarta — só manhã
+    {s:"08:00",e:"08:42",ab:"FIS",prof:"Alan"},
+    {s:"08:42",e:"09:24",ab:"ART",prof:"Edilene"},
+    {s:"09:24",e:"10:06",ab:"FÍS",prof:"Gui Scotti"},
+    {s:"10:48",e:"11:30",ab:"GEO",prof:"Morgana"},
+    {s:"11:30",e:"12:12",ab:"BIO",prof:"Larissa"},
+    {s:"12:12",e:"12:54",ab:"MAT",prof:"Vinni"},
+  ],
+  4:[ // Quinta — manhã + tarde
+    {s:"08:00",e:"08:42",ab:"CON",prof:"Bruno"},
+    {s:"08:42",e:"09:24",ab:"MAT",prof:"Lucas Dodl"},
+    {s:"09:24",e:"10:06",ab:"QUI",prof:"Gui Gross"},
+    {s:"10:48",e:"11:30",ab:"RED",prof:"Dani"},
+    {s:"11:30",e:"12:12",ab:"BIO",prof:"Rafael"},
+    {s:"12:12",e:"12:54",ab:"RED",prof:"Dani"},
+    {s:"14:15",e:"14:55",ab:"ED.FÍS",prof:"André Gil"},
+    {s:"14:55",e:"15:35",ab:"ED.FÍS",prof:"André Gil"},
+    {s:"15:50",e:"16:30",ab:"ING",prof:"Alex/Tubarão"},
+    {s:"16:30",e:"17:10",ab:"ING",prof:"Alex/Tubarão"},
+  ],
+  5:[ // Sexta — só manhã (2 primeiros tempos são de prova)
+    {s:"08:00",e:"08:42",ab:"Prova",prof:"avaliação semanal"},
+    {s:"08:42",e:"09:24",ab:"Prova",prof:"avaliação semanal"},
+    {s:"09:24",e:"10:06",ab:"HIS",prof:"Tâmyta"},
+    {s:"10:48",e:"11:30",ab:"GEO",prof:"Thaís"},
+    {s:"11:30",e:"12:12",ab:"FIS",prof:"Alan"},
+    {s:"12:12",e:"12:54",ab:"GPT",prof:"Juliana"},
+  ],
+};
+/* nomes por extenso das siglas (para o modal) */
+const SUBJ = {GRA:"Gramática",LIT:"Literatura",RED:"Redação",MAT:"Matemática",FIS:"Física","FÍS":"Física",QUI:"Química",BIO:"Biologia",GEO:"Geografia",HIS:"História",FIL:"Filosofia",ART:"Arte",GPT:"Geopolítica",ING:"Inglês",LAB:"Laboratório",TUT:"Tutoria",Maker:"Maker",CON:"CON",Prova:"Prova"};
+/* resumo do dia letivo: faixa fechada + janela livre */
+const SCHOOL = {
+  1:{span:"08:00–12:54", free:"Tarde e noite livres (após 12:54)"},
+  2:{span:"08:00–17:10", free:"Livre no almoço (12:54–14:15) e à noite (após 17:10)"},
+  3:{span:"08:00–12:54", free:"Tarde e noite livres (após 12:54)"},
+  4:{span:"08:00–17:10", free:"Livre no almoço (12:54–14:15) e à noite (após 17:10)"},
+  5:{span:"08:00–12:54", free:"Tarde, noite e fim de semana livres (após 12:54)"},
+};
+/* Este horário de aulas vale SÓ para 2026 (2º semestre, a partir de 27/07/2026).
+   Fora dessa faixa, os dias não aparecem como horário fechado de aula. */
+const SCHOOL_VALID = {from:"2026-07-27", to:"2026-12-31"};
+function schoolFor(dateISO, dow){
+  if(!SCHOOL[dow]) return null;
+  if(dateISO < SCHOOL_VALID.from || dateISO > SCHOOL_VALID.to) return null;
+  return SCHOOL[dow];
+}
+
+/* ============================================================
+   ATIVIDADES PESSOAIS recorrentes (academia, etc.)
+   dow: 0=Dom ... 6=Sáb · s/e = início/fim · from/to opcionais (AAAA-MM-DD)
+   ============================================================ */
+const RECURRING = [
+  {dow:1, s:"13:30", e:"14:30", type:"pessoal", title:"Academia (musculação)", from:"2026-08-01"},
+  {dow:5, s:"15:00", e:"16:00", type:"pessoal", title:"Academia (musculação)", from:"2026-08-01"},
+];
+
+/* indexar eventos por data (mantendo a ordem: por horário) */
+const byDate = {};
+EVENTS.forEach(e=>{ (byDate[e.date] = byDate[e.date] || []).push(e); });
+Object.values(byDate).forEach(list=> list.sort((a,b)=> (a.time||"99:99").localeCompare(b.time||"99:99")));
+
+/* gera as ocorrências das atividades recorrentes para uma data */
+function recurringFor(dateISO, dow){
+  const out=[];
+  RECURRING.forEach(r=>{
+    if(r.dow!==dow) return;
+    if(r.from && dateISO < r.from) return;
+    if(r.to && dateISO > r.to) return;
+    out.push({date:dateISO, time:r.s, end:r.e, type:r.type, title:r.title, note:r.note || `Das ${r.s} às ${r.e}.`});
+  });
+  return out;
+}
+/* eventos do dia = provas/agendas + recorrentes, ordenados por horário */
+function eventsFor(dateISO, dow){
+  return (byDate[dateISO]||[]).concat(recurringFor(dateISO, dow))
+    .sort((a,b)=> (a.time||"99:99").localeCompare(b.time||"99:99"));
+}
+
+/* ============================================================
+   PERÍODOS DO DIA e TEMPO LIVRE
+   Distribuição fixa:
+     Manhã 08:00–13:00 · [almoço 13:00–14:00] · Tarde 14:00–18:30
+     · [jantar+banho 18:30–20:00] · Noite 20:00–22:00
+   Almoço (1h) e jantar+banho (1h30) já saem como os "vãos" entre os
+   períodos. Do tempo livre de cada período descontamos os blocos
+   (aula, prova, academia) + 30 min de deslocamento antes e depois.
+   ============================================================ */
+const toMin = t => { const [h,m]=t.split(":").map(Number); return h*60+m; };
+function fmtDur(min){ if(min<=0) return "0h"; const h=Math.floor(min/60), m=min%60; return m? `${h}h${String(m).padStart(2,"0")}` : `${h}h`; }
+function fmtHM(min){ return `${String(Math.floor(min/60)).padStart(2,"0")}:${String(min%60).padStart(2,"0")}`; }
+
+const PERIODS = [
+  {key:"manha", label:"Manhã", abbr:"M", s:8*60,      e:13*60},      // 08:00–13:00 (fim de semana começa 10:00)
+  {key:"tarde", label:"Tarde", abbr:"T", s:14*60,     e:18*60+30},   // 14:00–18:30 (jantar/banho 18:30–20:00)
+  {key:"noite", label:"Noite", abbr:"N", s:20*60,     e:21*60},      // 20:00–21:00 (21h encerra p/ dormir)
+];
+/* fins de semana o dia começa às 10:00 */
+function periodsFor(dow){
+  const weekend = (dow===0 || dow===6);
+  return PERIODS.map(p => (p.key==="manha" && weekend) ? {...p, s:10*60} : p);
+}
+const COMMUTE = 30;                                   // min antes/depois de cada evento
+const RECUP_WEEK = {from:"2026-08-24", to:"2026-08-28"}; // aulas do vespertino suspensas
+
+/* intervalo [início,fim] em minutos que um evento ocupa */
+function eventInterval(e){
+  if(!e.time) return null;
+  const start = toMin(e.time);
+  let end;
+  if(e.end){ end = toMin(e.end); }
+  else{
+    const m = (e.note||"").match(/(\d{1,2})h(\d{2})\s*[–-]\s*(\d{1,2})h(\d{2})/); // ex.: "14h15–15h05"
+    if(m){ end = (+m[3])*60 + (+m[4]); }
+    else{ end = start + ({prova:84,p2:84,segunda:120,simulado:240,recup:50,pessoal:60}[e.type] || 60); }
+  }
+  return [start, Math.max(end, start)];
+}
+
+/* ============================================================
+   BLOCOS (macro-destaques) de um dia:
+   aula | aulaprova (aula + prova do trimestre) | prova (2ª chamada,
+   recuperação ou simulado) | academia
+   ============================================================ */
+function dayBlocks(dateISO, dow){
+  const blocks = [];
+  const school = schoolFor(dateISO, dow);
+  const evs = byDate[dateISO] || [];
+  const afternoonOff = dateISO >= RECUP_WEEK.from && dateISO <= RECUP_WEEK.to;
+
+  const provaManha = evs.filter(e => (e.type==="prova"||e.type==="p2") && e.time && toMin(e.time) < 13*60);
+  const recupManha = evs.filter(e => e.type==="recup" && e.time && toMin(e.time) < 13*60);
+  const simulados  = evs.filter(e => e.type==="simulado");
+  const segTarde   = evs.filter(e => e.type==="segunda");
+  const recupTarde = evs.filter(e => e.type==="recup" && e.time && toMin(e.time) >= 13*60);
+
+  // ---- MANHÃ ----
+  if(school){
+    const wp = provaManha.length>0;
+    blocks.push({period:"manha", kind: wp?"aulaprova":"aula", s:8*60, e:12*60+54,
+      label: wp?"Aula + Prova":"Aula", refs: wp?provaManha:[]});
+  } else if(recupManha.length){
+    const s=toMin(recupManha[0].time), e=eventInterval(recupManha[recupManha.length-1])[1];
+    blocks.push({period:"manha", kind:"prova", s, e, label:"Recuperação", refs:recupManha});
+  } else if(simulados.length){
+    blocks.push({period:"manha", kind:"prova", s:8*60, e:12*60, label:"Simulado", refs:simulados});
+  } else if(provaManha.length){
+    const iv=eventInterval(provaManha[0]);
+    blocks.push({period:"manha", kind:"prova", s:iv[0], e:iv[1], label:"Prova", refs:provaManha});
+  }
+
+  // ---- TARDE ----
+  if(school && (dow===2||dow===4) && !afternoonOff){
+    blocks.push({period:"tarde", kind:"aula", s:14*60+15, e:17*60+10, label:"Aula", refs:[]});
+  }
+  if(recupTarde.length){
+    const s=toMin(recupTarde[0].time), e=eventInterval(recupTarde[recupTarde.length-1])[1];
+    blocks.push({period:"tarde", kind:"prova", s, e, label:"Recuperação", refs:recupTarde});
+  }
+  segTarde.forEach(e=>{ const iv=eventInterval(e); blocks.push({period:"tarde", kind:"prova", s:iv[0], e:iv[1], label:"2ª chamada", refs:[e]}); });
+
+  // ---- ACADEMIA (recorrente) ----
+  recurringFor(dateISO, dow).forEach(r=>{
+    const s=toMin(r.time), e=toMin(r.end);
+    const period = s<13*60 ? "manha" : (s<18*60+30 ? "tarde" : "noite");
+    blocks.push({period, kind:"academia", s, e, label:"Academia", refs:[r]});
+  });
+
+  return blocks;
+}
+
+/* tempo livre de um período: intervalos livres reais (período − blocos com
+   30 min de deslocamento antes/depois) e total em minutos */
+function periodFreeData(blocks, per){
+  const busy = blocks.filter(b=>b.period===per.key).map(b=>[
+    Math.max(b.s-COMMUTE, per.s), Math.min(b.e+COMMUTE, per.e)
+  ]).filter(([s,e])=>e>s).sort((a,b)=>a[0]-b[0]);
+  const merged = [];
+  busy.forEach(([s,e])=>{ const last=merged[merged.length-1]; if(last && s<=last[1]) last[1]=Math.max(last[1],e); else merged.push([s,e]); });
+  const free = []; let cur = per.s;
+  merged.forEach(([s,e])=>{ if(s>cur) free.push([cur, Math.min(s,per.e)]); cur=Math.max(cur,e); });
+  if(cur < per.e) free.push([cur, per.e]);
+  const min = free.reduce((t,[s,e])=>t+(e-s), 0);
+  return {min, free};
+}
+function dayFreeByPeriod(dateISO, dow){
+  const blocks = dayBlocks(dateISO, dow);
+  const out = {};
+  periodsFor(dow).forEach(p=> out[p.key] = periodFreeData(blocks, p));
+  // Terça/Quinta com aula à tarde: considerar a tarde sem tempo livre
+  if(blocks.some(b=>b.period==="tarde" && b.kind==="aula")){
+    out.tarde = {min:0, free:[]};
+  }
+  // Sábado e domingo: sem tempo livre à noite
+  if(dow===0 || dow===6){
+    out.noite = {min:0, free:[]};
+  }
+  out.total = PERIODS.reduce((t,p)=>t+out[p.key].min, 0);
+  return out;
+}
+
+const pad = n => String(n).padStart(2,"0");
+const iso = (y,m,d) => `${y}-${pad(m+1)}-${pad(d)}`;
+
+/* "hoje" real */
+const now = new Date();
+const TODAY_ISO = iso(now.getFullYear(), now.getMonth(), now.getDate());
+
+/* estado: mês exibido — começa no mês atual */
+let viewY = now.getFullYear();
+let viewM = now.getMonth();
+
+/* ---------- legenda ---------- */
+function buildLegend(){
+  const items = [
+    ["#38bdf8","Aula"],
+    ["#fb923c","Aula + Prova (prova do trimestre)"],
+    ["#f43f5e","Prova (2ª chamada, recuperação ou simulado)"],
+    ["#a78bfa","Academia"],
+    ["rgba(255,209,102,.7)","Livre p/ estudo"],
+  ];
+  document.getElementById("legend").innerHTML =
+    items.map(([c,l])=>`<span class="item"><span class="dot" style="background:${c}"></span>${l}</span>`).join("");
+}
+
+/* ---------- grade ---------- */
+function render(){
+  document.getElementById("monthTitle").textContent = `${MONTHS[viewM]} ${viewY}`;
+  document.getElementById("printTitle").textContent = `Calendário de Estudos — ${MONTHS[viewM]} ${viewY}`;
+
+  // cabeçalhos dos dias da semana
+  const wd = document.getElementById("weekdays");
+  wd.innerHTML = WD_SHORT.map((d,i)=>`<div class="${(i===0||i===6)?'wknd':''}">${d}</div>`).join("");
+
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
+
+  const firstDow = new Date(viewY, viewM, 1).getDay();
+  const daysInMonth = new Date(viewY, viewM+1, 0).getDate();
+
+  // fillers antes do dia 1
+  for(let i=0;i<firstDow;i++){
+    const f = document.createElement("div");
+    f.className = "cell filler";
+    grid.appendChild(f);
+  }
+
+  let monthFreeMin = 0, monthFreeDays = 0;
+  for(let d=1; d<=daysInMonth; d++){
+    const dateISO = iso(viewY, viewM, d);
+    const dow = new Date(viewY, viewM, d).getDay();
+    const evs = eventsFor(dateISO, dow);
+    const isWknd = (dow===0 || dow===6);
+    const school = schoolFor(dateISO, dow);  // dia letivo válido? (Seg–Sex, só 2026)
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    if(dateISO === TODAY_ISO) cell.classList.add("today");
+    if(dateISO < TODAY_ISO) cell.classList.add("past");
+    if(isWknd) cell.classList.add("wknd");
+
+    const blocks = dayBlocks(dateISO, dow);
+    const free = dayFreeByPeriod(dateISO, dow);
+    if(blocks.length) cell.classList.add("has-events");
+    if(free.total>0) cell.classList.add("has-free");
+    // destaque nos dias de prova / recuperação / 2ª chamada / simulado
+    if(blocks.some(b=>b.kind==="prova"||b.kind==="aulaprova")) cell.classList.add("exam-day");
+    monthFreeMin += free.total; if(free.total>0) monthFreeDays++;
+
+    // pastilha de horas livres no topo do dia
+    let inner = `<div class="daynum"><span class="n">${d}</span>` +
+            `<span class="freeh${free.total===0?' none':''}" title="Tempo livre p/ estudo no dia">${fmtDur(free.total)}</span></div>`;
+
+    // linhas por período: Manhã / Tarde / Noite
+    inner += `<div class="periods">`;
+    periodsFor(dow).forEach(per=>{
+      const pb = blocks.filter(b=>b.period===per.key).sort((a,b)=>a.s-b.s);
+      // na visão do calendário mostramos só os destaques (aula/prova/academia);
+      // o tempo livre total do dia já aparece na pastilha do cabeçalho.
+      const content = pb.map(b=>`<span class="blk k-${b.kind}" title="${escapeHtml(b.label)} ${fmtHM(b.s)}–${fmtHM(b.e)}">${escapeHtml(b.label)} <em>${fmtHM(b.s)}–${fmtHM(b.e)}</em></span>`).join("")
+        || `<span class="blk none">·</span>`;
+      inner += `<div class="per"><span class="pl" title="${per.label}">${per.abbr}</span><span class="pc">${content}</span></div>`;
+    });
+    inner += `</div>`;
+    cell.innerHTML = inner;
+
+    cell.addEventListener("click", ()=>openModal(dateISO));
+    grid.appendChild(cell);
+  }
+  const mf = document.getElementById("monthFree");
+  if(mf) mf.innerHTML = `🟢 Tempo livre p/ estudo em ${MONTHS[viewM]}: <b>${fmtDur(monthFreeMin)}</b> <span class="dim">(~${(monthFreeMin/60/monthFreeDays||0).toFixed(1).replace('.',',')} h/dia em ${monthFreeDays} dias)</span>`;
+  renderUpcoming();
+}
+
+function shortTitle(t){
+  // encurta rótulos longos pro chip
+  return t.replace("Recuperação — ","Rec. ").replace("Segunda chamada","2ª chamada").replace("Academia (musculação)","🏋️ Academia");
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+/* detalhe de um bloco no modal */
+function detailFor(b, dow){
+  if(b.kind==="academia"){
+    return `<div class="note">${escapeHtml((b.refs[0]&&b.refs[0].note)||"")}</div>`;
+  }
+  if(b.kind==="aula" || b.kind==="aulaprova"){
+    const rows = (WEEKLY[dow]||[]).filter(p=>{
+      const s=toMin(p.s);
+      return b.period==="manha" ? s<13*60 : (s>=14*60 && s<18*60+30);
+    }).map(p=>{
+      const nome=SUBJ[p.ab]||p.ab; const prof=p.prof?`<span class="cl-prof">${escapeHtml(p.prof)}</span>`:"";
+      return `<div class="cl-row"><span class="cl-time">${p.s}–${p.e}</span><span class="cl-sub">${escapeHtml(nome)}</span>${prof}</div>`;
+    }).join("");
+    let extra="";
+    if(b.kind==="aulaprova" && b.refs.length){
+      extra = `<div class="m-provas">${b.refs.map(e=>`<div class="pv"><span class="pv-t">${escapeHtml(e.title)}</span> ${subjectLink(e.title)}</div>`).join("")}</div>`;
+    }
+    return `<div class="closed-note">turma ${TURMA} · horário fechado</div><div class="cl-list">${rows}</div>${extra}`;
+  }
+  if(b.kind==="prova"){
+    return `<div class="m-provas">${b.refs.map(e=>{
+      const note=e.note?`<div class="note">${escapeHtml(e.note)}</div>`:"";
+      return `<div class="pv"><span class="pv-t">${escapeHtml(e.title)}</span> ${subjectLink(e.title)}${note}</div>`;
+    }).join("")}</div>`;
+  }
+  return "";
+}
+
+/* ---------- modal ---------- */
+const modalBack = document.getElementById("modalBack");
+function openModal(dateISO){
+  const [y,m,d] = dateISO.split("-").map(Number);
+  const dt = new Date(y, m-1, d);
+  document.getElementById("modalDow").textContent = WD_LONG[dt.getDay()];
+  document.getElementById("modalDate").textContent = `${d} de ${MONTHS[m-1]} de ${y}`;
+  const body = document.getElementById("modalBody");
+  const dow = dt.getDay();
+  const evs = byDate[dateISO] || [];
+  const school = schoolFor(dateISO, dow);
+  const blocks = dayBlocks(dateISO, dow);
+  const free = dayFreeByPeriod(dateISO, dow);
+  let html = "";
+
+  // 0) DESTAQUE: total de tempo livre + quebra por período
+  const pers = periodsFor(dow);
+  html += `<div class="m-freehero">
+      <div class="fh-top"><span class="fh-n">${fmtDur(free.total)}</span><span class="fh-lbl">livres p/ estudo</span></div>
+      <div class="fh-split">${pers.map(p=>`<span><b>${p.label}</b> ${fmtDur(free[p.key].min)}</span>`).join("")}</div>
+      <div class="fh-note">Períodos: ${pers.map(p=>`${p.label} ${fmtHM(p.s)}–${fmtHM(p.e)}`).join(" · ")}. Já fora almoço (13:00–14:00), jantar/banho (18:30–20:00) e 30 min de deslocamento antes/depois de cada evento.</div>
+    </div>`;
+
+  // 1) por período: blocos (com detalhe) e a janela livre real
+  pers.forEach(per=>{
+    const pb = blocks.filter(b=>b.period===per.key).sort((a,b)=>a.s-b.s);
+    let inner = "";
+    pb.forEach(b=>{
+      inner += `<div class="m-blk k-${b.kind}">
+          <div class="row"><span class="badge">${escapeHtml(b.label)}</span><span class="time">🕐 ${fmtHM(b.s)}–${fmtHM(b.e)}</span></div>
+          ${detailFor(b, dow)}
+        </div>`;
+    });
+    const fd = free[per.key];
+    const win = fd.min>0 ? `<span class="dim">${fd.free.map(([s,e])=>`${fmtHM(s)}–${fmtHM(e)}`).join(", ")}</span>` : "";
+    inner += `<div class="m-free-line">🟢 Livre: <b>${fmtDur(fd.min)}</b> ${win}</div>`;
+    html += `<div class="m-period"><div class="m-period-h">${per.label}</div>${inner}</div>`;
+  });
+
+  body.innerHTML = html;
+  modalBack.classList.add("open");
+}
+function closeModal(){ modalBack.classList.remove("open"); }
+
+/* ============================================================
+   PÁGINAS DE ESTUDO já existentes no hub e a prova EXATA que cada
+   uma cobre. Um evento só ganha o botão "Estudar" quando existe uma
+   página que cobre AQUELA prova específica — mesma matéria E mesmo
+   Px do mesmo trimestre. Assim uma prova de Matemática do T3 NÃO
+   aponta pra página de Matemática do T2 (conteúdo diferente).
+   Ao criar uma página nova pra outra prova, adicione uma linha aqui.
+   ============================================================ */
+const STUDY_PAGES = [
+  {file:"estudo_historia_p2t1.html", subject:"história",   prova:"P2T1", label:"História — P2 Tri 1"},
+  {file:"fisica.html",               subject:"física",     prova:"P2T1", label:"Física — P2 Tri 1"},
+  {file:"filosofia.html",            subject:"filosofia",  prova:"P1T2", label:"Filosofia — P1 Tri 2"},
+  {file:"matematica.html",           subject:"matemática", prova:"P2T2", label:"Matemática — P2 Tri 2"},
+];
+
+/* extrai o código da prova (P1T2, P2T3...) e a matéria do título do evento */
+function parseProva(title){
+  const m = title.match(/\b(P[12]T[123])\b\s+de\s+(.+)/i);
+  if(!m) return null;
+  return { prova:m[1].toUpperCase(), subject:m[2].toLowerCase() };
+}
+
+/* só retorna link quando existe página cobrindo exatamente aquela prova */
+function subjectLink(title){
+  const p = parseProva(title);
+  if(!p) return "";
+  const page = STUDY_PAGES.find(sp => sp.prova===p.prova && p.subject.includes(sp.subject));
+  if(!page) return "";
+  return `<a class="m-link" href="${page.file}">📘 Estudar ${page.label} →</a>`;
+}
+
+/* ---------- próximos compromissos ---------- */
+function renderUpcoming(){
+  const el = document.getElementById("upcomingList");
+  const upcoming = EVENTS
+    .filter(e=> e.date >= TODAY_ISO)
+    .sort((a,b)=> a.date.localeCompare(b.date) || (a.time||"99:99").localeCompare(b.time||"99:99"))
+    .slice(0,6);
+  if(!upcoming.length){ el.innerHTML = `<div class="up-empty">Sem compromissos futuros cadastrados por enquanto.</div>`; return; }
+  el.innerHTML = upcoming.map(e=>{
+    const [y,m,d] = e.date.split("-").map(Number);
+    const time = e.time ? `<span class="up-time">${e.time}</span>` : `<span class="up-time">—</span>`;
+    return `<div class="up-item" data-date="${e.date}">
+        <div class="up-date"><div class="d">${d}</div><div class="m">${MONTHS_SHORT[m-1]}</div></div>
+        <div class="up-badge" style="--c:${TYPE_COLOR[e.type]}"></div>
+        <div class="up-body"><div class="ttl">${escapeHtml(e.title)}</div><div class="sub">${TYPES[e.type].label} · ${WD_SHORT[new Date(y,m-1,d).getDay()]}</div></div>
+        ${time}
+      </div>`;
+  }).join("");
+  el.querySelectorAll(".up-item").forEach(it=> it.addEventListener("click", ()=>{
+    const dISO = it.getAttribute("data-date");
+    const [yy,mm] = dISO.split("-").map(Number);
+    viewY = yy; viewM = mm-1; render(); openModal(dISO);
+  }));
+}
+
+/* ---------- navegação ---------- */
+document.getElementById("prev").addEventListener("click", ()=>{ viewM--; if(viewM<0){viewM=11;viewY--;} render(); });
+document.getElementById("next").addEventListener("click", ()=>{ viewM++; if(viewM>11){viewM=0;viewY++;} render(); });
+document.getElementById("todayBtn").addEventListener("click", ()=>{ viewY=now.getFullYear(); viewM=now.getMonth(); render(); });
+document.getElementById("printBtn").addEventListener("click", ()=> window.print());
+document.getElementById("modalClose").addEventListener("click", closeModal);
+modalBack.addEventListener("click", e=>{ if(e.target===modalBack) closeModal(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
+
+/* estrelas de fundo */
+const starsContainer = document.getElementById("stars");
+for(let i=0;i<60;i++){
+  const s = document.createElement("span");
+  s.style.left = Math.random()*100+"%";
+  s.style.top = Math.random()*100+"%";
+  s.style.animationDelay = Math.random()*4+"s";
+  s.style.animationDuration = (3+Math.random()*4)+"s";
+  starsContainer.appendChild(s);
+}
+
+render();
+</script>
+</body>
+</html>
