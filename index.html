@@ -11,7 +11,9 @@
   --fis:#4cc9f0; --fis-2:#f72585; --fis-glow:rgba(76,201,240,.35);
   --filo:#8338ec; --filo-2:#f4a261; --filo-glow:rgba(131,56,236,.35);
   --mat:#3b82f6; --mat-2:#10b981; --mat-glow:rgba(59,130,246,.35);
+  --qui:#34d399; --qui-2:#a3e635; --qui-glow:rgba(52,211,153,.35);
   --cal:#2dd4bf; --cal-2:#818cf8; --cal-glow:rgba(45,212,191,.35);
+  --rec:#f59e0b; --rec-2:#ef4444;
   --gold:#ffd166; --ink:#f8f9ff; --ink-dim:#b9c4d6;
   --card:#142339; --shadow:0 20px 50px rgba(0,0,0,.55);
 }
@@ -72,7 +74,9 @@ html,body{
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .subjects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
 
-.subject-card{position:relative;display:block;text-decoration:none;color:inherit;padding:26px 24px;border-radius:22px;background:var(--card);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
+.subject-card{position:relative;display:flex;flex-direction:column;text-decoration:none;color:inherit;padding:26px 24px;border-radius:22px;background:var(--card);border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s}
+.subject-card .main-link{text-decoration:none;color:inherit}
+.subject-card .card-overlay{position:absolute;inset:0;z-index:2;border-radius:22px}
 .subject-card:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 30px 60px rgba(0,0,0,.65)}
 .subject-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, var(--glow,var(--hist-glow)), transparent 60%);opacity:.55;pointer-events:none}
 .subject-card.hist{--glow:var(--hist-glow)}
@@ -101,7 +105,25 @@ html,body{
 .subject-card.filo .arrow{--c1:#8338ec;--c2:#f4a261}
 .subject-card.mat .arrow{--c1:#3b82f6;--c2:#10b981}
 .subject-card:hover .arrow{transform:translateX(6px)}
-.subject-card .prova-badge{position:absolute;top:16px;right:16px;z-index:2;font-size:.7rem;font-weight:800;letter-spacing:.4px;padding:5px 11px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);color:var(--ink);backdrop-filter:blur(2px)}
+.subject-card .prova-badge{position:absolute;top:16px;right:16px;z-index:3;font-size:.7rem;font-weight:800;letter-spacing:.4px;padding:5px 11px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);color:var(--ink);backdrop-filter:blur(2px)}
+.subject-card.qui{--glow:var(--qui-glow)}
+.subject-card.qui .icon{--c1:#34d399;--c2:#a3e635}
+.subject-card.qui h2{background:linear-gradient(90deg,var(--qui),var(--qui-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.subject-card.qui .arrow{--c1:#34d399;--c2:#a3e635}
+
+/* Link de recuperação dentro do card */
+.subject-card .rec-link{position:relative;z-index:4;display:flex;align-items:center;gap:9px;margin-top:14px;
+  padding:11px 14px;border-radius:13px;text-decoration:none;font-size:.83rem;font-weight:800;letter-spacing:.2px;
+  background:linear-gradient(90deg,rgba(245,158,11,.20),rgba(239,68,68,.14));
+  border:1px solid rgba(245,158,11,.45);color:#ffd9a0;transition:.25s}
+.subject-card .rec-link:hover{background:linear-gradient(90deg,var(--rec),var(--rec-2));color:#2b1400;border-color:transparent;transform:translateY(-2px)}
+.subject-card .rec-link .rl-ico{font-size:1rem}
+.subject-card .rec-link .rl-txt{flex:1 1 auto;min-width:0}
+.subject-card .rec-link .rl-go{margin-left:auto;font-weight:900;white-space:nowrap;flex:0 0 auto}
+.subject-card .rec-link.soon{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);color:var(--ink-dim);cursor:default;opacity:.65}
+.subject-card .rec-link.soon:hover{transform:none;background:rgba(255,255,255,.04);color:var(--ink-dim);border-color:rgba(255,255,255,.1)}
+.subject-card .meta{margin-top:auto}
+.rec-note{grid-column:1/-1;font-size:.8rem;color:var(--ink-dim);text-align:center;margin:2px 0 -6px;opacity:.85}
 
 footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:44px;padding:14px;border-top:1px solid rgba(255,255,255,.06);position:relative;z-index:1}
 footer .heart{color:var(--hist)}
@@ -136,7 +158,7 @@ footer .heart{color:var(--hist)}
   <!-- Seletor de trimestres -->
   <div class="tri-tabs" id="triTabs">
     <button data-tri="tri1">1º Trimestre <span class="cnt">2 matérias</span></button>
-    <button data-tri="tri2" class="active">2º Trimestre <span class="cnt">4 matérias</span></button>
+    <button data-tri="tri2" class="active">2º Trimestre <span class="cnt">5 matérias</span></button>
     <button class="soon" disabled>3º Trimestre <span class="cnt">em breve</span></button>
   </div>
   <p class="tri-sub" id="triSub">Material das provas do 2º trimestre.</p>
@@ -144,10 +166,13 @@ footer .heart{color:var(--hist)}
   <!-- 1º Trimestre -->
   <div class="tri-panel" id="tri1">
     <div class="subjects-grid">
-      <a href="estudo_historia_p2t1.html" class="subject-card hist">
+      <p class="rec-note">🔁 Cada matéria tem um link de <b>Recuperação</b> dentro do card — a recuperação é trimestral e cobre P1 + P2.</p>
+
+      <div class="subject-card hist">
+        <a href="estudo_historia_p2t1.html" class="card-overlay" aria-label="Abrir História"></a>
         <span class="prova-badge">P2 · Tri 1</span>
         <div class="icon">🏛️</div>
-        <h2>História</h2>
+        <h2><a href="estudo_historia_p2t1.html" class="main-link" tabindex="-1">História</a></h2>
         <p class="desc">Persas, Fenícios e Grécia (Antiguidade Oriental e Clássica). Inclui Atenas × Esparta e os 5 períodos da Grécia.</p>
         <div class="modules">
           <span>Mód. 6 · Persas</span>
@@ -159,12 +184,14 @@ footer .heart{color:var(--hist)}
           <span class="stats"><b>45</b> flashcards · <b>22</b> perguntas no quiz</span>
           <span class="arrow">→</span>
         </div>
-      </a>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 1º tri</span><span class="rl-go">em breve</span></span>
+      </div>
 
-      <a href="fisica.html" class="subject-card fis">
+      <div class="subject-card fis">
+        <a href="fisica.html" class="card-overlay" aria-label="Abrir Física"></a>
         <span class="prova-badge">P2 · Tri 1</span>
         <div class="icon">⚛️</div>
-        <h2>Física</h2>
+        <h2><a href="fisica.html" class="main-link" tabindex="-1">Física</a></h2>
         <p class="desc">Cinemática (Prof. Alan) e Termologia (Prof. Scotti). MRU, MRUV, dilatação térmica e calorimetria.</p>
         <div class="modules">
           <span>Mód. 5-8 · Cinemática</span>
@@ -174,17 +201,38 @@ footer .heart{color:var(--hist)}
           <span class="stats"><b>30</b> flashcards · <b>15</b> perguntas no quiz</span>
           <span class="arrow">→</span>
         </div>
-      </a>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 1º tri</span><span class="rl-go">em breve</span></span>
+      </div>
     </div>
   </div>
 
   <!-- 2º Trimestre -->
   <div class="tri-panel active" id="tri2">
     <div class="subjects-grid">
-      <a href="estudo_historia_p2t2.html" class="subject-card hist">
+      <p class="rec-note">🔁 Cada matéria tem um link de <b>Recuperação</b> dentro do card — a recuperação é trimestral e cobre P1 + P2.</p>
+
+      <div class="subject-card qui">
+        <a href="quimica_rec_t2.html" class="card-overlay" aria-label="Abrir Química"></a>
+        <span class="prova-badge">🔁 Só recuperação</span>
+        <div class="icon">🧪</div>
+        <h2><a href="quimica_rec_t2.html" class="main-link" tabindex="-1">Química</a></h2>
+        <p class="desc">Recuperação do trimestre a partir das provas que caíram: P1T2 e P2T2 comentadas questão a questão, conceitos-chave e simulado inédito.</p>
+        <div class="modules">
+          <span>Química A · M11-M23</span>
+          <span>Química B · M6-M10</span>
+        </div>
+        <div class="meta">
+          <span class="stats"><b>20</b> questões comentadas · <b>18</b> de reforço · <b>1</b> simulado</span>
+          <span class="arrow">→</span>
+        </div>
+        <a href="quimica_rec_t2.html" class="rec-link"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">→</span></a>
+      </div>
+
+      <div class="subject-card hist">
+        <a href="estudo_historia_p2t2.html" class="card-overlay" aria-label="Abrir História"></a>
         <span class="prova-badge">P2 · Tri 2</span>
         <div class="icon">🏛️</div>
-        <h2>História</h2>
+        <h2><a href="estudo_historia_p2t2.html" class="main-link" tabindex="-1">História</a></h2>
         <p class="desc">Baixa Idade Média e Idade Moderna: Renascimento comercial, Grandes Navegações, Colonização da América e Reforma Religiosa.</p>
         <div class="modules">
           <span>Mód. 19 · Renascimento</span>
@@ -197,12 +245,14 @@ footer .heart{color:var(--hist)}
           <span class="stats">mapas · <b>31</b> flashcards · <b>25</b> exercícios · <b>3</b> simulados</span>
           <span class="arrow">→</span>
         </div>
-      </a>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">em breve</span></span>
+      </div>
 
-      <a href="filosofia.html" class="subject-card filo">
+      <div class="subject-card filo">
+        <a href="filosofia.html" class="card-overlay" aria-label="Abrir Filosofia"></a>
         <span class="prova-badge">P1 · Tri 2</span>
         <div class="icon">🤔</div>
-        <h2>Filosofia</h2>
+        <h2><a href="filosofia.html" class="main-link" tabindex="-1">Filosofia</a></h2>
         <p class="desc">Hobbes, Locke, Rousseau, os liberais e Kant. Foco nos exercícios do roteiro (com resposta comentada).</p>
         <div class="modules">
           <span>Mód. 20 · Hobbes</span>
@@ -215,12 +265,14 @@ footer .heart{color:var(--hist)}
           <span class="stats"><b>25</b> exercícios · resposta + explicação</span>
           <span class="arrow">→</span>
         </div>
-      </a>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">em breve</span></span>
+      </div>
 
-      <a href="matematica.html" class="subject-card mat">
+      <div class="subject-card mat">
+        <a href="matematica.html" class="card-overlay" aria-label="Abrir Matemática"></a>
         <span class="prova-badge">P2 · Tri 2</span>
         <div class="icon">📐</div>
-        <h2>Matemática</h2>
+        <h2><a href="matematica.html" class="main-link" tabindex="-1">Matemática</a></h2>
         <p class="desc">Álgebra (Vinni) e Geometria (Dodl). Resumos, exercícios do roteiro com passo-a-passo e 3 simulados imprimíveis.</p>
         <div class="modules">
           <span>M17-24 · Funções</span>
@@ -230,12 +282,14 @@ footer .heart{color:var(--hist)}
           <span class="stats"><b>~90</b> exercícios · <b>3</b> simulados · fórmulas + radar</span>
           <span class="arrow">→</span>
         </div>
-      </a>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">em breve</span></span>
+      </div>
 
-      <a href="estudo_fisica_p2t2.html" class="subject-card fis">
+      <div class="subject-card fis">
+        <a href="estudo_fisica_p2t2.html" class="card-overlay" aria-label="Abrir Física"></a>
         <span class="prova-badge">P2 · Tri 2</span>
         <div class="icon">⚛️</div>
-        <h2>Física</h2>
+        <h2><a href="estudo_fisica_p2t2.html" class="main-link" tabindex="-1">Física</a></h2>
         <p class="desc">Dinâmica / Leis de Newton (Prof. Alan) e Gases (Prof. Scotti). Roteiro com gabarito comentado e 3 simulados imprimíveis.</p>
         <div class="modules">
           <span>Mód. 18-23 · Dinâmica</span>
@@ -245,7 +299,8 @@ footer .heart{color:var(--hist)}
           <span class="stats"><b>41</b> exercícios · <b>3</b> simulados (fácil/médio/difícil)</span>
           <span class="arrow">→</span>
         </div>
-      </a>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">em breve</span></span>
+      </div>
     </div>
   </div>
 
