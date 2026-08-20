@@ -52,7 +52,7 @@ html,body{
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
 /* generic */
-h2.sec{font-size:1.5rem;font-weight:800;margin:30px 0 14px;padding-bottom:8px;border-bottom:2px solid rgba(52,211,153,.28);
+h2.sec{scroll-margin-top:132px;font-size:1.5rem;font-weight:800;margin:30px 0 14px;padding-bottom:8px;border-bottom:2px solid rgba(52,211,153,.28);
   background:linear-gradient(90deg,var(--qui),var(--qui-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 h3.sub{font-size:1.12rem;font-weight:800;color:var(--gold);margin:22px 0 10px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:16px;box-shadow:var(--shadow)}
@@ -157,8 +157,8 @@ footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:44px;p
 @media print{
   html,body{background:#fff!important;color:#000!important;background-image:none!important}
   .hub-bar,.tabs,.hero,footer,.btn-row,.no-print{display:none!important}
-  .panel{display:none!important}
-  .panel.print-me{display:block!important}
+  .panel:not(.active){display:none!important}
+  .panel.active{display:block!important}
   .card,.q,.sim-head{background:#fff!important;border:1px solid #999!important;box-shadow:none!important;break-inside:avoid;page-break-inside:avoid}
   .q-head{background:#eee!important;border-bottom:1px solid #999!important}
   .q-code,.gold,h2.sec,h3.sub{color:#000!important;-webkit-text-fill-color:#000!important}
@@ -201,6 +201,7 @@ footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:44px;p
   <button data-p="p1">📄 P1 comentada</button>
   <button data-p="p2">📄 P2 comentada</button>
   <button data-p="conceitos">🧪 Conceitos-chave</button>
+  <button data-p="dicas">💡 Dicas</button>
   <button data-p="ativa">⚡ Recuperação ativa</button>
   <button data-p="reforco">💪 Reforço N1·N2·N3</button>
   <button data-p="simulado">📝 Simulado</button>
@@ -1962,6 +1963,415 @@ footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:44px;p
   </div>
 </section>
 
+
+<!-- ============ DICAS ============ -->
+<section class="panel" id="dicas">
+
+  <div class="dica-nav" id="dicaNav"></div>
+
+  <!-- 1 -->
+  <div class="dica" id="d1">
+    <div class="dica-head"><span class="dn">1</span><h3>Propriedades Periódicas</h3><span class="tag qa">M11</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> deram os <b>Z</b> dos elementos, ou uma tabela em branco com letras</div>
+
+    <div class="viz"><svg viewBox="0 34 404 174" width="100%" style="max-width:470px;height:auto">
+<defs>
+<marker id="ag" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#34d399"/></marker>
+<marker id="aa" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#f59e0b"/></marker>
+</defs>
+<rect x="96" y="74" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="74" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="96" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="108" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="240" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="252" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="264" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="276" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="288" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="86" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="96" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="108" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="240" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="252" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="264" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="276" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="288" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="98" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="96" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="108" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="120" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="132" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="144" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="156" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="168" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="180" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="192" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="204" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="216" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="228" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="240" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="252" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="264" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="276" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="288" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="110" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="96" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="108" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="120" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="132" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="144" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="156" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="168" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="180" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="192" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="204" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="216" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="228" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="240" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="252" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="264" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="276" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="288" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="122" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="96" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="108" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="120" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="132" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="144" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="156" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="168" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="180" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="192" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="204" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="216" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="228" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="240" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="252" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="264" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="276" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="288" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="134" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="96" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="108" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="120" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="132" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="144" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="156" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="168" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="180" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="192" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="204" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="216" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="228" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="240" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="252" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="264" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="276" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="288" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/><rect x="300" y="146" width="12" height="12" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width=".7"/>
+<line x1="96" y1="58" x2="308" y2="58" stroke="#34d399" stroke-width="2.4" marker-end="url(#ag)"/>
+<text x="96" y="50" font-size="10.5" font-weight="700" fill="#34d399" font-family="Segoe UI,sans-serif">ELETRONEGATIVIDADE · ENERGIA DE IONIZAÇÃO</text>
+<line x1="326" y1="154" x2="326" y2="74" stroke="#34d399" stroke-width="2.4" marker-end="url(#ag)"/>
+<line x1="308" y1="176" x2="96" y2="176" stroke="#f59e0b" stroke-width="2.4" marker-end="url(#aa)"/>
+<text x="96" y="192" font-size="10.5" font-weight="700" fill="#f59e0b" font-family="Segoe UI,sans-serif">RAIO ATÔMICO · ELETROPOSITIVIDADE (caráter metálico)</text>
+<line x1="80" y1="74" x2="80" y2="154" stroke="#f59e0b" stroke-width="2.4" marker-end="url(#aa)"/>
+</svg></div>
+
+    <div class="chip-row">
+      <span class="chipx g">Eletronegatividade</span>
+      <span class="chipx g">Energia de ionização</span>
+      <span class="chipx a">Raio atômico</span>
+      <span class="chipx a">Eletropositividade</span>
+    </div>
+    <p class="micro">São só <b>4 fatores</b> e <b>2 direções</b>. Sabendo uma seta, você sabe as quatro.</p>
+
+    <ol class="receita">
+      <li><b>Z → período e grupo</b> ao lado de cada símbolo.</li>
+      <li>Mesmo <b>período</b>? use a seta <b>horizontal</b>. Mesmo <b>grupo</b>? use a <b>vertical</b>.</li>
+      <li>Setas em conflito? <b>manda o período</b> (nº de camadas).</li>
+      <li>Íon: <span class="fx">cátion &lt; neutro &lt; ânion</span></li>
+    </ol>
+
+    <div class="exemplo">
+      <div class="ex-tag">P1 Q1</div>
+      <p class="ex-q">"K tem raio maior que Br?" &nbsp;·&nbsp; K (Z=19) · Br (Z=35)</p>
+      <div class="ex-flow">
+        <span>K = 4/1 · Br = 4/17</span><span class="ar">→</span>
+        <span>mesmo período</span><span class="ar">→</span>
+        <span>seta do raio aponta ←</span><span class="ar">→</span>
+        <span class="ok">K maior · <b>V</b></span>
+      </div>
+    </div>
+    <p class="cilada">🪤 eletropositividade = <b>inverso</b> da eletronegatividade.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="dica" id="d2">
+    <div class="dica-head"><span class="dn">2</span><h3>Geometria Molecular</h3><span class="tag qa">M18</span><span class="tag alta">caiu 5×</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> pediram a <b>forma</b> ou o <b>ângulo</b> da molécula</div>
+
+    <ol class="receita tight">
+      <li>Desenhe Lewis</li>
+      <li>Conte <b>nuvens</b> (ligantes + pares isolados)</li>
+      <li>Conte <b>pares isolados</b></li>
+      <li>Ache o par na tabela ↓</li>
+    </ol>
+
+    <div class="par-grid">
+      <div class="par-col apolar">
+        <div class="par-title">0 pares isolados</div>
+        <div class="par-item"><svg viewBox="0 0 64 52" width="56" height="46"><circle cx="32" cy="30" r="4.6" fill="#ffd166"/><line x1="32" y1="30" x2="49.0" y2="30.0" stroke="#cfe9df" stroke-width="1.9"/><circle cx="49.0" cy="30.0" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="15.0" y2="30.0" stroke="#cfe9df" stroke-width="1.9"/><circle cx="15.0" cy="30.0" r="3.6" fill="#7fe9c4"/></svg><span class="pn">2–0</span><b>Linear</b><span class="ang">180°</span><span class="ex">CO₂ · CS₂ · BeH₂</span></div>
+        <div class="par-item"><svg viewBox="0 0 64 52" width="56" height="46"><circle cx="32" cy="30" r="4.6" fill="#ffd166"/><line x1="32" y1="30" x2="32.0" y2="13.0" stroke="#cfe9df" stroke-width="1.9"/><circle cx="32.0" cy="13.0" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="17.3" y2="38.5" stroke="#cfe9df" stroke-width="1.9"/><circle cx="17.3" cy="38.5" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="46.7" y2="38.5" stroke="#cfe9df" stroke-width="1.9"/><circle cx="46.7" cy="38.5" r="3.6" fill="#7fe9c4"/></svg><span class="pn">3–0</span><b>Trigonal plana</b><span class="ang">120°</span><span class="ex">BF₃ · BH₃</span></div>
+        <div class="par-item"><svg viewBox="0 0 64 52" width="56" height="46"><circle cx="32" cy="30" r="4.6" fill="#ffd166"/><line x1="32" y1="30" x2="24.8" y2="14.6" stroke="#cfe9df" stroke-width="1.9"/><circle cx="24.8" cy="14.6" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="39.2" y2="14.6" stroke="#cfe9df" stroke-width="1.9"/><circle cx="39.2" cy="14.6" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="18.1" y2="39.8" stroke="#cfe9df" stroke-width="1.9"/><circle cx="18.1" cy="39.8" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="45.9" y2="39.8" stroke="#cfe9df" stroke-width="1.9"/><circle cx="45.9" cy="39.8" r="3.6" fill="#7fe9c4"/></svg><span class="pn">4–0</span><b>Tetraédrica</b><span class="ang">109,5°</span><span class="ex">CH₄ · CBr₄ · CHCℓ₃</span></div>
+      </div>
+      <div class="par-col polar">
+        <div class="par-title">com par isolado → <b>polar</b></div>
+        <div class="par-item"><svg viewBox="0 0 64 52" width="56" height="46"><circle cx="32" cy="30" r="4.6" fill="#ffd166"/><line x1="32" y1="30" x2="17.3" y2="38.5" stroke="#cfe9df" stroke-width="1.9"/><circle cx="17.3" cy="38.5" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="46.7" y2="38.5" stroke="#cfe9df" stroke-width="1.9"/><circle cx="46.7" cy="38.5" r="3.6" fill="#7fe9c4"/><circle cx="33.5" cy="18.1" r="2.1" fill="#f9a8d4"/><circle cx="30.5" cy="18.1" r="2.1" fill="#f9a8d4"/></svg><span class="pn">3–1</span><b>Angular</b><span class="ang">≈120°</span><span class="ex">SO₂ · O₃</span></div>
+        <div class="par-item"><svg viewBox="0 0 64 52" width="56" height="46"><circle cx="32" cy="30" r="4.6" fill="#ffd166"/><line x1="32" y1="30" x2="26.2" y2="46.0" stroke="#cfe9df" stroke-width="1.9"/><circle cx="26.2" cy="46.0" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="37.8" y2="46.0" stroke="#cfe9df" stroke-width="1.9"/><circle cx="37.8" cy="46.0" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="16.0" y2="35.8" stroke="#cfe9df" stroke-width="1.9"/><circle cx="16.0" cy="35.8" r="3.6" fill="#7fe9c4"/><circle cx="33.5" cy="18.1" r="2.1" fill="#f9a8d4"/><circle cx="30.5" cy="18.1" r="2.1" fill="#f9a8d4"/></svg><span class="pn">4–1</span><b>Piramidal</b><span class="ang">≈107°</span><span class="ex">NH₃ · NF₃ · PBr₃</span></div>
+        <div class="par-item"><svg viewBox="0 0 64 52" width="56" height="46"><circle cx="32" cy="30" r="4.6" fill="#ffd166"/><line x1="32" y1="30" x2="22.2" y2="43.9" stroke="#cfe9df" stroke-width="1.9"/><circle cx="22.2" cy="43.9" r="3.6" fill="#7fe9c4"/><line x1="32" y1="30" x2="41.8" y2="43.9" stroke="#cfe9df" stroke-width="1.9"/><circle cx="41.8" cy="43.9" r="3.6" fill="#7fe9c4"/><circle cx="37.4" cy="19.3" r="2.1" fill="#f9a8d4"/><circle cx="34.7" cy="18.3" r="2.1" fill="#f9a8d4"/><circle cx="29.3" cy="18.3" r="2.1" fill="#f9a8d4"/><circle cx="26.6" cy="19.3" r="2.1" fill="#f9a8d4"/></svg><span class="pn">4–2</span><b>Angular</b><span class="ang">≈104,5°</span><span class="ex">H₂O · H₂S · SBr₂</span></div>
+      </div>
+    </div>
+    <p class="micro"><b>6 pares de números, só isso.</b> Chegou num par fora da lista? contou errado.<br>
+    <span class="warnline">Apolar exige <b>0 pares isolados E ligantes iguais</b> — CHCℓ₃ é 4–0 e mesmo assim é polar.</span></p>
+
+    <div class="exemplo">
+      <div class="ex-tag">P1 Q4</div>
+      <table class="ex-tab mini">
+        <thead><tr><th>Molécula</th><th>nuvens</th><th>pares</th><th>→</th></tr></thead>
+        <tbody>
+          <tr><td><b>CO₂</b></td><td>2</td><td>0</td><td><span class="pn">2–0</span> Linear</td></tr>
+          <tr><td><b>NF₃</b></td><td>4</td><td>1</td><td><span class="pn">4–1</span> Piramidal</td></tr>
+          <tr><td><b>H₂O</b></td><td>4</td><td>2</td><td><span class="pn">4–2</span> Angular</td></tr>
+          <tr><td><b>BF₃</b></td><td>3</td><td>0</td><td><span class="pn">3–0</span> Trigonal plana</td></tr>
+        </tbody>
+      </table>
+      <p class="ex-res">✅ alternativa <b>a)</b></p>
+    </div>
+    <p class="cilada">🪤 <b>Be fica com 4 e⁻ · B fica com 6 e⁻</b> — nunca sobra par isolado neles.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="dica" id="d3">
+    <div class="dica-head"><span class="dn">3</span><h3>Tipos de Ligação</h3><span class="tag qa">M13 · M17</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> pediram o <b>tipo de ligação</b> ou uma <b>propriedade</b> (PF, condução)</div>
+
+    <div class="matriz">
+      <div class="mx-cell head"></div>
+      <div class="mx-cell head">METAL</div>
+      <div class="mx-cell head">AMETAL</div>
+      <div class="mx-cell head">METAL</div>
+      <div class="mx-cell m">METÁLICA</div>
+      <div class="mx-cell i">IÔNICA</div>
+      <div class="mx-cell head">AMETAL</div>
+      <div class="mx-cell i">IÔNICA</div>
+      <div class="mx-cell c">COVALENTE</div>
+    </div>
+    <p class="micro">Passo único: <b>marque cada átomo como metal ou ametal</b> e cruze na matriz. <span class="dim">(H conta como ametal.)</span></p>
+
+    <table class="prop-tab">
+      <thead><tr><th></th><th>Iônico</th><th>Molecular</th><th>Metálico</th></tr></thead>
+      <tbody>
+        <tr><td>PF / PE</td><td class="hi">alto</td><td class="lo">baixo</td><td class="hi">alto</td></tr>
+        <tr><td>conduz <b>sólido</b></td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+        <tr><td>conduz <b>fundido / na água</b></td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td></tr>
+      </tbody>
+    </table>
+    <p class="micro">Metal conduz por <b>elétrons</b> livres — <b>nunca prótons</b>.</p>
+
+    <div class="exemplo">
+      <div class="ex-tag">P1 Q3</div>
+      <p class="ex-q">Matriz Na · K · Ca · Cℓ · Br · I</p>
+      <div class="ex-flow">
+        <span>metais: Na K Ca</span><span class="ar">→</span>
+        <span>ametais: Cℓ Br I</span><span class="ar">→</span>
+        <span class="ok">3 blocos limpos · <b>b)</b></span>
+      </div>
+    </div>
+    <p class="cilada">🪤 a <b>diagonal</b> conta: Na–Na é metálica, Cℓ–Cℓ é covalente. Metal+metal <b>nunca</b> é iônica.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="dica" id="d4">
+    <div class="dica-head"><span class="dn">4</span><h3>Separação de Misturas</h3><span class="tag qb">M6</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> deram <b>temperaturas entre parênteses</b></div>
+
+    <div class="arvore">
+      <div class="no-raiz">Qual temperatura deram?</div>
+      <div class="ramos">
+        <div class="ramo">
+          <div class="no-cond">PF</div>
+          <div class="no-res">Fusão fracionada</div>
+        </div>
+        <div class="ramo">
+          <div class="no-cond">PL</div>
+          <div class="no-res">Liquefação fracionada</div>
+        </div>
+        <div class="ramo">
+          <div class="no-cond">PE</div>
+          <div class="sub">
+            <div class="no-sub">valores <b>distantes</b> ou sólido dissolvido<span class="seta-r">→</span><b class="res">Destilação simples</b></div>
+            <div class="no-sub">valores <b>próximos</b>, 2 líquidos<span class="seta-r">→</span><b class="res">Destilação fracionada</b></div>
+          </div>
+        </div>
+        <div class="ramo">
+          <div class="no-cond nen">nenhuma</div>
+          <div class="sub">
+            <div class="no-sub">sólido que não dissolveu<span class="seta-r">→</span><b class="res">Filtração</b></div>
+            <div class="no-sub">líquidos imiscíveis<span class="seta-r">→</span><b class="res">Decantação</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chip-row kw">
+      <span class="chipx k">"chá · café · infusão" → extração sólido-líquido</span>
+      <span class="chipx k">"vapor de água · óleo essencial" → arraste de vapor</span>
+      <span class="chipx k">"ar atmosférico" → liquefação fracionada</span>
+    </div>
+
+    <div class="exemplo">
+      <div class="ex-tag">P1 Q7</div>
+      <table class="ex-tab mini">
+        <tbody>
+          <tr><td>água (PE 100) + sal (PE 1413)</td><td class="ar">→</td><td><b>simples (6)</b></td></tr>
+          <tr><td>areia (PF 1710) + enxofre (PF 115)</td><td class="ar">→</td><td><b>fusão fracionada (1)</b></td></tr>
+          <tr><td>N₂ + O₂ do ar (PL)</td><td class="ar">→</td><td><b>liquefação (4)</b></td></tr>
+          <tr><td>chá de saquinho</td><td class="ar">→</td><td><b>extração sól-líq (3)</b></td></tr>
+          <tr><td>água (100) + etanol (78)</td><td class="ar">→</td><td><b>fracionada (2)</b></td></tr>
+          <tr><td>óleo do limão com vapor</td><td class="ar">→</td><td><b>arraste de vapor (5)</b></td></tr>
+        </tbody>
+      </table>
+      <p class="ex-res">✅ <b>6 – 1 – 4 – 3 – 2 – 5</b> → alternativa <b>d)</b></p>
+    </div>
+    <p class="cilada">🪤 água+sal = <b>simples</b> · água+etanol = <b>fracionada</b> · petróleo = <b>fracionada</b>.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="dica" id="d5">
+    <div class="dica-head"><span class="dn">5</span><h3>Massa Atômica Média e Isótopos</h3><span class="tag qb">M7</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> dois isótopos + uma <b>média com vírgula</b></div>
+
+    <div class="viz"><svg viewBox="0 0 480 132" width="100%" style="max-width:480px;height:auto">
+<defs><marker id="mi" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#ffd166"/></marker></defs>
+<line x1="40" y1="62" x2="440" y2="62" stroke="#cfe9df" stroke-width="2"/>
+<g font-family="Segoe UI,sans-serif" text-anchor="middle">
+<line x1="40" y1="54" x2="40" y2="70" stroke="#cfe9df" stroke-width="2"/>
+<text x="40" y="46" font-size="15" font-weight="800" fill="#7fe9c4">20</text>
+<line x1="120" y1="54" x2="120" y2="70" stroke="#ffd166" stroke-width="3"/>
+<text x="120" y="46" font-size="15" font-weight="800" fill="#ffd166">20,4</text>
+<text x="120" y="30" font-size="10" fill="#a9c2bb">média</text>
+<line x1="440" y1="54" x2="440" y2="70" stroke="#cfe9df" stroke-width="2"/>
+<text x="440" y="46" font-size="15" font-weight="800" fill="#7fe9c4">22</text>
+<line x1="40" y1="84" x2="120" y2="84" stroke="#f472b6" stroke-width="2" marker-end="url(#mi)" marker-start="url(#mi)"/>
+<text x="80" y="100" font-size="12" font-weight="700" fill="#f9a8d4">0,4</text>
+<line x1="120" y1="84" x2="440" y2="84" stroke="#60a5fa" stroke-width="2" marker-end="url(#mi)" marker-start="url(#mi)"/>
+<text x="280" y="100" font-size="12" font-weight="700" fill="#93c5fd">1,6</text>
+<text x="80" y="122" font-size="12.5" font-weight="800" fill="#93c5fd">→ o 20 leva 1,6/2,0 = 80%</text>
+<text x="300" y="122" font-size="12.5" font-weight="800" fill="#f9a8d4">→ o 22 leva 0,4/2,0 = 20%</text>
+</g></svg></div>
+    <p class="micro"><b>Distâncias invertidas:</b> cada isótopo leva a distância <b>do outro</b>. A média fica sempre <b>colada no mais abundante</b>.</p>
+
+    <div class="formulao">
+      <span class="fx big">A₁ · x &nbsp;+&nbsp; A₂ · (1 − x) &nbsp;=&nbsp; M<sub>média</sub></span>
+    </div>
+
+    <div class="exemplo">
+      <div class="ex-tag">P1 Q8</div>
+      <p class="ex-q">Ne-20 e Ne-22 · média 20,4 u · % do <b>mais leve</b>?</p>
+      <div class="ex-flow">
+        <span class="fx">20x + 22(1−x) = 20,4</span><span class="ar">→</span>
+        <span class="fx">22 − 2x = 20,4</span><span class="ar">→</span>
+        <span class="fx">x = 0,8</span><span class="ar">→</span>
+        <span class="ok"><b>80%</b> · alternativa c)</span>
+      </div>
+    </div>
+    <p class="cilada">🪤 sublinhe <b>"mais leve"</b> ou <b>"mais pesado"</b> antes de calcular.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="dica" id="d6">
+    <div class="dica-head"><span class="dn">6</span><h3>Massa Molecular e Massa Molar</h3><span class="tag qb">M8 · M9</span><span class="tag alta">caiu 5×</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> uma fórmula + as <b>massas atômicas dadas</b></div>
+
+    <div class="explode">
+      <div class="ex-form">Ca(HCO₃)<sub class="idx">2</sub></div>
+      <div class="ex-seta">abre →</div>
+      <div class="ex-atoms">
+        <span class="at">1 Ca</span><span class="at">2 H</span><span class="at">2 C</span><span class="at big">6 O</span>
+      </div>
+    </div>
+    <p class="micro"><b>O índice de fora multiplica TUDO que está dentro</b> — inclusive os índices que já estavam lá.</p>
+    <div class="chip-row">
+      <span class="chipx f">(SO₄)₃ → 3 S · <b>12 O</b></span>
+      <span class="chipx f">(NH₄)₃ → 3 N · <b>12 H</b></span>
+      <span class="chipx f">(HCO₃)₂ → 2 H · 2 C · <b>6 O</b></span>
+    </div>
+
+    <ol class="receita tight">
+      <li><b>Liste os átomos</b> antes de somar</li>
+      <li>Multiplique pelas massas e some</li>
+      <li>Unidade: <b>u</b> (molecular) ou <b>g/mol</b> (molar)</li>
+    </ol>
+    <div class="chip-row grupos">
+      <span class="chipx n">OH 17</span><span class="chipx n">NH₄ 18</span><span class="chipx n">CN 26</span><span class="chipx n">CO₃ 60</span>
+      <span class="chipx n">HCO₃ 61</span><span class="chipx n">NO₃ 62</span><span class="chipx n">PO₄ 95</span><span class="chipx n">SO₄ 96</span>
+    </div>
+    <p class="micro">E se continuar: <span class="fx">n = m / M</span> &nbsp;·&nbsp; <span class="fx">N = n × índice × 6,02·10²³</span></p>
+
+    <div class="exemplo">
+      <div class="ex-tag">P2 Q5</div>
+      <p class="ex-q">Massa molar de Ca(HCO₃)₂ · H=1 C=12 O=16 Ca=40</p>
+      <div class="ex-flow">
+        <span>1 Ca · 2 H · 2 C · 6 O</span><span class="ar">→</span>
+        <span>40 + 2 + 24 + 96</span><span class="ar">→</span>
+        <span class="ok"><b>162 g/mol</b> · alternativa c)</span>
+      </div>
+    </div>
+    <p class="cilada">🪤 nunca some sem listar. Foi assim que o <code>B₂(SO₄)₃</code> (=<b>310 u</b>, 12 oxigênios) derrubou a P1 Q9.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="dica" id="d7">
+    <div class="dica-head"><span class="dn">7</span><h3>Forças Inter × Intramoleculares</h3><span class="tag qa">M19 · M20</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> pediram a <b>interação</b> entre moléculas, ou usaram "inter" e "intra" na mesma frase</div>
+
+    <div class="dupla">
+      <div class="dp intra"><b>INTRA</b><span>= dentro</span><span class="dp-l">covalente · iônica · metálica</span></div>
+      <div class="dp inter"><b>INTER</b><span>= entre</span><span class="dp-l">dispersão · dipolo-dipolo · lig. de hidrogênio</span></div>
+    </div>
+    <p class="micro">Ligação de hidrogênio é <b>INTER</b>, sempre.</p>
+
+    <div class="fluxo">
+      <div class="fx-q">A molécula é polar?</div>
+      <div class="fx-br">
+        <div class="fx-path no"><span class="fx-cond">NÃO</span><span class="fx-out london">dispersão de London</span><span class="fx-alias">= dipolo induzido = dipolo instantâneo</span></div>
+        <div class="fx-path si">
+          <span class="fx-cond">SIM</span>
+          <div class="fx-q2">tem <b>H</b> ligado a <b class="fon">F, O ou N</b>?</div>
+          <div class="fx-sub">
+            <div><span class="fx-cond sm">SIM</span><span class="fx-out lh">ligação de hidrogênio</span></div>
+            <div><span class="fx-cond sm">NÃO</span><span class="fx-out dd">dipolo permanente</span><span class="fx-alias">= dipolo-dipolo</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="escada">
+      <div class="deg d1">dispersão</div>
+      <div class="deg d2">dipolo-dipolo</div>
+      <div class="deg d3">lig. hidrogênio</div>
+      <div class="gap">≪</div>
+      <div class="deg d4">covalente</div>
+      <div class="deg d5">iônica</div>
+    </div>
+    <p class="micro"><b>inter</b> = unidades/dezenas de kJ/mol &nbsp;·&nbsp; <b>intra</b> = centenas/milhares</p>
+
+    <div class="exemplo">
+      <div class="ex-tag">P2 Q4</div>
+      <table class="ex-tab mini">
+        <tbody>
+          <tr><td><b>SO₂</b></td><td>3–1 angular · polar</td><td class="ar">→</td><td>dipolo permanente</td></tr>
+          <tr><td><b>NH₃</b></td><td>4–1 piramidal · H em N</td><td class="ar">→</td><td>lig. de hidrogênio</td></tr>
+          <tr><td><b>HCℓ</b></td><td>polar · Cℓ não é FON</td><td class="ar">→</td><td>dipolo permanente</td></tr>
+          <tr><td><b>Br₂</b></td><td>átomos iguais · apolar</td><td class="ar">→</td><td>dipolo induzido</td></tr>
+        </tbody>
+      </table>
+      <p class="ex-res">✅ alternativa <b>c)</b></p>
+    </div>
+    <p class="cilada">🪤 <b>FON</b> e ponto: HCℓ e H₂S <b>não</b> fazem ligação de hidrogênio. E SO₂ <b>não</b> é CO₂ — tem par isolado.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="dica" id="d8">
+    <div class="dica-head"><span class="dn">8</span><h3>Temperatura de Ebulição</h3><span class="tag qa">M21</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> mandaram <b>ordenar</b> substâncias por PE</div>
+
+    <div class="escada grande">
+      <div class="deg d1">D<span>dispersão</span></div>
+      <div class="deg d2">DD<span>dipolo-dipolo</span></div>
+      <div class="deg d3">LH<span>lig. hidrogênio</span></div>
+      <div class="escada-lbl">ferve depois →</div>
+    </div>
+    <p class="micro"><b>Primeiro o tipo de força.</b> Empatou? aí sim <b>maior massa molar ferve depois</b>.</p>
+    <div class="chip-row">
+      <span class="chipx a">quem faz <b>ligação de hidrogênio</b> é sempre o <b>último</b> da crescente</span>
+      <span class="chipx a">massa molar <b>não</b> compara entre grupos diferentes</span>
+    </div>
+
+    <div class="exemplo">
+      <div class="ex-tag">P2 Q2</div>
+      <table class="ex-tab mini">
+        <thead><tr><th></th><th>força</th><th>M</th><th>ordem</th></tr></thead>
+        <tbody>
+          <tr><td><b>F₂</b></td><td><span class="fc d">D</span></td><td>38</td><td>1ª</td></tr>
+          <tr><td><b>CO₂</b></td><td><span class="fc d">D</span></td><td>44</td><td>2ª</td></tr>
+          <tr><td><b>H₂S</b></td><td><span class="fc dd">DD</span></td><td>34</td><td>3ª</td></tr>
+          <tr><td><b>HI</b></td><td><span class="fc dd">DD</span></td><td>128</td><td>4ª</td></tr>
+          <tr><td><b>NH₃</b></td><td><span class="fc lh">LH</span></td><td>17</td><td>5ª</td></tr>
+        </tbody>
+      </table>
+      <p class="ex-res">✅ IV &lt; II &lt; V &lt; I &lt; III → alternativa <b>e)</b></p>
+    </div>
+    <p class="cilada">🪤 NH₃ tem 17 g/mol — a mais leve — e ferve por <b>último</b>.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="dica" id="d9">
+    <div class="dica-head"><span class="dn">9</span><h3>Ligações Sigma e Pi</h3><span class="tag qa">M22 · M23</span></div>
+    <div class="quando"><span class="q-lbl">aparece quando</span> uma <b>estrutura desenhada</b> + pediram σ, π ou hibridização</div>
+
+    <div class="viz"><svg viewBox="0 0 480 148" width="100%" style="max-width:480px;height:auto" font-family="Segoe UI,sans-serif"><circle cx="46" cy="54" r="6" fill="#cfe9df"/><circle cx="114" cy="54" r="6" fill="#cfe9df"/><line x1="54" y1="54" x2="106" y2="54" stroke="#7fe9c4" stroke-width="3"/><text x="80" y="24" font-size="13" font-weight="800" fill="#f4faf8" text-anchor="middle">SIMPLES</text><text x="80" y="94" font-size="14" font-weight="900" fill="#7fe9c4" text-anchor="middle">1 σ</text><text x="80" y="112" font-size="14" font-weight="900" fill="#ffd166" text-anchor="middle">0 π</text><text x="80" y="132" font-size="10.5" fill="#a9c2bb" text-anchor="middle">sp³</text><circle cx="206" cy="54" r="6" fill="#cfe9df"/><circle cx="274" cy="54" r="6" fill="#cfe9df"/><line x1="214" y1="48" x2="266" y2="48" stroke="#7fe9c4" stroke-width="3"/><line x1="214" y1="60" x2="266" y2="60" stroke="#ffd166" stroke-width="3"/><text x="240" y="24" font-size="13" font-weight="800" fill="#f4faf8" text-anchor="middle">DUPLA</text><text x="240" y="94" font-size="14" font-weight="900" fill="#7fe9c4" text-anchor="middle">1 σ</text><text x="240" y="112" font-size="14" font-weight="900" fill="#ffd166" text-anchor="middle">1 π</text><text x="240" y="132" font-size="10.5" fill="#a9c2bb" text-anchor="middle">sp²</text><circle cx="366" cy="54" r="6" fill="#cfe9df"/><circle cx="434" cy="54" r="6" fill="#cfe9df"/><line x1="374" y1="45" x2="426" y2="45" stroke="#ffd166" stroke-width="3"/><line x1="374" y1="54" x2="426" y2="54" stroke="#7fe9c4" stroke-width="3"/><line x1="374" y1="63" x2="426" y2="63" stroke="#ffd166" stroke-width="3"/><text x="400" y="24" font-size="13" font-weight="800" fill="#f4faf8" text-anchor="middle">TRIPLA</text><text x="400" y="94" font-size="14" font-weight="900" fill="#7fe9c4" text-anchor="middle">1 σ</text><text x="400" y="112" font-size="14" font-weight="900" fill="#ffd166" text-anchor="middle">2 π</text><text x="400" y="132" font-size="10.5" fill="#a9c2bb" text-anchor="middle">sp</text><line x1="160" y1="20" x2="160" y2="138" stroke="rgba(255,255,255,.12)"/><line x1="320" y1="20" x2="320" y2="138" stroke="rgba(255,255,255,.12)"/></svg></div>
+    <div class="chip-row">
+      <span class="chipx g">σ total = <b>nº de ligações</b></span>
+      <span class="chipx a">π = <b>+1</b> por dupla, <b>+2</b> por tripla</span>
+      <span class="chipx r">π nunca ≥ σ</span>
+    </div>
+    <p class="micro">Hibridização do carbono pelas π <b>dele</b>: <span class="fx">0π → sp³</span> <span class="fx">1π → sp²</span> <span class="fx">2π → sp</span> — e a hibridização já entrega a geometria e o ângulo.</p>
+    <p class="micro"><b>Complete os hidrogênios antes de contar.</b> C faz 4 ligações · N faz 3 · O faz 2.</p>
+
+    <div class="exemplo">
+      <div class="ex-tag">P2 Q3</div>
+      <p class="ex-q">Ácido acrílico · CH₂=CH–COOH</p>
+      <div class="ex-flow">
+        <span>C=C · C–C · C=O · C–O · O–H · 3× C–H</span><span class="ar">→</span>
+        <span>8 ligações</span><span class="ar">→</span>
+        <span class="ok"><b>8 σ · 2 π</b> · alternativa e)</span>
+      </div>
+    </div>
+    <p class="cilada">🪤 as ligações com <b>hidrogênio</b> eram 4 das 8 sigmas. E as alternativas com π ≥ σ dava pra eliminar de saída.</p>
+  </div>
+
+  <h2 class="sec">🃏 Cola de bolso</h2>
+  <div class="cola">
+    <div class="btn-row no-print" style="margin:0 0 14px"><button class="btn gold" id="printCola">🖨️ Imprimir só a cola (1 página)</button><button class="btn" onclick="window.print()">🖨️ Imprimir as 9 receitas</button></div>
+    <table>
+      <thead><tr><th style="width:34px">#</th><th>Quando aparecer...</th><th>O primeiro movimento</th></tr></thead>
+      <tbody>
+        <tr><td><b>1</b></td><td>Deram os <b>Z</b> ou tabela com letras</td><td>Período/grupo de cada um. Verde cresce <b>→ ↑</b> · âmbar cresce <b>← ↓</b>. Conflito? manda o período.</td></tr>
+        <tr><td><b>2</b></td><td>Pediram a <b>forma</b></td><td><b>nuvens – pares isolados.</b> 2–0 · 3–0 · 4–0 · 3–1 · 4–1 · 4–2. Só isso existe.</td></tr>
+        <tr><td><b>3</b></td><td>Pediram <b>tipo de ligação</b> ou propriedade</td><td>Metal/ametal e cruze: M+A iônica · A+A covalente · M+M metálica.</td></tr>
+        <tr><td><b>4</b></td><td>Deram <b>temperaturas</b></td><td>PF → fusão fracionada · PL → liquefação · PE → destilação (próximos = fracionada).</td></tr>
+        <tr><td><b>5</b></td><td>Dois <b>isótopos</b> e uma média</td><td>Distâncias invertidas — cada um leva a distância do outro.</td></tr>
+        <tr><td><b>6</b></td><td>Uma <b>fórmula</b> + massas atômicas</td><td><b>Liste os átomos antes de somar.</b> O índice de fora multiplica tudo.</td></tr>
+        <tr><td><b>7</b></td><td>Pediram a <b>interação</b></td><td>Polar? Não → London. Sim + H em <b>FON</b> → lig. hidrogênio. Sim sem FON → dipolo-dipolo.</td></tr>
+        <tr><td><b>8</b></td><td>Mandaram <b>ordenar</b> por PE</td><td><b>D &lt; DD &lt; LH.</b> Massa molar só desempata dentro do grupo.</td></tr>
+        <tr><td><b>9</b></td><td>Estrutura desenhada, <b>σ e π</b></td><td>Complete os H. σ = nº de ligações · π = +1 dupla, +2 tripla.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <!-- ============ RECUPERAÇÃO ATIVA ============ -->
 <section class="panel" id="ativa">
   <h2 class="sec">Recuperação ativa</h2>
@@ -2138,6 +2548,213 @@ footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:44px;p
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
 <style>
+/* ===== DICAS (visual) ===== */
+#tabs button[data-p="dicas"]{background:linear-gradient(90deg,rgba(255,209,102,.16),rgba(245,158,11,.12));border-color:rgba(255,209,102,.5);color:var(--gold)}
+#tabs button[data-p="dicas"]:hover{color:#fff2cf}
+#tabs button[data-p="dicas"].active{background:linear-gradient(90deg,#f0b429,var(--gold));color:#2b1e00;border-color:transparent;box-shadow:0 8px 22px rgba(255,209,102,.35)}
+
+.dica-nav{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 22px}
+.dica-nav a{text-decoration:none;font-size:.78rem;font-weight:700;padding:7px 13px;border-radius:999px;
+  background:var(--card-2);border:1px solid rgba(255,209,102,.22);color:var(--ink-dim);transition:.2s;display:flex;align-items:center;gap:7px}
+.dica-nav a:hover{color:#2b1e00;background:linear-gradient(90deg,#f0b429,var(--gold));border-color:transparent;transform:translateY(-2px)}
+.dica-nav a b{display:inline-flex;align-items:center;justify-content:center;width:19px;height:19px;border-radius:50%;background:rgba(255,255,255,.1);font-size:.68rem}
+.dica-nav a:hover b{background:rgba(0,0,0,.2)}
+
+.dica{background:var(--card);border:1px solid rgba(255,209,102,.18);border-radius:20px;padding:22px 24px;margin-bottom:24px;
+  box-shadow:var(--shadow);position:relative;overflow:hidden;scroll-margin-top:132px}
+.dica::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#f0b429,var(--gold))}
+.dica-head{display:flex;flex-wrap:wrap;align-items:center;gap:11px;margin-bottom:12px}
+.dica-head .dn{flex:0 0 42px;width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#f0b429,var(--gold));color:#2b1e00;font-weight:900;font-size:1.3rem;box-shadow:0 8px 20px rgba(255,209,102,.28)}
+.dica-head h3{font-size:1.3rem;font-weight:800;margin:0;color:var(--gold)}
+
+.quando{display:flex;flex-wrap:wrap;align-items:center;gap:9px;font-size:.83rem;color:var(--ink-dim);margin-bottom:16px}
+.quando .q-lbl{font-size:.63rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:999px;
+  background:rgba(255,209,102,.14);border:1px solid rgba(255,209,102,.32);color:var(--gold)}
+
+.viz{display:flex;justify-content:center;padding:10px 4px 6px;margin-bottom:10px}
+.micro{font-size:.83rem;color:var(--ink-dim);margin:8px 0 14px;line-height:1.55}
+.micro b{color:var(--ink)}
+.dim{opacity:.7}
+.warnline{display:inline-block;margin-top:5px;padding:5px 10px;border-radius:8px;font-size:.79rem;
+  background:rgba(245,158,11,.10);border-left:3px solid var(--rec);color:var(--ink-dim)}
+.fx{display:inline-block;font-family:'Cascadia Code',Consolas,monospace;font-size:.84rem;padding:2px 9px;border-radius:7px;
+  background:rgba(255,255,255,.06);border:1px solid var(--line);color:var(--gold);margin:2px 3px 2px 0}
+.fx.big{font-size:1.02rem;padding:8px 16px}
+.formulao{display:flex;justify-content:center;margin:8px 0 14px}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+.chipx{font-size:.76rem;font-weight:700;padding:5px 11px;border-radius:9px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--ink-dim)}
+.chipx b{color:var(--ink)}
+.chipx.g{background:rgba(52,211,153,.13);border-color:rgba(52,211,153,.4);color:#8fe9c9}
+.chipx.a{background:rgba(245,158,11,.13);border-color:rgba(245,158,11,.4);color:#fcd34d}
+.chipx.r{background:rgba(239,68,68,.13);border-color:rgba(239,68,68,.4);color:#fca5a5}
+.chipx.k{background:rgba(96,165,250,.11);border-color:rgba(96,165,250,.32);color:#bcd7fb;font-weight:600}
+.chipx.f{font-family:'Cascadia Code',Consolas,monospace;font-size:.75rem}
+.chipx.n{font-family:'Cascadia Code',Consolas,monospace;font-size:.75rem;background:rgba(255,209,102,.11);border-color:rgba(255,209,102,.3);color:var(--gold)}
+
+.receita{counter-reset:rp;list-style:none;margin:0 0 14px 0}
+.receita>li{counter-increment:rp;position:relative;padding:9px 13px 9px 42px;margin-bottom:6px;font-size:.88rem;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:11px}
+.receita>li::before{content:counter(rp);position:absolute;left:11px;top:50%;transform:translateY(-50%);
+  width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:900;color:#2b1e00;background:linear-gradient(135deg,#f0b429,var(--gold))}
+.receita.tight>li{padding-top:7px;padding-bottom:7px;font-size:.85rem}
+
+/* geometria */
+.par-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:10px}
+.par-col{border-radius:14px;padding:12px 14px;border:1px solid var(--line);background:var(--card-2)}
+.par-col.apolar{border-color:rgba(96,165,250,.35)}
+.par-col.polar{border-color:rgba(244,114,182,.35)}
+.par-title{font-weight:900;font-size:.85rem;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.par-col.apolar .par-title{color:#93c5fd}
+.par-col.polar .par-title{color:#f9a8d4}
+.par-item{display:flex;flex-wrap:wrap;align-items:center;gap:9px;font-size:.86rem;padding:5px 0;border-top:1px solid rgba(255,255,255,.07)}
+.par-item svg{flex:0 0 56px}
+.pn{display:inline-flex;align-items:center;justify-content:center;min-width:46px;padding:3px 8px;border-radius:8px;
+  font-weight:900;font-size:.8rem;font-family:'Cascadia Code',Consolas,monospace;
+  background:rgba(255,209,102,.16);border:1px solid rgba(255,209,102,.4);color:var(--gold)}
+.par-item .ang{font-size:.75rem;color:var(--ink-dim)}
+.par-item .ex{font-size:.72rem;color:var(--ink-dim);margin-left:auto;opacity:.85}
+
+/* matriz metal/ametal */
+.matriz{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:430px;margin:0 0 10px}
+.mx-cell{padding:11px 8px;text-align:center;border-radius:10px;font-size:.8rem;font-weight:900;letter-spacing:.4px}
+.mx-cell.head{background:rgba(255,255,255,.05);color:var(--ink-dim);font-size:.72rem}
+.mx-cell.m{background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.4);color:#fcd34d}
+.mx-cell.i{background:rgba(239,68,68,.16);border:1px solid rgba(239,68,68,.4);color:#fca5a5}
+.mx-cell.c{background:rgba(96,165,250,.16);border:1px solid rgba(96,165,250,.4);color:#93c5fd}
+.prop-tab{font-size:.84rem;max-width:520px}
+.prop-tab td.yes{color:var(--ok);font-weight:900;text-align:center;font-size:1rem}
+.prop-tab td.no{color:var(--bad);font-weight:900;text-align:center;font-size:1rem}
+.prop-tab td.hi{color:var(--gold);font-weight:800}
+.prop-tab td.lo{color:var(--ink-dim)}
+
+/* árvore de decisão */
+.arvore{margin-bottom:12px}
+.no-raiz{display:inline-block;font-size:.85rem;font-weight:800;padding:8px 16px;border-radius:11px;
+  background:rgba(255,209,102,.14);border:1px solid rgba(255,209,102,.38);color:var(--gold);margin-bottom:10px}
+.ramos{display:grid;gap:8px}
+.ramo{display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:11px;
+  background:rgba(255,255,255,.035);border:1px solid var(--line)}
+.no-cond{flex:0 0 auto;min-width:52px;text-align:center;font-weight:900;font-size:.8rem;padding:5px 11px;border-radius:8px;
+  background:rgba(96,165,250,.16);border:1px solid rgba(96,165,250,.4);color:#93c5fd;font-family:'Cascadia Code',Consolas,monospace}
+.no-cond.nen{background:rgba(148,163,184,.13);border-color:rgba(148,163,184,.35);color:#cbd5e1;font-size:.72rem}
+.no-res{font-size:.87rem;font-weight:800;color:var(--ok);align-self:center}
+.ramo .sub{display:grid;gap:6px;flex:1;min-width:220px}
+.no-sub{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.82rem;color:var(--ink-dim)}
+.no-sub .seta-r{color:var(--gold);font-weight:900}
+.no-sub .res{color:var(--ok)}
+
+/* explodir fórmula */
+.explode{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;padding:14px;margin-bottom:10px;
+  border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line)}
+.ex-form{font-size:1.5rem;font-weight:800;color:var(--ink);font-family:Georgia,serif}
+.ex-form .idx{color:var(--rec);font-weight:900;font-size:.8em}
+.ex-seta{font-size:.75rem;font-weight:800;color:var(--gold);letter-spacing:.5px}
+.ex-atoms{display:flex;flex-wrap:wrap;gap:7px}
+.at{font-family:'Cascadia Code',Consolas,monospace;font-size:.88rem;font-weight:800;padding:6px 12px;border-radius:9px;
+  background:rgba(52,211,153,.13);border:1px solid rgba(52,211,153,.35);color:#8fe9c9}
+.at.big{background:rgba(245,158,11,.18);border-color:rgba(245,158,11,.5);color:#fcd34d}
+
+/* inter x intra */
+.dupla{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:8px}
+.dp{padding:11px 14px;border-radius:12px;display:flex;flex-direction:column;gap:2px;font-size:.82rem}
+.dp b{font-size:1rem;letter-spacing:1px}
+.dp span:nth-child(2){font-size:.75rem;opacity:.75}
+.dp .dp-l{margin-top:5px;font-weight:700}
+.dp.intra{background:rgba(239,68,68,.10);border:1px solid rgba(239,68,68,.32);color:#fca5a5}
+.dp.inter{background:rgba(52,211,153,.10);border:1px solid rgba(52,211,153,.32);color:#8fe9c9}
+
+/* fluxograma */
+.fluxo{padding:14px;border-radius:14px;background:rgba(255,255,255,.035);border:1px solid var(--line);margin-bottom:12px}
+.fx-q{font-size:.9rem;font-weight:800;color:var(--gold);margin-bottom:10px}
+.fx-q2{font-size:.85rem;font-weight:800;color:var(--gold);margin:4px 0 8px}
+.fx-br{display:grid;gap:10px}
+.fx-path{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+.fx-path.si{display:block}
+.fx-cond{font-weight:900;font-size:.74rem;padding:4px 10px;border-radius:7px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:var(--ink)}
+.fx-cond.sm{font-size:.68rem;padding:3px 8px}
+.fx-out{font-weight:800;font-size:.87rem;padding:5px 12px;border-radius:9px}
+.fx-out.london{background:rgba(96,165,250,.16);border:1px solid rgba(96,165,250,.4);color:#93c5fd}
+.fx-out.lh{background:rgba(244,114,182,.16);border:1px solid rgba(244,114,182,.4);color:#f9a8d4}
+.fx-out.dd{background:rgba(52,211,153,.16);border:1px solid rgba(52,211,153,.4);color:#8fe9c9}
+.fx-alias{font-size:.72rem;color:var(--ink-dim);opacity:.8}
+.fx-sub{display:grid;gap:7px;padding-left:6px;border-left:2px solid rgba(255,209,102,.3)}
+.fx-sub>div{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding-left:10px}
+.fon{color:var(--rec)}
+
+/* escada de forças */
+.escada{display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px;margin:0 0 8px}
+.deg{font-size:.78rem;font-weight:800;padding:8px 12px;border-radius:9px 9px 0 0;border:1px solid var(--line);border-bottom:none;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:2px;background:rgba(255,255,255,.05)}
+.deg span{font-size:.65rem;font-weight:600;opacity:.75}
+.escada .d1{min-height:40px;background:rgba(96,165,250,.13);border-color:rgba(96,165,250,.35);color:#93c5fd}
+.escada .d2{min-height:54px;background:rgba(52,211,153,.13);border-color:rgba(52,211,153,.35);color:#8fe9c9}
+.escada .d3{min-height:70px;background:rgba(244,114,182,.15);border-color:rgba(244,114,182,.4);color:#f9a8d4}
+.escada .d4{min-height:88px;background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#fcd34d}
+.escada .d5{min-height:106px;background:rgba(239,68,68,.16);border-color:rgba(239,68,68,.42);color:#fca5a5}
+.escada .gap{align-self:flex-end;font-size:1.2rem;font-weight:900;color:var(--ink-dim);padding:0 5px 10px}
+.escada.grande .deg{font-size:.95rem;min-width:104px}
+.escada.grande .d1{min-height:52px}
+.escada.grande .d2{min-height:70px}
+.escada.grande .d3{min-height:92px}
+.escada-lbl{align-self:center;font-size:.75rem;font-weight:800;color:var(--gold);margin-left:8px}
+.fc{font-family:'Cascadia Code',Consolas,monospace;font-weight:900;font-size:.75rem;padding:2px 8px;border-radius:7px}
+.fc.d{background:rgba(96,165,250,.16);color:#93c5fd}
+.fc.dd{background:rgba(52,211,153,.16);color:#8fe9c9}
+.fc.lh{background:rgba(244,114,182,.18);color:#f9a8d4}
+
+/* exemplo */
+.exemplo{background:rgba(255,209,102,.06);border:1px solid rgba(255,209,102,.24);border-radius:14px;padding:13px 15px;margin-bottom:10px}
+.ex-tag{display:inline-block;font-size:.66rem;font-weight:900;letter-spacing:.8px;padding:4px 11px;border-radius:999px;
+  background:linear-gradient(90deg,#f0b429,var(--gold));color:#2b1e00;margin-bottom:9px}
+.ex-q{font-size:.85rem;color:var(--ink-dim);margin-bottom:9px}
+.ex-flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.83rem}
+.ex-flow>span{padding:5px 11px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--line)}
+.ex-flow>span.ar{background:none;border:none;padding:0;color:var(--gold);font-weight:900}
+.ex-flow>span.ok{background:rgba(52,211,153,.16);border-color:rgba(52,211,153,.42);color:#8fe9c9;font-weight:700}
+.ex-tab{margin:6px 0 0;font-size:.83rem}
+.ex-tab.mini th{font-size:.68rem;padding:6px 9px}
+.ex-tab.mini td{padding:6px 9px}
+.ex-tab td.ar{color:var(--gold);font-weight:900;width:22px;text-align:center}
+.ex-res{margin:9px 0 0;font-size:.86rem;font-weight:700;color:#8fe9c9}
+.cilada{font-size:.83rem;color:var(--ink-dim);background:rgba(245,158,11,.08);border-left:3px solid var(--rec);
+  border-radius:0 11px 11px 0;padding:9px 13px;margin:0}
+.cilada b{color:var(--ink)}
+
+#dicas h2.sec{background:none;-webkit-text-fill-color:var(--gold);color:var(--gold);border-bottom-color:rgba(255,209,102,.3)}
+.cola{background:linear-gradient(135deg,rgba(255,209,102,.10),transparent),var(--card);
+  border:1px solid rgba(255,209,102,.35);border-radius:18px;padding:18px 20px;margin-top:8px}
+.cola table{font-size:.85rem}
+.cola th{background:rgba(255,209,102,.14)}
+
+@media(max-width:640px){
+  .dica{padding:16px 14px}
+  .matriz{max-width:100%}
+  .par-item .ex{margin-left:0;width:100%}
+}
+@media print{
+  .dica{background:#fff!important;border:1px solid #999!important;box-shadow:none!important;break-inside:avoid}
+  .dica::before{background:#bbb!important}
+  .dica-head h3{color:#000!important;-webkit-text-fill-color:#000!important}
+  .dica-head .dn{background:#ddd!important;color:#000!important}
+  .receita>li{background:#fff!important;border:1px solid #bbb!important}
+  .receita>li::before{background:#ddd!important;color:#000!important}
+  .exemplo,.par-col,.quando,.cilada,.fluxo,.explode,.arvore .ramo,.viz{background:#f7f7f7!important;color:#000!important}
+  .pn,.at,.fx,.chipx,.fc,.deg,.mx-cell,.no-cond{background:#eee!important;color:#000!important;border-color:#999!important}
+  .ex-tag{background:#ddd!important;color:#000!important}
+  .micro,.ex-q,.ex-flow>span,.no-sub{color:#000!important}
+  .dica-nav{display:none!important}
+  .viz svg rect{fill:#e9e9e9!important;stroke:#8a8a8a!important}
+  .quando .q-lbl{background:#eee!important;color:#000!important;border-color:#999!important}
+  .escada .deg,.mx-cell,.no-res,.no-sub .res{color:#000!important}
+  .cola{background:#fff!important;border:1px solid #999!important}
+  .cola th{background:#eee!important;color:#000!important}
+  .cola td,.cola b,.cola p,.cola code{color:#000!important}
+  code,.mono{background:#eee!important;color:#000!important}
+  body.print-cola #dicas .dica,body.print-cola #dicas .dica-nav{display:none!important}
+}
 .mtx-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:14px 0}
 .mtx{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:12px;padding:10px}
 .mtx .lab{font-weight:800;color:var(--qui);font-size:.85rem;margin-bottom:6px}
@@ -2227,6 +2844,26 @@ const MTX={
   });
   h+='</table><p style="font-size:.78rem;color:var(--ink-dim);text-align:center">Esquema redesenhado da tabela periódica em branco da prova, com as posições de A, B e C.</p>';
   host.innerHTML=h;
+})();
+
+/* ---------- Dicas: imprimir só a cola ---------- */
+(function(){
+  const b=document.getElementById('printCola'); if(!b) return;
+  b.addEventListener('click',()=>{
+    document.body.classList.add('print-cola');
+    window.print();
+    setTimeout(()=>document.body.classList.remove('print-cola'),600);
+  });
+  window.addEventListener('afterprint',()=>document.body.classList.remove('print-cola'));
+})();
+
+/* ---------- Dicas: menu de atalhos ---------- */
+(function(){
+  const host=document.getElementById('dicaNav'); if(!host) return;
+  host.innerHTML=[...document.querySelectorAll('#dicas .dica')].map(d=>{
+    const n=d.querySelector('.dn').textContent, t=d.querySelector('h3').textContent;
+    return '<a href="#'+d.id+'"><b>'+n+'</b> '+t+'</a>';
+  }).join('');
 })();
 
 /* ---------- Recuperação ativa ---------- */
