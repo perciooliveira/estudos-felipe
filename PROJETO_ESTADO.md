@@ -53,9 +53,10 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 ### 📐 Matemática — `matematica_rec_t2.html` (RECUPERAÇÃO)
 **Recuperação do Tri 2.** Convive com o material regular `matematica.html` — o card do hub tem os dois links.
 - Matemática A (Prof. Vinni) — conjuntos, intervalos, conjuntos numéricos, funções afim e quadrática.
-- Matemática B (Prof. Dodl) — trigonometria no triângulo retângulo, leis dos senos e cossenos, ângulos e retas paralelas, triângulos, polígonos, circunferência, Tales.
+- Matemática B (Prof. Dodl) — trigonometria no triângulo retângulo, leis dos senos e cossenos, retas paralelas cortadas por transversal, triângulos, polígonos e pontos notáveis. *(Circunferência, quadriláteros e Tales caíram nas provas mas ficaram fora da recuperação.)*
 - Mesmas 10 abas. Paleta azul → verde (`#60a5fa` → `#34d399`).
-- 16 questões reais comentadas, 18 de reforço, 8 no simulado, 10 cards de Dicas.
+- 16 questões reais comentadas, 18 de reforço, 8 no simulado. Após o filtro da PRT2 (22/08): **8 conceitos e 9 cards de Dicas**.
+- 🔁 **Filtrado pela PRT2:** saíram Mat B M18, M24, M26 e M27. P1 Q6 e P2 Q7 marcadas como parciais, P2 Q3 como fora. Ver a seção do filtro mais abaixo.
 - Figuras geométricas **redesenhadas em SVG inline** por `gen_svg.py` (os scans tinham marcas de caneta).
 - ⚠️ Gabarito da P2T2 **não é oficial** (o arquivo é o caderno de prova) — as respostas foram resolvidas e conferidas e estão sinalizadas.
 - ⚠️ O item 08 da Q8 da P2 saiu com enunciado incompleto; o material sinaliza e pede confirmação com o professor.
@@ -65,7 +66,8 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 - Bio A (Prof. Rafael) — M13 (ácidos nucleicos), M14 (pareamento e replicação), M15 (síntese proteica e código genético), M16 (biotecnologia), M17-18 (respiração celular), M19 (fermentação), M20-21 (fotossíntese e quimiossíntese).
 - Bio B (Prof.ª Larissa) — M3 (tipos de ovos), M4 (mórula/blástula/gástrula, proto × deuterostômios), M5 (folhetos germinativos, neurulação, celoma), M7 (anexos embrionários), M8 (fecundação → organogênese, blastocisto, nidação), M9 (taxonomia e nomenclatura).
 - Mesmas 10 abas. Paleta verde → azul-céu (`#22c55e` → `#38bdf8`). Sem KaTeX (não há matemática).
-- 20 questões reais comentadas, 13 conceitos-chave, 14 cards de Dicas + cola de bolso, 38 flashcards, 27 exercícios de reforço, simulado inédito de 10 questões.
+- 20 questões reais comentadas, 27 exercícios de reforço, simulado inédito de 10 questões. Após o filtro da PRT2 (22/08): **10 conceitos, 11 cards de Dicas, 33 flashcards**.
+- 🔁 **Filtrado pela PRT2:** saíram Bio A M16 e Bio B M3, M4 e M5. P1 Q4, Q5 e Q6 marcadas como fora; Q10 como parcial; Q7 fica pelo M8. Ver a seção do filtro mais abaixo.
 - Todas as figuras **redesenhadas em SVG inline** (`gen_svg.py`, `gen_svg2.py`, `gen_svg3.py`), incluindo o perfil de DNA da P1 Q5 — as 28 bandas foram extraídas do scan por detecção de blobs e reproduzidas altura por altura.
 - ✅ **Gabaritos oficiais** nas duas provas (destaques do professor no modelo A) — única matéria em que isso aconteceu.
 - ⚠️ A **Q8 da P1 saiu sem destaque no modelo A**; a resposta veio do caderno **modelo C**, onde a mesma questão aparece destacada. Lição: quando faltar destaque, procurar a questão nos outros modelos antes de inferir.
@@ -77,9 +79,10 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 - P1T2 — M12 (Império Bizantino), M13 (Islamismo), M15 (Reinos Bárbaros e Francos/Carolíngio), M16 (Feudalismo), M18 (Cruzadas). **Conteúdo novo**, não existia no hub.
 - P2T2 — M19 a M23: Renascimento comercial, Crise do século XIV, Grandes Navegações, plantation e colônias inglesas, América pré-colombiana e espanhola, Reforma. **Mesmos módulos** do material regular de História P2.
 - Mesmas 10 abas. Paleta vermelho → violeta (`#e94560` → `#9b6dff`).
-- 20 questões reais comentadas, 14 conceitos-chave, 14 cards de Dicas + cola de bolso, 54 flashcards, 24 exercícios de reforço, simulado inédito de 10 questões.
+- 20 questões reais comentadas, 24 exercícios de reforço, simulado inédito de 10 questões. Após o filtro da PRT2 (22/08): **10 conceitos, 11 cards de Dicas, 37 flashcards**.
+- 🔁 **Filtrado pela PRT2:** saíram M12, M13, M21 e M22 — 6 das 20 questões ficaram fora (P1 Q1, Q5, Q10 · P2 Q3, Q9, Q10). A linha do tempo foi redesenhada (11 datas) e a Dica 4 virou "As três Reformas". Ver a seção do filtro mais abaixo.
 - ✅ **Gabaritos oficiais nas duas provas** (destaques da professora no modelo A), confirmados pelos modelos C e E.
-- As provas de História **não têm figuras** — todos os 15 SVGs são didáticos, criados do zero: linha do tempo com 14 datas-âncora, cadeias causais (Revolução Agrícola → Cruzadas → Renascimento comercial), pirâmide feudal, contrato vassálico, servo × escravo, hierarquia da administração espanhola, entre outros.
+- As provas de História **não têm figuras** — todos os 15 SVGs são didáticos, criados do zero: linha do tempo com datas-âncora, cadeias causais (Revolução Agrícola → Cruzadas → Renascimento comercial), pirâmide feudal, contrato vassálico, servo × escravo, hierarquia da administração espanhola, entre outros.
 - ⚠️ A alternativa d) da Q7 da P1 saiu impressa com erro de digitação ("unindo *a os* europeus cristãos"); reproduzida literalmente e sinalizada.
 - 📌 **Lição da revisão adversarial:** eu tinha classificado o Cisma (1054) e as Cruzadas (1095) como Alta Idade Média. Pelo próprio roteiro (M19: "Baixa Idade Média, do século XI ao XV"), são **Baixa**. A linha do tempo foi corrigida e o material ganhou uma nota explícita sobre o corte.
 
@@ -147,6 +150,9 @@ estudos-felipe/
 ├── filosofia.html
 ├── matematica.html
 ├── quimica_rec_t2.html      (recuperação — Tri 2)
+├── matematica_rec_t2.html   (recuperação — Tri 2)
+├── biologia_rec_t2.html     (recuperação — Tri 2)
+├── historia_rec_t2.html     (recuperação — Tri 2)
 └── img/
     └── pages/         (81 fotos do livro de Matemática)
         ├── IMG_7260.jpg
@@ -154,16 +160,53 @@ estudos-felipe/
         └── ...
 ```
 
+## Filtro do roteiro oficial da recuperação (PRT2) — aplicado em 22/08/2026
+
+Chegou o **roteiro oficial da recuperação trimestral do 1º ano** (PDF do ClassApp, "PRT2 – CONTEÚDOS"). Ele **tem prioridade** sobre os roteiros de P1/P2, e é mais estreito. Os quatro materiais foram refiltrados segundo a regra definida pelo Percio:
+
+> Remover o **conteúdo de estudo** dos módulos que saíram (conceitos, dicas, flashcards, reforço, simulado, cola). **Manter todas as questões das provas**, apenas marcando as que ficaram fora do roteiro.
+
+Escopo oficial (1º ano, só as 4 matérias pedidas):
+
+| Componente | Módulos da PRT2 |
+|---|---|
+| Química A | 11, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23 |
+| Química B | 6, 7, 8, 9, 10 |
+| Matemática A | 9, 10, 11, 12, 13, 17, 18, 19, 20, 21, 23, 24 |
+| Matemática B | 13, 14, 15, 16, 19, 20, 21, 22, 23, 25 |
+| Biologia A | 13, 14, 15, 17, 18, 19, 20, 21 |
+| Biologia B | 7, 8, 9 |
+| História | 15, 16, 18, 19, 20, 23 |
+
+### ⚗️ Química — nada a cortar
+O escopo já batia exatamente. Só foi acrescentado um aviso na Visão Geral confirmando a conferência.
+
+### 📐 Matemática — 3 questões marcadas
+Fora: **Mat B M18** (ângulos em graus/minutos, complemento/replemento, relógio), **M24** (circunferência), **M26** (quadriláteros), **M27** (Tales). *Atenção: o M18 de Mat **A** continua no escopo — só o de Mat B saiu.*
+- Marcadas: **P1 Q6** (parcial: itens I e II fora) · **P2 Q3** (fora) · **P2 Q7** (parcial: só itens 01 e 32).
+- Ficaram **8 conceitos, 9 dicas** e 9 linhas de cola. Simulado S5 reescrito; S8 mudou de soma 51 → **43**.
+- Os roteiros da **P1T2** de Matemática (VINNI = Mat A, DODL = Mat B) finalmente chegaram e estão incorporados na Visão Geral.
+
+### 🧬 Biologia — 3 questões fora + 1 parcial
+Fora: **Bio A M16** (biotecnologia) · **Bio B M3** (tipos de ovos), **M4** (protostômios×deuterostômios, tri×diblásticos), **M5** (folhetos, notocorda, celoma).
+- *Detalhe que engana:* mórula, blástula, gástrula e nêurula **continuam no escopo**, porque o M8 pede a ordem completa dos eventos.
+- Marcadas: **P1 Q4, Q5, Q6** (fora) · **P1 Q7** (fica, via M8) · **P1 Q10** (parcial).
+- Ficaram **10 conceitos, 11 dicas**. Simulado: S4 e S5 substituídos, S10 item b reescrito.
+
+### 🏛️ História — o corte mais pesado: 6 das 20 questões
+Fora: **M12** (Bizâncio e Cisma do Oriente) · **M13** (Islamismo) · **M21** (plantation e colônias inglesas) · **M22** (pré-colombianos e América espanhola).
+- Marcadas: **P1 Q1, Q5, Q10** · **P2 Q3, Q9, Q10**.
+- Ficaram **10 conceitos, 11 dicas**. A **linha do tempo foi redesenhada** (14 → 11 datas) e a Dica 4 virou **"As três Reformas — e a resposta de Roma"** (luteranismo · calvinismo · anglicanismo · Contrarreforma), com figura nova.
+- Simulado: S1, S2 e S9 substituídos; S8 e S10 reescritos em parte.
+
+Todos os quatro passaram por revisão adversarial antes da entrega, que ainda encontrou e corrigiu erros reais (referências cruzadas desatualizadas, tabelas de gabarito não sincronizadas, "mediação papal" em Tordesilhas, contagens órfãs).
+
 ## O que está pendente / próximos passos possíveis
 
-- **Q. 17 do M27 (Tales) do roteiro de Matemática** — não achei nas fotos, deixei sem mapear. Se aparecer, adicionar.
-- **Roteiro específico da recuperação de Química T2** — ainda não recebido. Quando chegar, refiltrar `quimica_rec_t2.html`: ele tem prioridade sobre os roteiros de P1/P2 e pode eliminar assuntos (marcar como fora do escopo em vez de apagar).
+- **Q. 17 do M27 (Tales) do roteiro de Matemática** — não achei nas fotos, deixei sem mapear. O M27 saiu da PRT2, então virou irrelevante para a recuperação.
 - **Gabarito oficial da P1T2 de Química** — o arquivo recebido era o caderno de prova, não a folha de respostas. As respostas da P1 no material foram resolvidas e conferidas manualmente. Se o gabarito oficial aparecer, conferir.
-- **Roteiro específico da recuperação de Matemática T2 (P1T2)** — ainda não recebido. A página carrega um alerta explicando que o escopo veio do que a prova de fato cobrou.
-- **Roteiro específico da recuperação de Biologia T2** — ainda não recebido. Escopo atual = união dos roteiros da P1T2 e da P2T2.
-- **Roteiro específico da recuperação de História T2** — ainda não recebido. Escopo atual = união dos roteiros da P1T2 e da P2T2.
-- **Recuperação das demais matérias** (Filosofia e Física — T1 e T2; História do T1): cards já existem no hub marcados "em breve". Faltam as provas para construir.
-- **Próximas matérias**: Português, Inglês — seguir o mesmo padrão visual/estrutural.
+- **Recuperação das demais matérias do 1º ano** (Física, Geografia, Português, Filosofia, Literatura, Inglês, Redação, Geopolítica): o roteiro da PRT2 já traz os módulos de todas elas, mas o Percio disse em 22/08 que **só precisa de Matemática, Biologia, História e Química**. Se mudar de ideia, o roteiro está em memória.
+- **Recuperação do T1** (Filosofia, Física, História): cards já existem no hub marcados "em breve". Faltam as provas para construir.
 - **Próximas provas (P1 T3, P2 T3, etc.)** — cada nova prova ganha um HTML próprio ou vira aba adicional na página da matéria.
 
 ## Detalhes técnicos úteis
