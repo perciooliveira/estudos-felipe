@@ -71,6 +71,18 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 - ⚠️ A **Q8 da P1 saiu sem destaque no modelo A**; a resposta veio do caderno **modelo C**, onde a mesma questão aparece destacada. Lição: quando faltar destaque, procurar a questão nos outros modelos antes de inferir.
 - ⚠️ Dois pontos de atenção sinalizados no material: a Q9 da P1 gera um códon de parada na 2ª posição (defeito do enunciado) e o item 02 da Q8 da P2 usa a explicação do ácido lático, hoje superada pela fisiologia — nos dois casos o material orienta responder pelo livro e confirmar com o professor.
 
+### 🏛️ História — `historia_rec_t2.html` (RECUPERAÇÃO)
+**Recuperação do Tri 2.** Convive com o material regular `estudo_historia_p2t2.html` — o card do hub tem os dois links (o `rec-link` deixou de ser "em breve").
+- Professora Tâmyta nas duas provas.
+- P1T2 — M12 (Império Bizantino), M13 (Islamismo), M15 (Reinos Bárbaros e Francos/Carolíngio), M16 (Feudalismo), M18 (Cruzadas). **Conteúdo novo**, não existia no hub.
+- P2T2 — M19 a M23: Renascimento comercial, Crise do século XIV, Grandes Navegações, plantation e colônias inglesas, América pré-colombiana e espanhola, Reforma. **Mesmos módulos** do material regular de História P2.
+- Mesmas 10 abas. Paleta vermelho → violeta (`#e94560` → `#9b6dff`).
+- 20 questões reais comentadas, 14 conceitos-chave, 14 cards de Dicas + cola de bolso, 54 flashcards, 24 exercícios de reforço, simulado inédito de 10 questões.
+- ✅ **Gabaritos oficiais nas duas provas** (destaques da professora no modelo A), confirmados pelos modelos C e E.
+- As provas de História **não têm figuras** — todos os 15 SVGs são didáticos, criados do zero: linha do tempo com 14 datas-âncora, cadeias causais (Revolução Agrícola → Cruzadas → Renascimento comercial), pirâmide feudal, contrato vassálico, servo × escravo, hierarquia da administração espanhola, entre outros.
+- ⚠️ A alternativa d) da Q7 da P1 saiu impressa com erro de digitação ("unindo *a os* europeus cristãos"); reproduzida literalmente e sinalizada.
+- 📌 **Lição da revisão adversarial:** eu tinha classificado o Cisma (1054) e as Cruzadas (1095) como Alta Idade Média. Pelo próprio roteiro (M19: "Baixa Idade Média, do século XI ao XV"), são **Baixa**. A linha do tempo foi corrigida e o material ganhou uma nota explícita sobre o corte.
+
 ## Modalidade RECUPERAÇÃO (a partir de ago/2026)
 
 Metodologia própria, definida pelo Percio. Difere do estudo regular de P1/P2:
@@ -149,7 +161,8 @@ estudos-felipe/
 - **Gabarito oficial da P1T2 de Química** — o arquivo recebido era o caderno de prova, não a folha de respostas. As respostas da P1 no material foram resolvidas e conferidas manualmente. Se o gabarito oficial aparecer, conferir.
 - **Roteiro específico da recuperação de Matemática T2 (P1T2)** — ainda não recebido. A página carrega um alerta explicando que o escopo veio do que a prova de fato cobrou.
 - **Roteiro específico da recuperação de Biologia T2** — ainda não recebido. Escopo atual = união dos roteiros da P1T2 e da P2T2.
-- **Recuperação das demais matérias** (História, Filosofia, Física — T1 e T2): cards já existem no hub marcados "em breve". Faltam as provas para construir.
+- **Roteiro específico da recuperação de História T2** — ainda não recebido. Escopo atual = união dos roteiros da P1T2 e da P2T2.
+- **Recuperação das demais matérias** (Filosofia e Física — T1 e T2; História do T1): cards já existem no hub marcados "em breve". Faltam as provas para construir.
 - **Próximas matérias**: Português, Inglês — seguir o mesmo padrão visual/estrutural.
 - **Próximas provas (P1 T3, P2 T3, etc.)** — cada nova prova ganha um HTML próprio ou vira aba adicional na página da matéria.
 
