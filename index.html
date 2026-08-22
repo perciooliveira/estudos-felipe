@@ -12,6 +12,7 @@
   --filo:#8338ec; --filo-2:#f4a261; --filo-glow:rgba(131,56,236,.35);
   --mat:#3b82f6; --mat-2:#10b981; --mat-glow:rgba(59,130,246,.35);
   --qui:#34d399; --qui-2:#a3e635; --qui-glow:rgba(52,211,153,.35);
+  --bio:#22c55e; --bio-2:#38bdf8; --bio-glow:rgba(56,189,248,.35);
   --cal:#2dd4bf; --cal-2:#818cf8; --cal-glow:rgba(45,212,191,.35);
   --rec:#f59e0b; --rec-2:#ef4444;
   --gold:#ffd166; --ink:#f8f9ff; --ink-dim:#b9c4d6;
@@ -107,6 +108,10 @@ html,body{
 .subject-card:hover .arrow{transform:translateX(6px)}
 .subject-card .prova-badge{position:absolute;top:16px;right:16px;z-index:3;font-size:.7rem;font-weight:800;letter-spacing:.4px;padding:5px 11px;border-radius:999px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.16);color:var(--ink);backdrop-filter:blur(2px)}
 .subject-card.qui{--glow:var(--qui-glow)}
+.subject-card.bio{--glow:var(--bio-glow)}
+.subject-card.bio .icon{--c1:#22c55e;--c2:#38bdf8}
+.subject-card.bio h2{background:linear-gradient(90deg,var(--bio),var(--bio-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.subject-card.bio .arrow{--c1:#22c55e;--c2:#38bdf8}
 .subject-card.qui .icon{--c1:#34d399;--c2:#a3e635}
 .subject-card.qui h2{background:linear-gradient(90deg,var(--qui),var(--qui-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .subject-card.qui .arrow{--c1:#34d399;--c2:#a3e635}
@@ -158,7 +163,7 @@ footer .heart{color:var(--hist)}
   <!-- Seletor de trimestres -->
   <div class="tri-tabs" id="triTabs">
     <button data-tri="tri1">1º Trimestre <span class="cnt">2 matérias</span></button>
-    <button data-tri="tri2" class="active">2º Trimestre <span class="cnt">5 matérias</span></button>
+    <button data-tri="tri2" class="active">2º Trimestre <span class="cnt">6 matérias</span></button>
     <button class="soon" disabled>3º Trimestre <span class="cnt">em breve</span></button>
   </div>
   <p class="tri-sub" id="triSub">Material das provas do 2º trimestre.</p>
@@ -227,6 +232,24 @@ footer .heart{color:var(--hist)}
         </div>
         <a href="quimica_rec_t2.html" class="rec-link"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">→</span></a>
       </div>
+
+      <div class="subject-card bio">
+        <a href="biologia_rec_t2.html" class="card-overlay" aria-label="Abrir Biologia"></a>
+        <span class="prova-badge">🔁 Só recuperação</span>
+        <div class="icon">🧬</div>
+        <h2><a href="biologia_rec_t2.html" class="main-link" tabindex="-1">Biologia</a></h2>
+        <p class="desc">Recuperação do trimestre a partir das provas que caíram: P1T2 e P2T2 comentadas questão a questão, conceitos-chave, dicas visuais e simulado inédito.</p>
+        <div class="modules">
+          <span>Bio A · M13-M21</span>
+          <span>Bio B · M3-M5, M7-M9</span>
+        </div>
+        <div class="meta">
+          <span class="stats"><b>20</b> questões comentadas · <b>27</b> de reforço · <b>1</b> simulado</span>
+          <span class="arrow">→</span>
+        </div>
+        <a href="biologia_rec_t2.html" class="rec-link"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 2º tri</span><span class="rl-go">→</span></a>
+      </div>
+
 
       <div class="subject-card hist">
         <a href="estudo_historia_p2t2.html" class="card-overlay" aria-label="Abrir História"></a>
