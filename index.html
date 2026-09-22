@@ -115,6 +115,10 @@ html,body{
 .subject-card.qui .icon{--c1:#34d399;--c2:#a3e635}
 .subject-card.qui h2{background:linear-gradient(90deg,var(--qui),var(--qui-2));-webkit-background-clip:text;background-clip:text;color:transparent}
 .subject-card.qui .arrow{--c1:#34d399;--c2:#a3e635}
+.subject-card.geo{--glow:rgba(239,68,68,.35)}
+.subject-card.geo .icon{--c1:#ef4444;--c2:#60a5fa}
+.subject-card.geo h2{background:linear-gradient(90deg,#ef4444,#60a5fa);-webkit-background-clip:text;background-clip:text;color:transparent}
+.subject-card.geo .arrow{--c1:#ef4444;--c2:#60a5fa}
 
 /* Link de recuperação dentro do card */
 .subject-card .rec-link{position:relative;z-index:4;display:flex;align-items:center;gap:9px;margin-top:14px;
@@ -163,10 +167,10 @@ footer .heart{color:var(--hist)}
   <!-- Seletor de trimestres -->
   <div class="tri-tabs" id="triTabs">
     <button data-tri="tri1">1º Trimestre <span class="cnt">2 matérias</span></button>
-    <button data-tri="tri2" class="active">2º Trimestre <span class="cnt">6 matérias</span></button>
-    <button class="soon" disabled>3º Trimestre <span class="cnt">em breve</span></button>
+    <button data-tri="tri2">2º Trimestre <span class="cnt">6 matérias</span></button>
+    <button data-tri="tri3" class="active">3º Trimestre <span class="cnt">1 matéria</span></button>
   </div>
-  <p class="tri-sub" id="triSub">Material das provas do 2º trimestre.</p>
+  <p class="tri-sub" id="triSub">Material das provas do 3º trimestre.</p>
 
   <!-- 1º Trimestre -->
   <div class="tri-panel" id="tri1">
@@ -212,7 +216,7 @@ footer .heart{color:var(--hist)}
   </div>
 
   <!-- 2º Trimestre -->
-  <div class="tri-panel active" id="tri2">
+  <div class="tri-panel" id="tri2">
     <div class="subjects-grid">
       <p class="rec-note">🔁 Cada matéria tem um link de <b>Recuperação</b> dentro do card — a recuperação é trimestral e cobre P1 + P2.</p>
 
@@ -327,6 +331,30 @@ footer .heart{color:var(--hist)}
     </div>
   </div>
 
+  <!-- 3º Trimestre -->
+  <div class="tri-panel active" id="tri3">
+    <div class="subjects-grid">
+      <p class="rec-note">🔁 Cada matéria tem um link de <b>Recuperação</b> dentro do card — a recuperação é trimestral e cobre P1 + P2.</p>
+
+      <div class="subject-card geo">
+        <a href="geopolitica_p1t3.html" class="card-overlay" aria-label="Abrir Geopolítica"></a>
+        <span class="prova-badge">P1 · Tri 3</span>
+        <div class="icon">🌏</div>
+        <h2><a href="geopolitica_p1t3.html" class="main-link" tabindex="-1">Geopolítica</a></h2>
+        <p class="desc">A China no mundo de hoje: potência, comércio e cadeias globais, rivalidade com os EUA, razões do crescimento, mundo multipolar e Nova Rota da Seda. Dados até set/2026.</p>
+        <div class="modules">
+          <span>27/08 · China na geopolítica</span>
+          <span>03/09 · Crescimento chinês</span>
+        </div>
+        <div class="meta">
+          <span class="stats"><b>43</b> flashcards · <b>9</b> discursivas · <b>3</b> simulados</span>
+          <span class="arrow">→</span>
+        </div>
+        <span class="rec-link soon"><span class="rl-ico">🔁</span><span class="rl-txt">Recuperação do 3º tri</span><span class="rl-go">em breve</span></span>
+      </div>
+    </div>
+  </div>
+
   <footer>Material de estudo · 1º ano EM · Feito com <span class="heart">♥</span></footer>
 
 </div>
@@ -343,7 +371,7 @@ for(let i=0;i<50;i++){
   starsContainer.appendChild(s);
 }
 // seletor de trimestres
-const triSubs = {tri1:'Material das provas do 1º trimestre.', tri2:'Material das provas do 2º trimestre.'};
+const triSubs = {tri1:'Material das provas do 1º trimestre.', tri2:'Material das provas do 2º trimestre.', tri3:'Material das provas do 3º trimestre.'};
 document.querySelectorAll('#triTabs button[data-tri]').forEach(b => b.addEventListener('click', () => {
   document.querySelectorAll('#triTabs button').forEach(x => x.classList.remove('active'));
   document.querySelectorAll('.tri-panel').forEach(x => x.classList.remove('active'));

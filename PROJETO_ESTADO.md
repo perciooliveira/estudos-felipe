@@ -86,6 +86,17 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 - ⚠️ A alternativa d) da Q7 da P1 saiu impressa com erro de digitação ("unindo *a os* europeus cristãos"); reproduzida literalmente e sinalizada.
 - 📌 **Lição da revisão adversarial:** eu tinha classificado o Cisma (1054) e as Cruzadas (1095) como Alta Idade Média. Pelo próprio roteiro (M19: "Baixa Idade Média, do século XI ao XV"), são **Baixa**. A linha do tempo foi corrigida e o material ganhou uma nota explícita sobre o corte.
 
+### 🌏 Geopolítica — `geopolitica_p1t3.html` (P1 · Tri 3)
+**Primeira matéria do 3º trimestre** — modelo de ESTUDO DE PROVA (não recuperação). Prof.ª Juliana.
+- Não há livro: só o roteiro. Conteúdo montado por **pesquisa web com dados até set/2026**, cada bloco etiquetado pelo critério do roteiro (1.1, 1.2, 1.3, 2, 2.1, 2.2) e com fontes no rodapé.
+- Escopo: apenas as aulas de 27/08 (China na Geopolítica Mundial) e 03/09 (Razões do crescimento chinês), conforme o roteiro. A Nova Rota da Seda entra pelo critério 2.2 (estratégia econômica e geopolítica).
+- 11 abas: Visão Geral · Conteúdo · **Glossário** · Mapas Mentais · Flashcards (43) · Comparações · Linha do Tempo (31) · Radar de Armadilhas (11) · Exercícios do Roteiro · Treino Discursivo (9, imprimível com linhas) · Simulados (3×10, gabarito comentado).
+- 📏 **Regra de linguagem (pedida pelo Percio em 22/09/2026):** o material não pode ficar técnico demais para um aluno de 1º ano. Todo termo é explicado na primeira vez que aparece, frases curtas, mais contexto ("por que isso importa") e nenhuma sigla órfã. O Conteúdo é **curto de propósito**: cada bloco tem "Em uma frase" + 3 a 5 tópicos + figura + "O que cai", e cabe em cerca de uma tela. Só entra o que explica o tema; exemplo extra, data secundária e episódio pontual vivem nas outras abas (Linha do Tempo, Comparações, Flashcards, Glossário) — não no corpo do texto. Regra prática: se a informação não muda o entendimento do tema, ela não fica no Conteúdo. Cuidado ao acrescentar conteúdo novo: flashcards, tabelas e simulados precisam usar o MESMO vocabulário do Conteúdo (foi onde os termos órfãos apareceram na 1ª versão).
+- Paleta vermelho (China) → azul (EUA): `#ef4444` → `#60a5fa`.
+- ⏳ **Pendente:** fotos do material impresso da aula de 27/08 (15 questões, códigos G1-01…G1-15) e das questões 1 e 2 discursivas da aula de 03/09 (G2-01, G2-02). A aba Roteiro está com placeholders; `imageMap` vazio pronto para receber as fotos.
+- ⚠️ Assunto vivo: trégua comercial EUA–China vence em 10/nov/2026; encontro Trump–Xi em 24/09/2026. Revisar a seção 1.3 se a prova for depois de novidades.
+- Hub: aba **3º Trimestre** ativada (agora é a aba padrão), card `.subject-card.geo`.
+
 ## Modalidade RECUPERAÇÃO (a partir de ago/2026)
 
 Metodologia própria, definida pelo Percio. Difere do estudo regular de P1/P2:
