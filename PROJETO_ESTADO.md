@@ -97,6 +97,17 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 - ⚠️ Assunto vivo: trégua comercial EUA–China vence em 10/nov/2026; encontro Trump–Xi em 24/09/2026. Revisar a seção 1.3 se a prova for depois de novidades.
 - Hub: aba **3º Trimestre** ativada (agora é a aba padrão), card `.subject-card.geo`.
 
+### 🤔 Filosofia — `filosofia_p1t3.html` (P1 · Tri 3)
+**Segunda matéria do 3º trimestre** — modelo de ESTUDO DE PROVA, mesmo padrão de `estudo_historia_p2t2.html` (8 abas), com a regra de linguagem da Geopolítica (blocos curtos: "Em uma frase" + tópicos + figura + "O que cai"). Prof. Gustavo.
+- Mód. 31 (Romantismo, livro p. 113–117) e Mód. 32 (Freud e a Psicanálise, p. 118–123). Cada bloco do Conteúdo leva o número do critério do roteiro (31.1…31.7, 32.1…32.6).
+- **Material complementar do professor:** slides "23. ROMANTISMO" (12 slides, renderizados em `img/pages/t3-filosofia-slide-01…12.jpg`, galeria "🎞️ Ver slides da aula") e o texto "A Prova" (sonho, aula de Freud — texto completo recolhível no bloco 32.3). O que vem só dos slides (Schopenhauer: Vontade cega e pêndulo dor/tédio; vídeos indicados) leva a etiqueta **AULA**.
+- Páginas do livro em `img/pages/t3-filosofia-113…123.jpg`.
+- Roteiro: F31-1…F31-4 (objetivas: b, a, c, c) e F32-1…F32-3 (discursivas, com modelo de resposta). 38 flashcards, 19 datas na linha do tempo, 5 tabelas de comparação (inclui Marx × Freud e Rousseau × Hobbes × Freud), 3 simulados (S3 com 2 somatórios + 2 discursivas).
+- Paleta roxo → laranja (`#8338ec` → `#f4a261`), a mesma do card de Filosofia no hub.
+- ⚠️ Erros do livro sinalizados na página: "1889" para *A Interpretação dos Sonhos* (correto 1899/1900); "subconsciente" (termo correto: inconsciente); Kant no "séc. XIX" (é do fim do XVIII); "guerras mundiais do século XIX" na citação de Perry (são do XX). O livro também diz que Freud "assistiu" à morte das irmãs — elas morreram depois dele; a frase foi retirada do material.
+- Revisão adversarial feita: nenhum erro grave; corrigidos F32-2 (área = marxismo), F32-3 (premissa do "homem bom" ligada a Rousseau), termos técnicos sem explicação e ajustes menores.
+- Hub: card `.subject-card.filo` na aba 3º Trimestre (agora "2 matérias").
+
 ## Modalidade RECUPERAÇÃO (a partir de ago/2026)
 
 Metodologia própria, definida pelo Percio. Difere do estudo regular de P1/P2:
