@@ -108,6 +108,19 @@ O site é servido diretamente pelas páginas HTML no repo. Cada arquivo é auto-
 - Revisão adversarial feita: nenhum erro grave; corrigidos F32-2 (área = marxismo), F32-3 (premissa do "homem bom" ligada a Rousseau), termos técnicos sem explicação e ajustes menores.
 - Hub: card `.subject-card.filo` na aba 3º Trimestre (agora "2 matérias").
 
+### 📚 Literatura — `literatura_p1t3.html` (P1 · Tri 3)
+**Terceira matéria do 3º trimestre** — modelo de ESTUDO DE PROVA, mesmo padrão de `estudo_historia_p2t2.html` / `filosofia_p1t3.html` (8 abas), com a regra de linguagem da Geopolítica (blocos curtos: "Em uma frase" + tópicos + figura + "O que cai"). Prof.ª Joseane. Entregue em 28/09/2026.
+- Mód. 17 (Arcadismo no Brasil: contexto e características, p. 167–173), Mód. 18 (principais autores, p. 174–181), Mód. 19 (Romantismo na Europa, p. 182–187), Mód. 20 (Romantismo no Brasil, p. 188–192). Os critérios do roteiro são genéricos e iguais para todos os módulos, por isso cada bloco do Conteúdo leva a etiqueta do critério que atende (C1 VOCABULÁRIO, C2 CONTEXTO, C3 CARACTERÍSTICAS E AUTORES, C4 NOS POEMAS) em vez de um número por critério.
+- Páginas do livro em `img/pages/t3-literatura-167…192.jpg` (26 arquivos, 1300 px de largura, geradas do PDF "P1T3 - Literatura - 1º Ano.pdf").
+- Roteiro (15 questões, códigos `L<módulo>-<n>`): L17-4, 6, 9, 11, 14 · L18-5, 6, 7, 12 · L19-4, 5, 6 · L20-1, 6, 12. Gabarito (resolução própria, confirmado em revisão adversarial): L17-4 b · L17-6 d · L17-9 a · L17-11 b · L17-14 b · L18-5 e (INCORRETA) · L18-6 c · L18-7 c · L18-12 a · L19-4 b · L19-5 d · L19-6 d · L20-1 b · L20-6 d · L20-12 b.
+- Novidade técnica: `imageMap` aceita **array** de páginas para um exercício que ocupa duas páginas (L17-4 → 169/170, L17-6 → 170/171, L18-6 → 178/179); o modal abre em modo galeria com ‹ › e o card mostra a tag "2 PÁGINAS".
+- 54 flashcards (5 temas), 27 datas na linha do tempo (inclui todas as do Saiba+ da p. 183), 6 tabelas de comparação (Arcadismo × Romantismo, Barroco × Arcadismo, os cinco árcades, O Uraguai × Caramuru, Romantismo Europa × Brasil, pinturas), 3 simulados (S3 com 2 somatórios + 2 discursivas). Os simulados usam trechos de domínio público (Gonzaga, Cláudio, Gonçalves Dias, Alencar).
+- Paleta rosa → verde (`#ec4899` → `#4ade80`); módulos: 17 verde, 18 teal, 19 rosa, 20 laranja. Hub: card `.subject-card.lit` na aba 3º Trimestre (agora "3 matérias").
+- ⚠️ Erros do livro sinalizados: "Setecentismo… século XVII" (p. 167; é XVIII); quadro Saiba+ da p. 183 diz "adesão de Portugal ao Bloqueio Continental" (foi a recusa que causou a invasão); "guerra de 1759" nos Sete Povos (a Guerra Guaranítica é 1754–56; 1759 é a expulsão dos jesuítas); "universidades" em 1822 (eram faculdades).
+- 📌 Lições da revisão adversarial: eu tinha posto Silva Alvarenga na Inconfidência Mineira (ele foi preso no Rio, em 1794 — o inconfidente era Alvarenga Peixoto, que o livro não cita); a citação de Magalhães tinha perdido o "jamais" ("jamais deve esquecer-se de sua missão"); a pegadinha da questão 12 da p. 187 é "O Uraguai" (Basílio da Gama), não "O Guarani".
+- ⏳ **Pendente:** as duas **listas xerocadas** do roteiro (Lista do Arcadismo, 14–17/09, e Lista sobre Romantismo, 28/09–01/10) não foram recebidas. A aba Roteiro tem dois cards `PENDENTE` (filtro "Listas") prontos para receber os exercícios com códigos `LA-n` e `LR-n`.
+- 🔗 Ponte com Filosofia P1T3 (Mód. 31, Romantismo) no hub-bar e na Visão Geral.
+
 ## Modalidade RECUPERAÇÃO (a partir de ago/2026)
 
 Metodologia própria, definida pelo Percio. Difere do estudo regular de P1/P2:
@@ -170,6 +183,9 @@ estudos-felipe/
 ├── fisica.html
 ├── estudo_fisica_p2t2.html
 ├── filosofia.html
+├── filosofia_p1t3.html
+├── geopolitica_p1t3.html
+├── literatura_p1t3.html
 ├── matematica.html
 ├── quimica_rec_t2.html      (recuperação — Tri 2)
 ├── matematica_rec_t2.html   (recuperação — Tri 2)

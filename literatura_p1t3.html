@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literatura P1T3 — Arcadismo e Romantismo | Material de Estudo</title>
+<style>
+:root{
+  --bg-1:#1a0a16; --bg-2:#0f2a1e; --bg-3:#0b0710;
+  --h:#ec4899; --h2:#4ade80; --h-glow:rgba(236,72,153,.36);
+  --m17:#4ade80; --m18:#2dd4bf; --m19:#fb7185; --m20:#fb923c;
+  --gold:#ffd166; --ink:#f8f2f5; --ink-dim:#cdbfc9;
+  --card:#1c1326; --card-2:#2a1c3a; --wrong:#e74c3c; --ok:#22c55e;
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--bg-1),var(--bg-3) 50%,var(--bg-2));background-attachment:fixed;min-height:100vh;line-height:1.55}
+.container{max-width:1200px;margin:0 auto;padding:18px 18px 80px}
+
+.hub-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-radius:12px;margin-bottom:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.hub-bar a{color:var(--ink-dim);text-decoration:none;font-size:.86rem;display:inline-flex;align-items:center;gap:6px;font-weight:600;transition:color .2s}
+.hub-bar a:hover{color:var(--gold)}
+.hub-bar .subj{font-size:.8rem;color:var(--h);font-weight:700;background:var(--h-glow);padding:4px 10px;border-radius:6px;letter-spacing:1px}
+
+header.hero{text-align:center;padding:30px 16px 20px;background:radial-gradient(circle at 25% 30%,var(--h-glow),transparent 50%),radial-gradient(circle at 75% 70%,rgba(74,222,128,.22),transparent 50%);border-radius:20px;margin-bottom:14px;position:relative;overflow:hidden}
+header.hero h1{font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:1px;background:linear-gradient(90deg,var(--h),var(--gold),var(--h2));-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}
+header.hero p{margin-top:6px;color:var(--ink-dim);font-size:.92rem}
+.subtitle-tag{display:inline-block;margin-top:12px;padding:6px 14px;background:rgba(255,209,102,.15);border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-size:.72rem;letter-spacing:.5px;text-transform:uppercase}
+
+nav.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;justify-content:center;position:sticky;top:0;z-index:10;background:rgba(12,7,22,.92);backdrop-filter:blur(10px);padding:10px;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
+nav.tabs button{background:transparent;color:var(--ink-dim);border:1px solid rgba(255,255,255,.1);padding:8px 13px;border-radius:10px;cursor:pointer;font-size:.82rem;transition:all .25s;font-weight:600}
+nav.tabs button:hover{transform:translateY(-2px);color:var(--ink)}
+nav.tabs button.active{background:linear-gradient(90deg,var(--h),var(--h2));color:white;border-color:transparent;box-shadow:0 4px 18px var(--h-glow)}
+
+section.tab-content{display:none;animation:fadeIn .4s ease}
+section.tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h2.section-title{font-size:1.5rem;margin:6px 0 14px;display:flex;align-items:center;gap:10px}
+h2.section-title .ico{width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--h),var(--h2));border-radius:10px;font-size:1.2rem}
+.note{background:rgba(255,209,102,.08);border-left:3px solid var(--gold);padding:10px 14px;border-radius:6px;font-size:.86rem;color:var(--ink-dim);margin:10px 0}
+.note code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:4px;color:var(--gold)}
+
+/* OVERVIEW module cards */
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:12px;margin-top:14px}
+.module-card{padding:16px;border-radius:14px;background:var(--card);border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow);border-top:4px solid var(--m17);transition:transform .3s;position:relative;overflow:hidden}
+.module-card:hover{transform:translateY(-4px)}
+.module-card .badge{display:inline-block;padding:3px 9px;border-radius:6px;font-size:.7rem;font-weight:700;letter-spacing:1px;margin-bottom:8px;background:rgba(255,255,255,.08);color:var(--ink)}
+.module-card h4{font-size:1.05rem;margin-bottom:6px}
+.module-card ul{margin-top:6px;padding-left:18px;color:var(--ink-dim);font-size:.82rem}
+.module-card li{margin:3px 0}
+.module-card .qtag{margin-top:10px;font-size:.72rem;color:var(--gold);background:rgba(255,209,102,.1);padding:3px 8px;border-radius:6px;display:inline-block}
+.module-card .emoji{font-size:1.9rem;float:right;opacity:.85;margin-top:-4px}
+.criterio-box{margin-top:16px;padding:16px 20px;background:linear-gradient(90deg,rgba(255,209,102,.08),transparent);border-left:4px solid var(--gold);border-radius:10px}
+.criterio-box h4{color:var(--gold);margin-bottom:8px;font-size:.98rem}
+.criterio-box ul{padding-left:20px;color:var(--ink-dim);font-size:.86rem}
+.criterio-box li{margin:5px 0}
+.criterio-box .src{font-size:.72rem;color:var(--ink-dim);opacity:.75;margin-top:8px;display:block}
+.roadmap{margin-top:16px;padding:16px 20px;background:var(--card);border-radius:14px;border:1px solid rgba(255,255,255,.07)}
+.roadmap h4{color:var(--h);margin-bottom:8px}
+.roadmap ol{padding-left:22px;color:var(--ink-dim);font-size:.88rem}
+.roadmap li{margin:6px 0}
+
+/* CONTEÚDO */
+.content-card{background:var(--card);border-radius:14px;padding:18px 22px;margin-bottom:16px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);border-left:4px solid var(--m17)}
+.content-card h3{font-size:1.2rem;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.content-card h3 .mtag{font-size:.7rem;background:rgba(255,255,255,.08);color:var(--ink);padding:2px 8px;border-radius:6px;font-weight:700}
+.content-card h4{color:var(--gold);font-size:.98rem;margin:12px 0 4px}
+.content-card p{color:var(--ink-dim);font-size:.9rem;margin:6px 0}
+.content-card b{color:var(--ink)}
+.content-card .hl{color:var(--gold);font-weight:600}
+.gallery-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.see-pages{background:rgba(236,72,153,.12);color:var(--h);border:1px solid rgba(236,72,153,.35);padding:6px 12px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:600}
+.see-pages.cad{background:rgba(255,209,102,.1);color:var(--gold);border-color:rgba(255,209,102,.35)}
+.see-pages:hover{filter:brightness(1.15)}
+
+/* MAPAS MENTAIS (CSS) */
+.mind{background:var(--card);border-radius:16px;padding:18px 20px;margin-bottom:18px;border:1px solid rgba(255,255,255,.07);box-shadow:var(--shadow)}
+.mind .center{display:inline-block;font-weight:800;color:#fff;padding:8px 16px;border-radius:12px;font-size:1.05rem;background:linear-gradient(135deg,var(--h),var(--h2));margin-bottom:12px}
+.mind .branches{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.mind .branch{background:var(--card-2);border-radius:12px;padding:12px 14px;border-left:3px solid var(--gold)}
+.mind .branch h5{color:var(--gold);font-size:.9rem;margin-bottom:6px}
+.mind .branch ul{list-style:none;padding:0}
+.mind .branch li{font-size:.83rem;color:var(--ink-dim);padding:3px 0 3px 16px;position:relative}
+.mind .branch li::before{content:"▸";position:absolute;left:0;color:var(--h)}
+
+/* FLASHCARDS */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0}
+.filter-bar button{background:var(--card);color:var(--ink);border:1px solid rgba(255,255,255,.1);padding:8px 13px;border-radius:10px;cursor:pointer;font-size:.82rem;font-weight:600;transition:all .2s}
+.filter-bar button:hover{background:var(--card-2);transform:translateY(-2px)}
+.filter-bar button.active{background:var(--gold);color:#1a0a16;border-color:var(--gold)}
+.fc-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:10px}
+.flashcard{width:min(560px,94vw);height:220px;perspective:1200px;cursor:pointer}
+.flashcard .inner{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flashcard.flipped .inner{transform:rotateY(180deg)}
+.flashcard .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;padding:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08)}
+.flashcard .front{background:linear-gradient(135deg,var(--card),var(--card-2))}
+.flashcard .back{background:linear-gradient(135deg,#2a1230,#1a2e24);transform:rotateY(180deg);border-color:rgba(255,209,102,.3)}
+.flashcard .tema{position:absolute;top:10px;left:12px;font-size:.66rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);font-weight:700}
+.flashcard .q{font-size:1.05rem;font-weight:700;color:var(--ink)}
+.flashcard .a{font-size:.92rem;color:var(--ink-dim);line-height:1.5}
+.flashcard .hintflip{position:absolute;bottom:10px;right:12px;font-size:.68rem;color:var(--ink-dim);opacity:.7}
+.fc-nav{display:flex;gap:10px;align-items:center}
+.fc-nav button{background:var(--card);color:var(--ink);border:1px solid rgba(255,255,255,.12);padding:8px 16px;border-radius:10px;cursor:pointer;font-weight:700}
+.fc-nav .count{color:var(--ink-dim);font-size:.85rem;min-width:70px;text-align:center}
+
+/* COMPARAÇÕES */
+.cmp-table{width:100%;border-collapse:collapse;margin:10px 0 22px;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:.86rem}
+.cmp-table caption{caption-side:top;text-align:left;font-weight:800;color:var(--gold);padding:10px 4px;font-size:1rem}
+.cmp-table th,.cmp-table td{padding:10px 12px;border:1px solid rgba(255,255,255,.08);vertical-align:top;text-align:left;color:var(--ink-dim)}
+.cmp-table thead th{background:rgba(236,72,153,.14);color:var(--ink);font-weight:700}
+.cmp-table tbody th{background:rgba(255,255,255,.04);color:var(--gold);font-weight:600;white-space:nowrap}
+
+/* LINHA DO TEMPO */
+.timeline{position:relative;margin:20px 0 0 8px;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:3px;background:linear-gradient(var(--h),var(--h2))}
+.tl-item{position:relative;margin-bottom:16px;background:var(--card);border-radius:12px;padding:12px 16px;border:1px solid rgba(255,255,255,.07)}
+.tl-item::before{content:"";position:absolute;left:-22px;top:16px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:3px solid var(--bg-2)}
+.tl-item .year{color:var(--gold);font-weight:800;font-size:.95rem}
+.tl-item .ev{color:var(--ink-dim);font-size:.87rem;margin-top:2px}
+.tl-item .mtag{font-size:.66rem;color:var(--ink);background:rgba(255,255,255,.08);padding:2px 7px;border-radius:5px;margin-left:6px}
+
+/* EXERCÍCIOS DO ROTEIRO */
+.ex-card{background:var(--card);border-radius:14px;padding:16px 20px;margin-bottom:12px;border:1px solid rgba(255,255,255,.06);box-shadow:var(--shadow);border-left:4px solid var(--h)}
+.ex-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.ex-head .id{font-size:1rem;font-weight:800;color:var(--h)}
+.ex-head .tags{display:flex;gap:5px;flex-wrap:wrap}
+.ex-head .tag{font-size:.66rem;padding:2px 7px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--ink-dim);font-weight:700;letter-spacing:.5px}
+.ex-head .tag.mod{background:rgba(255,209,102,.12);color:var(--gold)}
+.ex-head .tag.banca{background:rgba(236,72,153,.14);color:var(--h)}
+.ex-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ex-actions button{background:rgba(255,255,255,.07);color:var(--ink);border:1px solid rgba(255,255,255,.1);padding:5px 12px;border-radius:8px;cursor:pointer;font-size:.75rem;font-weight:600;transition:all .2s}
+.ex-actions button:hover{background:rgba(255,255,255,.15)}
+.btn-orig{background:rgba(255,209,102,.12)!important;color:var(--gold)!important;border-color:rgba(255,209,102,.4)!important}
+.reveal-block{margin-top:8px;padding:12px 15px;background:rgba(255,209,102,.08);border-left:3px solid var(--gold);border-radius:6px;font-size:.87rem;color:var(--ink);animation:fadeIn .3s;line-height:1.6}
+.reveal-block .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--ink-dim);margin-bottom:6px;display:block;font-weight:700}
+.reveal-block b{color:var(--gold)}
+.reveal-block .verif{color:#ffb08a;font-weight:700}
+
+/* SIMULADOS */
+.sim-select{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.sim-card{background:linear-gradient(135deg,var(--card),var(--card-2));border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,.08)}
+.sim-card h4{color:var(--gold);font-size:1.05rem;margin-bottom:6px}
+.sim-card p{color:var(--ink-dim);font-size:.85rem;margin-bottom:8px}
+.sim-card .btn-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.sim-card button{background:var(--h);color:#fff;border:none;padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.78rem;font-weight:700;transition:transform .2s}
+.sim-card button:hover{transform:translateY(-2px)}
+.sim-card button.print{background:var(--gold);color:#1a0a16}
+#simView{margin-top:14px}
+.sim-header{background:var(--card);padding:14px 18px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.sim-header h3{color:var(--gold);font-size:1.1rem}
+.sim-header .info{font-size:.82rem;color:var(--ink-dim)}
+.sim-q{background:var(--card);border-radius:10px;padding:14px 18px;margin-bottom:10px;border:1px solid rgba(255,255,255,.06)}
+.sim-q .qh{display:flex;justify-content:space-between;margin-bottom:8px;align-items:center;gap:8px;flex-wrap:wrap}
+.sim-q .qh .code{font-weight:800;color:var(--gold);font-size:.95rem}
+.sim-q .qh .subject{font-size:.7rem;padding:2px 8px;border-radius:5px;background:rgba(255,255,255,.07);color:var(--ink-dim)}
+.sim-q .qbody{color:var(--ink);font-size:.9rem;line-height:1.6}
+.sim-q .altos{list-style:none;margin-top:8px}
+.sim-q .altos li{padding:4px 0 4px 24px;position:relative;font-size:.86rem;color:var(--ink-dim)}
+.sim-q .altos li::before{content:attr(data-l);position:absolute;left:0;color:var(--gold);font-weight:800}
+.sim-gab{margin-top:14px;padding:14px 18px;background:rgba(255,209,102,.08);border-left:4px solid var(--gold);border-radius:10px}
+.sim-gab h4{color:var(--gold);margin-bottom:6px}
+.sim-gab p,.sim-gab div{font-size:.85rem;color:var(--ink-dim)}
+
+footer{text-align:center;color:var(--ink-dim);font-size:.78rem;margin-top:30px;padding:14px;border-top:1px solid rgba(255,255,255,.06)}
+footer .heart{color:var(--h)}
+
+@media print{
+  html,body{background:white!important;color:#111!important}
+  .container{max-width:100%;padding:0;margin:0}
+  .hub-bar,header.hero,nav.tabs,footer,#simSelect,.sim-header,.tab-content:not(#simulado),#simView .no-print{display:none!important}
+  .print-header{display:block!important;text-align:center;border-bottom:2px solid #111;padding-bottom:14px;margin-bottom:24px}
+  .print-header h1{font-size:1.4rem;color:#111!important;margin:0}
+  .print-header .fields{margin-top:14px;font-size:.9rem;color:#111!important;text-align:left}
+  .print-header .fields div{margin:8px 0;border-bottom:1px solid #666;padding:4px 0;min-height:24px}
+  #simulado.tab-content{display:block!important;background:transparent!important;animation:none!important}
+  #simView{background:transparent!important;margin-top:0}
+  .sim-gab{display:none!important}
+  .sim-q{background:white!important;color:#111!important;border:1px solid #bbb!important;border-radius:8px!important;padding:12px 16px!important;margin-bottom:14px!important;box-shadow:none!important;page-break-inside:avoid}
+  .sim-q .qh .code{color:#111!important}
+  .sim-q .qh .subject{background:white!important;color:#111!important;border:1px solid #666!important}
+  .sim-q .qbody,.sim-q .altos li{color:#111!important}
+  .sim-q .altos li::before{color:#111!important}
+  .print-answer-space{border-bottom:1px dashed #888;min-height:60px;margin-top:10px}
+  @page{margin:1.2cm}
+}
+.print-header{display:none}
+@media(max-width:640px){.container{padding:12px 12px 60px}nav.tabs button{font-size:.76rem;padding:6px 9px}}
+
+/* MODAL imagem */
+.img-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:20px;animation:fadeIn .25s}
+.img-modal.open{display:flex}
+.img-modal .modal-inner{max-width:96vw;max-height:92vh;position:relative;background:var(--card);border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);display:flex;flex-direction:column}
+.img-modal .modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.img-modal .modal-head .title{color:var(--gold);font-weight:800;font-size:1rem;flex:1;min-width:120px}
+.img-modal .modal-head .zoom-controls{display:flex;gap:6px;align-items:center}
+.img-modal .modal-head .zoom-controls button{background:rgba(255,255,255,.08);color:var(--ink);border:1px solid rgba(255,255,255,.15);padding:6px 10px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.9rem;min-width:36px;line-height:1}
+.img-modal .modal-head .zoom-controls .zoom-val{color:var(--gold);font-family:monospace;font-size:.82rem;font-weight:700;min-width:48px;text-align:center}
+.img-modal .modal-head .close-btn{background:var(--wrong)!important;color:white!important;border:none!important;padding:6px 12px;border-radius:8px;cursor:pointer;font-weight:700;font-size:.85rem}
+.img-modal .modal-body{overflow:hidden;max-height:78vh;background:#000;border-radius:8px;position:relative;cursor:grab;user-select:none}
+.img-modal .modal-body.grabbing{cursor:grabbing}
+.img-modal .modal-body .img-wrap{width:100%;height:78vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.img-modal .modal-body img{max-width:100%;max-height:78vh;display:block;transform-origin:0 0;transition:transform .12s ease-out;pointer-events:none}
+.img-modal .modal-body .zoom-hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);color:var(--ink-dim);padding:4px 12px;border-radius:14px;font-size:.72rem;pointer-events:none;opacity:.7}
+.img-modal .modal-body .missing{padding:30px 20px;color:var(--ink-dim);text-align:center}
+.img-modal .modal-body .missing h4{color:var(--gold);margin-bottom:8px}
+.img-modal .modal-body .missing code{background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px;color:var(--gold);font-family:monospace;font-size:.85rem}
+
+h3.mod-head{font-size:1.3rem;margin:22px 0 8px;padding:10px 16px;border-radius:12px;background:linear-gradient(90deg,rgba(244,162,97,.16),transparent)}
+.gallery-btns.top{margin:0 0 14px}
+.oneline{background:rgba(255,255,255,.04);border-radius:8px;padding:9px 12px;margin:6px 0 8px!important;color:var(--ink)!important}
+ul.tops{padding-left:20px;margin:6px 0}
+ul.tops li{color:var(--ink-dim);font-size:.9rem;margin:6px 0;line-height:1.5}
+ul.tops li b{color:var(--ink)}
+.oqc{margin-top:10px!important;padding:8px 12px;border-radius:8px;background:rgba(255,209,102,.08);border-left:3px solid var(--gold)}
+.oqc b:first-child{color:var(--gold)}
+.warn{margin-top:10px;padding:8px 12px;border-radius:8px;background:rgba(231,76,60,.08);border-left:3px solid #ff9080;font-size:.84rem;color:var(--ink-dim)}
+.tag-aula{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.8px;padding:1px 6px;border-radius:4px;background:rgba(244,162,97,.2);color:var(--m17);vertical-align:1px}
+.fig{margin:12px 0 4px;text-align:center}
+.fig svg{max-width:100%;height:auto}
+button.mini{background:rgba(255,209,102,.12);color:var(--gold);border:1px solid rgba(255,209,102,.4);border-radius:6px;font-size:.72rem;padding:1px 8px;cursor:pointer;font-weight:700}
+.provatxt{margin:8px 0;padding:12px 16px;background:var(--card-2);border-radius:10px;font-size:.84rem;color:var(--ink-dim);max-height:340px;overflow:auto;line-height:1.55}
+.provatxt p{margin:0 0 6px}
+.bridge{margin-top:16px;padding:12px 16px;border-radius:12px;background:rgba(236,72,153,.12);border:1px solid rgba(236,72,153,.35);font-size:.86rem;color:var(--ink-dim)}
+.bridge a{color:var(--gold)}
+.vids{font-size:.8rem!important}
+.vids a{color:var(--gold)}
+.tl-item.key{border-color:rgba(255,209,102,.35)}
+.sim-q .altos.soma li{padding-left:0}
+.sim-q .altos.soma li::before{content:none}
+.disc-lines{height:10px}
+.print-lines,.soma-box{display:none}
+@media print{
+  .print-lines{display:block;height:150px;background:repeating-linear-gradient(transparent 0 27px,#999 27px 28px);margin-top:8px}
+  .soma-box{display:block;margin-top:8px;font-weight:700;color:#111}
+}
+
+.module-card.m17{border-top-color:var(--m17)} .module-card.m18{border-top-color:var(--m18)} .module-card.m19{border-top-color:var(--m19)} .module-card.m20{border-top-color:var(--m20)}
+.module-card.m17 .badge{background:rgba(74,222,128,.18);color:var(--m17)} .module-card.m18 .badge{background:rgba(45,212,191,.18);color:var(--m18)} .module-card.m19 .badge{background:rgba(251,113,133,.18);color:var(--m19)} .module-card.m20 .badge{background:rgba(251,146,60,.18);color:var(--m20)}
+.content-card.m17{border-left-color:var(--m17)} .content-card.m18{border-left-color:var(--m18)} .content-card.m19{border-left-color:var(--m19)} .content-card.m20{border-left-color:var(--m20)}
+.content-card.m17 h3 .mtag{background:rgba(74,222,128,.2);color:var(--m17)} .content-card.m18 h3 .mtag{background:rgba(45,212,191,.2);color:var(--m18)} .content-card.m19 h3 .mtag{background:rgba(251,113,133,.2);color:var(--m19)} .content-card.m20 h3 .mtag{background:rgba(251,146,60,.2);color:var(--m20)}
+.ex-card.m17{border-left-color:var(--m17)} .ex-card.m18{border-left-color:var(--m18)} .ex-card.m19{border-left-color:var(--m19)} .ex-card.m20{border-left-color:var(--m20)}
+.ex-card.pend{border-left-color:#9aa0a6;border-style:dashed;opacity:.85}
+h3.mod-head.m17{color:var(--m17);background:linear-gradient(90deg,rgba(74,222,128,.16),transparent)} h3.mod-head.m18{color:var(--m18);background:linear-gradient(90deg,rgba(45,212,191,.16),transparent)}
+h3.mod-head.m19{color:var(--m19);background:linear-gradient(90deg,rgba(251,113,133,.16),transparent)} h3.mod-head.m20{color:var(--m20);background:linear-gradient(90deg,rgba(251,146,60,.16),transparent)}
+.tag-aula{background:rgba(251,146,60,.2);color:var(--m20)}
+.tag-crit{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.6px;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,.08);color:var(--ink-dim);vertical-align:1px}
+.verse{margin:8px 0;padding:10px 14px;border-left:3px solid var(--h2);background:rgba(255,255,255,.04);border-radius:8px;font-style:italic;color:var(--ink);font-size:.88rem;line-height:1.5;white-space:pre-line}
+.verse .src{display:block;font-style:normal;font-size:.72rem;color:var(--ink-dim);margin-top:4px}
+.vocab{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin:10px 0}
+.vocab div{background:var(--card-2);border-radius:10px;padding:10px 12px;border-left:3px solid var(--gold);font-size:.84rem;color:var(--ink-dim)}
+.vocab div b{color:var(--gold);display:block;font-size:.9rem;margin-bottom:2px}
+.vocab div i{color:var(--ink)}
+.author{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.86rem;color:var(--ink-dim);margin:8px 0}
+.author dt{color:var(--gold);font-weight:700;white-space:nowrap}
+.author dd{margin:0;color:var(--ink-dim)}
+.author dd b{color:var(--ink)}
+.sim-q .verse{font-size:.85rem}
+@media print{.sim-q .verse{color:#111!important;background:#f3f3f3!important;border-left-color:#666!important}}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="hub-bar">
+  <a href="index.html">← Hub de matérias</a>
+  <span class="subj">📚 LITERATURA · P1T3</span>
+  <a href="filosofia_p1t3.html">Filosofia P1T3 (Romantismo) →</a>
+</div>
+
+<header class="hero">
+  <h1>Literatura — P1T3</h1>
+  <p>Do pastor ao herói que sofre: Arcadismo no Brasil (Módulos 17 e 18) e Romantismo na Europa e no Brasil (Módulos 19 e 20)</p>
+  <span class="subtitle-tag">Conteúdo · Mapas · Flashcards · Comparações · Linha do tempo · Roteiro · Simulados</span>
+</header>
+
+<nav class="tabs" id="mainTabs">
+  <button data-tab="overview" class="active">Visão Geral</button>
+  <button data-tab="conteudo">Conteúdo</button>
+  <button data-tab="mapas">Mapas Mentais</button>
+  <button data-tab="flashcards">Flashcards</button>
+  <button data-tab="compare">Comparações</button>
+  <button data-tab="timeline">Linha do Tempo</button>
+  <button data-tab="roteiro">Exercícios do Roteiro</button>
+  <button data-tab="simulado">Simulados</button>
+</nav>
+
+<!-- ===== VISÃO GERAL ===== -->
+<section class="tab-content active" id="overview">
+  <h2 class="section-title"><span class="ico">🗺️</span>Visão Geral</h2>
+  <div class="note">Montado a partir do <b>roteiro da P1T3</b> (Prof.ª Joseane) e das <b>páginas 167–192 do livro</b> (Português C, Módulos 17 a 20). O roteiro também cita duas <b>listas xerocadas</b> (Arcadismo e Romantismo) que ainda não recebi — estão marcadas como pendentes na aba Roteiro.</div>
+  <div class="modules-grid">
+    <div class="module-card m17"><span class="emoji">⛏️</span><span class="badge">MÓDULO 17</span><h4>Arcadismo no Brasil: contexto e características</h4><ul><li>Século do Ouro, Vila Rica e Inconfidência Mineira</li><li>Neoclassicismo · Setecentismo</li><li>Bucolismo, pastoralismo, bom selvagem</li><li>Vocabulário: carpe diem, fugere urbem, locus amoenus…</li><li>Lírica, satírica e épica</li></ul><span class="qtag">Roteiro: 4, 6, 9, 11 e 14 · 24–27/08</span></div>
+    <div class="module-card m18"><span class="emoji">🪕</span><span class="badge">MÓDULO 18</span><h4>Arcadismo: principais autores</h4><ul><li>Cláudio Manuel da Costa (Glauceste Satúrnio)</li><li>Tomás Antônio Gonzaga (Dirceu): Marília de Dirceu e Cartas Chilenas</li><li>Silva Alvarenga (Alcindo Palmireno)</li><li>Santa Rita Durão: Caramuru</li><li>Basílio da Gama: O Uraguai</li></ul><span class="qtag">Roteiro: 5, 6, 7 e 12 · 31/08–03/09</span></div>
+    <div class="module-card m19"><span class="emoji">🌹</span><span class="badge">MÓDULO 19</span><h4>Romantismo na Europa</h4><ul><li>Werther (1774), Byron, Walter Scott</li><li>Burguesia, Iluminismo e a reação romântica</li><li>18 características em 4 famílias</li><li>A palavra "romance"</li><li>Pinturas: Delacroix, Géricault, David</li></ul><span class="qtag">Roteiro: 4, 5 e 6 · 21–24/09</span></div>
+    <div class="module-card m20"><span class="emoji">🌴</span><span class="badge">MÓDULO 20</span><h4>Romantismo no Brasil</h4><ul><li>1822, Rio de Janeiro e o público leitor</li><li>1836: Suspiros Poéticos e revista Niterói</li><li>Nacionalismo, indianismo, idealização</li><li>Gonçalves Dias e José de Alencar nos exercícios</li><li>Arcadismo × Romantismo</li></ul><span class="qtag">Roteiro: 1, 6 e 12 · 28/09–01/10</span></div>
+  </div>
+  <div class="criterio-box">
+    <h4>📋 Critérios de avaliação (transcrição do roteiro)</h4>
+    <ul>
+      <li><b>Todos os módulos (17, 18, 19 e 20):</b> 1. Demonstrar domínio vocabular. 2. Estabelecer relações entre o texto literário e o momento de sua produção, situando aspectos do contexto histórico, social e político. 3. Identificar características do movimento literário, reconhecer os autores e estabelecer relação com o momento histórico e seu estilo de escrita.</li>
+      <li><b>Mód. 18 (extra):</b> 4. Encontrar características da escola literária vigente nos poemas apresentados.</li>
+      <li><b>Lista do Arcadismo (14–17/09) e Lista sobre Romantismo:</b> 1. Demonstrar domínio vocabular. 2. Estabelecer relações dos excertos apresentados ao contexto histórico. 3. Identificar autor e suas características de escrita. 4. (Romantismo) Encontrar características da escola literária vigente nos poemas apresentados. — <i>atividades xerocadas, ainda não recebidas</i>.</li>
+    </ul>
+    <span class="src">Fonte: Roteiro de Estudos – Provas · Literatura · P1T3 · 1º ano. No Conteúdo, cada bloco traz a etiqueta do critério que ele atende: <span class="tag-crit">C1 VOCABULÁRIO</span> <span class="tag-crit">C2 CONTEXTO</span> <span class="tag-crit">C3 CARACTERÍSTICAS E AUTORES</span> <span class="tag-crit">C4 NOS POEMAS</span>.</span>
+  </div>
+  <div class="roadmap">
+    <h4>🧭 Como estudar</h4>
+    <ol>
+      <li>Leia o <b>Conteúdo</b> na ordem: 17 → 18 → 19 → 20. Cada bloco cabe numa tela: "Em uma frase", tópicos e "O que cai".</li>
+      <li>Decore o <b>vocabulário</b> (bloco 17.3) — o critério 1 vale em todos os módulos e as alternativas das bancas usam essas palavras.</li>
+      <li>Fixe com <b>Mapas Mentais</b> e <b>Flashcards</b>; leia as <b>Comparações</b> — a prova adora "Arcadismo × Romantismo" e "Barroco × Arcadismo".</li>
+      <li>Faça os <b>15 exercícios do roteiro</b> pela foto do livro e só depois abra o gabarito comentado. Use a figura "Parece árcade / parece romântico" (bloco 20.5) nas questões com poema.</li>
+      <li>Imprima um <b>Simulado</b> por dia; o Simulado 3 traz somatórios e discursivas.</li>
+    </ol>
+  </div>
+  <div class="bridge">🔗 <b>Ponte com Filosofia (P1T3):</b> o Módulo 31 de Filosofia estuda o mesmo Romantismo — a reação ao Iluminismo, o sentimento acima da razão, a natureza incontrolável e o nacionalismo. O que você aprendeu lá vale aqui (e vice-versa): <a href="filosofia_p1t3.html">filosofia_p1t3.html</a>.</div>
+</section>
+
+<!-- ===== CONTEÚDO ===== -->
+<section class="tab-content" id="conteudo">
+  <h2 class="section-title"><span class="ico">📖</span>Conteúdo</h2>
+  <div class="note">Resumo curto por módulo, com a etiqueta do critério do roteiro. Para ler o livro inteiro, use <b>📖 Ver páginas do livro</b>. Termos difíceis são explicados na primeira vez que aparecem.</div>
+
+  <h3 class="mod-head m17">⛏️ Módulo 17 · Arcadismo no Brasil: contexto e características</h3>
+  <div class="gallery-btns top"><button class="see-pages" onclick="openModuleModal('M17')">📖 Ver páginas do livro (167–173)</button></div>
+
+  <div class="content-card m17">
+    <h3><span class="mtag">17.1</span> O contexto: Século do Ouro e Inconfidência <span class="tag-crit">C2 CONTEXTO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o Arcadismo brasileiro nasce em <b>Minas Gerais</b>, no século XVIII, no meio da corrida do ouro e das ideias de liberdade que levaram à <b>Inconfidência Mineira</b>.</p>
+    <ul class="tops">
+      <li><b>Século do Ouro:</b> no século XVIII a colônia vive da extração de ouro e diamantes em Minas. <b>Vila Rica</b> (hoje Ouro Preto) vira o centro econômico e cultural do Brasil.</li>
+      <li>As ideias <b>iluministas</b> (razão, liberdade, crítica ao poder do rei) chegam aos <b>letrados</b> (as pessoas com estudo). Resultado: a <b>Inconfidência Mineira</b> (1789), conspiração contra a Coroa portuguesa, e a <b>Conjuração Baiana</b> (1798, revolta em Salvador, com participação do povo).</li>
+      <li>Poetas árcades participaram da Inconfidência: <b>Cláudio Manuel da Costa</b> morreu na prisão; <b>Gonzaga</b> foi exilado em Moçambique. (Silva Alvarenga não estava nela: foi preso depois, no Rio, em 1794.)</li>
+      <li><b>Marco inicial:</b> <i>Obras Poéticas</i> (1768), de Cláudio Manuel da Costa. Outros nomes da escola: <b>Neoclassicismo</b> (por revisitar os valores gregos e romanos) e <b>Setecentismo</b> (porque aconteceu nos anos 1700 = século XVIII).</li>
+      <li>A época se chama também <b>Brasil Colônia</b>: a Metrópole (Portugal) mandava; a Colônia (Brasil) obedecia. Essa tensão aparece nos poemas.</li>
+    </ul>
+    <div class="fig"><svg viewBox="0 0 690 180" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="30" width="118" height="70" rx="10" fill="#3a2f12" stroke="#ffd166" stroke-width="1.5"/><text x="69.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Século do Ouro</text><text x="69.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">ouro e diamantes</text><text x="69.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">em Minas (séc. XVIII)</text><line x1="130" y1="65" x2="146" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="148" y="30" width="118" height="70" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="207.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Vila Rica</text><text x="207.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">hoje Ouro Preto</text><text x="207.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">centro da colônia</text><line x1="268" y1="65" x2="284" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="286" y="30" width="118" height="70" rx="10" fill="#1b2a44" stroke="#60a5fa" stroke-width="1.5"/><text x="345.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Iluminismo</text><text x="345.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">razão, liberdade</text><text x="345.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">crítica ao rei</text><line x1="406" y1="65" x2="422" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="424" y="30" width="118" height="70" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="483.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Inconfidência</text><text x="483.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Mineira (1789)</text><text x="483.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">contra a Coroa</text><line x1="542" y1="65" x2="558" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="560" y="30" width="120" height="70" rx="10" fill="#2b2b33" stroke="#9aa0a6" stroke-width="1.5"/><text x="620.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Poetas presos</text><text x="620.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Cláudio Manuel</text><text x="620.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">e Gonzaga</text><text x="345" y="20" text-anchor="middle" fill="#ffd166" font-size="13" font-weight="700">O Arcadismo brasileiro nasce no meio disso tudo</text><rect x="180" y="120" width="330" height="44" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="345.0" y="145.8" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Marco inicial: Obras Poéticas (1768), de Cláudio Manuel da Costa</text></svg></div>
+    <div class="warn">⚠️ <b>Atenção ao livro:</b> a p. 167 diz que o nome Setecentismo vem "do século XVII". Setecentos = anos 1700 = <b>século XVIII</b>. O Arcadismo é do século XVIII.</div>
+    <p class="oqc"><b>O que cai:</b> relacionar o poema ao momento histórico — Colônia × Metrópole, Vila Rica, Inconfidência (questões L17-4, L17-11 e L18-6 do roteiro).</p>
+  </div>
+
+  <div class="content-card m17">
+    <h3><span class="mtag">17.2</span> Características do Arcadismo <span class="tag-crit">C3 CARACTERÍSTICAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o árcade quer a <b>vida simples do campo</b>, imita os clássicos gregos e latinos e foge do exagero do Barroco.</p>
+    <ul class="tops">
+      <li><b>Inspiração clássica:</b> modelos greco-latinos e renascentistas (equilíbrio, clareza, medida).</li>
+      <li><b>Pastoralismo:</b> o poeta finge ser um pastor e adota um <b>pseudônimo</b> (nome falso) grego ou latino. <b>Bucolismo</b>: elogio da vida no campo, calma e natural.</li>
+      <li><b>Influência iluminista</b> e o <b>bom selvagem</b> de Rousseau: o homem nasce bom e puro; a vida simples, junto à natureza, é a melhor.</li>
+      <li><b>Culto da simplicidade</b>, exaltação da pureza, da ingenuidade e da beleza; <b>mitologia pagã</b> (deuses gregos: Apolo, Diana, Anfião) como enfeite.</li>
+      <li><b>Tensão campo × cidade</b>: a cidade é agitada e falsa; o campo é a paz. <b>Tom confessional</b> (o poeta fala de si) e <b>espontaneidade dos sentimentos</b>.</li>
+      <li><b>Oposição ao Barroco:</b> sai o rebuscado (frases enroladas, jogos de contrários, angústia religiosa), entra a linguagem clara e o equilíbrio.</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> reconhecer o movimento por um comentário de crítico (L17-9: "simplicidade", "áurea mediocridade", "naturalidade") e marcar o que <u>não</u> é árcade (L18-7: "angústia metafísica e religiosa" — metafísica = sobre o que está além do mundo físico: alma, Deus, salvação — é Barroco).</p>
+  </div>
+
+  <div class="content-card m17">
+    <h3><span class="mtag">17.3</span> Vocabulário árcade <span class="tag-crit">C1 VOCABULÁRIO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> cinco expressões em latim resumem o programa árcade — e as bancas as usam nas alternativas.</p>
+    <div class="fig"><svg viewBox="0 0 690 140" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="14" width="126" height="86" rx="10" fill="#3a2f12" stroke="#ffd166" stroke-width="1.5"/><text x="73.0" y="45.5" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">carpe diem</text><text x="73.0" y="60.8" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">&quot;aproveite o dia&quot;</text><text x="73.0" y="76.0" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">a vida é curta: viva o presente</text><rect x="144" y="14" width="126" height="86" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="207.0" y="45.5" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">fugere urbem</text><text x="207.0" y="60.8" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">&quot;fugir da cidade&quot;</text><text x="207.0" y="76.0" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">a paz está no campo</text><rect x="278" y="14" width="126" height="86" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="341.0" y="45.5" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">locus amoenus</text><text x="341.0" y="60.8" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">&quot;lugar ameno&quot;</text><text x="341.0" y="76.0" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">paisagem agradável e ideal</text><rect x="412" y="14" width="126" height="86" rx="10" fill="#1b2a44" stroke="#60a5fa" stroke-width="1.5"/><text x="475.0" y="45.5" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">inutilia truncat</text><text x="475.0" y="60.8" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">&quot;cortar o inútil&quot;</text><text x="475.0" y="76.0" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">linguagem simples, sem enfeite</text><rect x="546" y="14" width="126" height="86" rx="10" fill="#2a1b44" stroke="#b388ff" stroke-width="1.5"/><text x="609.0" y="45.5" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">aurea mediocritas</text><text x="609.0" y="60.8" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">&quot;mediania dourada&quot;</text><text x="609.0" y="76.0" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">equilíbrio: nem luxo, nem miséria</text><text x="340" y="126" text-anchor="middle" fill="#ffd166" font-size="12.5" font-weight="700">Palavras em latim = &quot;senhas&quot; das alternativas de prova</text></svg></div>
+    <div class="vocab">
+      <div><b>carpe diem</b><i>"aproveite o dia"</i> — a vida é curta, então viva o presente. Ex.: Lira XIV de Gonzaga ("o tempo corre… Também, Marília, morre").</div>
+      <div><b>fugere urbem</b><i>"fugir da cidade"</i> — a paz está no campo. Ex.: Marília de Dirceu, "não sou algum vaqueiro… Tenho próprio casal".</div>
+      <div><b>locus amoenus</b><i>"lugar ameno"</i> — paisagem agradável e idealizada: fonte, sombra, rebanho, prado.</div>
+      <div><b>inutilia truncat</b><i>"cortar o inútil"</i> — linguagem simples e direta, sem enfeites barrocos.</div>
+      <div><b>aurea mediocritas</b><i>"mediania dourada"</i> — vida equilibrada, sem luxo e sem miséria; o "meio-termo" ideal.</div>
+      <div><b>Arcádia / árcade</b><i>região da Grécia, terra de pastores</i> — deu nome às academias literárias (a Arcádia Romana foi fundada em 1690) e aos poetas do séc. XVIII.</div>
+      <div><b>eu lírico</b><i>a voz que fala no poema</i> — não é o autor de carne e osso. Dirceu é o eu lírico de Gonzaga.</div>
+      <div><b>musa</b><i>a mulher amada que inspira</i> — Marília (Gonzaga), Glaura (Silva Alvarenga), Nise (Cláudio).</div>
+      <div><b>lira</b><i>instrumento de cordas → tipo de poema</i> — "Lira I", "Lira XIV" são os poemas de Marília de Dirceu.</div>
+      <div><b>soneto</b><i>14 versos</i> — 2 quartetos (4 versos) + 2 tercetos (3 versos). Forma preferida de Cláudio Manuel da Costa.</div>
+      <div><b>decassílabo</b><i>verso de 10 sílabas poéticas</i> — verso dos épicos (Camões, Basílio da Gama, Santa Rita Durão).</div>
+      <div><b>versos brancos</b><i>sem rima</i> — O Uraguai e as Cartas Chilenas usam decassílabos brancos.</div>
+      <div><b>oitava rima</b><i>estrofe de 8 versos rimados</i> — modelo de Os Lusíadas, seguido por Caramuru.</div>
+      <div><b>epopeia / épica</b><i>poema longo que narra feitos heroicos</i> — partes clássicas: proposição, invocação, dedicatória, narração, epílogo.</div>
+      <div><b>sátira</b><i>crítica com humor e ironia</i> — Cartas Chilenas.</div>
+      <div><b>nativismo</b><i>orgulho da terra natal</i> — ainda não é nacionalismo (o país não existia), mas prepara o caminho.</div>
+    </div>
+    <p class="oqc"><b>O que cai:</b> "domínio vocabular" é o critério 1 de <u>todos</u> os módulos. Também vale para palavras dos poemas do livro: <i>outeiros</i> (colinas), <i>gabões</i> (capas grosseiras), <i>choupana</i> (casa pobre), <i>penhas</i> (rochedos), <i>bateia</i> (utensílio de garimpo), <i>esmeril</i> (pedra de polir), <i>fastos</i> (registros).</p>
+  </div>
+
+  <div class="content-card m17">
+    <h3><span class="mtag">17.4</span> As três vertentes: lírica, satírica e épica <span class="tag-crit">C3 CARACTERÍSTICAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> a poesia árcade brasileira se divide em três tipos — a que <b>sente</b> (lírica), a que <b>critica</b> (satírica) e a que <b>narra heróis</b> (épica).</p>
+    <div class="fig"><svg viewBox="0 0 690 244" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="245" y="10" width="200" height="44" rx="10" fill="#3a2f12" stroke="#ffd166" stroke-width="1.5"/><text x="345.0" y="36.2" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">ARCADISMO BRASILEIRO</text><line x1="345" y1="56" x2="115" y2="88" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="10" y="90" width="210" height="60" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="115.0" y="116.0" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">LÍRICA</text><text x="115.0" y="131.8" text-anchor="middle" fill="#fff" font-size="11" font-weight="400">Cláudio · Gonzaga · Silva Alvarenga</text><rect x="10" y="162" width="210" height="44" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="115.0" y="187.4" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">Obras Poéticas · Marília de Dirceu · Glaura</text><line x1="345" y1="56" x2="345" y2="88" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="240" y="90" width="210" height="60" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="345.0" y="116.0" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">SATÍRICA</text><text x="345.0" y="131.8" text-anchor="middle" fill="#fff" font-size="11" font-weight="400">Tomás Antônio Gonzaga</text><rect x="240" y="162" width="210" height="44" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="345.0" y="187.4" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">Cartas Chilenas</text><line x1="345" y1="56" x2="575" y2="88" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="470" y="90" width="210" height="60" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="575.0" y="116.0" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">ÉPICA</text><text x="575.0" y="131.8" text-anchor="middle" fill="#fff" font-size="11" font-weight="400">Basílio da Gama · Santa Rita Durão</text><rect x="470" y="162" width="210" height="44" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="575.0" y="187.4" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">O Uraguai · Caramuru</text><text x="345" y="232" text-anchor="middle" fill="#cdbfc9" font-size="11.5" font-weight="400">lírica = sentimentos do eu lírico · satírica = crítica com humor · épica = feitos heroicos</text></svg></div>
+    <ul class="tops">
+      <li><b>Lírica:</b> expressa emoções e sentimentos do eu lírico. Autores: Cláudio Manuel da Costa, Tomás Antônio Gonzaga, Silva Alvarenga. Cheia de preceitos (regras, lemas) latinos (carpe diem, fugere urbem, locus amoenus…).</li>
+      <li><b>Satírica:</b> <i>Cartas Chilenas</i>, de Gonzaga — cartas em verso que criticam, de forma disfarçada, o governador de Minas, Luís da Cunha Meneses.</li>
+      <li><b>Épica:</b> <i>O Uraguai</i> (Basílio da Gama) e <i>Caramuru</i> (Santa Rita Durão) — os dois trazem o índio como personagem: são os <b>precursores do indianismo</b> romântico.</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> ligar obra → vertente → autor (é o mapa mental da p. 176 do livro).</p>
+  </div>
+
+  <div class="content-card m17">
+    <h3><span class="mtag">17.5</span> Arcadismo no Brasil × na Europa: o poeta dividido <span class="tag-crit">C2 CONTEXTO</span> <span class="tag-crit">C4 NOS POEMAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o modelo europeu (pastores, ninfas, prados suaves) não cabe na terra mineira de penhascos e garimpo — e o poeta árcade brasileiro <b>confessa essa contradição</b>.</p>
+    <div class="fig"><svg viewBox="0 0 690 214" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="20" width="300" height="110" rx="10" fill="#1b2a44" stroke="#60a5fa" stroke-width="1.5"/><text x="160.0" y="54.5" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">MODELO EUROPEU</text><text x="160.0" y="70.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Arcádia grega, ninfas, rio Mondego</text><text x="160.0" y="87.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">prados suaves, pastores</text><text x="160.0" y="103.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">&quot;a Corte, rica e fina&quot;</text><text x="345" y="80" text-anchor="middle" fill="#ffd166" font-size="30" font-weight="800">×</text><rect x="380" y="20" width="300" height="110" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="530.0" y="54.5" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">REALIDADE MINEIRA</text><text x="530.0" y="70.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">penhascos, rios turvos, garimpo</text><text x="530.0" y="87.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">&quot;grosseria dos seus gênios&quot;</text><text x="530.0" y="103.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">a choupana, o sertão</text><rect x="120" y="150" width="450" height="50" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="345.0" y="170.9" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">A contradição do poeta árcade brasileiro</text><text x="345.0" y="186.6" text-anchor="middle" fill="#fff" font-size="11" font-weight="400">formado na Europa, escreve sobre uma terra que não cabe no modelo</text></svg></div>
+    <ul class="tops">
+      <li>A natureza aqui é mostrada de forma <b>mais selvagem</b> que na Europa: rochedos, rios turvos, "grosseria" da terra.</li>
+      <li>No <b>Prólogo ao Leitor</b> de <i>Obras Poéticas</i>, Cláudio Manuel da Costa lamenta: não há aqui "as venturosas praias da Arcádia"; a corrente "turva e feia" destes rios "arrebata as ideias de um Poeta". (Questão L18-5.)</li>
+      <li>No soneto "Torno a ver-vos, ó montes", o eu lírico volta da Metrópole ("traje da Corte, rico e fino") para a Colônia (montes, vaqueiros, choupana) e se sente <b>dividido</b> entre os dois mundos. (Questão L17-4.)</li>
+      <li>Mesmo assim, falar da própria terra — rios, ouro, sertão, índio — planta uma <b>semente nativista</b> que o Romantismo vai transformar em nacionalismo. (Questão L17-11.)</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> a palavra-chave é <b>contradição</b> (formação europeia × realidade brasileira). Nas alternativas, desconfie de "ruptura completa" ou "libertação da tradição europeia" — o árcade continua imitando os clássicos.</p>
+  </div>
+
+  <h3 class="mod-head m18">🪕 Módulo 18 · Arcadismo: principais autores e obras</h3>
+  <div class="gallery-btns top"><button class="see-pages" onclick="openModuleModal('M18')">📖 Ver páginas do livro (174–181)</button></div>
+
+  <div class="content-card m18">
+    <h3><span class="mtag">18.1</span> Cláudio Manuel da Costa (1729–1789) — Glauceste Satúrnio <span class="tag-crit">C3 AUTORES</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o <b>precursor</b> (o primeiro) do Arcadismo no Brasil — um árcade que ainda carrega traços barrocos e escreve sobre a paisagem <b>dura</b> de Minas.</p>
+    <dl class="author">
+      <dt>Pseudônimo</dt><dd><b>Glauceste Satúrnio</b>; sua musa é <b>Nise</b>.</dd>
+      <dt>Vida</dt><dd>Formou-se em Direito em <b>Coimbra</b>; viveu em Vila Rica; acusado na Inconfidência, foi preso em 1789 e morreu na cadeia (suicídio, segundo a versão oficial; para alguns estudiosos, foi assassinado/envenenado).</dd>
+      <dt>Obras</dt><dd><b><i>Obras Poéticas</i> (1768)</b> — marco do Arcadismo brasileiro; <b><i>Vila Rica</i> (1773)</b> — poema épico sobre a cidade.</dd>
+      <dt>Estilo</dt><dd>Sonetos; natureza e tema pastoril; <b>traços barrocos</b> (desengano com a vida, brevidade do amor); paisagem de <b>penhascos e pedras</b> ("Destes penhascos fez a natureza / O berço em que nasci"); a <b>contradição</b> entre o ideal árcade e a realidade mineira (Prólogo ao Leitor).</dd>
+    </dl>
+    <div class="verse">Destes penhascos fez a natureza
+O berço em que nasci: oh quem cuidara,
+Que entre pedras tão duras se criara
+Uma alma terna, um peito sem dureza!<span class="src">Cláudio Manuel da Costa, Soneto XCVIII (livro, p. 173)</span></div>
+    <p class="oqc"><b>O que cai:</b> reconhecer Cláudio pela <b>dureza da paisagem</b> + alma sensível, pelo soneto e pela contradição Europa × Brasil (L17-4, L17-14, L18-5).</p>
+  </div>
+
+  <div class="content-card m18">
+    <h3><span class="mtag">18.2</span> Tomás Antônio Gonzaga (1744–1810) — Dirceu <span class="tag-crit">C3 AUTORES</span> <span class="tag-crit">C4 NOS POEMAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o maior nome do Arcadismo brasileiro: o pastor <b>Dirceu</b> que canta <b>Marília</b> e, por baixo de outro nome, ataca o governador nas <b>Cartas Chilenas</b>.</p>
+    <dl class="author">
+      <dt>Vida</dt><dd>Nasceu no <b>Porto</b> (Portugal), veio ao Brasil aos 8 anos, estudou no Colégio da Bahia e Direito em Coimbra. Foi <b>ouvidor</b> (juiz) em Vila Rica. Apaixonou-se por <b>Maria Doroteia Joaquina de Seixas</b> (a Marília). Preso na Inconfidência, ficou na <b>Ilha das Cobras</b> e em 1792 foi condenado ao exílio em <b>Moçambique</b>, onde se casou com Júlia Mascarenhas e morreu.</dd>
+      <dt>Lírica</dt><dd><b><i>Marília de Dirceu</i> (1792)</b> — coleção de <b>liras</b>. <b>Parte I</b> (antes da prisão): amor leve, cenas domésticas simples, carpe diem, vida sem luxo ("Eu, Marília, não sou algum vaqueiro… Tenho próprio casal"). <b>Parte II</b> (na prisão): desespero, saudade e queixa da injustiça ("Que diversas que são, Marília, as horas, que passo na masmorra imunda e feia").</dd>
+      <dt>Sátira</dt><dd><b><i>Cartas Chilenas</i></b> — ver bloco 18.3.</dd>
+      <dt>Estilo</dt><dd>Linguagem clara; diálogo com Marília; a natureza como cenário e como argumento ("Todos amam: só Marília… queria ter isenção?"); mitologia como enfeite (Diana, Endimião, Amor); <b>idealização clássica</b> da mulher (Marília é pessoa <u>e</u> encarnação do Amor).</dd>
+    </dl>
+    <div class="verse">Eu, Marília, não sou algum vaqueiro,
+que viva de guardar alheio gado,
+de tosco trato, de expressões grosseiro,
+dos frios gelos e dos sóis queimado.
+Tenho próprio casal e nele assisto;
+dá-me vinho, legume, fruta, azeite;<span class="src">Gonzaga, Marília de Dirceu, Lira I (livro, p. 171)</span></div>
+    <p class="oqc"><b>O que cai:</b> as liras são o texto mais usado pelas bancas (L18-12: Marília como pessoa e como Amor). Saber a diferença entre a Parte I (alegria) e a Parte II (prisão).</p>
+  </div>
+
+  <div class="content-card m18">
+    <h3><span class="mtag">18.3</span> Cartas Chilenas: a sátira com nomes trocados <span class="tag-crit">C3 AUTORES</span> <span class="tag-crit">C2 CONTEXTO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> treze cartas em verso, anônimas, que circularam em Vila Rica (1788–1789) criticando os abusos do governador — com todos os nomes disfarçados.</p>
+    <div class="fig"><svg viewBox="0 0 690 262" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="12" width="200" height="36" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="110.0" y="33.8" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Critilo</text><line x1="212" y1="30" x2="248" y2="30" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="250" y="12" width="300" height="36" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="400.0" y="33.6" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Tomás Antônio Gonzaga  (autor das cartas)</text><rect x="10" y="56" width="200" height="36" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="110.0" y="77.8" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Fanfarrão Minésio</text><line x1="212" y1="74" x2="248" y2="74" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="250" y="56" width="300" height="36" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="400.0" y="77.6" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Luís da Cunha Meneses  (governador de Minas)</text><rect x="10" y="100" width="200" height="36" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="110.0" y="121.8" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Doroteu</text><line x1="212" y1="118" x2="248" y2="118" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="250" y="100" width="300" height="36" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="400.0" y="121.6" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">amigo que recebe as cartas</text><rect x="10" y="144" width="200" height="36" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="110.0" y="165.8" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Chile</text><line x1="212" y1="162" x2="248" y2="162" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="250" y="144" width="300" height="36" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="400.0" y="165.6" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Minas Gerais</text><rect x="10" y="188" width="200" height="36" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="110.0" y="209.8" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Santiago do Chile</text><line x1="212" y1="206" x2="248" y2="206" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="250" y="188" width="300" height="36" rx="10" fill="#0f2f2c" stroke="#2dd4bf" stroke-width="1.5"/><text x="400.0" y="209.6" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Vila Rica</text><text x="280" y="250" text-anchor="middle" fill="#cdbfc9" font-size="11.5" font-weight="400">13 cartas · 1788–1789 · versos decassílabos brancos · circularam anônimas em Vila Rica</text></svg></div>
+    <ul class="tops">
+      <li>Poema satírico <b>incompleto</b>, em <b>decassílabos brancos</b> (sem rima).</li>
+      <li>O disfarce ("Chile", "Santiago") protegia o autor: criticar o governador abertamente dava cadeia.</li>
+      <li>Junta duas coisas da época: a linguagem árcade e o clima de revolta que levaria à Inconfidência.</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> as "chaves" (Critilo = Gonzaga; Fanfarrão Minésio = Luís da Cunha Meneses; Chile = Minas; Santiago = Vila Rica) e o fato de ser a vertente <b>satírica</b>.</p>
+  </div>
+
+  <div class="content-card m18">
+    <h3><span class="mtag">18.4</span> Silva Alvarenga (1749–1814) — Alcindo Palmireno <span class="tag-crit">C3 AUTORES</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o árcade mais <b>musical</b>, cuja poesia amorosa a <b>Glaura</b> já aponta para o Romantismo.</p>
+    <dl class="author">
+      <dt>Vida</dt><dd>Manuel Inácio da Silva Alvarenga nasceu em Vila Rica e morreu no Rio de Janeiro; estudou Direito em Coimbra. Também foi preso por conspiração (no Rio, 1794).</dd>
+      <dt>Obras</dt><dd><b><i>O Desertor das Letras</i> (1774)</b> — poema <b>herói-cômico</b> (usa a forma grandiosa da epopeia para um assunto pequeno e engraçado) que elogia as reformas educacionais do Marquês de Pombal; <b><i>Glaura</i> (1799)</b> — rondós e madrigais, poemas curtos e musicais, publicados em Lisboa.</dd>
+      <dt>Estilo</dt><dd>Intensa <b>musicalidade</b>; poesia lírico-amorosa; <b>poucas referências</b> à cultura greco-romana; musa Glaura. Por isso é chamado de <b>precursor do Romantismo</b>.</dd>
+    </dl>
+    <p class="oqc"><b>O que cai:</b> pseudônimo, as duas obras e o rótulo "precursor do Romantismo".</p>
+  </div>
+
+  <div class="content-card m18">
+    <h3><span class="mtag">18.5</span> Santa Rita Durão (1722–1784) — <i>Caramuru</i> <span class="tag-crit">C3 AUTORES</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o frei que escreveu a epopeia do "descobrimento da Bahia" seguindo o modelo de Camões — e pôs o índio no centro.</p>
+    <dl class="author">
+      <dt>Obra</dt><dd><b><i>Caramuru</i> (1781)</b>, "Poema épico do descobrimento da Bahia": <b>10 cantos</b>, versos <b>decassílabos em oitava rima</b>, estrutura clássica (proposição, invocação, dedicatória, narração, epílogo) — igual a <i>Os Lusíadas</i>.</dd>
+      <dt>Enredo</dt><dd>O náufrago português <b>Diogo Álvares Correia</b> chega à Bahia (1510), dispara uma arma e ganha o nome <b>Caramuru</b> ("Filho do Trovão"); casa-se com <b>Paraguaçu</b>, filha do cacique; <b>Moema</b>, apaixonada, nada atrás do navio e morre afogada (Canto VI: "Ah Diogo cruel!").</dd>
+      <dt>Estilo</dt><dd>Fatos históricos, costumes e lendas indígenas; forte influência camoniana; <b>precursor do indianismo</b>.</dd>
+    </dl>
+    <p class="oqc"><b>O que cai:</b> Caramuru = Bahia + Diogo Álvares + Moema; forma <b>camoniana</b> (oitava rima). Não confundir com O Uraguai (versos brancos, sem estrofes).</p>
+  </div>
+
+  <div class="content-card m18">
+    <h3><span class="mtag">18.6</span> Basílio da Gama (1741–1795) — <i>O Uraguai</i> <span class="tag-crit">C3 AUTORES</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> a epopeia que exalta os portugueses e <b>ataca os jesuítas</b> na guerra dos Sete Povos das Missões — escrita para agradar ao Marquês de Pombal.</p>
+    <dl class="author">
+      <dt>Vida</dt><dd>Nasceu em São José do Rio das Mortes (hoje Tiradentes, MG); foi noviço jesuíta até Pombal expulsar a ordem; nome árcade <b>Termindo Sipílio</b> (Arcádia Romana); preso em Lisboa por "jesuitismo", ganhou a liberdade escrevendo um <b>epitalâmio</b> (poema de casamento) para a filha de Pombal.</dd>
+      <dt>Obra</dt><dd><b><i>O Uraguai</i> (1769)</b>: a luta de portugueses e espanhóis contra índios e jesuítas nos <b>Sete Povos das Missões</b> (região do rio Uruguai, hoje Rio Grande do Sul) — a Guerra Guaranítica, nos anos 1750 (o livro dá a data de 1759). Personagens: <b>Lindoia</b> (índia que se deixa picar por uma serpente após a morte do marido <b>Cacambo</b>).</dd>
+      <dt>Forma</dt><dd><b>Decassílabos brancos</b> (sem rima), <b>sem divisão em estrofes</b>, 5 cantos — quebra o modelo camoniano.</dd>
+    </dl>
+    <p class="oqc"><b>O que cai:</b> O Uraguai é <b>antijesuítico</b> e <b>pró-Pombal</b>; forma livre (brancos, sem estrofes). O índio idealizado (Lindoia, Moema) = componente nacionalista que o Romantismo vai herdar.</p>
+  </div>
+
+  <h3 class="mod-head m19">🌹 Módulo 19 · Romantismo na Europa</h3>
+  <div class="gallery-btns top"><button class="see-pages" onclick="openModuleModal('M19')">📖 Ver páginas do livro (182–187)</button></div>
+
+  <div class="content-card m19">
+    <h3><span class="mtag">19.1</span> Surgimento e contexto histórico <span class="tag-crit">C2 CONTEXTO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o Romantismo surge no fim do século XVIII na Europa, dura até meados do XIX e é a <b>arte da burguesia</b> que se cansou das regras clássicas.</p>
+    <div class="fig"><svg viewBox="0 0 690 196" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="24" width="150" height="80" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="85.0" y="43.5" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Alemanha · 1774</text><text x="85.0" y="59.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Werther (Goethe)</text><text x="85.0" y="76.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">sentimentalismo,</text><text x="85.0" y="92.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">morte por amor</text><rect x="180" y="24" width="150" height="80" rx="10" fill="#3a2412" stroke="#fb923c" stroke-width="1.5"/><text x="255.0" y="43.5" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Inglaterra · início XIX</text><text x="255.0" y="59.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Lord Byron</text><text x="255.0" y="76.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Walter Scott (Ivanhoé)</text><text x="255.0" y="92.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">ultrarromântico · histórico</text><rect x="350" y="24" width="150" height="80" rx="10" fill="#2a1b44" stroke="#b388ff" stroke-width="1.5"/><text x="425.0" y="43.5" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">França</text><text x="425.0" y="59.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Victor Hugo</text><text x="425.0" y="76.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Os Miseráveis (1862)</text><text x="425.0" y="92.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">arte para o povo</text><rect x="520" y="24" width="160" height="80" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="600.0" y="43.5" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Brasil · 1836</text><text x="600.0" y="59.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Gonçalves de Magalhães</text><text x="600.0" y="76.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Suspiros Poéticos</text><text x="600.0" y="92.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">revista Niterói</text><rect x="60" y="130" width="570" height="52" rx="10" fill="#1b2a44" stroke="#60a5fa" stroke-width="1.5"/><text x="345.0" y="151.7" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">Contexto: burguesia no poder (Rev. Francesa, 1789) · Iluminismo e racionalismo</text><text x="345.0" y="167.5" text-anchor="middle" fill="#fff" font-size="11" font-weight="400">→ o Romantismo reage: sentimento, liberdade, povo, nação, Idade Média</text></svg></div>
+    <ul class="tops">
+      <li><b>Alemanha, 1774:</b> <i>Os Sofrimentos do Jovem Werther</i>, de <b>Goethe</b> — base do sentimentalismo romântico e do <b>escapismo na morte</b> (Werther se mata por amor).</li>
+      <li><b>Inglaterra, início do séc. XIX:</b> poesia <b>ultrarromântica</b> de <b>Lord Byron</b> (exagero do sentimento, morte, noite) e o <b>romance histórico</b> <i>Ivanhoé</i>, de <b>Walter Scott</b>.</li>
+      <li><b>Contexto:</b> consolidação da <b>burguesia</b> (Revolução Francesa, 1789), racionalismo e Iluminismo. O Romantismo se opõe ao <b>Classicismo</b> (arte de regras, equilíbrio e imitação dos antigos).</li>
+      <li>A arte deixa de ser só da Corte e da nobreza: valoriza o <b>folclórico</b> e o <b>nacional</b>, troca a Antiguidade pela <b>Idade Média</b> e passa a ser consumida pelo <b>povo</b>.</li>
+      <li>Na forma: a <b>prosa</b> ganha liberdade; na poesia, <b>versos livres e brancos</b> (sem métrica, sem rima, às vezes sem estrofes). Tema central: o <b>indivíduo</b> e o <b>amor</b>.</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> Werther (1774) como marco; Byron e Scott; a ideia de <b>oposição ao Classicismo</b>. Em Filosofia (Mód. 31) você viu o mesmo movimento como reação ao Iluminismo.</p>
+  </div>
+
+  <div class="content-card m19">
+    <h3><span class="mtag">19.2</span> As características em 4 famílias <span class="tag-crit">C3 CARACTERÍSTICAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o livro lista 18 características; quase todas cabem em quatro ideias — o <b>eu</b>, o <b>sentimento</b>, a <b>liberdade</b> e a <b>pátria/passado</b> — mais a <b>evasão</b>, que atravessa todas.</p>
+    <div class="fig"><svg viewBox="0 0 690 200" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="40" width="160" height="86" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="90.0" y="71.7" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">O EU</text><text x="90.0" y="86.9" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">subjetividade · individualismo</text><text x="90.0" y="102.2" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">egocentrismo · confissão</text><rect x="180" y="40" width="160" height="86" rx="10" fill="#3a2412" stroke="#fb923c" stroke-width="1.5"/><text x="260.0" y="71.7" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">SENTIMENTO</text><text x="260.0" y="86.9" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">amor que faz sofrer · emoção</text><text x="260.0" y="102.2" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">melancolia · herói que sofre</text><rect x="350" y="40" width="160" height="86" rx="10" fill="#2a1b44" stroke="#b388ff" stroke-width="1.5"/><text x="430.0" y="71.7" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">LIBERDADE</text><text x="430.0" y="86.9" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">sem regras clássicas · versos livres</text><text x="430.0" y="102.2" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">prosa (romance) como gênero</text><rect x="520" y="40" width="160" height="86" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="600.0" y="71.7" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">PÁTRIA E PASSADO</text><text x="600.0" y="86.9" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">nacionalismo · natureza</text><text x="600.0" y="102.2" text-anchor="middle" fill="#fff" font-size="10.5" font-weight="400">Idade Média · folclore · idealização</text><text x="345" y="24" text-anchor="middle" fill="#ffd166" font-size="13" font-weight="700">As 18 características do livro cabem em 4 famílias</text><rect x="150" y="146" width="390" height="40" rx="10" fill="#2b2b33" stroke="#9aa0a6" stroke-width="1.5"/><text x="345.0" y="169.4" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="700">Evasão: quando o mundo não serve, o romântico foge — sonho, fantasia, morte</text></svg></div>
+    <ul class="tops">
+      <li><b>O eu:</b> individualismo e egocentrismo (o "eu" no centro das atenções), subjetividade.</li>
+      <li><b>Sentimento:</b> o amor como tema principal — o "eu" que sofre por amor; apreço às emoções; presença de um <b>herói que sofre</b>; melancolia e saudade da infância ou do passado.</li>
+      <li><b>Liberdade:</b> liberdade artística; a prosa (o <b>romance</b>) como gênero principal, com narrativas extensas e um núcleo central; versos livres e brancos; oposição ao Classicismo.</li>
+      <li><b>Pátria e passado:</b> nacionalismo, exaltação da natureza e da pátria; culto ao passado; idealização de eventos históricos, da sociedade, do amor e da mulher.</li>
+      <li><b>Evasão</b> (fuga da realidade): sonho, fantasia, morte. Surgimento de um <b>público consumidor</b> (a burguesia compra livros e jornais).</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> textos de críticos descrevendo o movimento (Massaud Moisés, Hauser, Citelli): "recusa das regras", "liberdade criadora", "o eu como única paisagem", "anticlassicismo", "individualismo" → <b>Romantismo</b>.</p>
+  </div>
+
+  <div class="content-card m19">
+    <h3><span class="mtag">19.3</span> De onde vem a palavra "romance" <span class="tag-crit">C1 VOCABULÁRIO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> "romance" era o nome das histórias de fantasia e aventura escritas em <b>língua do povo</b> — só no século XVIII passou a significar a narrativa longa em prosa.</p>
+    <ul class="tops">
+      <li>Na Idade Média, o latim culto era da Igreja; o povo falava o <b>latim vulgar</b>, que virou as línguas <b>românicas</b> (português, espanhol, francês…).</li>
+      <li>As composições populares nessa língua — em verso ou prosa, cheias de aventura — eram chamadas de "romance".</li>
+      <li>No séc. XVIII, com a burguesia leitora, o termo ganha o sentido atual: <b>narrativa longa em prosa</b>, com enredo e personagens.</li>
+      <li>Outras palavras do módulo: <b>ultrarromântico</b> (romântico ao extremo: morte, noite, desespero), <b>escapismo/evasão</b> (fugir da realidade), <b>egocentrismo</b> (o eu no centro), <b>idealização</b> (imaginar melhor do que é), <b>Classicismo</b> (arte de regras inspirada nos antigos), <b>mal do século</b> (tédio e tristeza sem causa do jovem romântico).</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> o critério 1 (vocabulário) — e a relação entre o gênero romance e o novo público burguês.</p>
+  </div>
+
+  <div class="content-card m19">
+    <h3><span class="mtag">19.4</span> Romantismo nas artes plásticas (as questões com pintura) <span class="tag-crit">C3 CARACTERÍSTICAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> a pintura romântica tem <b>movimento, drama, emoção e povo/pátria</b> — e a prova compara essas telas com o Neoclassicismo.</p>
+    <ul class="tops">
+      <li><b>Delacroix</b> — <i>A Liberdade guiando o povo</i> (1830): a liberdade contra a tirania; <i>Grécia sobre as ruínas de Missolonghi</i> (1826): a pátria sofrendo.</li>
+      <li><b>Géricault</b> — <i>A Balsa da Medusa</i> (1818): a tragédia de um naufrágio; sentimentos exagerados, natureza e emoção humana.</li>
+      <li><b>Victor Meirelles</b> — <i>A Batalha dos Guararapes</i> (1879) e <i>Primeira Missa no Brasil</i>: episódios da história pintados para <b>construir a identidade brasileira</b>. (Questão L19-5.)</li>
+      <li><b>José Maria de Medeiros</b> — <i>Iracema</i> (1881): a índia de Alencar na praia (ela é de <i>Iracema</i>, de Alencar — cuidado: a questão 12 da p. 187 tenta empurrar "O Uraguai", que é de Basílio da Gama).</li>
+      <li><b>Jacques-Louis David</b> — <i>Napoleão cruzando os Alpes</i> (1801): pintura <b>neoclássica</b> que <b>idealiza o evento histórico pela ótica dos dominantes</b> (o herói perfeito, o cavalo empinado). O ENEM cobra essa idealização. (Questão L19-6.)</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> "idealização" é a palavra comum: o romântico idealiza a pátria e o passado; David idealiza o herói. Diferença: Delacroix/Meirelles põem o <b>povo</b> e a <b>nação</b> em cena.</p>
+  </div>
+
+  <h3 class="mod-head m20">🌴 Módulo 20 · Romantismo no Brasil</h3>
+  <div class="gallery-btns top"><button class="see-pages" onclick="openModuleModal('M20')">📖 Ver páginas do livro (188–192)</button></div>
+
+  <div class="content-card m20">
+    <h3><span class="mtag">20.1</span> Contexto: um país novo precisa de literatura <span class="tag-crit">C2 CONTEXTO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> depois da <b>Independência (1822)</b>, o Brasil precisava se sentir uma nação — e a literatura romântica foi chamada para essa tarefa.</p>
+    <div class="fig"><svg viewBox="0 0 690 184" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="30" width="150" height="70" rx="10" fill="#3a2f12" stroke="#ffd166" stroke-width="1.5"/><text x="85.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1822</text><text x="85.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Independência</text><text x="85.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">do Brasil</text><line x1="162" y1="65" x2="178" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="180" y="30" width="160" height="70" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="260.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Rio de Janeiro cresce</text><text x="260.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">imprensa · faculdades</text><text x="260.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">público leitor</text><line x1="342" y1="65" x2="358" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="360" y="30" width="150" height="70" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="435.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1836</text><text x="435.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Suspiros Poéticos</text><text x="435.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">revista Niterói</text><line x1="512" y1="65" x2="528" y2="65" stroke="#ffd166" stroke-width="2.2" marker-end="url(#ah)"/><rect x="530" y="30" width="150" height="70" rx="10" fill="#3a2412" stroke="#fb923c" stroke-width="1.5"/><text x="605.0" y="52.6" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">1840 · D. Pedro II</text><text x="605.0" y="68.9" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">letrados a serviço</text><text x="605.0" y="85.2" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">da nação</text><rect x="120" y="120" width="450" height="50" rx="10" fill="#1b2a44" stroke="#60a5fa" stroke-width="1.5"/><text x="345.0" y="140.9" text-anchor="middle" fill="#fff" font-size="12.5" font-weight="700">Literatura engajada: ajudar a formar e unir a nação</text><text x="345.0" y="156.6" text-anchor="middle" fill="#fff" font-size="11" font-weight="400">(revoltas regionais ameaçavam o país)</text></svg></div>
+    <ul class="tops">
+      <li>Com a Independência, o <b>Rio de Janeiro</b> cresce: imprensa, cargos públicos, primeiras faculdades (o livro diz "universidades"), mais alfabetização e um <b>público leitor</b> novo (estudantes e mulheres).</li>
+      <li><b>1836 = marco inicial:</b> <i>Suspiros Poéticos e Saudades</i>, de <b>Gonçalves de Magalhães</b>, e a revista <b>Niterói</b>, publicada em <b>Paris</b> por jovens que estudavam na Europa, com o lema <b>"Tudo pelo Brasil e para o Brasil"</b>.</li>
+      <li><b>Segundo Império (1840, D. Pedro II):</b> os letrados eram funcionários do alto escalão; o país estava ameaçado por revoltas regionais. A literatura devia ser <b>engajada</b> na formação e na união da nação.</li>
+      <li>Curiosidade que cai: na Europa o Romantismo foi um protesto contra a industrialização e a burguesia; no Brasil, país agrário e escravista, foi um <b>"produto de importação"</b> que virou <b>afirmação nacionalista</b> (Paul Teyssier, questão 10 da p. 191).</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> 1836 + Magalhães + Niterói; a função nacionalista da literatura no Império.</p>
+  </div>
+
+  <div class="content-card m20">
+    <h3><span class="mtag">20.2</span> Características do Romantismo brasileiro <span class="tag-crit">C3 CARACTERÍSTICAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> as mesmas marcas europeias, com <b>três ingredientes locais</b>: o índio, a natureza tropical e a busca de uma língua brasileira.</p>
+    <ul class="tops">
+      <li><b>Nacionalismo e ufanismo</b> (ufanismo = orgulho exagerado do país: "Minha terra tem palmeiras…").</li>
+      <li><b>Culto à natureza</b> e <b>indianismo</b> (o índio como herói nacional — o "cavaleiro medieval" que a Europa tinha e nós não).</li>
+      <li><b>Sentimentalismo exacerbado</b> (exagerado), <b>amor platônico</b> (amor só de alma, sem contato físico) e idealismo, <b>idealização da mulher</b>, religiosidade.</li>
+      <li><b>Liberdade formal</b> e rompimento com a tradição clássica; <b>subjetivismo</b> (o mundo visto pelos sentimentos do "eu") e egocentrismo.</li>
+      <li><b>Busca de uma linguagem literária brasileira</b> — Alencar defende "abrasileirar" o português (questão L20-12).</li>
+      <li><b>Evasão e escapismo</b>: sonho, passado, morte.</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> identificar essas marcas em trechos: "se ele é verdadeiro poeta, jamais deve esquecer-se de sua missão… vibrar as cordas do coração" (Magalhães) = sentimento e subjetividade.</p>
+  </div>
+
+  <div class="content-card m20">
+    <h3><span class="mtag">20.3</span> Os nomes que aparecem nos exercícios <span class="tag-crit">C3 AUTORES</span> <span class="tag-aula">EXERCÍCIOS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> a teoria do livro para no contexto, mas as questões usam <b>Gonçalves Dias</b>, <b>José de Alencar</b>, <b>Gonçalves de Magalhães</b> e <b>Joaquim Manuel de Macedo</b> — o mínimo sobre cada um está aqui.</p>
+    <dl class="author">
+      <dt>Gonçalves de Magalhães</dt><dd>(1811–1882) Autor de <i>Suspiros Poéticos e Saudades</i> (1836), o primeiro livro romântico brasileiro; no prefácio ("Advertência") diz que o poeta deve "vibrar as cordas do coração". Fazia parte do grupo da revista Niterói.</dd>
+      <dt>Gonçalves Dias</dt><dd>(1823–1864) Maior poeta romântico brasileiro: <i>Primeiros Cantos</i> (1846, com o prólogo da questão 3 da p. 185 e a <i>Canção do Exílio</i>), poesia <b>indianista</b> (<i>I-Juca-Pirama</i>, "O Canto do Guerreiro": "Aqui na floresta / Dos ventos batida…") e lírica amorosa (<i>Leito de Folhas Verdes</i>: a índia espera Jatir; a natureza sente junto com ela).</dd>
+      <dt>José de Alencar</dt><dd>(1829–1877) "Pai do romance brasileiro": <i>O Guarani</i> (1857, Peri e Ceci), <i>Iracema</i> (1865: a "virgem dos lábios de mel", o guerreiro branco <b>Martim</b>, o filho <b>Moacir</b>; ela morre depois do parto), crônicas <i>Ao correr da pena</i> (1854: elogio ao progresso nacional) e o prefácio "Bênção Paterna" de <i>Sonhos d'Ouro</i>, onde defende uma língua abrasileirada. Também foi deputado e ministro.</dd>
+      <dt>Joaquim Manuel de Macedo</dt><dd>(1820–1882) Autor de <i>A Moreninha</i> (1844), primeiro romance romântico de sucesso; nos versos da p. 191, adverte a mulher contra as lágrimas falsas do homem (visão idealizada da relação).</dd>
+    </dl>
+    <div class="verse">Além, muito além daquela serra, que ainda azula no horizonte, nasceu Iracema.
+Iracema, a virgem dos lábios de mel, que tinha os cabelos mais negros que a asa da graúna, e mais longos que seu talhe de palmeira.<span class="src">José de Alencar, Iracema, cap. II (livro, p. 183) — a índia descrita com elementos da natureza brasileira: idealização + nacionalismo</span></div>
+    <p class="oqc"><b>O que cai:</b> Alencar + Iracema + nacionalismo/indianismo (L19-4, L20-6, L20-12); Gonçalves Dias + natureza que expressa sentimento (L20-1).</p>
+  </div>
+
+  <div class="content-card m20">
+    <h3><span class="mtag">20.4</span> Arcadismo × Romantismo: a comparação que mais cai <span class="tag-crit">C3 CARACTERÍSTICAS</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> o árcade obedece à <b>razão e às regras</b>; o romântico obedece ao <b>sentimento e à liberdade</b>.</p>
+    <div class="fig"><svg viewBox="0 0 690 210" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="20" width="320" height="150" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="170.0" y="58.6" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">ARCADISMO (séc. XVIII)</text><text x="170.0" y="74.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">razão e equilíbrio</text><text x="170.0" y="91.1" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">pastor com pseudônimo grego</text><text x="170.0" y="107.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">natureza = cenário calmo (locus amoenus)</text><text x="170.0" y="123.6" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">imita os clássicos · deuses gregos</text><text x="170.0" y="139.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">versos regulares (soneto, lira)</text><rect x="360" y="20" width="320" height="150" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="520.0" y="58.6" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">ROMANTISMO (séc. XIX)</text><text x="520.0" y="74.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">sentimento e imaginação</text><text x="520.0" y="91.1" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">o &quot;eu&quot; que sofre, fala de si</text><text x="520.0" y="107.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">natureza = espelho da emoção · pátria</text><text x="520.0" y="123.6" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">liberdade formal · rompe com os clássicos</text><text x="520.0" y="139.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">prosa (romance) · índio como herói</text><text x="345" y="95" text-anchor="middle" fill="#ffd166" font-size="26" font-weight="800">→</text><text x="345" y="196" text-anchor="middle" fill="#cdbfc9" font-size="12" font-weight="400">Duas respostas à mesma pergunta: &quot;como falar de amor, natureza e Brasil?&quot;</text></svg></div>
+    <ul class="tops">
+      <li>O que os <b>liga</b>: os dois falam de amor e de natureza; a épica árcade (Lindoia, Moema) já idealiza o índio — o Romantismo transforma isso em <b>indianismo</b>.</li>
+      <li>O que os <b>separa</b>: modelo clássico e pseudônimo pastoril × liberdade e o "eu" verdadeiro; natureza-cenário × natureza-espelho; equilíbrio × exagero.</li>
+      <li>Um <b>mesmo autor</b> pode estar no meio: Silva Alvarenga (musicalidade, poucos deuses gregos) é "precursor do Romantismo".</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> a questão L18-6 (UEL) é o exemplo: os árcades <u>não</u> escreveram "em reação ao sentimentalismo romântico" — o Romantismo veio <b>depois</b>.</p>
+  </div>
+
+  <div class="content-card m20">
+    <h3><span class="mtag">20.5</span> Como reconhecer a escola num poema <span class="tag-crit">C4 NOS POEMAS</span> <span class="tag-crit">C1 VOCABULÁRIO</span></h3>
+    <p class="oneline"><b>Em uma frase:</b> na hora da prova, procure <b>pistas</b> no texto — nomes, cenário, tom e forma — antes de olhar as alternativas.</p>
+    <div class="fig"><svg viewBox="0 0 690 196" width="690" font-family="Segoe UI,system-ui,sans-serif" role="img"><defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffd166"/></marker></defs><rect x="10" y="14" width="330" height="170" rx="10" fill="#12351f" stroke="#4ade80" stroke-width="1.5"/><text x="175.0" y="62.3" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Parece ÁRCADE se tem…</text><text x="175.0" y="78.5" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">pastor / pastora (Dirceu, Marília, Glaura)</text><text x="175.0" y="94.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">campo tranquilo, rebanho, fonte</text><text x="175.0" y="111.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">deuses gregos (Apolo, Diana, Anfião)</text><text x="175.0" y="127.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">carpe diem, vida simples, equilíbrio</text><text x="175.0" y="143.5" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">soneto ou lira, tom contido</text><rect x="350" y="14" width="330" height="170" rx="10" fill="#3b1620" stroke="#fb7185" stroke-width="1.5"/><text x="515.0" y="62.3" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">Parece ROMÂNTICO se tem…</text><text x="515.0" y="78.5" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">Ah! Oh! — exclamações e &quot;eu&quot; forte</text><text x="515.0" y="94.8" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">natureza que sente junto (noite, lua, mata)</text><text x="515.0" y="111.0" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">índio guerreiro, pátria, palmeiras</text><text x="515.0" y="127.3" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">amor que sofre, saudade, morte</text><text x="515.0" y="143.5" text-anchor="middle" fill="#fff" font-size="11.5" font-weight="400">versos livres, prosa, tom exaltado</text></svg></div>
+    <ul class="tops">
+      <li><b>Passo 1 — Quem fala?</b> Um pastor com nome grego (Dirceu, Glauceste, Alcindo) → árcade. Um "eu" que sofre, uma índia, um guerreiro → romântico.</li>
+      <li><b>Passo 2 — Onde?</b> Campo calmo, rebanho, fonte → árcade. Floresta, noite, lua, mar, pátria → romântico.</li>
+      <li><b>Passo 3 — Como?</b> Tom contido, equilíbrio, deuses gregos → árcade. Exclamações, exagero, saudade, morte → romântico.</li>
+      <li><b>Passo 4 — Forma?</b> Soneto, lira, decassílabo regular → árcade. Versos livres, prosa, estrofes irregulares → romântico.</li>
+      <li><b>Cuidado:</b> Cláudio Manuel da Costa tem "alma terna" e "dureza" — parece barroco/romântico, mas é árcade (o Barroco é o <u>antes</u>; o Romantismo é o <u>depois</u>).</li>
+    </ul>
+    <p class="oqc"><b>O que cai:</b> o critério 4 do Mód. 18 e das listas: "encontrar características da escola literária vigente nos poemas apresentados".</p>
+  </div>
+</section>
+
+<!-- ===== MAPAS MENTAIS ===== -->
+<section class="tab-content" id="mapas">
+  <h2 class="section-title"><span class="ico">🧠</span>Mapas Mentais</h2>
+  <div class="note">A ideia central no topo e os ramos com o que memorizar. O mapa do livro (as três vertentes) está na página 176.</div>
+  <div id="mindContainer"></div>
+  <div class="gallery-btns"><button class="see-pages" onclick="openModuleModal('MAPAS')">📖 Ver o mapa mental do livro (p. 176)</button></div>
+</section>
+
+<!-- ===== FLASHCARDS ===== -->
+<section class="tab-content" id="flashcards">
+  <h2 class="section-title"><span class="ico">🃏</span>Flashcards</h2>
+  <div class="note">Clique no card para virar. Filtre por tema e use ◀ ▶ para navegar.</div>
+  <div class="filter-bar" id="fcFilter">
+    <button class="active" data-tema="all">Todos</button>
+    <button data-tema="Contexto árcade">Contexto árcade</button>
+    <button data-tema="Vocabulário">Vocabulário</button>
+    <button data-tema="Autores árcades">Autores árcades</button>
+    <button data-tema="Romantismo Europa">Romantismo Europa</button>
+    <button data-tema="Romantismo Brasil">Romantismo Brasil</button>
+  </div>
+  <div class="fc-wrap">
+    <div class="flashcard" id="flashcard" onclick="this.classList.toggle('flipped')">
+      <div class="inner">
+        <div class="face front"><span class="tema" id="fcTema"></span><div class="q" id="fcQ"></div><span class="hintflip">clique para virar ↻</span></div>
+        <div class="face back"><span class="tema">Resposta</span><div class="a" id="fcA"></div><span class="hintflip">clique para voltar ↻</span></div>
+      </div>
+    </div>
+    <div class="fc-nav">
+      <button onclick="fcPrev()">◀</button>
+      <span class="count" id="fcCount"></span>
+      <button onclick="fcNext()">▶</button>
+      <button onclick="fcShuffle()">🔀 Embaralhar</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARAÇÕES ===== -->
+<section class="tab-content" id="compare">
+  <h2 class="section-title"><span class="ico">⚖️</span>Comparações</h2>
+  <div class="note">As comparações que mais caem — leia na horizontal.</div>
+
+  <table class="cmp-table">
+    <caption>Arcadismo × Romantismo</caption>
+    <thead><tr><th>Tema</th><th>Arcadismo (séc. XVIII)</th><th>Romantismo (séc. XIX)</th></tr></thead>
+    <tbody>
+      <tr><th>Guia</th><td>Razão, equilíbrio, medida</td><td>Sentimento, imaginação, exagero</td></tr>
+      <tr><th>Modelo</th><td>Imita os clássicos greco-latinos (Classicismo)</td><td>Rompe com os clássicos; liberdade formal</td></tr>
+      <tr><th>Quem fala</th><td>Pastor com pseudônimo (Dirceu, Glauceste)</td><td>O "eu" verdadeiro, subjetivo e egocêntrico</td></tr>
+      <tr><th>Natureza</th><td>Cenário calmo e ideal (locus amoenus)</td><td>Espelho das emoções; pátria; natureza tropical</td></tr>
+      <tr><th>Amor</th><td>Amor tranquilo, carpe diem, vida simples</td><td>Amor que faz sofrer; idealização da mulher</td></tr>
+      <tr><th>Forma</th><td>Soneto, lira, decassílabo, oitava rima</td><td>Versos livres e brancos; prosa (romance)</td></tr>
+      <tr><th>Herói</th><td>Português colonizador nas épicas (Diogo Álvares em Caramuru; o general Gomes Freire em O Uraguai)</td><td>O índio (indianismo) e o herói que sofre</td></tr>
+      <tr><th>Sentimento pela terra</th><td>Nativismo (orgulho da terra)</td><td>Nacionalismo e ufanismo</td></tr>
+      <tr><th>Marco no Brasil</th><td>Obras Poéticas (1768), Cláudio Manuel da Costa</td><td>Suspiros Poéticos e Saudades (1836), Gonçalves de Magalhães</td></tr>
+    </tbody>
+  </table>
+
+  <table class="cmp-table">
+    <caption>Barroco × Arcadismo (o que o árcade rejeita)</caption>
+    <thead><tr><th>Tema</th><th>Barroco (séc. XVII)</th><th>Arcadismo (séc. XVIII)</th></tr></thead>
+    <tbody>
+      <tr><th>Linguagem</th><td>Rebuscada, frases tortuosas, antíteses (jogos de contrários)</td><td>Simples, clara, "corta o inútil" (inutilia truncat)</td></tr>
+      <tr><th>Sentimento</th><td>Angústia religiosa: salvação × prazer da carne</td><td>Equilíbrio, mediania dourada, prazer moderado</td></tr>
+      <tr><th>Visão do mundo</th><td>Contrarreforma (reação da Igreja Católica à Reforma protestante), conflito entre matéria e espírito</td><td>Iluminismo, razão, natureza e bom selvagem</td></tr>
+      <tr><th>Resíduo</th><td colspan="2">Cláudio Manuel da Costa ainda carrega traços barrocos: desengano com a vida, brevidade do amor</td></tr>
+    </tbody>
+  </table>
+
+  <table class="cmp-table">
+    <caption>Os cinco árcades brasileiros</caption>
+    <thead><tr><th>Autor</th><th>Pseudônimo</th><th>Obras</th><th>Vertente</th><th>Marca registrada</th></tr></thead>
+    <tbody>
+      <tr><th>Cláudio Manuel da Costa (1729–1789)</th><td>Glauceste Satúrnio</td><td>Obras Poéticas (1768), Vila Rica (1773)</td><td>Lírica</td><td>Precursor; sonetos; penhascos; traços barrocos; morreu na prisão</td></tr>
+      <tr><th>Tomás Antônio Gonzaga (1744–1810)</th><td>Dirceu / Critilo</td><td>Marília de Dirceu (1792), Cartas Chilenas</td><td>Lírica e satírica</td><td>Marília; liras; exílio em Moçambique</td></tr>
+      <tr><th>Silva Alvarenga (1749–1814)</th><td>Alcindo Palmireno</td><td>O Desertor das Letras (1774), Glaura (1799)</td><td>Lírica</td><td>Musicalidade; precursor do Romantismo</td></tr>
+      <tr><th>Santa Rita Durão (1722–1784)</th><td>—</td><td>Caramuru (1781)</td><td>Épica</td><td>Bahia; Diogo Álvares; Moema; oitava rima (Camões)</td></tr>
+      <tr><th>Basílio da Gama (1741–1795)</th><td>Termindo Sipílio</td><td>O Uraguai (1769)</td><td>Épica</td><td>Sete Povos das Missões; antijesuítico; versos brancos sem estrofes</td></tr>
+    </tbody>
+  </table>
+
+  <table class="cmp-table">
+    <caption>O Uraguai × Caramuru</caption>
+    <thead><tr><th>Tema</th><th>O Uraguai (1769)</th><th>Caramuru (1781)</th></tr></thead>
+    <tbody>
+      <tr><th>Autor</th><td>Basílio da Gama</td><td>Santa Rita Durão</td></tr>
+      <tr><th>Assunto</th><td>Guerra dos Sete Povos das Missões, anos 1750 (portugueses + espanhóis × índios e jesuítas)</td><td>Descobrimento da Bahia: o náufrago Diogo Álvares (Caramuru), 1510</td></tr>
+      <tr><th>Índios</th><td>Lindoia e Cacambo</td><td>Paraguaçu e Moema</td></tr>
+      <tr><th>Forma</th><td>5 cantos; decassílabos brancos; sem estrofes (rompe com Camões)</td><td>10 cantos; decassílabos em oitava rima; estrutura de Os Lusíadas</td></tr>
+      <tr><th>Intenção</th><td>Exaltar os portugueses e satirizar os jesuítas (agradar a Pombal)</td><td>Contar a lenda e os costumes indígenas; exaltar a colonização</td></tr>
+      <tr><th>Em comum</th><td colspan="2">Índio idealizado → precursores do indianismo romântico (é o que a questão 1 da p. 177 pede)</td></tr>
+    </tbody>
+  </table>
+
+  <table class="cmp-table">
+    <caption>Romantismo na Europa × no Brasil</caption>
+    <thead><tr><th>Tema</th><th>Europa</th><th>Brasil</th></tr></thead>
+    <tbody>
+      <tr><th>Quando</th><td>Fim do séc. XVIII a meados do XIX</td><td>1836 até cerca de 1880</td></tr>
+      <tr><th>Marco</th><td>Werther (Goethe, 1774)</td><td>Suspiros Poéticos e Saudades (Magalhães, 1836) + revista Niterói</td></tr>
+      <tr><th>Contexto</th><td>Burguesia no poder, Revolução Francesa, industrialização</td><td>Independência (1822), Rio de Janeiro cresce, Segundo Império</td></tr>
+      <tr><th>Sentido</th><td>Protesto cultural contra a industrialização e a burguesia; "mal do século"</td><td>"Produto de importação" que vira afirmação nacionalista</td></tr>
+      <tr><th>Passado idealizado</th><td>Idade Média, cavaleiros, folclore</td><td>O índio (indianismo) e a natureza tropical</td></tr>
+      <tr><th>Língua</th><td>Língua nacional contra o latim/regras clássicas</td><td>Busca de uma linguagem brasileira (Alencar)</td></tr>
+      <tr><th>Nomes</th><td>Goethe, Byron, Walter Scott, Victor Hugo</td><td>Magalhães, Gonçalves Dias, Alencar, Macedo</td></tr>
+    </tbody>
+  </table>
+
+  <table class="cmp-table">
+    <caption>Pinturas que caem: Romantismo × Neoclassicismo</caption>
+    <thead><tr><th>Obra</th><th>Artista / ano</th><th>Escola</th><th>O que a prova quer</th></tr></thead>
+    <tbody>
+      <tr><th>A Liberdade guiando o povo</th><td>Delacroix, 1830</td><td>Romantismo</td><td>Liberdade contra a tirania; o povo em cena</td></tr>
+      <tr><th>Grécia sobre as ruínas de Missolonghi</th><td>Delacroix, 1826</td><td>Romantismo</td><td>A pátria que sofre; nacionalismo</td></tr>
+      <tr><th>A Balsa da Medusa</th><td>Géricault, 1818</td><td>Romantismo</td><td>Tragédia, drama, sentimentos exagerados</td></tr>
+      <tr><th>A Batalha dos Guararapes</th><td>Victor Meirelles, 1879</td><td>Romantismo</td><td>Construção da identidade brasileira (L19-5)</td></tr>
+      <tr><th>Iracema</th><td>José Maria de Medeiros, 1881</td><td>Romantismo</td><td>Diálogo com Alencar (Iracema — não "O Uraguai", que é de Basílio da Gama)</td></tr>
+      <tr><th>Napoleão cruzando os Alpes</th><td>J.-L. David, 1801</td><td>Neoclassicismo</td><td>Idealiza o evento histórico pela ótica dos dominantes (L19-6)</td></tr>
+      <tr><th>Tiradentes esquartejado</th><td>Pedro Américo, 1893</td><td>(fim do séc. XIX)</td><td>Remete à Inconfidência → Arcadismo (questão 8 da p. 171)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ===== LINHA DO TEMPO ===== -->
+<section class="tab-content" id="timeline">
+  <h2 class="section-title"><span class="ico">📅</span>Linha do Tempo</h2>
+  <div class="note">Do ouro de Minas ao Romantismo brasileiro. As marcadas com ★ são as mais importantes. As datas do quadro "Saiba+" da p. 183 estão todas aqui.</div>
+  <div class="timeline" id="timelineWrap"></div>
+</section>
+
+<!-- ===== ROTEIRO ===== -->
+<section class="tab-content" id="roteiro">
+  <h2 class="section-title"><span class="ico">✏️</span>Exercícios do Roteiro</h2>
+  <div class="note">📷 Cada exercício mostra só o <b>código + banca</b>; o botão <b>🔍 Ver original</b> abre a foto da página do livro (com zoom; quando a questão ocupa duas páginas, use as setas ‹ ›). Códigos: <code>L17-n</code> = Módulo 17, questão n, e assim por diante.</div>
+  <div class="note" style="border-left-color:#ff9080;background:rgba(231,76,60,.06)">⚠️ <b>Sobre as resoluções:</b> o livro não traz gabarito. O <b>Gabarito comentado</b> é uma <b>resolução minha</b> (conceito + análise das alternativas + resposta) — confira com a professora se algo parecer estranho.</div>
+  <div class="filter-bar" id="rotFilter">
+    <button class="active" data-mod="all">Todos</button>
+    <button data-mod="M17">Mód 17</button>
+    <button data-mod="M18">Mód 18</button>
+    <button data-mod="M19">Mód 19</button>
+    <button data-mod="M20">Mód 20</button>
+    <button data-mod="LISTA">Listas</button>
+  </div>
+  <div id="roteiroList"></div>
+</section>
+
+<!-- ===== SIMULADOS ===== -->
+<section class="tab-content" id="simulado">
+  <h2 class="section-title"><span class="ico">📝</span>Simulados</h2>
+  <div class="note">✨ <b>Questões originais</b>, criadas por mim no estilo das bancas do livro (múltipla escolha, afirmativas I/II/III, somatório e discursiva) — não reproduzem o roteiro. Os trechos de poemas são de obras de domínio público (Gonzaga, Cláudio, Gonçalves Dias, Alencar). Cobrem os quatro módulos. Três níveis: <b>Fácil</b> (conceitos), <b>Médio</b> (interpretação de texto) e <b>Difícil</b> (somatórios e discursivas).</div>
+  <div class="sim-select" id="simSelect">
+    <div class="sim-card"><h4>🟢 Simulado 1 — Fácil</h4><p>10 questões · conceitos, obras, autores e vocabulário.</p><div class="btn-row"><button onclick="openSim(1)">Ver na tela</button><button class="print" onclick="printSim(1)">🖨️ Imprimir</button></div></div>
+    <div class="sim-card"><h4>🟡 Simulado 2 — Médio</h4><p>10 questões · reconhecer a escola e o autor em trechos e pinturas.</p><div class="btn-row"><button onclick="openSim(2)">Ver na tela</button><button class="print" onclick="printSim(2)">🖨️ Imprimir</button></div></div>
+    <div class="sim-card"><h4>🔴 Simulado 3 — Difícil</h4><p>8 objetivas (2 somatórios) + 2 discursivas.</p><div class="btn-row"><button onclick="openSim(3)">Ver na tela</button><button class="print" onclick="printSim(3)">🖨️ Imprimir</button></div></div>
+  </div>
+  <div id="simView"></div>
+</section>
+
+<footer>Material de estudo · Literatura · P1T3 · Mód. 17–18 (Arcadismo no Brasil) e Mód. 19–20 (Romantismo na Europa e no Brasil) · Feito com <span class="heart">♥</span></footer>
+</div>
+
+<div class="print-header"><h1 id="printTitle">Simulado — Literatura P1T3</h1><div class="fields"><div>Nome: ____________________________________________</div><div>Data: ______ / ______ / ________ &nbsp;&nbsp; Nota: __________</div></div></div>
+
+<div class="img-modal" id="imgModal" onclick="if(event.target===this) closeImgModal()">
+  <div class="modal-inner">
+    <div class="modal-head">
+      <span class="title" id="modalTitle">Enunciado original</span>
+      <div class="zoom-controls" id="zoomControls" style="display:none">
+        <button onclick="modulePrev()" id="btnPrev" style="display:none">‹</button>
+        <span class="zoom-val" id="pageCounter" style="display:none"></span>
+        <button onclick="moduleNext()" id="btnNext" style="display:none">›</button>
+        <span style="width:10px"></span>
+        <button onclick="zoomOut()">−</button><span class="zoom-val" id="zoomVal">100%</span><button onclick="zoomIn()">+</button><button onclick="zoomReset()">⤢</button>
+      </div>
+      <button class="close-btn" onclick="closeImgModal()">✖ Fechar</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+/* ===== MODAL / ZOOM / GALERIA ===== */
+const P=n=>'t3-literatura-'+n;
+const imageMap = {
+  'L17-4':[P(169),P(170)],'L17-6':[P(170),P(171)],'L17-9':P(171),'L17-11':P(172),'L17-14':P(173),
+  'L18-5':P(178),'L18-6':[P(178),P(179)],'L18-7':P(179),'L18-12':P(180),
+  'L19-4':P(185),'L19-5':P(186),'L19-6':P(186),
+  'L20-1':P(189),'L20-6':P(190),'L20-12':P(192)
+};
+const moduleImages = {
+  'M17':{title:'Módulo 17 — Arcadismo no Brasil: contexto e características (livro, p. 167–173)',pages:[167,168,169,170,171,172,173].map(P)},
+  'M18':{title:'Módulo 18 — Arcadismo: principais autores e obras (livro, p. 174–181)',pages:[174,175,176,177,178,179,180,181].map(P)},
+  'M19':{title:'Módulo 19 — Romantismo na Europa (livro, p. 182–187)',pages:[182,183,184,185,186,187].map(P)},
+  'M20':{title:'Módulo 20 — Romantismo no Brasil (livro, p. 188–192)',pages:[188,189,190,191,192].map(P)},
+  'MAPAS':{title:'Mapa mental do livro — Arcadismo brasileiro (p. 176)',pages:[P(176)]}
+};
+let moduleState={active:false,pages:[],idx:0,title:''};
+let zoomState={scale:1,tx:0,ty:0,imgEl:null,dragging:false,dx:0,dy:0};
+function applyZoomTransform(){if(!zoomState.imgEl)return;zoomState.imgEl.style.transform=`translate(${zoomState.tx}px,${zoomState.ty}px) scale(${zoomState.scale})`;const zv=document.getElementById('zoomVal');if(zv)zv.textContent=Math.round(zoomState.scale*100)+'%';}
+function zoomIn(){zoomState.scale=Math.min(zoomState.scale*1.25,8);applyZoomTransform();}
+function zoomOut(){zoomState.scale=Math.max(zoomState.scale/1.25,0.2);applyZoomTransform();}
+function zoomReset(){if(zoomState.imgEl){const w=zoomState.imgEl.parentElement;if(w)applyInitialFill(zoomState.imgEl,w);}}
+function applyInitialFill(imgEl,wrap){requestAnimationFrame(()=>{const r=wrap.getBoundingClientRect();const iw=imgEl.offsetWidth;if(iw<=0||r.width<=0)return;if(iw>=r.width*0.98)return;const fill=(r.width*0.98)/iw;imgEl.style.transition='none';zoomState.scale=fill;zoomState.tx=-(r.width-iw)/2;zoomState.ty=0;applyZoomTransform();requestAnimationFrame(()=>{imgEl.style.transition='';});});}
+function setupImageZoom(imgEl,wrap){zoomState.imgEl=imgEl;zoomState.scale=1;zoomState.tx=0;zoomState.ty=0;applyZoomTransform();applyInitialFill(imgEl,wrap);
+  wrap.onwheel=(ev)=>{ev.preventDefault();const r=wrap.getBoundingClientRect();const mx=ev.clientX-r.left,my=ev.clientY-r.top;const os=zoomState.scale;const f=ev.deltaY<0?1.15:1/1.15;const ns=Math.min(Math.max(os*f,0.2),8);const k=ns/os;zoomState.tx=mx-(mx-zoomState.tx)*k;zoomState.ty=my-(my-zoomState.ty)*k;zoomState.scale=ns;applyZoomTransform();};
+  const sd=(x,y)=>{zoomState.dragging=true;zoomState.dx=x-zoomState.tx;zoomState.dy=y-zoomState.ty;wrap.classList.add('grabbing');};
+  const md=(x,y)=>{if(!zoomState.dragging)return;zoomState.tx=x-zoomState.dx;zoomState.ty=y-zoomState.dy;applyZoomTransform();};
+  const ed=()=>{zoomState.dragging=false;wrap.classList.remove('grabbing');};
+  wrap.onmousedown=(e)=>{e.preventDefault();sd(e.clientX,e.clientY);};wrap.onmousemove=(e)=>md(e.clientX,e.clientY);wrap.onmouseup=ed;wrap.onmouseleave=ed;
+  wrap.ontouchstart=(e)=>{if(e.touches.length===1)sd(e.touches[0].clientX,e.touches[0].clientY);};
+  wrap.ontouchmove=(e)=>{e.preventDefault();if(e.touches.length===1)md(e.touches[0].clientX,e.touches[0].clientY);};
+  wrap.ontouchend=ed;
+  wrap.ondblclick=(e)=>{const r=wrap.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;if(zoomState.scale<1.5){const os=zoomState.scale,ns=2,k=ns/os;zoomState.tx=mx-(mx-zoomState.tx)*k;zoomState.ty=my-(my-zoomState.ty)*k;zoomState.scale=ns;}else{zoomReset();return;}applyZoomTransform();};}
+function loadInto(imgName,hintText){const body=document.getElementById('modalBody');const zc=document.getElementById('zoomControls');body.innerHTML='<div class="missing"><p style="color:var(--ink-dim)">Carregando página…</p></div>';const img=new Image();img.onload=()=>{body.innerHTML='';const wrap=document.createElement('div');wrap.className='img-wrap';wrap.appendChild(img);body.appendChild(wrap);const h=document.createElement('div');h.className='zoom-hint';h.textContent=hintText;body.appendChild(h);zc.style.display='flex';setupImageZoom(img,wrap);};img.onerror=()=>{body.innerHTML=`<div class="missing"><h4>📷 Imagem não encontrada</h4><p>Esperava: <code>img/pages/${imgName}.jpg</code></p></div>`;};img.src=`img/pages/${imgName}.jpg`;}
+function openImgModal(code,title){const modal=document.getElementById('imgModal');moduleState.active=false;document.getElementById('btnPrev').style.display='none';document.getElementById('btnNext').style.display='none';document.getElementById('pageCounter').style.display='none';document.getElementById('modalTitle').textContent=title||(code+' — Enunciado original');document.getElementById('zoomControls').style.display='none';let n=imageMap[code];if(Array.isArray(n)){moduleState={active:true,pages:n,idx:0,title:title||(code+' — Enunciado original')};showModulePage();modal.classList.add('open');return;}if(!n){document.getElementById('modalBody').innerHTML=`<div class="missing"><h4>📷 Sem imagem mapeada</h4><p>${code}</p></div>`;modal.classList.add('open');return;}loadInto(n,'🖱️ Roda: zoom · Arrastar: mover · Duplo clique: 2×');modal.classList.add('open');}
+function closeImgModal(){document.getElementById('imgModal').classList.remove('open');document.getElementById('zoomControls').style.display='none';document.getElementById('btnPrev').style.display='none';document.getElementById('btnNext').style.display='none';document.getElementById('pageCounter').style.display='none';zoomState.imgEl=null;moduleState.active=false;}
+function openModuleModal(id){const m=moduleImages[id];if(!m){alert('Não mapeado: '+id);return;}moduleState={active:true,pages:m.pages,idx:0,title:m.title};showModulePage();document.getElementById('imgModal').classList.add('open');}
+function showModulePage(){const t=document.getElementById('modalTitle');const bp=document.getElementById('btnPrev'),bn=document.getElementById('btnNext'),pc=document.getElementById('pageCounter');t.textContent=moduleState.title;const multi=moduleState.pages.length>1;bp.style.display=multi?'inline-block':'none';bn.style.display=multi?'inline-block':'none';pc.style.display=multi?'inline-block':'none';pc.textContent=`${moduleState.idx+1} / ${moduleState.pages.length}`;bp.style.opacity=moduleState.idx===0?'.35':'1';bn.style.opacity=moduleState.idx===moduleState.pages.length-1?'.35':'1';loadInto(moduleState.pages[moduleState.idx],`📖 Página ${moduleState.idx+1} de ${moduleState.pages.length} · Setas ← → navegam`);}
+function modulePrev(){if(!moduleState.active||moduleState.idx===0)return;moduleState.idx--;showModulePage();}
+function moduleNext(){if(!moduleState.active||moduleState.idx===moduleState.pages.length-1)return;moduleState.idx++;showModulePage();}
+document.addEventListener('keydown',e=>{if(!document.getElementById('imgModal').classList.contains('open'))return;if(e.key==='Escape')closeImgModal();else if(e.key==='+'||e.key==='=')zoomIn();else if(e.key==='-'||e.key==='_')zoomOut();else if(e.key==='0')zoomReset();else if(moduleState.active&&e.key==='ArrowLeft')modulePrev();else if(moduleState.active&&e.key==='ArrowRight')moduleNext();});
+
+/* ===== TABS ===== */
+document.querySelectorAll('#mainTabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#mainTabs button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}));
+
+
+/* ===== MAPAS MENTAIS ===== */
+const mindData=[
+ {c:'Mód 17 · Arcadismo no Brasil',b:[
+   {h:'Contexto',i:['Século do Ouro · Vila Rica (Ouro Preto)','Iluminismo → Inconfidência Mineira (1789)','Poetas presos: Cláudio e Gonzaga','Marco: Obras Poéticas (1768)','Neoclassicismo · Setecentismo (séc. XVIII)']},
+   {h:'Características',i:['Modelos greco-latinos e renascentistas','Pastoralismo · bucolismo · pseudônimo','Bom selvagem (Rousseau) · Iluminismo','Simplicidade · pureza · mitologia pagã','Campo × cidade · confissão · anti-Barroco']},
+   {h:'Vocabulário',i:['carpe diem · fugere urbem','locus amoenus · inutilia truncat','aurea mediocritas','eu lírico · musa · lira · soneto','decassílabo · versos brancos · oitava rima']},
+   {h:'Vertentes',i:['Lírica: Cláudio, Gonzaga, Alvarenga','Satírica: Cartas Chilenas','Épica: O Uraguai, Caramuru']}]},
+ {c:'Mód 18 · Autores árcades',b:[
+   {h:'Cláudio Manuel da Costa',i:['Glauceste Satúrnio · musa Nise','Obras Poéticas (1768) · Vila Rica (1773)','Precursor · sonetos · penhascos','Traços barrocos · morreu na prisão']},
+   {h:'Tomás Antônio Gonzaga',i:['Dirceu · Marília (Maria Doroteia)','Marília de Dirceu (1792): liras','Parte I alegre · Parte II na prisão','Cartas Chilenas: Critilo × Fanfarrão Minésio','Exílio em Moçambique']},
+   {h:'Silva Alvarenga',i:['Alcindo Palmireno · musa Glaura','O Desertor das Letras (1774)','Glaura (1799): musicalidade','Precursor do Romantismo']},
+   {h:'Épicos',i:['Durão: Caramuru (1781), Bahia, Moema','oitava rima, modelo camoniano','Basílio: O Uraguai (1769), Missões, Lindoia','versos brancos sem estrofes · antijesuítico']}]},
+ {c:'Mód 19 · Romantismo na Europa',b:[
+   {h:'Surgimento',i:['Fim do séc. XVIII → meados do XIX','Werther (Goethe, 1774)','Byron · Walter Scott (Ivanhoé)','Burguesia · Rev. Francesa · Iluminismo','Oposição ao Classicismo']},
+   {h:'4 famílias',i:['O EU: subjetividade, egocentrismo','SENTIMENTO: amor, herói que sofre','LIBERDADE: prosa, versos livres','PÁTRIA E PASSADO: nação, Idade Média']},
+   {h:'Pintura',i:['Delacroix: Liberdade (1830)','Géricault: Balsa da Medusa (1818)','David: Napoleão (1801) = neoclássico','"idealização" é a palavra-chave']}]},
+ {c:'Mód 20 · Romantismo no Brasil',b:[
+   {h:'Contexto',i:['1822: Independência · Rio cresce','Imprensa · faculdades · público leitor','1836: Suspiros Poéticos + revista Niterói','"Tudo pelo Brasil e para o Brasil"','Segundo Império: literatura engajada']},
+   {h:'Características',i:['Nacionalismo e ufanismo','Indianismo · culto à natureza','Sentimentalismo · idealização da mulher','Liberdade formal · língua brasileira','Evasão e escapismo']},
+   {h:'Nomes dos exercícios',i:['Magalhães: Suspiros (1836)','Gonçalves Dias: Primeiros Cantos, I-Juca-Pirama','Alencar: Iracema (1865), O Guarani','Macedo: A Moreninha (1844)']}]}
+];
+document.getElementById('mindContainer').innerHTML=mindData.map(m=>`<div class="mind"><span class="center">${m.c}</span><div class="branches">${m.b.map(br=>`<div class="branch"><h5>${br.h}</h5><ul>${br.i.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div></div>`).join('');
+
+/* ===== FLASHCARDS ===== */
+const flashData=[
+ {t:'Contexto árcade',q:'Qual obra e qual ano marcam o início do Arcadismo no Brasil?',a:'Obras Poéticas (1768), de Cláudio Manuel da Costa.'},
+ {t:'Contexto árcade',q:'Que cidade foi o centro do Arcadismo brasileiro?',a:'Vila Rica (atual Ouro Preto), em Minas Gerais, no Século do Ouro.'},
+ {t:'Contexto árcade',q:'Que acontecimentos políticos marcam o contexto do Arcadismo brasileiro?',a:'A Inconfidência Mineira (1789) e a Conjuração Baiana (1798), influenciadas pelo Iluminismo.'},
+ {t:'Contexto árcade',q:'Por que o Arcadismo também é chamado de Neoclassicismo e de Setecentismo?',a:'Neoclassicismo porque revisita os valores gregos e romanos; Setecentismo porque aconteceu nos anos 1700 (século XVIII).'},
+ {t:'Contexto árcade',q:'Que poetas árcades participaram da Inconfidência Mineira e o que aconteceu com eles?',a:'Cláudio Manuel da Costa (morreu na prisão) e Tomás Antônio Gonzaga (exilado em Moçambique). Silva Alvarenga não estava nela — foi preso depois, no Rio (1794).'},
+ {t:'Contexto árcade',q:'Quais as três vertentes do Arcadismo brasileiro?',a:'Lírica (Cláudio, Gonzaga, Alvarenga), satírica (Cartas Chilenas) e épica (O Uraguai, Caramuru).'},
+ {t:'Contexto árcade',q:'Qual a diferença da natureza no Arcadismo brasileiro em relação ao europeu?',a:'Aqui ela é mostrada de forma mais selvagem (penhascos, rios turvos), o que cria uma contradição com o modelo pastoril europeu.'},
+ {t:'Contexto árcade',q:'O que é a "contradição" de Cláudio Manuel da Costa no Prólogo ao Leitor?',a:'Formado na Europa, ele admite que a realidade rude de Minas não cabe no ideal árcade (não há "as praias da Arcádia" aqui).'},
+ {t:'Contexto árcade',q:'O Arcadismo se opõe a qual escola anterior? Como?',a:'Ao Barroco: troca o rebuscado e a angústia religiosa pela linguagem clara, o equilíbrio e a vida simples.'},
+ {t:'Contexto árcade',q:'O que é o "bom selvagem"?',a:'Ideia de Rousseau: o homem nasce bom e puro; a vida simples junto à natureza é a melhor. Os árcades usam isso para elogiar o campo.'},
+ {t:'Vocabulário',q:'O que significa carpe diem?',a:'"Aproveite o dia": a vida é curta, viva o presente. Ex.: Lira XIV de Gonzaga.'},
+ {t:'Vocabulário',q:'O que significa fugere urbem?',a:'"Fugir da cidade": a paz está no campo.'},
+ {t:'Vocabulário',q:'O que significa locus amoenus?',a:'"Lugar ameno": paisagem agradável e idealizada (fonte, sombra, prado, rebanho).'},
+ {t:'Vocabulário',q:'O que significa inutilia truncat?',a:'"Cortar o inútil": linguagem simples e direta, sem enfeites.'},
+ {t:'Vocabulário',q:'O que significa aurea mediocritas?',a:'"Mediania dourada": vida equilibrada, sem luxo nem miséria.'},
+ {t:'Vocabulário',q:'O que é pastoralismo? E bucolismo?',a:'Pastoralismo: o poeta finge ser um pastor (com pseudônimo). Bucolismo: elogio da vida calma no campo.'},
+ {t:'Vocabulário',q:'O que é um soneto?',a:'Poema de 14 versos: dois quartetos e dois tercetos. Forma preferida de Cláudio Manuel da Costa.'},
+ {t:'Vocabulário',q:'O que são versos brancos e oitava rima?',a:'Versos brancos: sem rima (O Uraguai, Cartas Chilenas). Oitava rima: estrofe de 8 versos rimados (Caramuru, Os Lusíadas).'},
+ {t:'Vocabulário',q:'O que é eu lírico?',a:'A voz que fala no poema; não é o autor real. Dirceu é o eu lírico de Gonzaga.'},
+ {t:'Vocabulário',q:'Quais as partes clássicas de uma epopeia?',a:'Proposição, invocação, dedicatória, narração e epílogo.'},
+ {t:'Vocabulário',q:'Qual a diferença entre nativismo e nacionalismo?',a:'Nativismo (árcade): orgulho da terra natal, sem país independente. Nacionalismo (romântico): exaltação da nação já independente.'},
+ {t:'Autores árcades',q:'Qual o pseudônimo de Cláudio Manuel da Costa e suas obras?',a:'Glauceste Satúrnio. Obras Poéticas (1768) e Vila Rica (1773).'},
+ {t:'Autores árcades',q:'Que traços barrocos aparecem em Cláudio Manuel da Costa?',a:'O desencanto com a vida, a brevidade do amor e dos sentimentos.'},
+ {t:'Autores árcades',q:'Quem é Dirceu? E Marília?',a:'Dirceu é o pseudônimo de Tomás Antônio Gonzaga; Marília é Maria Doroteia Joaquina de Seixas, sua noiva em Vila Rica.'},
+ {t:'Autores árcades',q:'Qual a diferença entre a Parte I e a Parte II de Marília de Dirceu?',a:'Parte I: amor leve, vida simples, carpe diem. Parte II: escrita na prisão — desespero, saudade, queixa.'},
+ {t:'Autores árcades',q:'Quem são Critilo, Fanfarrão Minésio, Chile e Santiago nas Cartas Chilenas?',a:'Critilo = Gonzaga; Fanfarrão Minésio = Luís da Cunha Meneses (governador); Chile = Minas Gerais; Santiago = Vila Rica.'},
+ {t:'Autores árcades',q:'Como são as Cartas Chilenas na forma?',a:'13 cartas em decassílabos brancos, poema satírico incompleto, circularam anônimas em Vila Rica (1788–1789).'},
+ {t:'Autores árcades',q:'Qual o pseudônimo e as obras de Silva Alvarenga?',a:'Alcindo Palmireno. O Desertor das Letras (1774, herói-cômico) e Glaura (1799).'},
+ {t:'Autores árcades',q:'Por que Silva Alvarenga é chamado de precursor do Romantismo?',a:'Pela musicalidade intensa e pela poesia amorosa com poucas referências greco-romanas.'},
+ {t:'Autores árcades',q:'Sobre o que é Caramuru (1781)?',a:'O naufrágio de Diogo Álvares Correia na Bahia e seus amores com Paraguaçu e Moema. Autor: Santa Rita Durão.'},
+ {t:'Autores árcades',q:'Qual a forma de Caramuru?',a:'10 cantos, decassílabos em oitava rima, estrutura de Os Lusíadas (modelo camoniano).'},
+ {t:'Autores árcades',q:'Sobre o que é O Uraguai (1769)?',a:'A guerra dos Sete Povos das Missões (anos 1750; o livro diz 1759): portugueses e espanhóis contra índios e jesuítas. Autor: Basílio da Gama.'},
+ {t:'Autores árcades',q:'Qual a forma de O Uraguai e qual sua intenção política?',a:'Decassílabos brancos, sem estrofes. Exalta os portugueses e satiriza os jesuítas, para agradar ao Marquês de Pombal.'},
+ {t:'Autores árcades',q:'Por que O Uraguai e Caramuru são precursores do indianismo?',a:'Porque trazem o índio idealizado (Lindoia, Moema, Paraguaçu), tema que o Romantismo vai transformar em símbolo nacional.'},
+ {t:'Romantismo Europa',q:'Qual obra marca o início do Romantismo e onde?',a:'Os Sofrimentos do Jovem Werther (1774), de Goethe, na Alemanha.'},
+ {t:'Romantismo Europa',q:'Quem representa o Romantismo na Inglaterra?',a:'Lord Byron (poesia ultrarromântica) e Walter Scott (romance histórico Ivanhoé).'},
+ {t:'Romantismo Europa',q:'Qual o contexto histórico do Romantismo europeu?',a:'Consolidação da burguesia (Revolução Francesa), racionalismo e Iluminismo; o Romantismo se opõe ao Classicismo.'},
+ {t:'Romantismo Europa',q:'Qual o gênero principal do Romantismo?',a:'A prosa — o romance, com narrativas extensas e um núcleo central.'},
+ {t:'Romantismo Europa',q:'Cite as 4 "famílias" de características românticas.',a:'O eu (subjetividade), o sentimento (amor, herói que sofre), a liberdade (formal, prosa) e a pátria/passado (nacionalismo, Idade Média, idealização).'},
+ {t:'Romantismo Europa',q:'O que é evasão (escapismo) no Romantismo?',a:'Fuga da realidade pelo sonho, pela fantasia ou pela morte.'},
+ {t:'Romantismo Europa',q:'De onde vem a palavra "romance"?',a:'Das composições populares em língua vulgar (latim do povo), de fantasia e aventura; no séc. XVIII passou a significar narrativa longa em prosa.'},
+ {t:'Romantismo Europa',q:'Que pintura de Delacroix é símbolo do Romantismo?',a:'A Liberdade guiando o povo (1830): a liberdade contra a tirania.'},
+ {t:'Romantismo Europa',q:'"Napoleão cruzando os Alpes" (David, 1801) é de que escola e o que faz?',a:'Neoclassicismo: idealiza o evento histórico pela ótica dos grupos dominantes.'},
+ {t:'Romantismo Brasil',q:'Qual obra e qual ano marcam o início do Romantismo no Brasil?',a:'Suspiros Poéticos e Saudades (1836), de Gonçalves de Magalhães.'},
+ {t:'Romantismo Brasil',q:'O que foi a revista Niterói?',a:'Revista publicada em Paris (1836) por jovens brasileiros, com o lema "Tudo pelo Brasil e para o Brasil"; passo decisivo do Romantismo brasileiro.'},
+ {t:'Romantismo Brasil',q:'Que mudanças depois de 1822 favoreceram a vida literária no Rio?',a:'Crescimento urbano, imprensa, cargos públicos, primeiras faculdades ("universidades", no livro), alfabetização e um público leitor (estudantes e mulheres).'},
+ {t:'Romantismo Brasil',q:'Qual o papel da literatura no Segundo Império (D. Pedro II)?',a:'Ser engajada na formação e consolidação da nação, ameaçada por revoltas regionais.'},
+ {t:'Romantismo Brasil',q:'O que é indianismo?',a:'A valorização do índio como herói nacional, símbolo da origem do Brasil (o "cavaleiro medieval" brasileiro).'},
+ {t:'Romantismo Brasil',q:'O que é ufanismo?',a:'Orgulho exagerado do próprio país: "Minha terra tem palmeiras, onde canta o sabiá".'},
+ {t:'Romantismo Brasil',q:'O que Alencar defende no prefácio "Bênção Paterna"?',a:'Uma literatura com língua abrasileirada: o povo que "chupa o caju" não fala como o que "sorve o figo".'},
+ {t:'Romantismo Brasil',q:'Quem é Iracema e quem escreveu?',a:'A "virgem dos lábios de mel", índia tabajara que ama o guerreiro branco Martim; romance de José de Alencar (1865).'},
+ {t:'Romantismo Brasil',q:'Que autor romântico escreveu "I-Juca-Pirama" e "Leito de Folhas Verdes"?',a:'Gonçalves Dias, o grande poeta indianista — autor também da Canção do Exílio (Primeiros Cantos, 1846).'},
+ {t:'Romantismo Brasil',q:'No Romantismo, como a natureza aparece num poema de amor?',a:'Como espelho dos sentimentos do eu lírico (flor que se abre como prece de amor, bosque que exala no silêncio da noite).'},
+ {t:'Romantismo Brasil',q:'Diferença rápida: Arcadismo × Romantismo?',a:'Árcade: razão, regras, pastor com pseudônimo, natureza-cenário. Romântico: sentimento, liberdade, o "eu" verdadeiro, natureza-espelho, pátria e índio.'}
+];
+let fcList=flashData.slice(),fcIdx=0;
+function fcRender(){const c=fcList[fcIdx];const card=document.getElementById('flashcard');card.classList.remove('flipped');document.getElementById('fcTema').textContent=c.t;document.getElementById('fcQ').textContent=c.q;document.getElementById('fcA').textContent=c.a;document.getElementById('fcCount').textContent=`${fcIdx+1} / ${fcList.length}`;}
+function fcNext(){fcIdx=(fcIdx+1)%fcList.length;fcRender();}
+function fcPrev(){fcIdx=(fcIdx-1+fcList.length)%fcList.length;fcRender();}
+function fcShuffle(){for(let i=fcList.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fcList[i],fcList[j]]=[fcList[j],fcList[i]];}fcIdx=0;fcRender();}
+document.querySelectorAll('#fcFilter button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#fcFilter button').forEach(x=>x.classList.remove('active'));b.classList.add('active');const t=b.dataset.tema;fcList=t==='all'?flashData.slice():flashData.filter(c=>c.t===t);fcIdx=0;fcRender();}));
+fcRender();
+
+/* ===== LINHA DO TEMPO ===== */
+const tl=[
+ {y:'1510',m:'18',e:'Naufrágio de <b>Diogo Álvares Correia</b> (Caramuru) na Bahia — enredo de <i>Caramuru</i>.'},
+ {y:'Séc. XVII',m:'17',e:'<b>Barroco</b> no Brasil: rebuscamento e angústia religiosa — o que o Arcadismo vai rejeitar.'},
+ {y:'Séc. XVIII',m:'17',k:1,e:'<b>Século do Ouro</b> em Minas: Vila Rica vira centro da colônia. Iluminismo chega aos letrados.'},
+ {y:'1754–1759',m:'18',e:'Guerra dos <b>Sete Povos das Missões</b> (Guerra Guaranítica, 1754–1756; o livro data em 1759) — tema de <i>O Uraguai</i>. Em 1759 Pombal expulsa os jesuítas do Brasil.'},
+ {y:'1768',m:'17',k:1,e:'<b>Obras Poéticas</b>, de Cláudio Manuel da Costa: início do Arcadismo no Brasil.'},
+ {y:'1769',m:'18',k:1,e:'<b>O Uraguai</b>, de Basílio da Gama.'},
+ {y:'1773–1774',m:'18',e:'<i>Vila Rica</i> (Cláudio Manuel da Costa) e <i>O Desertor das Letras</i> (Silva Alvarenga). <b>1774:</b> <i>Werther</i>, de Goethe, na Alemanha.'},
+ {y:'1781',m:'18',k:1,e:'<b>Caramuru</b>, de Santa Rita Durão.'},
+ {y:'1788–1789',m:'18',e:'<b>Cartas Chilenas</b> circulam em Vila Rica contra o governador Luís da Cunha Meneses.'},
+ {y:'1789',m:'17',k:1,e:'<b>Inconfidência Mineira</b>: Cláudio morre na prisão; Gonzaga é preso. Na França, <b>Revolução Francesa</b>.'},
+ {y:'1792',m:'18',k:1,e:'<b>Marília de Dirceu</b> é publicada; Gonzaga é exilado em Moçambique.'},
+ {y:'1793',m:'19',e:'Julgamento e decapitação do rei Luís XVI, na França.'},
+ {y:'1798–1799',m:'17',e:'<b>Conjuração Baiana</b> (1798). <i>Glaura</i>, de Silva Alvarenga (1799).'},
+ {y:'1807–1808',m:'19',e:'Napoleão exige que Portugal entre no <b>Bloqueio Continental</b> (proibição de comércio com a Inglaterra); Portugal resiste, é invadido, e a corte de <b>D. João VI</b> foge para o Brasil (1808). <i>O quadro do livro (p. 183) fala em "adesão" de Portugal — na verdade foi a recusa que causou a invasão.</i>'},
+ {y:'1818',m:'19',e:'<i>Peregrinação de Childe Harold</i> (Byron) e <i>A Balsa da Medusa</i> (Géricault).'},
+ {y:'1820',m:'19',e:'Revolução Liberal do Porto: revolta em Portugal que exige a volta do rei e uma Constituição — leva D. João VI a voltar (1821) e abre caminho à Independência.'},
+ {y:'1822',m:'20',k:1,e:'<b>Independência do Brasil</b>: começa a formação de um público leitor no Rio de Janeiro.'},
+ {y:'1825',m:'19',e:'Início do Romantismo em Portugal: <i>Camões</i>, de Almeida Garrett.'},
+ {y:'1830',m:'19',k:1,e:'<b>A Liberdade guiando o povo</b>, de Delacroix.'},
+ {y:'1836',m:'20',k:1,e:'<b>Suspiros Poéticos e Saudades</b> (Gonçalves de Magalhães) e revista <b>Niterói</b>: início do Romantismo no Brasil.'},
+ {y:'1840',m:'20',e:'Maioridade de <b>D. Pedro II</b>: Segundo Império; literatura engajada na nação.'},
+ {y:'1846',m:'20',e:'<i>Primeiros Cantos</i>, de <b>Gonçalves Dias</b> (Canção do Exílio).'},
+ {y:'1850',m:'20',e:'Proibição do tráfico de escravos para o Brasil (Lei Eusébio de Queirós).'},
+ {y:'1857–1865',m:'20',k:1,e:'<b>José de Alencar</b>: <i>O Guarani</i> (1857) e <i>Iracema</i> (1865). Na França, <i>Os Miseráveis</i> (1862).'},
+ {y:'1869',m:'20',e:'<i>O Navio Negreiro</i>, de Castro Alves.'},
+ {y:'1879',m:'19',e:'<i>A Batalha dos Guararapes</i>, de Victor Meirelles (pintura romântica de identidade nacional).'},
+ {y:'1888–1889',m:'20',e:'Abolição da escravatura (1888) e Proclamação da República (1889): fim do contexto imperial do Romantismo.'}
+];
+document.getElementById('timelineWrap').innerHTML=tl.map(x=>`<div class="tl-item${x.k?' key':''}"><div class="year">${x.k?'★ ':''}${x.y}<span class="mtag">Mód ${x.m}</span></div><div class="ev">${x.e}</div></div>`).join('');
+
+/* ===== ROTEIRO ===== */
+const roteiroData=[
+ {i:'L17-4',mod:'M17',src:'ENEM',g:'<b>Conceito (17.5):</b> o soneto "Torno a ver-vos, ó montes" mostra o poeta voltando da Metrópole (Portugal, onde "se vestiu" com o "traje da Corte, rico e fino") para a Colônia (os montes, os vaqueiros, a choupana). O núcleo do poema é a <b>oposição Colônia × Metrópole</b> e o poeta <b>dividido</b> entre a civilidade urbana de lá e a rusticidade de cá. <b>Análise:</b> a) errada — os "montes" e "outeiros" são a Colônia (terra natal), não a Metrópole; b) <b>correta</b>; c) errada — o bucolismo idealiza, não é "representação realista"; d) errada — a preferência pela "choupana" é afetiva/poética, não uma vantagem histórica da Colônia; e) errada — o pranto que vira alegria é sentimento pessoal do eu lírico, não retrato do "atraso" do Brasil. <b>Resposta: b.</b>'},
+ {i:'L17-6',mod:'M17',src:'UPF',g:'<b>Conceito (17.1 e 17.2):</b> as etapas da literatura colonial. <b>I — verdadeira:</b> no século XVI predominam textos informativos de viajantes e missionários (Caminha, Anchieta). <b>II — verdadeira:</b> nos séculos XVII e XVIII há um Barroco brasileiro nas letras, nas artes plásticas e na música (Aleijadinho, Gregório de Matos). <b>III — falsa:</b> o Arcadismo (meados do séc. XVIII até o Romantismo) <u>não</u> se opôs ao racionalismo iluminista — ele foi <b>influenciado</b> pelo Iluminismo. A celebração da natureza e da vida no campo é uma oposição ao <b>Barroco</b>, não à razão. Logo, I e II. <b>Resposta: d.</b>'},
+ {i:'L17-9',mod:'M17',src:'UNESP',g:'<b>Conceito (17.2 e 17.3):</b> o crítico Massaud Moisés descreve a "simplicidade" como tema e como modo de vida, a fuga do "burburinho citadino" (<i>fugere urbem</i>), a "áurea mediocridade" (<i>aurea mediocritas</i>), o regresso à natureza e a "naturalidade como filosofia de vida" — tudo isso é o programa do <b>Arcadismo</b>. <b>Por que não as outras:</b> Simbolismo (fim do séc. XIX) busca o vago e o musical; Romantismo exagera o sentimento, não a mediania; Barroco é o oposto (rebuscamento); Naturalismo (séc. XIX) analisa o homem como animal, sem idealização. <b>Resposta: a.</b>'},
+ {i:'L17-11',mod:'M17',src:'PUCCAMP',g:'<b>Conceito (17.1 e 17.5):</b> Afrânio Coutinho diz que o século XVIII foi "fase de transição e preparação para a Independência" e "terreno fecundo para a semente da liberdade", e que a literatura de Gonzaga reflete esse espírito. Ou seja: as manifestações culturais do período exprimiram um <b>sentimento nativista</b> (orgulho da terra) que iria desembocar num <b>nacionalismo libertário</b> (a Inconfidência, a Independência). <b>Por que não as outras:</b> a) os árcades continuam ligados à tradição europeia (imitam os clássicos); c) Contrarreforma (reação da Igreja Católica à Reforma protestante) é do Barroco; d) o "primeiro estágio" da colonização é o século XVI; e) não houve "derrocada" do império português no século XVIII, nem reação contra ela. <b>Resposta: b.</b>'},
+ {i:'L17-14',mod:'M17',src:'UEG',g:'<b>Conceito (17.5, 18.1 e 20.5):</b> o soneto de Cláudio Manuel da Costa parte da paisagem concreta e pedregosa de Minas ("Destes penhascos", "entre pedras tão duras") para falar de uma alma terna. A pintura de Caravaggio, <i>Conversão de São Paulo</i> (1600–1601), é uma cena <b>religiosa/espiritual</b>: Saulo caído do cavalo, tocado pela luz divina. <b>Análise:</b> a) errada — o poema não trata de questões sociais e políticas; b) <b>correta</b> — pintura de teor espiritual × poema com elementos concretos de uma paisagem pedregosa; c) errada — a pintura não louva a força humana (é a força divina que derruba Paulo), e o poema não fala de covardia; d) errada — a pintura é bíblica, não mitológica. <b>Resposta: b.</b> <i>(A questão 13 da mesma página, que não está no roteiro, pede os períodos: poema <b>árcade</b> e pintura <b>barroca</b> — alternativa a.)</i>'},
+ {i:'L18-5',mod:'M18',src:'UNESP',g:'<b>Conceito (17.5 e 18.1):</b> a questão pede a <b>INCORRETA</b>. No "Prólogo ao Leitor", Cláudio Manuel da Costa lamenta que, longe do Mondego (rio de Coimbra), entre "a grosseria dos seus gênios" do Brasil, não pôde escrever mais; as "praias da Arcádia" são o ideal literário europeu, e a corrente "turva e feia" destes rios (o garimpo) "arrebata as ideias de um Poeta". <b>Análise:</b> a) correta — o ambiente (rios turvos) reflete na produção literária; b) correta — formação europeia + desejo de exprimir a realidade "tosca" do país; c) correta — conflito entre o modelo árcade europeu e a nova matéria-prima brasileira; d) correta — há índices árcades (Ninfas, Arcádia) e, ao mesmo tempo, a dúvida se o modelo serve aqui; e) <b>incorreta</b> — o poeta não "sofre por não poder contemplar, na Europa, as praias da Arcádia": a Arcádia é um lugar ideal da poesia, não um lugar que ele visitava; o sofrimento é pela rudeza da terra em que vive. <b>Resposta: e.</b>'},
+ {i:'L18-6',mod:'M18',src:'UEL',g:'<b>Conceito (17.1):</b> Cláudio Manuel da Costa e Gonzaga escreveram na segunda metade do século XVIII, em Vila Rica, e participaram da <b>Inconfidência Mineira</b> — os ideais de liberdade do movimento estão ligados à sua poesia (Cartas Chilenas, Parte II de Marília). <b>Por que não as outras:</b> a) o Romantismo veio <u>depois</u> — não dá para reagir a ele; b) "espírito barroco, religiosidade conflituosa, estilo artificial" é a escola anterior, que o Arcadismo rejeita; d) Contrarreforma é do século XVI–XVII (Barroco), e em "meados do século XIX" os dois já tinham morrido; e) a Independência (1822) é posterior à morte dos dois. <b>Resposta: c.</b>'},
+ {i:'L18-7',mod:'M18',src:'UFV',g:'<b>Conceito (17.2 e 17.5):</b> o Arcadismo brasileiro seguiu o modelo europeu (clássicos, pastoralismo), mas acrescentou <b>temas da realidade local</b> — o ouro, os rios, o sertão, o índio das épicas —, o que o torna importante para a formação de uma literatura nacional. <b>Por que não as outras:</b> a) "estilo rebuscado, antíteses e frases tortuosas" = Barroco; b) não foi "mera imitação" — há a marca local; d) não houve "completa ruptura" nem "primeira fase verdadeiramente nacionalista" (isso é o Romantismo); e) "angústia metafísica (sobre alma, Deus, salvação) e religiosa, divididos entre salvação e gozo" = Barroco. <b>Resposta: c.</b>'},
+ {i:'L18-12',mod:'M18',src:'UFV',g:'<b>Conceito (18.2 e 20.5):</b> na Lira I, Marília é descrita como mulher concreta (olhos, faces, cabelos, corpo) e, ao mesmo tempo, como criação do Céu "para glória de amor igual Tesouro" — ou seja, ela é <b>pessoa</b> e <b>encarnação do Amor</b> como ideal absoluto, à maneira da <b>idealização clássica</b> da mulher. <b>Análise:</b> a) <b>correta</b>; b) errada — há, sim, idealização clássica (luz divina, rosa, neve, ouro); c) errada — o poema não a trata "unicamente" como noiva e futura esposa; d) errada — não há contraste com a fruição serena dos prazeres (a beleza de Marília faz parte desse ideal); e) errada — a "intensa sensualidade" e "amante e não noiva" não estão no texto: a descrição é idealizada, não sensual. <b>Resposta: a.</b>'},
+ {i:'L19-4',mod:'M19',src:'ENEM',g:'<b>Conceito (20.2 e 20.3):</b> na crônica de 1854, Alencar celebra que "a civilização faz prodígios" no país, que "tudo pulula, tudo cresce e se desenvolve" e que "cada dia fazemos um passo" nos "melhoramentos materiais" — o nacionalismo aqui se constrói pelo elogio ao <b>progresso nacional</b>. <b>Por que não as outras:</b> a) não fala do passado, e sim do presente/futuro; c) inteligência é citada, mas dentro da ideia geral de progresso; d) "imponência civilizatória" e e) "imaginação exacerbada" invertem o sentido: ele diz que <u>não</u> é imaginação, é realidade. <b>Resposta: b.</b>'},
+ {i:'L19-5',mod:'M19',src:'ENEM',g:'<b>Conceito (19.4):</b> <i>A Batalha dos Guararapes</i> (1879) retrata um episódio da luta contra os holandeses em Pernambuco (séc. XVII), pintado no Império como momento de união dos "brasileiros" (portugueses, índios e negros juntos). No Romantismo, a pintura histórica serve para <b>construir a identidade brasileira</b>. <b>Por que não as outras:</b> a) a "descrição dramática" é meio, não fim; b) "retrato" é a pintura de uma pessoa — aqui é uma cena histórica coletiva; c) a batalha não é revolta popular; e) as obras francesas não são o tema. <b>Resposta: d.</b>'},
+ {i:'L19-6',mod:'M19',src:'ENEM',g:'<b>Conceito (19.4):</b> <i>Napoleão cruzando os Alpes</i> (David, 1801) é uma pintura <b>neoclássica</b> encomendada pelo poder: mostra Napoleão como herói perfeito, num cavalo empinado, com capa ao vento — na realidade, ele cruzou os Alpes numa mula. É a <b>idealização de um evento histórico pela ótica dos grupos dominantes</b>. <b>Por que não as outras:</b> a) técnica tradicional (óleo sobre tela); b) não é a percepção do povo, é a do poder; c) não é caricatura; e) não é visão crítica — é propaganda. <b>Resposta: d.</b>'},
+ {i:'L20-1',mod:'M20',src:'Mackenzie',g:'<b>Conceito (20.2, 20.3 e 20.5):</b> na estrofe de <i>Leito de Folhas Verdes</i>, a flor do tamarindo se abre e o bogari solta aroma "como prece de amor, como estas preces" — a natureza acompanha e <b>expressa os sentimentos amorosos</b> da índia que espera Jatir (natureza-espelho, típica do Romantismo). <b>Por que não as outras:</b> a) não é força indomável nem experiência erótica instintiva; c) não há divindade mítica clássica (isso seria árcade); d) não é "apenas cenário": ela participa do sentimento; e) não é recriação objetiva — é subjetiva, ainda que use flora nacional. <b>Resposta: b.</b>'},
+ {i:'L20-6',mod:'M20',src:'ENEM',g:'<b>Conceito (20.2 e 20.3):</b> o texto apresenta Alencar como criador de clássicos "com temas nativistas, indianistas e históricos" e diz que seu acervo inédito será digitalizado. A conclusão possível: a digitalização terá papel na <b>preservação da memória linguística e da identidade nacional</b>. <b>Por que não as outras:</b> a) o texto não diz que os leitores precisam disso para compreender os romances; b) "temática atemporal" contradiz o texto (temas nativistas e históricos); c) a importância para a história do Império já existe, não depende da digitalização; e) reduz Alencar ao indianismo, que é só uma das facetas. <b>Resposta: d.</b>'},
+ {i:'L20-12',mod:'M20',src:'FUVEST',g:'<b>Conceito (20.2 e 20.3):</b> no prefácio "Bênção Paterna", Alencar pergunta se o povo que "chupa o caju, a manga, o cambucá e a jabuticaba" pode falar a mesma língua, com o mesmo espírito, do povo que "sorve o figo, a pera, o damasco e a nêspera" — resposta implícita: não. Ele defende uma literatura com <b>língua abrasileirada</b>; o trecho de <i>Iracema</i> mostra isso na prática (ará, uru, crautá, juçara). <b>Análise:</b> a) errada — ele diz o contrário (não pode ser "o mesmo espírito"); b) <b>correta</b>; c) errada — "chupar" × "sorver" marca diferença cultural, não rebaixamento; d) errada — Iracema não recusa os elementos naturais, ela é feita deles; e) errada — não é escapismo: é valorização da realidade brasileira. <b>Resposta: b.</b>'},
+ {i:'LISTA-ARC',mod:'LISTA',pend:true,titulo:'Lista do Arcadismo (14–17/09) — atividade xerocada',g:'Ainda não recebi a foto/PDF desta lista. Quando chegar, os exercícios entram aqui com código <code>LA-n</code> e gabarito comentado. Critérios do roteiro: vocabulário, relação dos excertos com o contexto histórico e identificação do autor pelas características de escrita.'},
+ {i:'LISTA-ROM',mod:'LISTA',pend:true,titulo:'Lista sobre Romantismo — atividade xerocada',g:'Ainda não recebi a foto/PDF desta lista. Quando chegar, os exercícios entram aqui com código <code>LR-n</code> e gabarito comentado. Critérios: vocabulário, excertos × contexto, autor e características, características da escola nos poemas.'}
+];
+function renderRoteiro(){
+  const list=document.getElementById('roteiroList');
+  const f=document.querySelector('#rotFilter button.active').dataset.mod;
+  const arr=roteiroData.filter(e=>f==='all'||e.mod===f);
+  const modName={M17:'Mód 17 · Contexto',M18:'Mód 18 · Autores',M19:'Mód 19 · Romantismo Europa',M20:'Mód 20 · Romantismo Brasil',LISTA:'Lista xerocada'};
+  list.innerHTML=arr.map(e=>{
+    if(e.pend){return `<div class="ex-card pend" id="ex-${e.i}"><div class="ex-head"><span class="id" style="color:var(--ink-dim)">⏳ ${e.titulo}</span><div class="tags"><span class="tag mod">${modName[e.mod]}</span><span class="tag">PENDENTE</span></div></div><div class="reveal-block" style="background:rgba(255,255,255,.04);border-left-color:#9aa0a6">${e.g}</div></div>`;}
+    return `<div class="ex-card ${e.mod.toLowerCase()}" id="ex-${e.i}"><div class="ex-head"><span class="id">${e.i}</span><div class="tags"><span class="tag mod">${modName[e.mod]}</span>${e.src?`<span class="tag banca">${e.src}</span>`:''}${Array.isArray(imageMap[e.i])?'<span class="tag">2 PÁGINAS</span>':''}</div></div><div class="ex-actions"><button class="btn-orig" onclick="openImgModal('${e.i}','${e.i} — Enunciado original')">🔍 Ver original</button><button onclick="revealGab('${e.i}')" style="background:rgba(255,209,102,.15);color:var(--gold);border-color:var(--gold)">📖 Gabarito comentado</button></div><div id="reveal-${e.i}"></div></div>`;}).join('');
+}
+function revealGab(id){const ex=roteiroData.find(x=>x.i===id);const c=document.getElementById(`reveal-${id}`);const ex0=c.querySelector('.gab-block');if(ex0){ex0.remove();return;}const el=document.createElement('div');el.className='reveal-block gab-block';el.innerHTML=`<span class="lbl">Gabarito comentado (resolução minha — confira)</span>${ex.g}`;c.appendChild(el);}
+document.querySelectorAll('#rotFilter button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#rotFilter button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRoteiro();}));
+renderRoteiro();
+
+function toggleEl(id){const e=document.getElementById(id);e.style.display=e.style.display==='none'?'block':'none';}
+
+/* ===== SIMULADOS ===== */
+const simMeta={1:{nome:'Simulado 1 — Fácil',nivel:'Fácil',emoji:'🟢'},2:{nome:'Simulado 2 — Médio',nivel:'Médio',emoji:'🟡'},3:{nome:'Simulado 3 — Difícil',nivel:'Difícil',emoji:'🔴'}};
+const V=(t,s)=>`<div class="verse">${t}<span class="src">${s}</span></div>`;
+const simData={
+ 1:[
+  {code:'S1-Q01',subj:'17',q:'A publicação que marca o início do Arcadismo no Brasil é:',o:['Marília de Dirceu (1792), de Tomás Antônio Gonzaga','Obras Poéticas (1768), de Cláudio Manuel da Costa','Caramuru (1781), de Santa Rita Durão','Suspiros Poéticos e Saudades (1836), de Gonçalves de Magalhães'],r:'B'},
+  {code:'S1-Q02',subj:'17',q:'A cidade que concentrou os poetas árcades brasileiros, no chamado Século do Ouro, foi:',o:['Salvador, na Bahia','Rio de Janeiro, sede da corte','Vila Rica, atual Ouro Preto','São Paulo de Piratininga'],r:'C'},
+  {code:'S1-Q03',subj:'17',q:'A expressão latina <i>fugere urbem</i>, comum no Arcadismo, significa:',o:['aproveitar o dia, pois a vida é breve','fugir da cidade em busca da paz do campo','cortar o que é inútil na linguagem','viver no meio-termo, sem luxo nem miséria'],r:'B'},
+  {code:'S1-Q04',subj:'18',q:'Dirceu e Glauceste Satúrnio são, respectivamente, os pseudônimos árcades de:',o:['Silva Alvarenga e Basílio da Gama','Tomás Antônio Gonzaga e Cláudio Manuel da Costa','Cláudio Manuel da Costa e Tomás Antônio Gonzaga','Santa Rita Durão e Silva Alvarenga'],r:'B'},
+  {code:'S1-Q05',subj:'18',q:'As <i>Cartas Chilenas</i> criticam, sob nomes disfarçados, os abusos de:',o:['Luís da Cunha Meneses, governador de Minas Gerais','Marquês de Pombal, ministro de Portugal','Tiradentes, líder da Inconfidência','D. João VI, rei de Portugal'],r:'A'},
+  {code:'S1-Q06',subj:'18',q:'O poema épico sobre a guerra dos Sete Povos das Missões, escrito em decassílabos brancos e sem divisão em estrofes, é:',o:['Caramuru, de Santa Rita Durão','Vila Rica, de Cláudio Manuel da Costa','O Uraguai, de Basílio da Gama','O Desertor das Letras, de Silva Alvarenga'],r:'C'},
+  {code:'S1-Q07',subj:'19',q:'A obra de 1774 que lançou as bases do sentimentalismo romântico na Alemanha foi:',o:['Ivanhoé, de Walter Scott','Os Sofrimentos do Jovem Werther, de Goethe','Os Miseráveis, de Victor Hugo','Peregrinação de Childe Harold, de Lord Byron'],r:'B'},
+  {code:'S1-Q08',subj:'19',q:'No Romantismo, o gênero literário que se consolida como principal é:',o:['o soneto','a epopeia','a prosa, com o romance','a sátira em versos'],r:'C'},
+  {code:'S1-Q09',subj:'20',q:'O Romantismo brasileiro tem como marco inicial, em 1836:',o:['Iracema, de José de Alencar','A Moreninha, de Joaquim Manuel de Macedo','Primeiros Cantos, de Gonçalves Dias','Suspiros Poéticos e Saudades, de Gonçalves de Magalhães'],r:'D'},
+  {code:'S1-Q10',subj:'20',q:'A valorização do índio como herói e símbolo da origem da nação, típica do Romantismo brasileiro, chama-se:',o:['bucolismo','indianismo','pastoralismo','ultrarromantismo'],r:'B'}
+ ],
+ 2:[
+  {code:'S2-Q01',subj:'17',q:V('Eu, Marília, não sou algum vaqueiro,\nque viva de guardar alheio gado,\n(...)\nTenho próprio casal e nele assisto;\ndá-me vinho, legume, fruta, azeite;\ndas brancas ovelhinhas tiro o leite,\ne mais as finas lãs, de que me visto.','Gonzaga, Marília de Dirceu, Lira I')+'Os versos acima reúnem duas marcas do Arcadismo. Quais?',o:['nacionalismo e indianismo','aurea mediocritas (vida simples e equilibrada) e pastoralismo','angústia religiosa e antíteses barrocas','versos livres e evasão pela morte'],r:'B'},
+  {code:'S2-Q02',subj:'18',q:V('Destes penhascos fez a natureza\nO berço em que nasci: oh quem cuidara,\nQue entre penhas tão duras se criara\nUma alma terna, um peito sem dureza!','Cláudio Manuel da Costa, Soneto XCVIII')+'Nesses versos, a relação entre a paisagem e o eu lírico é de:',o:['harmonia total: a natureza suave espelha a alma suave','contraste: a terra dura de Minas gerou uma alma sensível','indiferença: a paisagem é apenas um cenário decorativo','medo: a natureza ameaça destruir o eu lírico'],r:'B'},
+  {code:'S2-Q03',subj:'20',q:V('Minha terra tem palmeiras,\nOnde canta o Sabiá;\nAs aves, que aqui gorjeiam,\nNão gorjeiam como lá.','Gonçalves Dias, Canção do Exílio (1846)')+'A estrofe é um exemplo clássico de:',o:['ufanismo e nacionalismo românticos','bucolismo árcade com pseudônimo pastoril','sátira política disfarçada','crítica realista à sociedade imperial'],r:'A'},
+  {code:'S2-Q04',subj:'19',q:'"Para esses autores, a regra é um cárcere. O eu é a única paisagem que interessa; a natureza só existe como projeção do que sentem. Recusam a razão fria dos clássicos e preferem a liberdade da imaginação." (Texto criado para o simulado.) O comentário descreve os autores do:',o:['Arcadismo','Barroco','Romantismo','Classicismo'],r:'C'},
+  {code:'S2-Q05',subj:'17',q:'"Esses poetas imitam os antigos gregos e latinos, fingem-se pastores, celebram a vida simples do campo e invocam Apolo e Diana sem nenhum conflito religioso." (Texto criado para o simulado.) O comentário descreve os poetas do:',o:['Arcadismo','Barroco','Romantismo','Simbolismo'],r:'A'},
+  {code:'S2-Q06',subj:'18',q:'Um poema épico brasileiro do século XVIII exalta os portugueses, satiriza os jesuítas e rompe com o modelo camoniano ao usar versos brancos sem estrofes. Trata-se de:',o:['Caramuru, de Santa Rita Durão','O Uraguai, de Basílio da Gama','Vila Rica, de Cláudio Manuel da Costa','Glaura, de Silva Alvarenga'],r:'B'},
+  {code:'S2-Q07',subj:'18',q:'Leia as afirmativas sobre <i>Marília de Dirceu</i>: I. Na Parte I, o eu lírico apresenta uma vida simples e equilibrada, sem luxo, ao lado de Marília. II. Na Parte II, escrita na prisão, predominam o desespero e a saudade. III. Marília é descrita com traços de idealização clássica (luz divina, rosa, neve, ouro). Está correto o que se afirma em:',o:['I, apenas','I e II, apenas','II e III, apenas','I, II e III'],r:'D'},
+  {code:'S2-Q08',subj:'19',q:'Numa pintura, uma mulher de bandeira na mão avança sobre barricadas, guiando uma multidão armada de trabalhadores, burgueses e um menino. A cena, cheia de movimento e emoção, é típica da pintura:',o:['neoclássica, que idealiza o herói pela ótica do poder','romântica, que exalta a liberdade e o povo','barroca, que mostra o conflito entre carne e espírito','árcade, que retrata a paz do campo'],r:'B'},
+  {code:'S2-Q09',subj:'20',q:'Um grupo de jovens brasileiros que estudava em Paris fundou, em 1836, uma revista com o lema "Tudo pelo Brasil e para o Brasil". Esse lema expressa a intenção de:',o:['imitar a literatura portuguesa','investigar e valorizar a cultura brasileira (nacionalismo)','retomar os modelos árcades','criticar o Segundo Império'],r:'B'},
+  {code:'S2-Q10',subj:'20',q:V('Além, muito além daquela serra, que ainda azula no horizonte, nasceu Iracema.\nIracema, a virgem dos lábios de mel, que tinha os cabelos mais negros que a asa da graúna, e mais longos que seu talhe de palmeira.','José de Alencar, Iracema (1865)')+'A descrição da personagem revela duas características do Romantismo brasileiro:',o:['idealização da mulher e uso da natureza nacional (indianismo)','carpe diem e locus amoenus','sátira e crítica social','equilíbrio clássico e mitologia grega'],r:'A'}
+ ],
+ 3:[
+  {code:'S3-Q01',subj:'17',t:'soma',q:'Sobre o Arcadismo no Brasil, assinale o que for correto e dê a soma:',o:['01) Surgiu em Minas Gerais, no contexto da mineração e da Inconfidência.','02) Opôs-se ao Iluminismo, defendendo a fé contra a razão.','04) Adotou pseudônimos pastoris e a linguagem simples (inutilia truncat).','08) Seu marco inicial é Obras Poéticas (1768), de Cláudio Manuel da Costa.','16) Rejeitou toda referência à mitologia greco-latina.'],r:'13 (01+04+08)'},
+  {code:'S3-Q02',subj:'18',q:'Nas <i>Cartas Chilenas</i>, "Chile", "Santiago", "Critilo" e "Fanfarrão Minésio" correspondem, respectivamente, a:',o:['Minas Gerais, Vila Rica, Gonzaga e Luís da Cunha Meneses','Vila Rica, Minas Gerais, Cláudio Manuel da Costa e Pombal','Bahia, Salvador, Gonzaga e Tiradentes','Minas Gerais, Vila Rica, Luís da Cunha Meneses e Gonzaga'],r:'A'},
+  {code:'S3-Q03',subj:'19',t:'soma',q:'Sobre o Romantismo europeu, assinale o que for correto e dê a soma:',o:['01) Opõe-se ao Classicismo e valoriza a liberdade artística.','02) Tem como gênero principal a prosa (o romance).','04) Surgiu na Alemanha, com Werther (1774), de Goethe.','08) Recusa o nacionalismo e o interesse pelo folclore.','16) Valoriza a razão acima do sentimento.'],r:'7 (01+02+04)'},
+  {code:'S3-Q04',subj:'18',q:'Comparando <i>Caramuru</i> e <i>O Uraguai</i>, é correto afirmar que:',o:['ambos seguem rigidamente a estrutura de Os Lusíadas','Caramuru usa oitava rima ao modelo camoniano; O Uraguai usa versos brancos sem estrofes','O Uraguai narra o descobrimento da Bahia; Caramuru, a guerra das Missões','nenhum dos dois apresenta personagens indígenas'],r:'B'},
+  {code:'S3-Q05',subj:'18',q:'No "Prólogo ao Leitor" de <i>Obras Poéticas</i>, Cláudio Manuel da Costa afirma que a corrente "turva e feia" destes rios "arrebata as ideias de um Poeta". A frase expressa:',o:['o orgulho nacionalista pela riqueza do ouro','a contradição entre o ideal árcade europeu e a realidade brasileira','a defesa do Barroco contra o Arcadismo','a evasão romântica pela fantasia'],r:'B'},
+  {code:'S3-Q06',subj:'19',q:'A palavra "romance", antes do século XVIII, designava:',o:['apenas histórias de amor entre nobres','composições em língua vulgar, de fantasia e aventura, em verso ou prosa','tratados filosóficos em latim','poemas épicos sobre a Antiguidade'],r:'B'},
+  {code:'S3-Q07',subj:'20',q:'Sobre o Romantismo no Brasil, é INCORRETO afirmar que:',o:['a Independência de 1822 criou condições (imprensa, faculdades, público leitor) para a vida literária no Rio','no Segundo Império, a literatura foi chamada a colaborar com a formação da nação','o índio e a natureza tropical substituíram o cavaleiro medieval europeu como passado idealizado','o movimento manteve a fidelidade aos modelos clássicos e aos pseudônimos pastoris'],r:'D'},
+  {code:'S3-Q08',subj:'20',q:'"Se, na Europa, este movimento é um protesto cultural contra a industrialização e a burguesia, no Brasil, produto de importação, corresponde a uma afirmação nacionalista." A diferença apontada se explica porque, no Brasil:',o:['não havia burguesia industrial contra a qual protestar, e a nação recém-independente precisava de identidade','a industrialização era mais intensa que na Europa','a literatura era proibida pelo Império','os escritores rejeitavam qualquer influência europeia'],r:'A'},
+  {code:'S3-Q09',subj:'20',t:'disc',q:'(Discursiva) Compare o tratamento da natureza na poesia árcade e na poesia romântica brasileira. Cite um exemplo de cada (autor ou obra).',g:'No Arcadismo, a natureza é cenário idealizado e tranquilo (locus amoenus), lugar de refúgio da cidade (fugere urbem), onde o pastor vive com equilíbrio — ex.: Gonzaga, em Marília de Dirceu ("Tenho próprio casal… dá-me vinho, legume, fruta, azeite"). No Romantismo, a natureza é espelho dos sentimentos do eu lírico e símbolo da pátria: sente junto com quem fala e vira motivo de orgulho nacional — ex.: Gonçalves Dias, em Leito de Folhas Verdes (a flor se abre "como prece de amor") ou na Canção do Exílio (palmeiras e sabiá).'},
+  {code:'S3-Q10',subj:'17',t:'disc',q:'(Discursiva) Explique a relação entre o Arcadismo mineiro e a Inconfidência Mineira, citando dois autores e o que aconteceu com eles.',g:'O Arcadismo brasileiro floresceu em Vila Rica no Século do Ouro, quando as ideias iluministas (razão, liberdade, crítica ao poder) chegaram aos letrados. Poetas participaram da conspiração de 1789 contra a Coroa: Cláudio Manuel da Costa foi preso e morreu na cadeia; Tomás Antônio Gonzaga foi preso na Ilha das Cobras e exilado em Moçambique (1792). A poesia reflete esse clima: as Cartas Chilenas satirizam o governador, e a Parte II de Marília de Dirceu foi escrita na prisão.'}
+ ]
+};
+const subjName={'17':'Mód 17','18':'Mód 18','19':'Mód 19','20':'Mód 20'};
+function simQuestionHTML(x,showSpace){
+  let body;
+  if(x.t==='disc'){body=`<div class="qbody">${x.q}</div>${showSpace?'<div class="print-lines"></div>':'<div class="disc-lines no-print"></div>'}`;}
+  else if(x.t==='soma'){body=`<div class="qbody">${x.q}<ul class="altos soma">${x.o.map(o=>`<li>${o}</li>`).join('')}</ul>${showSpace?'<div class="soma-box">Soma: ______</div>':''}</div>`;}
+  else{const alts=x.o.map((o,idx)=>`<li data-l="${String.fromCharCode(97+idx)})">${o}</li>`).join('');body=`<div class="qbody">${x.q}<ul class="altos">${alts}</ul></div>${showSpace?'<div class="print-answer-space"></div>':''}`;}
+  return `<div class="sim-q"><div class="qh"><span class="code">${x.code}</span><span class="subject">${subjName[x.subj]}</span></div>${body}</div>`;}
+function openSim(n){const meta=simMeta[n],data=simData[n];const view=document.getElementById('simView');const qs=data.map(x=>simQuestionHTML(x,false)).join('');
+ const obj=data.filter(x=>x.t!=='disc').map(x=>`<b>${x.code}</b>: ${x.r}`).join(' &nbsp;·&nbsp; ');
+ const disc=data.filter(x=>x.t==='disc').map(x=>`<div style="margin-top:8px"><b>${x.code} (modelo):</b> ${x.g}</div>`).join('');
+ view.innerHTML=`<div class="sim-header no-print"><h3>${meta.emoji} ${meta.nome}</h3><div class="info">${data.length} questões originais · nível ${meta.nivel}</div><div><button onclick="printSim(${n})" style="background:var(--gold);color:#1a0a16;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700;margin-right:6px">🖨️ Imprimir</button><button onclick="document.getElementById('simView').innerHTML=''" style="background:var(--wrong);color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:700">✖ Fechar</button></div></div>${qs}<div class="sim-gab" id="simGab" style="display:none"><h4>🔑 Gabarito</h4><p>${obj}</p>${disc}</div><div class="no-print" style="text-align:center;margin-top:12px"><button onclick="const g=document.getElementById('simGab');g.style.display=g.style.display==='none'?'block':'none'" style="background:var(--card-2);color:var(--gold);border:1px solid var(--gold);padding:8px 16px;border-radius:10px;cursor:pointer;font-weight:700">🔑 Mostrar / ocultar gabarito</button></div>`;
+ window.scrollTo({top:document.getElementById('simView').offsetTop-20,behavior:'smooth'});}
+function printSim(n){const meta=simMeta[n];document.getElementById('printTitle').textContent=`${meta.nome} — Literatura P1T3`;const view=document.getElementById('simView');view.innerHTML=simData[n].map(x=>simQuestionHTML(x,true)).join('');setTimeout(()=>{window.print();openSim(n);},300);}
+</script>
+</body>
+</html>
